@@ -28,6 +28,8 @@ import MateRoot from './components/community/MateRoot/MateRoot';
 import LostRoot from './components/community/LostRoot/LostRoot';
 import TipRoot from './components/community/TipRoot/TipRoot';
 import User from './components/users/User/User';
+import { Provider } from 'react-redux';
+import store from './store/store';
 
 const router = createBrowserRouter([
 	{
@@ -114,6 +116,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<Provider store={store}>
+			<RouterProvider router={router} />
+		</Provider>
 	</React.StrictMode>,
 );
