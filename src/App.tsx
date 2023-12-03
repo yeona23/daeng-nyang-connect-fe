@@ -1,5 +1,15 @@
+import { Outlet } from 'react-router-dom';
+import Nav from './components/Nav/Nav';
+import Footer from './components/Footer/Footer';
+
 function App() {
-	return <div className="App">댕냥</div>;
+	return (
+		<div>
+			<Nav />
+			<Outlet />
+			<Footer />
+		</div>
+	);
 }
 
 export default App;
