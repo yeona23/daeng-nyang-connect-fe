@@ -30,6 +30,8 @@ import TipRoot from './components/community/TipRoot/TipRoot';
 import User from './components/users/User/User';
 import { Provider } from 'react-redux';
 import store from './store/store';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 const router = createBrowserRouter([
 	{
@@ -111,13 +113,18 @@ const router = createBrowserRouter([
 	},
 ]);
 
+const queryClient = new QueryClient();
+
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement,
 );
 root.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<RouterProvider router={router} />
+			<QueryClientProvider client={queryClient}>
+				<RouterProvider router={router} />
+				<ReactQueryDevtools />
+			</QueryClientProvider>
 		</Provider>
 	</React.StrictMode>,
 );
