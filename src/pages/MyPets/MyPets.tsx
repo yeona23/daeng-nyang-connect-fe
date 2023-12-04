@@ -1,10 +1,11 @@
 import { Outlet } from 'react-router-dom';
+import { Article } from './MyPets.style';
 
 const MyPets = () => {
 	return (
-		<div>
+		<Article>
 			<Outlet />
-		</div>
+		</Article>
 	);
 };
 

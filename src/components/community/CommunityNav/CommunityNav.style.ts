@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { IoIosSearch } from 'react-icons/io';
 
 interface NavOptionProps {
 	isActive: boolean;
@@ -39,6 +40,10 @@ export const SearchWrap = styled.div`
 	}
 `;
 
+export const StyledIoIosSearch = styled(IoIosSearch)`
+	cursor: pointer;
+`;
+
 export const Article = styled.article`
 	display: flex;
 `;
@@ -48,12 +53,12 @@ export const Nav = styled.nav`
 	flex-direction: column;
 	align-items: center;
 	width: 15%;
-	height: 100vh;
+	min-height: 100vh;
 	padding: 20px 20px 20px 0;
 	border-right: 1px solid var(--color-light-salmon);
 
 	& div {
-		margin: 20px 0;
+		margin: 10px 0;
 		text-align: center;
 
 		& button:hover {
@@ -63,16 +68,14 @@ export const Nav = styled.nav`
 	}
 `;
 
-export const NavOption = styled.button<NavOptionProps>`
+export const NavOption = styled.button`
 	border: none;
 	outline: none;
 	background-color: transparent;
 	cursor: pointer;
 	font-size: 18px;
-	margin-bottom: 5px;
 	padding: 5px;
-
-	border-bottom: ${(props) => (props.isActive ? '0.5px solid black' : 'none')};
+	margin-bottom: 5px;
 `;
 
 export const ButtonWrap = styled.div`
@@ -87,4 +90,22 @@ export const Button = styled.button`
 	width: 65%;
 	padding: 10px;
 	cursor: pointer;
+`;
+
+export const NavOptionWrap = styled.div`
+	display: flex;
+	flex-direction: column;
+`;
+
+export const NavOptionButton = styled.button`
+	font-size: 14px;
+	margin-bottom: 5px;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	cursor: pointer;
+`;
+
+export const NavOptionText = styled.span<NavOptionProps>`
+	border-bottom: ${(props) => (props.isActive ? '0.5px solid black' : 'none')};
 `;
