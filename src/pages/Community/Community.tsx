@@ -1,10 +1,11 @@
-import { Outlet } from 'react-router-dom';
+import CommunityNav from '../../components/community/CommunityNav/CommunityNav';
+import { CommunitySection } from './Community.style';
 
 const Community = () => {
 	return (
-		<div>
-			<Outlet />
-		</div>
+		<CommunitySection>
+			<CommunityNav />
+		</CommunitySection>
 	);
 };
 

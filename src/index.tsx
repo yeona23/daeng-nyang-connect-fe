@@ -80,7 +80,7 @@ const router = createBrowserRouter([
 						element: <MyPets />,
 						children: [
 							{ index: true, element: <MyPetRoot /> },
-							{ path: 'myPet:/myPetId', element: <Mypet /> },
+							{ path: 'myPet/:myPetId', element: <Mypet /> },
 						],
 					},
 					{
