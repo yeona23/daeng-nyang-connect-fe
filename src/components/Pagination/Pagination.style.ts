@@ -9,6 +9,7 @@ export const ButtonWrap = styled.div`
 	display: flex;
 	justify-content: center;
 	width: 100%;
+	margin-top: 40px;
 
 	& button {
 		border: none;

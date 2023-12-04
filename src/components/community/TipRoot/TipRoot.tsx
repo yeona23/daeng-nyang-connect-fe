@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Article, TipLists, TipsNav } from './TipRoot.style';
 import TipList from './TipList/TipList';
 import Pagination from '../../Pagination/Pagination';
+import usePagination from '../../../hooks/usePagination';
 
 export interface MyTip {
 	id: number;
@@ -45,42 +46,14 @@ const createMockTips = (): MyTip[] => {
 };
 
 const TipRoot = () => {
-	const [tipList, setTipList] = useState<MyTip[]>(createMockTips());
-	const [currentPage, setCurrentPage] = useState(1);
-	const [pageRange, setPageRange] = useState([1, 2, 3, 4, 5]);
+	const tipList = createMockTips();
 	const itemsPerPage = 20;
-	const totalPages = Math.ceil(tipList.length / itemsPerPage);
+	const { currentPage, pageRange, handlePageClick, handlePrevNextClick } =
+		usePagination(tipList.length, itemsPerPage);
 
 	const startIndex = (currentPage - 1) * itemsPerPage;
 	const endIndex = startIndex + itemsPerPage;
 	const currentTips = tipList.slice(startIndex, endIndex);
-
-	useEffect(() => {
-		const endPage = Math.min(5, totalPages);
-		setPageRange(Array.from({ length: endPage }, (_, i) => i + 1));
-	}, [tipList, totalPages]);
-
-	const handlePageClick = (pageNumber: number) => {
-		setCurrentPage(pageNumber);
-	};
-
-	const handlePrevNextClick = (direction: 'prev' | 'next') => {
-		if (direction === 'next') {
-			setCurrentPage(currentPage + 1);
-			if (pageRange[4] < totalPages) {
-				const newRange = pageRange.map((page) => page + 5);
-				setPageRange(newRange);
-				setCurrentPage(newRange[0]);
-			}
-		} else if (direction === 'prev') {
-			setCurrentPage(currentPage - 1);
-			if (pageRange[0] > 1) {
-				const newRange = pageRange.map((page) => page - 5);
-				setPageRange(newRange);
-				setCurrentPage(newRange[0]);
-			}
-		}
-	};
 
 	return (
 		<Article>

@@ -3,13 +3,17 @@ import styled from 'styled-components';
 export const TipLi = styled.li`
 	display: flex;
 	list-style: none;
-	margin-bottom: 20px;
-	padding-bottom: 8px;
+	padding: 16px 0px;
 	border-bottom: 1px solid var(--color-peach);
 	cursor: pointer;
 
 	width: 100%;
 	display: flex;
+
+	&:hover {
+		background-color: var(--color-peach);
+		color: white;
+	}
 
 	& > div {
 		&:first-child {
