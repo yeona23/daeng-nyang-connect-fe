@@ -8,7 +8,7 @@ export interface MatePublish {
 	userThumbnail: string;
 	userName: string;
 	place: string;
-	description: string;
+	text: string;
 }
 
 const createRandomMatePublish = (): MatePublish[] => {
@@ -19,7 +19,7 @@ const createRandomMatePublish = (): MatePublish[] => {
 			userThumbnail: `thumbnail-${i}.jpg`,
 			userName: `User${i}`,
 			place: `Place${i}`,
-			description: `Description for mate publish ${i}`,
+			text: `Description for mate publish ${i}`,
 		});
 	}
 	return matePublishList;

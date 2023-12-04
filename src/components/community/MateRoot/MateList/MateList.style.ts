@@ -8,6 +8,7 @@ export const MateLi = styled.li`
 	padding: 16px;
 	height: 250px;
 	margin-bottom: 10px;
+	cursor: pointer;
 `;
 
 export const SubNav = styled.div`

@@ -31,7 +31,7 @@ const MateList = ({ list }: MateListProps) => {
 				</KebabWrap>
 			</SubNav>
 			<PlaceWrap>지역 : {list.place}</PlaceWrap>
-			<Paragraph>{list.description}</Paragraph>
+			<Paragraph>{list.text}</Paragraph>
 			<ButtonWrap>
 				<Button>채팅하기</Button>
 			</ButtonWrap>

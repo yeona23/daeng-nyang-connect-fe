@@ -1,10 +1,11 @@
 import { Outlet } from 'react-router-dom';
+import { Article } from './Losts.style';
 
 const Losts = () => {
 	return (
-		<div>
+		<Article>
 			<Outlet />
-		</div>
+		</Article>
 	);
 };
 
