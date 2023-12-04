@@ -1,10 +1,11 @@
 import { Outlet } from 'react-router-dom';
+import { Article } from './Tips.style';
 
 const Tips = () => {
 	return (
-		<div>
+		<Article>
 			<Outlet />
-		</div>
+		</Article>
 	);
 };
 
