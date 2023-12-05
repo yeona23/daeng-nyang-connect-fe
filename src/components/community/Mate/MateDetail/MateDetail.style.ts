@@ -27,14 +27,17 @@ export const SubTitle = styled.h3`
 `;
 
 export const TextBox = styled.div`
-	border: 1px solid var(--color-peach);
 	margin: 10px 10px 10px 12px;
 	width: 50%;
 	padding: 20px;
 
 	& h3 {
 		font-size: 20px;
-		margin-bottom: 12px;
+		margin-bottom: 20px;
+	}
+
+	& p {
+		margin-top: 8px;
 	}
 `;
 
@@ -44,10 +47,19 @@ export const Paragraph = styled.div`
 
 export const PlaceWrap = styled.div`
 	display: flex;
+	align-items: center;
 	margin-bottom: 12px;
 `;
 
 export const Place = styled.div`
 	font-weight: 400;
-	margin-left: 4px;
+	margin-left: 12px;
+`;
+
+export const Description = styled.div`
+	display: inline-block;
+	padding: 8px 12px;
+	font-weight: 300;
+	background-color: var(--color-light-blue);
+	border-radius: 6px;
 `;

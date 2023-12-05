@@ -3,6 +3,7 @@ import RegisterCommentForm from '../../../Comment/RegisterCommentForm';
 import DetailUserNav from '../../DetailUserNav/DetailUserNav';
 import {
 	CommentWrap,
+	Description,
 	ImageAndTextWrap,
 	ImageWrap,
 	SubTitle,
@@ -50,6 +51,7 @@ const MyPetDetail = () => {
 				</ImageWrap>
 				<TextBox>
 					<h3>자랑하기</h3>
+					<Description>상세 설명</Description>
 					<p>내 고양이는 요...</p>
 				</TextBox>
 			</ImageAndTextWrap>

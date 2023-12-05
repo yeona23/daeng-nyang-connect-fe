@@ -1,10 +1,11 @@
+import { Article } from './Mate.style';
 import MateDetail from './MateDetail/MateDetail';
 
 const Mate = () => {
 	return (
-		<div>
+		<Article>
 			<MateDetail />
-		</div>
+		</Article>
 	);
 };
 

@@ -12,6 +12,7 @@ export const MyPetLi = styled.li`
 export const UserWrap = styled.div`
 	display: flex;
 	align-items: center;
+	margin-top: 10px;
 
 	& div {
 		display: flex;

@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { LostPet } from '../LostRoot';
 import {
 	Button,
@@ -12,8 +13,14 @@ interface LostPetProps {
 }
 
 const LostList = ({ list }: LostPetProps) => {
+	const navigate = useNavigate();
+
+	const moveToTheDetailPage = (id: number) => {
+		navigate(`/community/losts/lost/${id}`);
+	};
+
 	return (
-		<LostLi>
+		<LostLi onClick={() => moveToTheDetailPage(list.id)}>
 			<ImgWrap>
 				<img src="/assets/cat.jpeg" alt="" />
 			</ImgWrap>

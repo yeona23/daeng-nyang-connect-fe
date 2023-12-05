@@ -2,6 +2,7 @@ import DetailUserNav from '../../DetailUserNav/DetailUserNav';
 import Comment from '../../../Comment/Comment';
 import {
 	CommentWrap,
+	Description,
 	ImageAndTextWrap,
 	ImageWrap,
 	Place,
@@ -53,8 +54,10 @@ const MateDetail = () => {
 				<TextBox>
 					<SubTitle>메이트 구하기</SubTitle>
 					<PlaceWrap>
-						지역 : <Place>서울</Place>
+						<Description>지역</Description>
+						<Place>서울</Place>
 					</PlaceWrap>
+					<Description>상세 설명</Description>
 					<p>서울 강서구에서 같이 산책 하실 메이트 구해요</p>
 				</TextBox>
 			</ImageAndTextWrap>
