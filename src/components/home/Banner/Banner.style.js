@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 
 export const BannerDiv = styled.div`
 	width: 100%;
-	height: 720px;
+	height: 800px;
 	/* border: 1px solid red; */
-	background: url('assets/cat-table-with-plants-around.jpg') no-repeat 50% 78% /
+	background: url('assets/cat-table-with-plants-around.jpg') no-repeat 50% 70% /
 		cover;
 `;
 export const BannerContentsDiv = styled.div`
