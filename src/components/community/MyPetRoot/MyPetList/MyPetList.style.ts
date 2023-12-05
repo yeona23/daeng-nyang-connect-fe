@@ -18,11 +18,11 @@ export const UserWrap = styled.div`
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		border-radius: 50%;
-		border: 1px solid black;
 		width: 30px;
 		height: 30px;
 		margin-right: 8px;
+		border: 1px solid black;
+		border-radius: 50%;
 		cursor: pointer;
 	}
 `;

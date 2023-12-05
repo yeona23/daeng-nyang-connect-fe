@@ -3,11 +3,11 @@ import styled from 'styled-components';
 export const MateLi = styled.li`
 	display: flex;
 	flex-direction: column;
+	height: 250px;
+	padding: 16px;
+	margin-bottom: 10px;
 	border: 1px solid var(--color-peach);
 	border-radius: 8px;
-	padding: 16px;
-	height: 250px;
-	margin-bottom: 10px;
 `;
 
 export const SubNav = styled.div`
@@ -25,11 +25,11 @@ export const UserWrap = styled.div`
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		border-radius: 50%;
-		border: 1px solid black;
 		width: 30px;
 		height: 30px;
 		margin-right: 8px;
+		border: 1px solid black;
+		border-radius: 50%;
 		cursor: pointer;
 	}
 
@@ -56,11 +56,11 @@ export const ButtonWrap = styled.div`
 `;
 
 export const Button = styled.button`
+	padding: 4px 16px;
 	border-radius: 4px;
 	border: 1px solid var(--color-light-salmon);
 	outline: none;
 	background-color: transparent;
-	padding: 4px 16px;
 	cursor: pointer;
 `;
 

@@ -11,10 +11,10 @@ export const SubTitle = styled.h3`
 `;
 
 export const TextBox = styled.div`
-	padding: 20px;
 	height: 500px;
-	border-bottom: 1px solid var(--color-light-salmon);
+	padding: 20px;
 	margin-bottom: 12px;
+	border-bottom: 1px solid var(--color-light-salmon);
 `;
 
 export const Paragraph = styled.div`
@@ -22,7 +22,7 @@ export const Paragraph = styled.div`
 `;
 
 export const Title = styled.h1`
+	margin-bottom: 12px;
 	font-size: 32px;
 	font-weight: bold;
-	margin-bottom: 12px;
 `;

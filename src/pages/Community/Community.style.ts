@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const CommunitySection = styled.section`
-	max-width: 1320px;
 	width: 100%;
+	max-width: 1320px;
 	margin: auto;
 	margin-top: 60px;
 `;

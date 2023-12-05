@@ -13,8 +13,8 @@ export const ImageAndTextWrap = styled.div`
 `;
 
 export const ImageWrap = styled.div`
-	margin: 10px 10px 10px 12px;
 	width: 50%;
+	margin: 10px 10px 10px 12px;
 
 	& img {
 		height: 500px;
@@ -22,15 +22,15 @@ export const ImageWrap = styled.div`
 `;
 
 export const SubTitle = styled.h3`
+	margin-bottom: 20px;
 	font-size: 18px;
 	font-weight: 600;
-	margin-bottom: 20px;
 `;
 
 export const TextBox = styled.div`
-	margin: 10px 10px 10px 12px;
 	width: 50%;
 	padding: 20px;
+	margin: 10px 10px 10px 12px;
 
 	& div {
 		display: flex;
@@ -62,22 +62,22 @@ export const PlaceWrap = styled.div`
 `;
 
 export const Place = styled.div`
-	font-weight: 400;
 	margin-left: 4px;
+	font-weight: 400;
 `;
 
 export const Description = styled.div`
 	display: inline-block;
 	padding: 8px 12px;
-	font-weight: 300;
-	background-color: var(--color-light-blue);
 	border-radius: 6px;
+	background-color: var(--color-light-blue);
+	font-weight: 300;
 `;
 
 export const DescriptionSpan = styled.span`
 	display: inline-block;
 	padding: 8px 12px;
-	font-weight: 300;
-	background-color: var(--color-light-blue);
 	border-radius: 6px;
+	background-color: var(--color-light-blue);
+	font-weight: 300;
 `;

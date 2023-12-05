@@ -17,23 +17,23 @@ export const UserImageWrap = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-radius: 50%;
-	border: 1px solid black;
 	width: 36px;
 	height: 36px;
 	margin-right: 16px;
+	border: 1px solid black;
+	border-radius: 50%;
 	cursor: pointer;
 `;
 
 export const CreatedAtText = styled.div`
-	font-size: 12px;
-	color: gray;
 	margin-top: 8px;
+	color: gray;
+	font-size: 12px;
 `;
 
 export const KebabWrap = styled.div`
-	cursor: pointer;
 	margin-left: 20px;
+	cursor: pointer;
 `;
 
 export const SubInfoWrap = styled.div`
@@ -48,9 +48,9 @@ export const SubInfoWrap = styled.div`
 `;
 
 export const LikeWrap = styled.div`
-	background-color: var(--color-light-salmon);
-	border-radius: 10px;
 	padding: 0px 10px;
+	border-radius: 10px;
+	background-color: var(--color-light-salmon);
 	cursor: pointer;
 `;
 
@@ -58,12 +58,12 @@ export const LikeCount = styled.div`
 	min-width: 45px;
 	min-height: 45px;
 	padding: 8px 8px;
-	border-radius: 50%;
 	margin-left: 8px;
+	border-radius: 50%;
 	color: white;
 `;
 
 export const StyledFaHeart = styled(FaHeart)`
-	color: white;
 	margin-left: 8px;
+	color: white;
 `;

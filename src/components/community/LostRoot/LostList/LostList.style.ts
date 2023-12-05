@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const LostLi = styled.li`
 	width: 100%;
+	height: 480px;
 	border: 1px solid var(--color-peach);
 	border-radius: 8px;
-	height: 480px;
 	cursor: pointer;
 `;
 
@@ -17,8 +17,8 @@ export const ImgWrap = styled.div`
 `;
 
 export const TextWrap = styled.div`
-	padding: 16px;
 	height: 50%;
+	padding: 16px;
 
 	& div {
 		margin-bottom: 16px;
@@ -40,10 +40,10 @@ export const ButtonWrap = styled.div`
 `;
 
 export const Button = styled.button`
-	border-radius: 4px;
+	padding: 4px 16px;
 	border: 1px solid var(--color-light-salmon);
+	border-radius: 4px;
 	outline: none;
 	background-color: transparent;
-	padding: 4px 16px;
 	cursor: pointer;
 `;

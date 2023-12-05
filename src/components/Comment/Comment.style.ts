@@ -15,11 +15,11 @@ export const UserImageWrap = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-radius: 50%;
-	border: 1px solid black;
 	width: 30px;
 	height: 30px;
 	margin-right: 16px;
+	border-radius: 50%;
+	border: 1px solid black;
 	cursor: pointer;
 `;
 
@@ -37,8 +37,8 @@ export const TextWrap = styled.div`
 	}
 
 	& div:nth-child(3) {
-		font-size: 12px;
 		color: gray;
+		font-size: 12px;
 	}
 `;
 

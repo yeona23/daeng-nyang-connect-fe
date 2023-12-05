@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const Article = styled.article`
-	margin-top: 10px;
 	padding: 10px;
+	margin-top: 10px;
 `;
 
 export const TipsNav = styled.nav`
-	width: 100%;
 	display: flex;
+	width: 100%;
 	padding-bottom: 10px;
 	border-bottom: 1px solid var(--color-light-salmon);
 

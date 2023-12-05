@@ -8,8 +8,8 @@ interface NavOptionProps {
 export const TitleAndSearchWrap = styled.div`
 	display: flex;
 	justify-content: space-between;
-	border-bottom: 1px solid var(--color-light-salmon);
 	padding-left: 20px;
+	border-bottom: 1px solid var(--color-light-salmon);
 `;
 
 export const TitleWrap = styled.div`
@@ -28,10 +28,10 @@ export const SearchWrap = styled.div`
 	display: flex;
 	justify-content: space-between;
 	width: 450px;
-	border-radius: 20px;
-	border: 0.5px solid var(--color-light-salmon);
 	padding: 10px;
 	margin-bottom: 10px;
+	border: 0.5px solid var(--color-light-salmon);
+	border-radius: 20px;
 
 	& input {
 		width: 70%;
@@ -69,13 +69,13 @@ export const Nav = styled.nav`
 `;
 
 export const NavOption = styled.button`
+	padding: 5px;
+	margin-bottom: 5px;
 	border: none;
 	outline: none;
 	background-color: transparent;
-	cursor: pointer;
 	font-size: 18px;
-	padding: 5px;
-	margin-bottom: 5px;
+	cursor: pointer;
 `;
 
 export const ButtonWrap = styled.div`
@@ -84,11 +84,11 @@ export const ButtonWrap = styled.div`
 `;
 
 export const Button = styled.button`
+	width: 65%;
+	padding: 10px;
 	border: 0.5px solid var(--color-light-salmon);
 	border-radius: 3px;
 	background-color: transparent;
-	width: 65%;
-	padding: 10px;
 	cursor: pointer;
 `;
 
@@ -98,11 +98,11 @@ export const NavOptionWrap = styled.div`
 `;
 
 export const NavOptionButton = styled.button`
-	font-size: 14px;
 	margin-bottom: 5px;
 	border: none;
 	outline: none;
 	background-color: transparent;
+	font-size: 14px;
 	cursor: pointer;
 `;
 
