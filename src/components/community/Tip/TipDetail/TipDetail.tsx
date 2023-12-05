@@ -3,11 +3,11 @@ import RegisterCommentForm from '../../../Comment/RegisterCommentForm';
 import DetailUserNav from '../../DetailUserNav/DetailUserNav';
 import {
 	CommentWrap,
-	ImageAndTextWrap,
-	ImageWrap,
+	Paragraph,
 	SubTitle,
 	TextBox,
-} from './MyPetDetail.style';
+	Title,
+} from './TipDetail.style';
 
 export interface CommentForm {
 	user_id: number;
@@ -38,21 +38,33 @@ const createRandomComments = (): CommentForm[] => {
 	return comments;
 };
 
-const MyPetDetail = () => {
+const TipDetail = () => {
 	const commentsList = createRandomComments();
 
 	return (
 		<div>
+			<Title>동물 병원 도그마루 메디컬 센터</Title>
 			<DetailUserNav />
-			<ImageAndTextWrap>
-				<ImageWrap>
-					<img src="/assets/cat.jpeg" alt="" />
-				</ImageWrap>
-				<TextBox>
-					<h3>자랑하기</h3>
-					<p>내 고양이는 요...</p>
-				</TextBox>
-			</ImageAndTextWrap>
+			<TextBox>
+				<Paragraph>
+					동물병원 도그마루 메디컬센터 <br />- 강아지중성화수술
+					고양이중성화수술비용 강아지피부병 강아지예방접종 강아지슬개골탈구증상
+					강아지중성
+					<br />
+					동물병원 도그마루 메디컬센터 <br /> - 강아지중성화수술
+					고양이중성화수술비용 강아지피부병 강아지예방접종 강아지슬개골탈구증상
+					강아지중성 <br />
+				</Paragraph>
+				<Paragraph>
+					동물병원 도그마루 메디컬센터 <br />- 강아지중성화수술
+					고양이중성화수술비용 강아지피부병 강아지예방접종 강아지슬개골탈구증상
+					강아지중성
+					<br />
+					동물병원 도그마루 메디컬센터 <br /> - 강아지중성화수술
+					고양이중성화수술비용 강아지피부병 강아지예방접종 강아지슬개골탈구증상
+					강아지중성 <br />
+				</Paragraph>
+			</TextBox>
 			<CommentWrap>
 				<SubTitle>댓글</SubTitle>
 				<ul>
@@ -66,4 +78,4 @@ const MyPetDetail = () => {
 	);
 };
 
-export default MyPetDetail;
+export default TipDetail;
