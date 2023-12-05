@@ -1,5 +1,17 @@
+import Banner from '../../components/home/Banner/Banner';
+import SectionCommunity from '../../components/home/SectionCommunity/SectionCommunity';
+import SectionFindNew from '../../components/home/SectionFindNew';
+import SectionReview from '../../components/home/SectionReview';
+
 const Home = () => {
-	return <div>Home</div>;
+	return (
+		<>
+			<Banner />
+			<SectionCommunity />
+			<SectionFindNew />
+			<SectionReview />
+		</>
+	);
 };
 
 export default Home;
