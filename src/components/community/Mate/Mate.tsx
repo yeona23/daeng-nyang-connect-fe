@@ -1,5 +1,11 @@
+import MateDetail from './MateDetail/MateDetail';
+
 const Mate = () => {
-	return <div>Mate</div>;
+	return (
+		<div>
+			<MateDetail />
+		</div>
+	);
 };
 
 export default Mate;

@@ -8,7 +8,6 @@ export const MateLi = styled.li`
 	padding: 16px;
 	height: 250px;
 	margin-bottom: 10px;
-	cursor: pointer;
 `;
 
 export const SubNav = styled.div`
@@ -56,15 +55,16 @@ export const ButtonWrap = styled.div`
 	}
 `;
 
-export const Paragraph = styled.p`
-	height: 50%;
-`;
-
 export const Button = styled.button`
 	border-radius: 4px;
 	border: 1px solid var(--color-light-salmon);
 	outline: none;
 	background-color: transparent;
 	padding: 4px 16px;
+	cursor: pointer;
+`;
+
+export const TextWrap = styled.div`
+	height: 60%;
 	cursor: pointer;
 `;

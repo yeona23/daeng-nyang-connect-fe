@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Article, TipLists, TipsNav } from './TipRoot.style';
 import TipList from './TipList/TipList';
 import Pagination from '../../Pagination/Pagination';
