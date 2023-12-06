@@ -53,8 +53,10 @@ export const FilterItems = styled.div`
 
 		& > div:last-child input {
 			width: 100%;
-			padding: 3px;
+			height: 35px;
+			padding: 10px;
 			border: 1px solid var(--color-light-salmon);
+			border-radius: 5px;
 			outline: none;
 		}
 	}
@@ -341,6 +343,8 @@ export const FormText = styled.div`
 		width: 90%;
 		height: 150px;
 		resize: none;
+		padding: 10px;
+		outline: none;
 	}
 
 	& > div {
@@ -353,6 +357,7 @@ export const FormText = styled.div`
 	& input[type='text'] {
 		width: 80%;
 		height: 30px;
+		padding-left: 10px;
 		outline: none;
 	}
 

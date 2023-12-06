@@ -30,6 +30,15 @@ const Family = () => {
 							<label htmlFor="cat">고양이</label>
 						</div>
 						<div>
+							<p>완료여부</p>
+							<input type="radio" name="adoption" id="all" />
+							<label htmlFor="all">전체</label>
+							<input type="radio" name="adoption" id="yet" />
+							<label htmlFor="yet">입양대기</label>
+							<input type="radio" name="adoption" id="done" />
+							<label htmlFor="done">입양완료</label>
+						</div>
+						<div>
 							<p>지역</p>
 							<input
 								type="text"
