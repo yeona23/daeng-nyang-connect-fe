@@ -10,9 +10,12 @@ import {
 } from './Nav.style';
 import { IoChatbubblesOutline } from 'react-icons/io5';
 import { HiOutlineUser } from 'react-icons/hi';
+import scroll from '../../utils/scrollNav';
+
 const Nav = () => {
+	const props = scroll() ? { isHome: 'home' } : {};
 	return (
-		<HeaderDiv>
+		<HeaderDiv {...props}>
 			<HeaderContenstDiv>
 				<HeaderNav>
 					<LogoH1>

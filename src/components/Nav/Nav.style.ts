@@ -1,6 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const HeaderDiv = styled.div`
+interface NavProps {
+	isHome?: string;
+}
+
+export const HeaderDiv = styled.div<NavProps>`
 	position: fixed;
 	z-index: 999;
 	top: 0;
@@ -8,6 +12,13 @@ export const HeaderDiv = styled.div`
 	width: 100%;
 	height: 64px;
 	background-color: rgba(255, 255, 255, 0.8);
+	transition: all 0.3s ease-in-out;
+	${(props) =>
+		props.isHome &&
+		css`
+			background-color: #fff;
+			box-shadow: 0 0 10px 0 #9e848d50;
+		`}
 `;
 export const HeaderContenstDiv = styled.div`
 	display: flex;
