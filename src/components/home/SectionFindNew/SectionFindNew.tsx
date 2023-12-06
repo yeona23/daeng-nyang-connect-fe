@@ -4,8 +4,8 @@ import {
 	FindNewSection,
 	FindNewTitleDiv,
 } from './SectionFindNew.style';
-import VerticalCard from './../UI/VerticalCard';
 import { SalmonBtn } from '../UI/SalmonBtn/SalmonBtn.style';
+import FindNewList from './FindNewList/FindNewList';
 
 const SectionFindNew = () => {
 	return (
@@ -14,9 +14,9 @@ const SectionFindNew = () => {
 				<MainSectionH2>새로운 가족 찾기</MainSectionH2>
 			</FindNewTitleDiv>
 			<CardListUl>
-				<VerticalCard></VerticalCard>
+				<FindNewList />
 			</CardListUl>
-			<SalmonBtn padding="30px" addStyle="addStyle">
+			<SalmonBtn padding="10px 30px" addStyle="addStyle">
 				더보기
 			</SalmonBtn>
 		</FindNewSection>
