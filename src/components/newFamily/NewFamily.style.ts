@@ -137,7 +137,7 @@ export const ItemBox = styled.div`
 export const NewFamilyDetailContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
-	gap: 50px;
+	gap: 100px;
 	width: 1320px;
 	margin: 70px auto 0 auto;
 	font-size: 21px;

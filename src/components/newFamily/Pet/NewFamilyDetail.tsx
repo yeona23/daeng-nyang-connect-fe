@@ -27,8 +27,9 @@ const generateImgUrl = (index: number): string => {
 	return `/assets/animal${actualIndex}.jpg`;
 };
 
-const NewFamilyDetail = () => {
+const NewFamilyDetail: React.FC = () => {
 	const navigate = useNavigate();
+	const [swiper, setSwiper] = useState<SwiperCore | null>(null);
 
 	const items: Item[] = Array.from({ length: 10 }, (_, index) => ({
 		id: index + 1,
@@ -50,6 +51,22 @@ const NewFamilyDetail = () => {
 	};
 
 	SwiperCore.use([Autoplay]);
+
+	const initSwiper = (swiper: SwiperCore) => {
+		setSwiper(swiper);
+	};
+
+	const mouseEnterHandler = () => {
+		if (swiper) {
+			swiper.autoplay.stop();
+		}
+		console.log('stop!!!');
+	};
+	const mouseLeaveHandler = () => {
+		if (swiper) {
+			swiper.autoplay.start();
+		}
+	};
 	return (
 		<div>
 			<NewFamilyDetailContainer>
@@ -78,17 +95,20 @@ const NewFamilyDetail = () => {
 					<button>문의하기</button>
 				</div>
 			</NewFamilyDetailContainer>
-			<DetailSwiper>
+			<DetailSwiper
+				onMouseEnter={mouseEnterHandler}
+				onMouseLeave={mouseLeaveHandler}>
 				<Swiper
 					loop={true}
 					autoplay={{ delay: 2500, disableOnInteraction: false }}
-					speed={3000}
+					speed={3500}
 					spaceBetween={30}
 					slidesPerView={5}
 					freeMode={true}
 					grabCursor={true}
 					allowTouchMove={true}
 					modules={[Autoplay]}
+					onSwiper={initSwiper}
 					className="swiper">
 					{items.map((item: Item) => (
 						<SwiperSlide
