@@ -1,4 +1,4 @@
-import { CategoryTitle } from '../../../pages/NewFamily/NewFamily.style';
+import { CategoryTitle } from '../NewFamily.style';
 
 const PetRegistration = () => {
 	return (

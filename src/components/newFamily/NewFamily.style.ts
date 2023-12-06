@@ -131,3 +131,90 @@ export const ItemBox = styled.div`
 		margin-bottom: 15px;
 	}
 `;
+
+//NewFamilyDetail
+
+export const NewFamilyDetailContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	gap: 50px;
+	width: 1320px;
+	margin: 70px auto 0 auto;
+	font-size: 21px;
+	& > div {
+		flex: 1;
+	}
+
+	& > div:last-child {
+		position: relative;
+	}
+
+	& button {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		padding: 5px;
+		margin-top: 20px;
+		border: 1px solid var(--color-light-salmon);
+		border-radius: 5px;
+		background: var(--color-light-salmon);
+		color: var(--color-peach);
+		font-size: 20px;
+		cursor: pointer;
+	}
+	& button:hover {
+		background: #fff;
+		color: var(--color-deep-blue);
+	}
+`;
+
+export const DetailImageBox = styled.div`
+	display: flex;
+	justify-content: center;
+	flex: 1;
+	position: relative;
+	aspect-ratio: 1 / 1;
+	border-radius: 10px;
+	overflow: hidden;
+	& img {
+		height: 100%;
+	}
+	& svg {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		cursor: pointer;
+	}
+`;
+
+export const DetailTextBox = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	margin-top: 30px;
+`;
+
+export const UserThumbnail = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid var(--color-deep-blue);
+	cursor: pointer;
+
+	& div:first-child {
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		overflow: hidden;
+	}
+
+	& img {
+		height: 100%;
+	}
+`;
+
+//NewFamilyDetailSwiper
+export const DetailSwiper = styled.div`
+	width: 100%;
+`;

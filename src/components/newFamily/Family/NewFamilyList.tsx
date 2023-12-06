@@ -1,7 +1,7 @@
 import { BsBookmarkFill } from 'react-icons/bs';
-import { ItemBox, ItemList } from './NewFamily.style';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ItemBox, ItemList } from '../NewFamily.style';
 
 interface Item {
 	id: number;
