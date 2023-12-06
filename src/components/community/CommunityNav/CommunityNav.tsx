@@ -14,12 +14,21 @@ import {
 	TitleAndSearchWrap,
 	TitleWrap,
 } from './CommunityNav.style';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { SET_DISPLAY_LABEL } from '../../../slice/communitySlice';
 
-const CommunityNav = () => {
+interface CommunityNavProps {
+	setIsPopUp: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const CommunityNav = ({ setIsPopUp }: CommunityNavProps) => {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const queryParams = new URLSearchParams(location.search);
 	const category = queryParams.get('category');
+
+	const dispatch = useDispatch();
 
 	const routeLabels: Record<string, string> = {
 		'/community/myPets': '나의 댕냥이',
@@ -33,6 +42,10 @@ const CommunityNav = () => {
 	);
 
 	const displayLabel = currentLabel ? routeLabels[currentLabel] : '나의 댕냥이';
+
+	useEffect(() => {
+		dispatch(SET_DISPLAY_LABEL(displayLabel));
+	}, [displayLabel]);
 
 	const moveToTheCommunity = (community: string) => {
 		navigate(`/community/${community}`);
@@ -60,14 +73,14 @@ const CommunityNav = () => {
 					<ButtonWrap>
 						<NavOptionWrap>
 							<NavOption onClick={() => moveToTheCommunity('myPets')}>
-								<NavOptionText isActive={displayLabel === '나의 댕냥이'}>
+								<NavOptionText $isActive={displayLabel === '나의 댕냥이'}>
 									나의 댕냥이
 								</NavOptionText>
 							</NavOption>
 						</NavOptionWrap>
 						<NavOptionWrap>
 							<NavOption onClick={() => moveToTheCommunity('tips')}>
-								<NavOptionText isActive={displayLabel === '댕냥 꿀팁'}>
+								<NavOptionText $isActive={displayLabel === '댕냥 꿀팁'}>
 									댕냥 꿀팁
 								</NavOptionText>
 							</NavOption>
@@ -75,19 +88,19 @@ const CommunityNav = () => {
 								<>
 									<NavOptionButton
 										onClick={() => moveToTheCategory('tips', 'item')}>
-										<NavOptionText isActive={category === 'item'}>
+										<NavOptionText $isActive={category === 'item'}>
 											용품 리뷰
 										</NavOptionText>
 									</NavOptionButton>
 									<NavOptionButton
 										onClick={() => moveToTheCategory('tips', 'center')}>
-										<NavOptionText isActive={category === 'center'}>
+										<NavOptionText $isActive={category === 'center'}>
 											병원 리뷰
 										</NavOptionText>
 									</NavOptionButton>
 									<NavOptionButton
 										onClick={() => moveToTheCategory('tips', 'etc')}>
-										<NavOptionText isActive={category === 'etc'}>
+										<NavOptionText $isActive={category === 'etc'}>
 											그 외
 										</NavOptionText>
 									</NavOptionButton>
@@ -96,7 +109,7 @@ const CommunityNav = () => {
 						</NavOptionWrap>
 						<NavOptionWrap>
 							<NavOption onClick={() => moveToTheCommunity('mates')}>
-								<NavOptionText isActive={displayLabel === '댕냥 메이트'}>
+								<NavOptionText $isActive={displayLabel === '댕냥 메이트'}>
 									댕냥 메이트
 								</NavOptionText>
 							</NavOption>
@@ -104,13 +117,13 @@ const CommunityNav = () => {
 								<>
 									<NavOptionButton
 										onClick={() => moveToTheCategory('mates', 'mate')}>
-										<NavOptionText isActive={category === 'mate'}>
+										<NavOptionText $isActive={category === 'mate'}>
 											산책 메이트
 										</NavOptionText>
 									</NavOptionButton>
 									<NavOptionButton
 										onClick={() => moveToTheCategory('mates', 'care')}>
-										<NavOptionText isActive={category === 'care'}>
+										<NavOptionText $isActive={category === 'care'}>
 											맡아주실 분
 										</NavOptionText>
 									</NavOptionButton>
@@ -119,13 +132,13 @@ const CommunityNav = () => {
 						</NavOptionWrap>
 						<NavOptionWrap>
 							<NavOption onClick={() => moveToTheCommunity('losts')}>
-								<NavOptionText isActive={displayLabel === '댕냥 미아센터'}>
+								<NavOptionText $isActive={displayLabel === '댕냥 미아센터'}>
 									댕냥 미아센터
 								</NavOptionText>
 							</NavOption>
 						</NavOptionWrap>
 					</ButtonWrap>
-					<Button>글쓰기</Button>
+					<Button onClick={() => setIsPopUp(true)}>글쓰기</Button>
 				</Nav>
 				<Outlet />
 			</Article>

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { IoIosSearch } from 'react-icons/io';
 
 interface NavOptionProps {
-	isActive: boolean;
+	$isActive: boolean;
 }
 
 export const TitleAndSearchWrap = styled.div`
@@ -107,5 +107,5 @@ export const NavOptionButton = styled.button`
 `;
 
 export const NavOptionText = styled.span<NavOptionProps>`
-	border-bottom: ${(props) => (props.isActive ? '0.5px solid black' : 'none')};
+	border-bottom: ${(props) => (props.$isActive ? '0.5px solid black' : 'none')};
 `;
