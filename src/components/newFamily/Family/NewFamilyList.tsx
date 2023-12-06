@@ -34,8 +34,8 @@ const NewFamilyList: React.FC = () => {
 		setBookmarkState((prev) => ({ ...prev, [itemId]: !prev[itemId] }));
 	};
 
-	const goToDetailPage = (petId: number) => {
-		navigate(`/newFamily/pet/${petId}`);
+	const goToDetailPage = (petId: number, imageUrl: string) => {
+		navigate(`/newFamily/pet/${petId}`, { state: { imageUrl } });
 	};
 
 	return (
@@ -57,7 +57,12 @@ const NewFamilyList: React.FC = () => {
 					<div>
 						<p>이름 : {item.itemTitle}</p>
 						<p>나이 : {item.age}</p>
-						<button onClick={() => goToDetailPage(item.id)}>자세히 보기</button>
+						<button
+							onClick={() =>
+								goToDetailPage(item.id, generateImgUrl(item.index))
+							}>
+							자세히 보기
+						</button>
 					</div>
 				</ItemBox>
 			))}

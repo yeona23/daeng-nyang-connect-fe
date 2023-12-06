@@ -187,31 +187,63 @@ export const DetailImageBox = styled.div`
 	}
 `;
 
-export const DetailTextBox = styled.div`
-	display: flex;
-	flex-direction: column;
-	gap: 15px;
-	margin-top: 30px;
-`;
-
 export const UserThumbnail = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 10px;
+	position: relative;
 	padding-bottom: 10px;
 	border-bottom: 1px solid var(--color-deep-blue);
-	cursor: pointer;
 
 	& div:first-child {
 		width: 48px;
 		height: 48px;
 		border-radius: 50%;
 		overflow: hidden;
+		cursor: pointer;
 	}
 
 	& img {
 		height: 100%;
 	}
+
+	& svg {
+		position: absolute;
+		right: 0;
+		cursor: pointer;
+	}
+`;
+
+export const MoreDropdown = styled.ul`
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	right: 0px;
+	top: 40px;
+	width: 120px;
+	height: 85px;
+	border: 1px solid var(--color-light-salmon);
+	background: #fff;
+	font-size: 16px;
+
+	& li {
+		display: flex;
+		align-items: center;
+		flex: 1;
+		padding-left: 15px;
+		cursor: pointer;
+	}
+
+	& li:first-child {
+		border-bottom: 1px solid var(--color-light-salmon);
+	}
+`;
+
+export const DetailTextBox = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	margin-top: 30px;
 `;
 
 //NewFamilyDetailSwiper

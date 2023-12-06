@@ -1,77 +1,31 @@
 import { BsBookmarkFill } from 'react-icons/bs';
+import { RiMore2Line } from 'react-icons/ri';
 import {
 	DetailImageBox,
-	DetailSwiper,
 	DetailTextBox,
+	MoreDropdown,
 	NewFamilyDetailContainer,
 	UserThumbnail,
 } from '../NewFamily.style';
+import { useLocation } from 'react-router-dom';
+import NewFamilySwiper from './NewFamilySwiper';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/autoplay';
-import { Autoplay } from 'swiper/modules';
-import SwiperCore from 'swiper';
 
-interface Item {
-	id: number;
-	index: number;
-	itemTitle: string;
-	age: string;
-}
+const NewFamilyDetail = () => {
+	const location = useLocation();
+	const imageUrl = location.state?.imageUrl || '';
 
-const generateImgUrl = (index: number): string => {
-	const maxIndex = 4;
-	const actualIndex = index <= maxIndex ? index : (index % maxIndex) + 1;
-	return `/assets/animal${actualIndex}.jpg`;
-};
+	const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
-const NewFamilyDetail: React.FC = () => {
-	const navigate = useNavigate();
-	const [swiper, setSwiper] = useState<SwiperCore | null>(null);
-
-	const items: Item[] = Array.from({ length: 10 }, (_, index) => ({
-		id: index + 1,
-		index: index + 1,
-		itemTitle: '냥냥',
-		age: '3년 2개월',
-	}));
-
-	const [bookmarkState, setBookmarkState] = useState<{
-		[key: number]: boolean;
-	}>({});
-
-	const clickBookmarkHandler = (itemId: number) => {
-		setBookmarkState((prev) => ({ ...prev, [itemId]: !prev[itemId] }));
+	const toggleDropdown = () => {
+		setIsDropdownVisible((prev) => !prev);
 	};
 
-	const goToDetailPage = (petId: number) => {
-		navigate(`/newFamily/pet/${petId}`);
-	};
-
-	SwiperCore.use([Autoplay]);
-
-	const initSwiper = (swiper: SwiperCore) => {
-		setSwiper(swiper);
-	};
-
-	const mouseEnterHandler = () => {
-		if (swiper) {
-			swiper.autoplay.stop();
-		}
-		console.log('stop!!!');
-	};
-	const mouseLeaveHandler = () => {
-		if (swiper) {
-			swiper.autoplay.start();
-		}
-	};
 	return (
 		<div>
 			<NewFamilyDetailContainer>
 				<DetailImageBox>
-					<img src="/assets/animal1.jpg" alt="" />
+					<img src={imageUrl} alt="" />
 					<BsBookmarkFill color={'#ffffff70'} size={40} />
 				</DetailImageBox>
 				<div>
@@ -80,6 +34,17 @@ const NewFamilyDetail: React.FC = () => {
 							<img src="/assets/animal2.jpg" alt="" />
 						</div>
 						<div>iamzipsa</div>
+						<RiMore2Line
+							color="var(--color-light-salmon"
+							size={30}
+							onClick={toggleDropdown}
+						/>
+						{isDropdownVisible && (
+							<MoreDropdown>
+								<li>수정하기</li>
+								<li>삭제하기</li>
+							</MoreDropdown>
+						)}
 					</UserThumbnail>
 					<DetailTextBox>
 						<p>이름 : </p>
@@ -95,46 +60,7 @@ const NewFamilyDetail: React.FC = () => {
 					<button>문의하기</button>
 				</div>
 			</NewFamilyDetailContainer>
-			<DetailSwiper
-				onMouseEnter={mouseEnterHandler}
-				onMouseLeave={mouseLeaveHandler}>
-				<Swiper
-					loop={true}
-					autoplay={{ delay: 2500, disableOnInteraction: false }}
-					speed={3500}
-					spaceBetween={30}
-					slidesPerView={5}
-					freeMode={true}
-					grabCursor={true}
-					allowTouchMove={true}
-					modules={[Autoplay]}
-					onSwiper={initSwiper}
-					className="swiper">
-					{items.map((item: Item) => (
-						<SwiperSlide
-							key={item.id}
-							className="swiper-slide"
-							onClick={() => goToDetailPage(item.id)}>
-							<div>
-								<img src={generateImgUrl(item.index)} alt="" />
-								<BsBookmarkFill
-									color={
-										bookmarkState[item.id]
-											? 'var(--color-light-salmon)'
-											: '#ffffff70'
-									}
-									size={30}
-									onClick={() => clickBookmarkHandler(item.id)}
-								/>
-							</div>
-							<div>
-								<p>이름 : {item.itemTitle}</p>
-								<p>나이 : {item.age}</p>
-							</div>
-						</SwiperSlide>
-					))}
-				</Swiper>
-			</DetailSwiper>
+			<NewFamilySwiper />
 		</div>
 	);
 };
