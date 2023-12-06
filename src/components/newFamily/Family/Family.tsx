@@ -6,7 +6,7 @@ const Family = () => {
 	const navigate = useNavigate();
 
 	const clickRegistrationHandler = () => {
-		const url = '/newFamily/registration';
+		const url = '/newFamily/petRegistration';
 		navigate(url);
 	};
 

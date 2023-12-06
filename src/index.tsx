@@ -64,7 +64,7 @@ const router = createBrowserRouter([
 				children: [
 					{ index: true, element: <Family /> },
 					{ path: 'pet/:petId', element: <NewFamilyDetail /> },
-					{ path: 'registration', element: <PetRegistration /> },
+					{ path: 'petRegistration', element: <PetRegistration /> },
 				],
 			},
 			{

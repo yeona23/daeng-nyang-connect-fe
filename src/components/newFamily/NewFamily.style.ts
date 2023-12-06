@@ -295,3 +295,82 @@ export const DetailSwiper = styled.div`
 		width: 100%;
 	}
 `;
+
+//PetRegistration
+
+export const PetRegistrationForm = styled.div`
+	width: 1320px;
+	margin: 0 auto;
+
+	& > div:last-child {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	& h5 {
+		width: 80px;
+		margin-right: 30px;
+		font-weight: 400;
+	}
+
+	& button {
+		width: 420px;
+		padding: 5px;
+		margin-top: 150px;
+		border: 1px solid var(--color-light-salmon);
+		border-radius: 5px;
+		background: var(--color-light-salmon);
+		color: var(--color-peach);
+		font-size: 16px;
+		cursor: pointer;
+	}
+`;
+
+export const FormText = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+
+	.text-box {
+		align-items: flex-start;
+	}
+
+	& textarea {
+		width: 90%;
+		height: 150px;
+		resize: none;
+	}
+
+	& > div {
+		display: flex;
+		align-items: center;
+		width: calc((100% - 100px) / 2);
+		margin-bottom: 30px;
+	}
+
+	& input[type='text'] {
+		width: 80%;
+		height: 30px;
+		outline: none;
+	}
+
+	& input[type='radio'] {
+		margin: 0;
+		margin-right: 10px;
+	}
+
+	& input[name='breed'] {
+		width: 30%;
+		margin-right: 30px;
+	}
+
+	& input[name='age'] {
+		width: 30%;
+	}
+
+	& label {
+		margin-right: 30px;
+	}
+`;
