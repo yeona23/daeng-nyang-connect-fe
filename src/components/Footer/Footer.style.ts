@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+export const FooterLogo = styled.img`
+	cursor: pointer;
+`;
 export const FooterDiv = styled.div`
 	height: 420px;
 	background-color: var(--color-deep-blue);
@@ -27,6 +30,7 @@ export const FooterDt = styled.dt`
 export const FooterMenuDD = styled.dd`
 	line-height: 1.8;
 	color: #fff;
+	cursor: pointer;
 `;
 export const FooterCopyrightDiv = styled.div`
 	position: absolute;

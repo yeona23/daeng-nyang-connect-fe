@@ -5,6 +5,7 @@ import {
 	FooterDt,
 	FooterFlexDiv,
 	FooterInnerDiv,
+	FooterLogo,
 	FooterMenuDD,
 	FooterMenuDiv,
 } from './Footer.style';
@@ -21,7 +22,7 @@ const Footer = () => {
 			<FooterInnerDiv>
 				<FooterFlexDiv>
 					<h1>
-						<img src="assets/LOGO(footer).svg" alt="" />
+						<FooterLogo src="assets/LOGO(footer).svg" alt="" />
 					</h1>
 					<FooterMenuDiv>
 						<dl>

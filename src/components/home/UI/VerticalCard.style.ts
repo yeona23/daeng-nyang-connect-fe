@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const CardDiv = styled.div`
-	width: calc(18% - 10px);
+	width: 90%;
 	height: 450px;
 	border-radius: 30px;
 	background-color: #fff;
 	overflow: hidden;
+	cursor: pointer;
 `;
 export const CardImgDiv = styled.div`
 	width: 100%;

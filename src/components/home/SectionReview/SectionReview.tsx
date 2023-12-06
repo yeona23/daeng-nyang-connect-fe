@@ -10,7 +10,7 @@ const SectionReview = () => {
 			<CardListUl>
 				<HorizentalCard />
 			</CardListUl>
-			<SalmonBtn padding="100px">더보기</SalmonBtn>
+			<SalmonBtn padding="15px 100px">더보기</SalmonBtn>
 		</MainSection>
 	);
 };

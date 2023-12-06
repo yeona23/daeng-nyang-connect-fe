@@ -49,6 +49,6 @@ export const UtilDd = styled.dd`
 	svg {
 		width: 100%;
 		height: 100%;
-		stroke-width: 1.4;
+		stroke-width: 1.6;
 	}
 `;

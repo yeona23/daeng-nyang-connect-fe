@@ -7,6 +7,7 @@ export const HorizentalCardLi = styled.li`
 	border-radius: 30px;
 	box-shadow: 1px 0 8px 0 #9e848d35;
 	overflow: hidden;
+	cursor: pointer;
 `;
 export const HorizentalCardImgDiv = styled.div`
 	width: 50%;

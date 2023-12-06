@@ -8,7 +8,7 @@ import {
 	UtilDl,
 	UtilDd,
 } from './Nav.style';
-import { IoChatbubblesOutline, IoNotificationsOutline } from 'react-icons/io5';
+import { IoChatbubblesOutline } from 'react-icons/io5';
 import { HiOutlineUser } from 'react-icons/hi';
 const Nav = () => {
 	return (
@@ -29,9 +29,9 @@ const Nav = () => {
 					<UtilDd>
 						<IoChatbubblesOutline />
 					</UtilDd>
-					<UtilDd>
+					{/* <UtilDd>
 						<IoNotificationsOutline />
-					</UtilDd>
+					</UtilDd> */}
 					<UtilDd>
 						<HiOutlineUser />
 					</UtilDd>
