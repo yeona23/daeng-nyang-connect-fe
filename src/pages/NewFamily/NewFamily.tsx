@@ -1,5 +1,7 @@
+import { useLocation, useNavigate } from 'react-router-dom';
 import { CategoryTitle, FilterItems, FindFamily } from './NewFamily.style';
 import NewFamilyList from './NewFamilyList';
+import { useEffect } from 'react';
 
 const NewFamily = () => {
 	return (

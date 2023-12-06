@@ -1,6 +1,7 @@
 import { BsBookmarkFill } from 'react-icons/bs';
 import { ItemBox, ItemList } from './NewFamily.style';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface Item {
 	id: number;
@@ -16,6 +17,8 @@ const generateImgUrl = (index: number): string => {
 };
 
 const NewFamilyList: React.FC = () => {
+	const navigate = useNavigate();
+
 	const items: Item[] = Array.from({ length: 8 }, (_, index) => ({
 		id: index + 1,
 		index: index + 1,
@@ -30,6 +33,11 @@ const NewFamilyList: React.FC = () => {
 	const clickBookmarkHandler = (itemId: number) => {
 		setBookmarkState((prev) => ({ ...prev, [itemId]: !prev[itemId] }));
 	};
+
+	const goToDetailPage = (petId: number) => {
+		navigate(`/newFamily/pet/${petId}`);
+	};
+
 	return (
 		<ItemList>
 			{items.map((item: Item) => (
@@ -49,7 +57,7 @@ const NewFamilyList: React.FC = () => {
 					<div>
 						<p>이름 : {item.itemTitle}</p>
 						<p>나이 : {item.age}</p>
-						<button>자세히 보기</button>
+						<button onClick={() => goToDetailPage(item.id)}>자세히 보기</button>
 					</div>
 				</ItemBox>
 			))}
