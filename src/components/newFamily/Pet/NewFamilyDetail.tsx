@@ -8,6 +8,11 @@ import {
 } from '../NewFamily.style';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/autoplay';
+import { Autoplay } from 'swiper/modules';
+import SwiperCore from 'swiper';
 
 interface Item {
 	id: number;
@@ -25,7 +30,7 @@ const generateImgUrl = (index: number): string => {
 const NewFamilyDetail = () => {
 	const navigate = useNavigate();
 
-	const items: Item[] = Array.from({ length: 8 }, (_, index) => ({
+	const items: Item[] = Array.from({ length: 10 }, (_, index) => ({
 		id: index + 1,
 		index: index + 1,
 		itemTitle: '냥냥',
@@ -44,6 +49,7 @@ const NewFamilyDetail = () => {
 		navigate(`/newFamily/pet/${petId}`);
 	};
 
+	SwiperCore.use([Autoplay]);
 	return (
 		<div>
 			<NewFamilyDetailContainer>
@@ -73,11 +79,41 @@ const NewFamilyDetail = () => {
 				</div>
 			</NewFamilyDetailContainer>
 			<DetailSwiper>
-				<div>
-					<div>
-						<img src="" alt="" />
-					</div>
-				</div>
+				<Swiper
+					loop={true}
+					autoplay={{ delay: 2500, disableOnInteraction: false }}
+					speed={3000}
+					spaceBetween={30}
+					slidesPerView={5}
+					freeMode={true}
+					grabCursor={true}
+					allowTouchMove={true}
+					modules={[Autoplay]}
+					className="swiper">
+					{items.map((item: Item) => (
+						<SwiperSlide
+							key={item.id}
+							className="swiper-slide"
+							onClick={() => goToDetailPage(item.id)}>
+							<div>
+								<img src={generateImgUrl(item.index)} alt="" />
+								<BsBookmarkFill
+									color={
+										bookmarkState[item.id]
+											? 'var(--color-light-salmon)'
+											: '#ffffff70'
+									}
+									size={30}
+									onClick={() => clickBookmarkHandler(item.id)}
+								/>
+							</div>
+							<div>
+								<p>이름 : {item.itemTitle}</p>
+								<p>나이 : {item.age}</p>
+							</div>
+						</SwiperSlide>
+					))}
+				</Swiper>
 			</DetailSwiper>
 		</div>
 	);

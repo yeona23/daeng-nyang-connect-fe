@@ -216,5 +216,50 @@ export const UserThumbnail = styled.div`
 
 //NewFamilyDetailSwiper
 export const DetailSwiper = styled.div`
+	display: flex;
+	align-items: center;
 	width: 100%;
+	height: 530px;
+	margin-top: 150px;
+	background: var(--color-peach);
+
+	.swiper {
+		width: 100%;
+	}
+
+	.swiper-wrapper {
+		width: inherit;
+	}
+
+	.swiper-slide {
+		height: 330px;
+		border-radius: 10px;
+		background: #fff;
+		overflow: hidden;
+	}
+
+	.swiper-slide div:first-child {
+		position: relative;
+		width: 100%;
+		aspect-ratio: 4 / 2.5;
+		overflow: hidden;
+
+		& svg {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+		}
+	}
+
+	.swiper-slide div:last-child {
+		padding: 20px;
+
+		& p {
+			margin-bottom: 15px;
+		}
+	}
+
+	.swiper-slide img {
+		width: 100%;
+	}
 `;
