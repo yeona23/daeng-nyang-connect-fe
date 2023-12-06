@@ -14,11 +14,15 @@ import { useState } from 'react';
 const NewFamilyDetail = () => {
 	const location = useLocation();
 	const imageUrl = location.state?.imageUrl || '';
-
+	const [clickedBookmark, setClickedBookmark] = useState(false);
 	const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
 	const toggleDropdown = () => {
 		setIsDropdownVisible((prev) => !prev);
+	};
+
+	const clickBookmarkHandler = () => {
+		setClickedBookmark((prev) => !prev);
 	};
 
 	return (
@@ -26,7 +30,11 @@ const NewFamilyDetail = () => {
 			<NewFamilyDetailContainer>
 				<DetailImageBox>
 					<img src={imageUrl} alt="" />
-					<BsBookmarkFill color={'#ffffff70'} size={40} />
+					<BsBookmarkFill
+						color={clickedBookmark ? 'var(--color-light-salmon)' : '#ffffff70'}
+						size={40}
+						onClick={clickBookmarkHandler}
+					/>
 				</DetailImageBox>
 				<div>
 					<UserThumbnail>

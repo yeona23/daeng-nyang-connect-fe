@@ -251,7 +251,7 @@ export const DetailSwiper = styled.div`
 	display: flex;
 	align-items: center;
 	width: 100%;
-	height: 530px;
+	height: 520px;
 	margin-top: 150px;
 	background: var(--color-peach);
 
