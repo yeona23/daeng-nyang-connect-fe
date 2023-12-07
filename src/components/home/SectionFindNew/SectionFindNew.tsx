@@ -6,8 +6,13 @@ import {
 } from './SectionFindNew.style';
 import { SalmonBtn } from '../UI/SalmonBtn/SalmonBtn.style';
 import FindNewList from './FindNewList/FindNewList';
+import { useNavigate } from 'react-router-dom';
 
 const SectionFindNew = () => {
+	const navigate = useNavigate();
+	const moveToNew = () => {
+		navigate('/newFamily');
+	};
 	return (
 		<FindNewSection>
 			<FindNewTitleDiv>
@@ -16,7 +21,7 @@ const SectionFindNew = () => {
 			<CardListUl>
 				<FindNewList />
 			</CardListUl>
-			<SalmonBtn padding="10px 30px" addStyle="addStyle">
+			<SalmonBtn padding="10px 30px" addStyle="addStyle" onClick={moveToNew}>
 				더보기
 			</SalmonBtn>
 		</FindNewSection>

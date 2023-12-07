@@ -31,6 +31,9 @@ export const FooterMenuDD = styled.dd`
 	line-height: 1.8;
 	color: var(--color-peach);
 	cursor: pointer;
+	.footerText {
+		color: var(--color-peach);
+	}
 `;
 export const FooterCopyrightDiv = styled.div`
 	position: absolute;

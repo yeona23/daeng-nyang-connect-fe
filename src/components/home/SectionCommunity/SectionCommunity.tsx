@@ -7,16 +7,28 @@ const SectionCommunity = () => {
 		<MainSection>
 			<MainSectionH2>커뮤니티</MainSectionH2>
 			<CommunityUl>
-				<Communities title="나의 댕냥이" img="assets/community1.jpg">
+				<Communities
+					title="나의 댕냥이"
+					img="assets/community1.jpg"
+					to="/community/myPets">
 					귀여운 반려동물 자랑대회
 				</Communities>
-				<Communities title="댕냥 꿀팁" img="assets/community2.jpg">
+				<Communities
+					title="댕냥 꿀팁"
+					img="assets/community2.jpg"
+					to="/community/tips">
 					용품 및 병원 리뷰 꿀팁
 				</Communities>
-				<Communities title="댕냥 메이트" img="assets/community3.jpg">
+				<Communities
+					title="댕냥 메이트"
+					img="assets/community3.jpg"
+					to="/community/mates">
 					우리 메이트 하자
 				</Communities>
-				<Communities title="댕냥 미아센터" img="assets/community4.jpg">
+				<Communities
+					title="댕냥 미아센터"
+					img="assets/community4.jpg"
+					to="/community/losts">
 					댕냥이가 길을 잃었어요
 				</Communities>
 			</CommunityUl>
