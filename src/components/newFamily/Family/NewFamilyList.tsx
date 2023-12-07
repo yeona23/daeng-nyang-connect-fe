@@ -6,7 +6,7 @@ import { ItemBox, ItemList } from '../NewFamily.style';
 interface Item {
 	id: number;
 	index: number;
-	itemTitle: string;
+	name: string;
 	age: string;
 }
 
@@ -22,7 +22,7 @@ const NewFamilyList: React.FC = () => {
 	const items: Item[] = Array.from({ length: 8 }, (_, index) => ({
 		id: index + 1,
 		index: index + 1,
-		itemTitle: '냥냥',
+		name: '냥냥',
 		age: '3년 2개월',
 	}));
 
@@ -55,7 +55,7 @@ const NewFamilyList: React.FC = () => {
 						/>
 					</div>
 					<div>
-						<p>이름 : {item.itemTitle}</p>
+						<p>이름 : {item.name}</p>
 						<p>나이 : {item.age}</p>
 						<button
 							onClick={() =>
