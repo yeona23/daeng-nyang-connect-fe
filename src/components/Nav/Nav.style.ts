@@ -41,10 +41,14 @@ export const NavUl = styled.ul`
 `;
 export const NavLi = styled.li`
 	margin-right: 20px;
+	font-size: 18px;
 	transition: all 0.4s ease;
 	cursor: pointer;
 	&:hover {
 		color: var(--color-light-salmon);
+	}
+	.nav {
+		font-weight: 400;
 	}
 `;
 export const UtilDl = styled.dl`
@@ -54,8 +58,8 @@ export const UtilDl = styled.dl`
 `;
 export const UtilDd = styled.dd`
 	margin-left: 4px;
-	width: 24px;
-	height: 24px;
+	width: 28px;
+	height: 28px;
 	cursor: pointer;
 	svg {
 		width: 100%;
