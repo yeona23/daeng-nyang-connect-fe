@@ -41,7 +41,7 @@ const NewFamilyDetail = () => {
 						<div>
 							<img src="/assets/animal2.jpg" alt="" />
 						</div>
-						<div>iamzipsa</div>
+						<h5>iamzipsa</h5>
 						<RiMore2Line
 							color="var(--color-light-salmon"
 							size={30}

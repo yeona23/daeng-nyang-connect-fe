@@ -199,11 +199,15 @@ export const UserThumbnail = styled.div`
 	border-bottom: 1px solid var(--color-deep-blue);
 
 	& div:first-child {
-		width: 48px;
-		height: 48px;
+		width: 45px;
+		height: 45px;
 		border-radius: 50%;
 		overflow: hidden;
 		cursor: pointer;
+	}
+
+	& h5 {
+		font-weight: 400;
 	}
 
 	& img {
@@ -246,7 +250,7 @@ export const DetailTextBox = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
-	margin-top: 30px;
+	margin: 30px 0;
 `;
 
 //NewFamilyDetailSwiper

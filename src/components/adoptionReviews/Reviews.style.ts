@@ -80,3 +80,97 @@ export const ButtonBox = styled.div`
 	display: flex;
 	justify-content: space-between;
 `;
+
+//Review(Detail)
+
+export const ReviewTextBox = styled.div`
+	display: flex;
+	flex-direction: column;
+`;
+
+export const CommentContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+`;
+
+export const CommentList = styled.div`
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	padding: 30px 0;
+	border: 1px solid var(--color-deep-blue);
+	border-left: none;
+	border-right: none;
+	font-size: 20px;
+`;
+
+export const CommentBox = styled.div`
+	display: flex;
+	align-items: center;
+
+	& div:first-child {
+		width: 45px;
+		height: 45px;
+		border-radius: 50%;
+		overflow: hidden;
+		cursor: pointer;
+	}
+
+	& img {
+		height: 100%;
+	}
+
+	& h5 {
+		margin: 0 15px;
+		font-weight: 400;
+	}
+
+	& p {
+		flex: 1;
+	}
+
+	& span {
+		font-size: 15px;
+	}
+`;
+
+export const LikeContainer = styled.div`
+	display: flex;
+	align-items: center;
+	margin-top: 20px;
+	& p {
+		margin-left: 10px;
+		font-size: 16px;
+	}
+`;
+
+export const CommentInputContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 0;
+
+	& input {
+		flex: 1;
+		padding: 5px 0;
+		border: none;
+		outline-color: var(--color-light-salmon);
+	}
+
+	& input::placeholder {
+		color: var(--color-light-blue);
+		font-size: 16px;
+		font-weight: 400;
+	}
+
+	& button {
+		position: unset;
+		width: fit-content;
+		margin-top: 0;
+		margin-left: 20px;
+		border: none;
+		background: none;
+		color: var(--color-light-salmon);
+		font-size: 16px;
+	}
+`;

@@ -36,7 +36,7 @@ const ReviewList = () => {
 	};
 
 	const goToReviewPage = (reviewId: number, imageUrl: string) => {
-		const url = `/adoptionReviews/review/${reviewId}`;
+		const url = `review/${reviewId}`;
 		navigate(url, { state: { imageUrl } });
 	};
 
