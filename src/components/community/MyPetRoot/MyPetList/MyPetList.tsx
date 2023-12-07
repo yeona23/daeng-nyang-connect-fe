@@ -15,8 +15,8 @@ const MyPetList = ({ list }: MyPetListProps) => {
 	};
 
 	return (
-		<MyPetLi onClick={() => moveToTheDetailPage(list.id)}>
-			<div>
+		<MyPetLi>
+			<div onClick={() => moveToTheDetailPage(list.id)}>
 				<img src="/assets/cat.jpeg" alt="" />
 			</div>
 			<UserWrap>

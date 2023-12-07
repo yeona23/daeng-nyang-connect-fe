@@ -17,7 +17,9 @@ export const ImageWrap = styled.div`
 	margin: 10px 10px 10px 12px;
 
 	& img {
-		height: 500px;
+		width: 100%;
+		height: auto;
+		max-width: 100%;
 	}
 `;
 

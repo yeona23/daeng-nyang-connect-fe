@@ -17,7 +17,7 @@ export const ImgWrap = styled.div`
 `;
 
 export const TextWrap = styled.div`
-	height: 50%;
+	height: 40%;
 	padding: 16px;
 
 	& div {
@@ -32,6 +32,7 @@ export const TextWrap = styled.div`
 
 export const ButtonWrap = styled.div`
 	text-align: right;
+	margin-right: 10px;
 
 	& button:hover {
 		background-color: var(--color-light-salmon);

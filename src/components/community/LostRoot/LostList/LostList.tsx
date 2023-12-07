@@ -32,10 +32,10 @@ const LostList = ({ list }: LostPetProps) => {
 					{list.lost_time}시 {list.lost_minute}분{'  '}경
 				</div>
 				<p>{list.text}</p>
-				<ButtonWrap>
-					<Button>채팅하기</Button>
-				</ButtonWrap>
 			</TextWrap>
+			<ButtonWrap>
+				<Button>채팅하기</Button>
+			</ButtonWrap>
 		</LostLi>
 	);
 };

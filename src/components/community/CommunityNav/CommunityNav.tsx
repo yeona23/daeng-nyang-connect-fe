@@ -136,6 +136,22 @@ const CommunityNav = ({ setIsPopUp }: CommunityNavProps) => {
 									댕냥 미아센터
 								</NavOptionText>
 							</NavOption>
+							{displayLabel === '댕냥 미아센터' && (
+								<>
+									<NavOptionButton
+										onClick={() => moveToTheCategory('losts', 'find')}>
+										<NavOptionText $isActive={category === 'find'}>
+											찾아주세요
+										</NavOptionText>
+									</NavOptionButton>
+									<NavOptionButton
+										onClick={() => moveToTheCategory('losts', 'found')}>
+										<NavOptionText $isActive={category === 'found'}>
+											발견했어요
+										</NavOptionText>
+									</NavOptionButton>
+								</>
+							)}
 						</NavOptionWrap>
 					</ButtonWrap>
 					<Button onClick={() => setIsPopUp(true)}>글쓰기</Button>

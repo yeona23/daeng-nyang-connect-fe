@@ -75,6 +75,7 @@ const WritingModalForm = () => {
 				break;
 			case 'tip':
 			case 'mate':
+			case 'lost':
 				dispatch(SET_CATEGORY(value));
 				break;
 			case 'gender':
@@ -89,39 +90,91 @@ const WritingModalForm = () => {
 		<ModalForm>
 			<Title>{displayLabel} 글쓰기</Title>
 			<InfoWrap>
-				{(displayLabel === '댕냥 꿀팁' || displayLabel === '댕냥 메이트') && (
+				{(displayLabel === '댕냥 꿀팁' ||
+					displayLabel === '댕냥 메이트' ||
+					displayLabel === '댕냥 미아센터') && (
 					<LabelWrap>
 						<LabelTitle htmlFor="category">카테고리</LabelTitle>
 						<InputWrap>
 							<div>
-								<label htmlFor={displayLabel === '댕냥 꿀팁' ? 'item' : 'mate'}>
-									{displayLabel === '댕냥 꿀팁' ? '용품 리뷰' : '산책 메이트'}
+								<label
+									htmlFor={
+										displayLabel === '댕냥 꿀팁'
+											? 'item'
+											: displayLabel === '댕냥 메이트'
+											  ? 'mate'
+											  : 'find'
+									}>
+									{displayLabel === '댕냥 꿀팁'
+										? '용품 리뷰'
+										: displayLabel === '댕냥 메이트'
+										  ? '산책 메이트'
+										  : '찾아주세요'}
 								</label>
 								<CheckInput
 									type="radio"
-									name={displayLabel === '댕냥 꿀팁' ? 'tip' : 'mate'}
-									value={displayLabel === '댕냥 꿀팁' ? 'item' : 'mate'}
+									name={
+										displayLabel === '댕냥 꿀팁'
+											? 'tip'
+											: displayLabel === '댕냥 메이트'
+											  ? 'mate'
+											  : 'lost'
+									}
+									value={
+										displayLabel === '댕냥 꿀팁'
+											? 'item'
+											: displayLabel === '댕냥 메이트'
+											  ? 'mate'
+											  : 'find'
+									}
 									onChange={radioChangeHandler}
 									checked={
 										displayLabel === '댕냥 꿀팁'
 											? category === 'item'
-											: category === 'mate'
+											: displayLabel === '댕냥 메이트'
+											  ? category === 'mate'
+											  : category === 'find'
 									}
 								/>
 							</div>
 							<div>
-								<label htmlFor={displayLabel === '댕냥 꿀팁' ? 'item' : 'care'}>
-									{displayLabel === '댕냥 꿀팁' ? '병원 리뷰' : '맡아주실 분'}
+								<label
+									htmlFor={
+										displayLabel === '댕냥 꿀팁'
+											? 'center'
+											: displayLabel === '댕냥 메이트'
+											  ? 'care'
+											  : 'found'
+									}>
+									{displayLabel === '댕냥 꿀팁'
+										? '병원 리뷰'
+										: displayLabel === '댕냥 메이트'
+										  ? '맡아주실 분'
+										  : '발견했어요'}
 								</label>
 								<CheckInput
 									type="radio"
-									name={displayLabel === '댕냥 꿀팁' ? 'tip' : 'mate'}
-									value={displayLabel === '댕냥 꿀팁' ? 'center' : 'care'}
+									name={
+										displayLabel === '댕냥 꿀팁'
+											? 'tip'
+											: displayLabel === '댕냥 메이트'
+											  ? 'mate'
+											  : 'lost'
+									}
+									value={
+										displayLabel === '댕냥 꿀팁'
+											? 'center'
+											: displayLabel === '댕냥 메이트'
+											  ? 'care'
+											  : 'found'
+									}
 									onChange={radioChangeHandler}
 									checked={
 										displayLabel === '댕냥 꿀팁'
 											? category === 'center'
-											: category === 'care'
+											: displayLabel === '댕냥 메이트'
+											  ? category === 'care'
+											  : category === 'found'
 									}
 								/>
 							</div>
@@ -143,9 +196,7 @@ const WritingModalForm = () => {
 				{(displayLabel === '댕냥 메이트' ||
 					displayLabel === '댕냥 미아센터') && (
 					<LabelWrap>
-						<LabelTitle htmlFor="place">
-							{displayLabel === '댕냥 메이트' ? '장소' : '잃어버린 장소'}
-						</LabelTitle>
+						<LabelTitle htmlFor="place">장소</LabelTitle>
 						<TextInput
 							type="text"
 							name="place"
@@ -156,7 +207,7 @@ const WritingModalForm = () => {
 				)}
 				{displayLabel === '댕냥 미아센터' && (
 					<LabelWrap>
-						<LabelTitle htmlFor="lost_date">잃어버린 날짜</LabelTitle>
+						<LabelTitle htmlFor="lost_date">날짜</LabelTitle>
 						<TextInput
 							type="date"
 							name="lost_date"
@@ -167,7 +218,7 @@ const WritingModalForm = () => {
 				)}
 				{displayLabel === '댕냥 미아센터' && (
 					<LabelWrap>
-						<LabelTitle htmlFor="lost_time">잃어버린 시간</LabelTitle>
+						<LabelTitle htmlFor="lost_time">시간</LabelTitle>
 						<TextInput
 							type="time"
 							name="lost_time"

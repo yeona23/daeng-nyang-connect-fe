@@ -17,6 +17,7 @@ export const ModalForm = styled.form`
 		border: 1px solid var(--color-light-salmon);
 		border-radius: 4px;
 		outline: none;
+		font-size: 16px;
 	}
 `;
 
@@ -35,7 +36,7 @@ export const Title = styled.h1`
 export const LabelWrap = styled.div`
 	display: flex;
 	align-items: center;
-	margin-bottom: 12px;
+	margin-bottom: 10px;
 `;
 
 export const LabelTitle = styled.label`
