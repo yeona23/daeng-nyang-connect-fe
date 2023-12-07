@@ -1,5 +1,4 @@
 import {
-	CommunityImg,
 	CommunityImgDiv,
 	CommunityLi,
 	CommunityTitleDt,
@@ -14,9 +13,7 @@ interface CommunityProps {
 const Communities = ({ title, img, children }: CommunityProps) => {
 	return (
 		<CommunityLi>
-			<CommunityImgDiv>
-				<CommunityImg src={img} alt="" />
-			</CommunityImgDiv>
+			<CommunityImgDiv img={img}></CommunityImgDiv>
 			<dl>
 				<CommunityTitleDt>{title}</CommunityTitleDt>
 				<dd>{children}</dd>

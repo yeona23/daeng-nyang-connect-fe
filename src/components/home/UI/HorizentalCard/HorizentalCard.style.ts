@@ -5,7 +5,7 @@ export const HorizentalCardLi = styled.li`
 	width: calc(50% - 18px);
 	height: 280px;
 	border-radius: 30px;
-	box-shadow: 1px 0 8px 0 #9e848d35;
+	box-shadow: 1px 0 8px 0 #9e848d50;
 	overflow: hidden;
 	cursor: pointer;
 `;

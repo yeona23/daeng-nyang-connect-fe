@@ -25,11 +25,11 @@ export const FooterDt = styled.dt`
 	margin-bottom: 16px;
 	font-size: 24px;
 	line-height: 1.6;
-	color: #fff;
+	color: var(--color-peach);
 `;
 export const FooterMenuDD = styled.dd`
 	line-height: 1.8;
-	color: #fff;
+	color: var(--color-peach);
 	cursor: pointer;
 `;
 export const FooterCopyrightDiv = styled.div`
