@@ -1,6 +1,7 @@
 import { useResponsive } from '../../../../hooks/useResponsive';
 import Comment from '../../../Comment/Comment';
 import RegisterCommentForm from '../../../Comment/RegisterCommentForm';
+import CommunitySwiper from '../../CommunitySwiper/CommunitySwiper';
 import DetailUserNav from '../../DetailUserNav/DetailUserNav';
 import {
 	CommentWrap,
@@ -42,6 +43,7 @@ const createRandomComments = (): CommentForm[] => {
 
 const MyPetDetail = () => {
 	const commentsList = createRandomComments();
+	const images = ['/assets/cat.jpeg', '/assets/cat.jpeg'];
 
 	const { $isTablet, $isMobile } = useResponsive();
 
@@ -50,7 +52,7 @@ const MyPetDetail = () => {
 			<DetailUserNav />
 			<ImageAndTextWrap $isMobile={$isMobile} $isTablet={$isTablet}>
 				<ImageWrap $isMobile={$isMobile} $isTablet={$isTablet}>
-					<img src="/assets/cat.jpeg" alt="" />
+					<CommunitySwiper images={images} />
 				</ImageWrap>
 				<TextBox $isMobile={$isMobile} $isTablet={$isTablet}>
 					<h3>자랑하기</h3>

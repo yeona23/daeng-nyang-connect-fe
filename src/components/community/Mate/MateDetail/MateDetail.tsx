@@ -12,6 +12,7 @@ import {
 } from './MateDetail.style';
 import RegisterCommentForm from '../../../Comment/RegisterCommentForm';
 import { useResponsive } from '../../../../hooks/useResponsive';
+import CommunitySwiper from '../../CommunitySwiper/CommunitySwiper';
 
 export interface CommentForm {
 	user_id: number;
@@ -44,6 +45,7 @@ const createRandomComments = (): CommentForm[] => {
 
 const MateDetail = () => {
 	const commentsList = createRandomComments();
+	const images = ['/assets/cat.jpeg', '/assets/cat.jpeg'];
 
 	const { $isTablet, $isMobile } = useResponsive();
 
@@ -52,7 +54,7 @@ const MateDetail = () => {
 			<DetailUserNav />
 			<ImageAndTextWrap $isMobile={$isMobile} $isTablet={$isTablet}>
 				<ImageWrap $isMobile={$isMobile} $isTablet={$isTablet}>
-					<img src="/assets/cat.jpeg" alt="" />
+					<CommunitySwiper images={images} />
 				</ImageWrap>
 				<TextBox $isMobile={$isMobile} $isTablet={$isTablet}>
 					<SubTitle>메이트 구하기</SubTitle>

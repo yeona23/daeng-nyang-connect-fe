@@ -84,12 +84,14 @@ const CommunityNav = ({ setIsPopUp }: CommunityNavProps) => {
 					)}
 					<SearchWrap $isMobile={$isMobile} $isTablet={$isTablet}>
 						<input type="text" placeholder="검색어를 입력해주세요" />
-						<StyledIoIosSearch />
+						<button>
+							<StyledIoIosSearch />
+						</button>
 					</SearchWrap>
 				</MenuAndSearchWrap>
 			</TitleAndSearchWrap>
 			<Article $isMobile={$isMobile}>
-				{isToggleMenu && (
+				{!isToggleMenu && (
 					<Nav $isTablet={$isTablet} $isMobile={$isMobile}>
 						<ButtonWrap $isMobile={$isMobile}>
 							<NavOptionWrap $isMobile={$isMobile}>

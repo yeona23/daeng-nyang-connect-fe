@@ -32,7 +32,7 @@ export const TitleWrap = styled.div<NavOptionProps>`
 	}
 `;
 
-export const SearchWrap = styled.div<NavOptionProps>`
+export const SearchWrap = styled.form<NavOptionProps>`
 	display: flex;
 	justify-content: space-between;
 	width: ${(props) =>
@@ -52,6 +52,8 @@ export const SearchWrap = styled.div<NavOptionProps>`
 
 export const StyledIoIosSearch = styled(IoIosSearch)`
 	cursor: pointer;
+	width: 20px;
+	height: 20px;
 `;
 
 export const Article = styled.article<NavOptionProps>`
@@ -115,6 +117,7 @@ export const Button = styled.button<NavOptionProps>`
 	font-size: ${(props) =>
 		props.$isTablet ? '16px' : props.$isMobile ? '16px' : '18px'};
 	cursor: pointer;
+	z-index: 10;
 
 	&:hover {
 		background-color: var(--color-light-salmon);
