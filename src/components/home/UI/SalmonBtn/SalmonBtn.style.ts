@@ -18,6 +18,6 @@ export const SalmonBtn = styled.button<BtnProps>`
 			position: absolute;
 			top: 80px;
 			right: calc((100vw - 1320px) / 2);
-			font-size: 14px;
+			font-size: 16px;
 		`}
 `;

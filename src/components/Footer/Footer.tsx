@@ -23,7 +23,7 @@ const Footer = () => {
 			<FooterInnerDiv>
 				<FooterFlexDiv>
 					<h1>
-						<FooterLogo src="assets/LOGO(footer).svg" alt="" />
+						<FooterLogo src="/assets/LOGO(footer).svg" alt="" />
 					</h1>
 					<FooterMenuDiv>
 						<dl>

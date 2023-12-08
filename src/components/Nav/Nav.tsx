@@ -10,11 +10,11 @@ import {
 } from './Nav.style';
 import { IoChatbubblesOutline } from 'react-icons/io5';
 import { HiOutlineUser } from 'react-icons/hi';
-import scroll from '../../utils/scrollNav';
 import { NavLink } from 'react-router-dom';
+import scrollNav from '../../utils/scrollNav';
 
 const Nav = () => {
-	const props = scroll() ? { isHome: 'home' } : {};
+	const props = scrollNav() ? { isHome: 'home' } : {};
 	const id = 3;
 
 	return (
@@ -22,7 +22,9 @@ const Nav = () => {
 			<HeaderContenstDiv>
 				<HeaderNav>
 					<LogoH1>
-						<img src="assets/LOGO.svg" alt="" />
+						<NavLink to="/">
+							<img src="/assets/LOGO.svg" alt="" />
+						</NavLink>
 					</LogoH1>
 					<NavUl>
 						<NavLi>

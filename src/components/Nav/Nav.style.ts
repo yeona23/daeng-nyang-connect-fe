@@ -11,13 +11,13 @@ export const HeaderDiv = styled.div<NavProps>`
 	left: 0;
 	width: 100%;
 	height: 64px;
-	background-color: rgba(255, 255, 255, 0.8);
+	background-color: #fff;
+	box-shadow: 0 0 10px 0 #9e848d50;
 	transition: all 0.3s ease-in-out;
 	${(props) =>
 		props.isHome &&
 		css`
-			background-color: #fff;
-			box-shadow: 0 0 10px 0 #9e848d50;
+			background-color: rgba(255, 255, 255, 0.8);
 		`}
 `;
 export const HeaderContenstDiv = styled.div`
