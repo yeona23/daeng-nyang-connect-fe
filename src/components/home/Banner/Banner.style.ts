@@ -14,15 +14,16 @@ export const BannerDiv = styled.div<BannerProps>`
 export const BannerContentsDiv = styled.div<BannerProps>`
 	position: relative;
 	max-width: 1320px;
+	width: ${(props) => (props.$isMaxWidth ? 'calc(100% - 60px)' : '100%')};
 	height: 100%;
-	margin: ${(props) => (props.$isMaxWidth ? '0 30px' : null)};
+	margin: ${(props) => (props.$isMaxWidth ? '0 30px' : 'auto')};
 `;
 export const BannerSloganDiv = styled.div<BannerProps>`
-	width: ${(props) => (props.$isMobile ? '50%' : null)};
 	position: absolute;
-	bottom: ${(props) => (props.$isMobile ? '20%' : '10%')};
+	bottom: 10%;
 	left: ${(props) => (props.$isMobile ? null : 0)};
 	right: ${(props) => (props.$isMobile ? 0 : null)};
+	width: ${(props) => (props.$isMobile ? '50%' : null)};
 	img {
 		width: 100%;
 	}
