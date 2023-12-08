@@ -1,11 +1,14 @@
 import Communities from './Communities/Communities';
 import { CommunityUl } from './SectionCommunity.style';
 import { MainSection, MainSectionH2 } from './../Section.style';
+import { useResponsive } from '../../../hooks/useResponsive';
+import { PiPawPrintFill } from 'react-icons/pi';
 
 const SectionCommunity = () => {
+	const { $isMobile } = useResponsive();
 	return (
-		<MainSection>
-			<MainSectionH2>커뮤니티</MainSectionH2>
+		<MainSection $isMobile={$isMobile}>
+			<MainSectionH2 $isMobile={$isMobile}>댕냥 톡톡</MainSectionH2>
 			<CommunityUl>
 				<Communities
 					title="나의 댕냥이"

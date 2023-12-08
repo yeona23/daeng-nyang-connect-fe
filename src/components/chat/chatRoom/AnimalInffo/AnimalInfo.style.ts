@@ -7,7 +7,7 @@ export const AnimalInfoDiv = styled.div`
 	height: 100px;
 	margin: 10px 14px;
 	padding: 10px;
-	border: 2px solid var(--color-peach);
+	border: 2px solid #f7969890;
 	border-radius: 8px;
 	line-height: 1.6;
 `;

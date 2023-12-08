@@ -1,11 +1,11 @@
-import { useState } from 'react';
 import {
 	CommunityImgDiv,
 	CommunityLi,
 	CommunityTitleDt,
+	CommunityTextDl,
 } from './Communities.style';
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useResponsive } from '../../../../hooks/useResponsive';
 
 interface CommunityProps {
 	to: string;
@@ -15,14 +15,18 @@ interface CommunityProps {
 }
 
 const Communities = ({ to, title, img, children }: CommunityProps) => {
+	const { $isTablet, $isMobile } = useResponsive();
 	return (
-		<CommunityLi>
+		<CommunityLi $isMobile={$isMobile}>
 			<Link to={to}>
-				<CommunityImgDiv img={img}></CommunityImgDiv>
-				<dl>
-					<CommunityTitleDt>{title}</CommunityTitleDt>
-					<dd>{children}</dd>
-				</dl>
+				<CommunityImgDiv
+					$isMobile={$isMobile}
+					$isTablet={$isTablet}
+					img={img}></CommunityImgDiv>
+				<CommunityTextDl $isMobile={$isMobile}>
+					<CommunityTitleDt $isMobile={$isMobile}>{title}</CommunityTitleDt>
+					{!$isMobile && <dd>{children}</dd>}
+				</CommunityTextDl>
 			</Link>
 		</CommunityLi>
 	);

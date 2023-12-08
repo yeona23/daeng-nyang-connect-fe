@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
-export const CardDiv = styled.div`
-	width: 90%;
+type VerticalCardProps = {
+	$isMobile?: boolean;
+};
+
+export const CardDiv = styled.div<VerticalCardProps>`
+	width: ${(props) => (props.$isMobile ? '98%' : '90%')};
 	height: 450px;
 	border-radius: 30px;
 	background-color: #fff;

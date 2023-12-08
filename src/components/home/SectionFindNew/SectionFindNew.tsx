@@ -7,23 +7,31 @@ import {
 import { SalmonBtn } from '../UI/SalmonBtn/SalmonBtn.style';
 import FindNewList from './FindNewList/FindNewList';
 import { useNavigate } from 'react-router-dom';
+import { useResponsive } from '../../../hooks/useResponsive';
 
 const SectionFindNew = () => {
 	const navigate = useNavigate();
+	const { $isMaxWidth, $isMobile } = useResponsive();
+
 	const moveToNew = () => {
 		navigate('/newFamily');
 	};
+
+	const FindNewMorePadding = $isMobile ? '8px 20px' : '10px 30px';
 	return (
-		<FindNewSection>
-			<FindNewTitleDiv>
-				<MainSectionH2>새로운 가족 찾기</MainSectionH2>
+		<FindNewSection $isMobile={$isMobile}>
+			<FindNewTitleDiv $isMaxWidth={$isMaxWidth}>
+				<MainSectionH2 $isMobile={$isMobile}>새로운 가족 찾기</MainSectionH2>
+				<SalmonBtn
+					padding={FindNewMorePadding}
+					onClick={moveToNew}
+					$isMobile={$isMobile}>
+					더보기
+				</SalmonBtn>
 			</FindNewTitleDiv>
 			<CardListUl>
 				<FindNewList />
 			</CardListUl>
-			<SalmonBtn padding="10px 30px" addStyle="addStyle" onClick={moveToNew}>
-				더보기
-			</SalmonBtn>
 		</FindNewSection>
 	);
 };

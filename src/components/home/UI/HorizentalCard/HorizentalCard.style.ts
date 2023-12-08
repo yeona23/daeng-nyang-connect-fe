@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 
-export const HorizentalCardLi = styled.li`
+type HorizentalCardProps = {
+	$isMobile?: boolean;
+};
+
+export const HorizentalCardLi = styled.li<HorizentalCardProps>`
 	display: flex;
-	width: calc(50% - 18px);
-	height: 280px;
+	width: ${(props) => (props.$isMobile ? '100%' : 'calc(50% - 18px)')};
+	height: ${(props) => (props.$isMobile ? '200px' : '280px')};
 	border-radius: 30px;
 	box-shadow: 1px 0 8px 0 #9e848d50;
+	margin-bottom: 12px;
 	overflow: hidden;
 	cursor: pointer;
 `;

@@ -5,9 +5,12 @@ import {
 	CardTextDiv,
 } from './VerticalCard.style';
 
-const VerticalCard = () => {
+type FindNewProps = {
+	$isMobile?: boolean;
+};
+const VerticalCard = ({ $isMobile }: FindNewProps) => {
 	return (
-		<CardDiv>
+		<CardDiv $isMobile={$isMobile}>
 			<CardImgDiv />
 			<CardTextDiv>
 				<div>

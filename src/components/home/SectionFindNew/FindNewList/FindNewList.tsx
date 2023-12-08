@@ -2,10 +2,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import VerticalCard from '../../UI/VerticalCard';
+import { useResponsive } from '../../../../hooks/useResponsive';
 const FindNewList = () => {
+	const { $isMobile, $isTablet } = useResponsive();
+	const sildePerView = $isMobile ? 1 : $isTablet ? 3 : 5;
 	return (
 		<Swiper
-			slidesPerView={5}
+			slidesPerView={sildePerView}
 			centeredSlides={true}
 			autoplay={{
 				delay: 1000,
@@ -16,7 +19,7 @@ const FindNewList = () => {
 			speed={2000}
 			className="mySwiper">
 			<SwiperSlide>
-				<VerticalCard />
+				<VerticalCard $isMobile={$isMobile} />
 			</SwiperSlide>
 			<SwiperSlide>
 				<VerticalCard />

@@ -6,9 +6,13 @@ import {
 	HorizentalCardTextDiv,
 } from './HorizentalCard.style';
 
-const HorizentalCard = () => {
+type HorizentalCardProps = {
+	$isMobile?: boolean;
+};
+
+const HorizentalCard = ({ $isMobile }: HorizentalCardProps) => {
 	return (
-		<HorizentalCardLi>
+		<HorizentalCardLi $isMobile={$isMobile}>
 			<HorizentalCardImgDiv />
 			<HorizentalCardTextDiv>
 				<HorizentalCardTextBox>

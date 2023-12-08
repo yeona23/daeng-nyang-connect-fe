@@ -1,3 +1,4 @@
+import { useResponsive } from '../../hooks/useResponsive';
 import {
 	FooterCopyrightDiv,
 	FooterCopyrightP,
@@ -5,9 +6,10 @@ import {
 	FooterDt,
 	FooterFlexDiv,
 	FooterInnerDiv,
-	FooterLogo,
+	FooterLogoH1,
 	FooterMenuDD,
 	FooterMenuDiv,
+	FooterMenuDl,
 } from './Footer.style';
 import FooterMenuText from './FooterMenuText/FooterMenuText';
 
@@ -17,23 +19,30 @@ const utilMenus = {
 };
 
 const Footer = () => {
+	const { $isMaxWidth, $isTablet, $isMobile } = useResponsive();
 	const id = 3;
 	return (
 		<FooterDiv>
-			<FooterInnerDiv>
-				<FooterFlexDiv>
-					<h1>
-						<FooterLogo src="/assets/LOGO(footer).svg" alt="" />
-					</h1>
+			<FooterInnerDiv $isMaxWidth={$isMaxWidth} $isMobile={$isMobile}>
+				<FooterFlexDiv $isMobile={$isMobile}>
+					<FooterLogoH1 $isMobile={$isMobile}>
+						<img src="/assets/LOGO(footer).svg" alt="" />
+					</FooterLogoH1>
 					<FooterMenuDiv>
-						<dl>
-							<FooterDt>ABOUT US</FooterDt>
+						<FooterMenuDl $isMobile={$isMobile}>
+							<FooterDt $isTablet={$isTablet} $isMobile={$isMobile}>
+								ABOUT US
+							</FooterDt>
 							{utilMenus.about.map((text, index) => (
-								<FooterMenuDD key={index}>{text}</FooterMenuDD>
+								<FooterMenuDD $isMobile={$isMobile} key={index}>
+									{text}
+								</FooterMenuDD>
 							))}
-						</dl>
-						<dl>
-							<FooterDt>사이트 맵</FooterDt>
+						</FooterMenuDl>
+						<FooterMenuDl $isMobile={$isMobile}>
+							<FooterDt $isTablet={$isTablet} $isMobile={$isMobile}>
+								사이트 맵
+							</FooterDt>
 							<FooterMenuText
 								key={1}
 								text="새로운 가족 찾기"
@@ -50,17 +59,21 @@ const Footer = () => {
 								text="마이페이지"
 								moveTo={`/users/${id}`}
 							/>
-						</dl>
-						<dl>
-							<FooterDt>문의하기</FooterDt>
+						</FooterMenuDl>
+						<FooterMenuDl $isMobile={$isMobile}>
+							<FooterDt $isTablet={$isTablet} $isMobile={$isMobile}>
+								문의하기
+							</FooterDt>
 							{utilMenus.qna.map((text, index) => (
-								<FooterMenuDD key={index}>{text}</FooterMenuDD>
+								<FooterMenuDD $isMobile={$isMobile} key={index}>
+									{text}
+								</FooterMenuDD>
 							))}
-						</dl>
+						</FooterMenuDl>
 					</FooterMenuDiv>
 				</FooterFlexDiv>
 				<FooterCopyrightDiv>
-					<FooterCopyrightP>
+					<FooterCopyrightP $isMobile={$isMobile}>
 						Copyright© All right reserved by 댕냥커넥트.
 					</FooterCopyrightP>
 				</FooterCopyrightDiv>
