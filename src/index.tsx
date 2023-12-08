@@ -35,6 +35,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import PetRegistration from './components/newFamily/PetRegistration/PetRegistration';
 import NewFamilyList from './components/newFamily/Family/NewFamilyList';
 import NewFamilyDetail from './components/newFamily/Pet/NewFamilyDetail';
+import ReviewForm from './components/adoptionReviews/ReviewForm/ReviewForm';
 
 const router = createBrowserRouter([
 	{
@@ -73,6 +74,7 @@ const router = createBrowserRouter([
 				children: [
 					{ index: true, element: <Reviews /> },
 					{ path: 'review/:reviewId', element: <Review /> },
+					{ path: 'reviewForm', element: <ReviewForm /> },
 				],
 			},
 			{
