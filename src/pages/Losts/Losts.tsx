@@ -1,9 +1,12 @@
 import { Outlet } from 'react-router-dom';
 import { Article } from './Losts.style';
+import { useResponsive } from '../../hooks/useResponsive';
 
 const Losts = () => {
+	const { $isMobile } = useResponsive();
+
 	return (
-		<Article>
+		<Article $isMobile={$isMobile}>
 			<Outlet />
 		</Article>
 	);

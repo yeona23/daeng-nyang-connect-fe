@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { MyPet } from '../MyPetRoot';
-import { MyPetLi, UserWrap } from './MyPetList.style';
+import { ImageWrap, MyPetLi, UserWrap } from './MyPetList.style';
 import { CiUser } from 'react-icons/ci';
+import { useResponsive } from '../../../../hooks/useResponsive';
 
 interface MyPetListProps {
 	list: MyPet;
@@ -9,17 +10,18 @@ interface MyPetListProps {
 
 const MyPetList = ({ list }: MyPetListProps) => {
 	const navigate = useNavigate();
+	const { $isMobile, $isTablet } = useResponsive();
 
 	const moveToTheDetailPage = (id: number) => {
 		navigate(`/community/myPets/myPet/${id}`);
 	};
 
 	return (
-		<MyPetLi>
-			<div onClick={() => moveToTheDetailPage(list.id)}>
+		<MyPetLi $isMobile={$isMobile}>
+			<ImageWrap onClick={() => moveToTheDetailPage(list.id)}>
 				<img src="/assets/cat.jpeg" alt="" />
-			</div>
-			<UserWrap>
+			</ImageWrap>
+			<UserWrap $isMobile={$isMobile} $isTablet={$isTablet}>
 				<div>
 					<CiUser />
 				</div>

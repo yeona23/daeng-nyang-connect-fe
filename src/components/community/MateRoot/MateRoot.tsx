@@ -2,6 +2,7 @@ import MateList from './MateList/MateList';
 import { MateLists } from './MateRoot.style';
 import Pagination from '../../Pagination/Pagination';
 import usePagination from '../../../hooks/usePagination';
+import { useResponsive } from '../../../hooks/useResponsive';
 
 export interface MatePublish {
 	id: number;
@@ -35,9 +36,11 @@ const MateRoot = () => {
 	const endIndex = startIndex + itemsPerPage;
 	const currentMatePublishLists = matePublishList.slice(startIndex, endIndex);
 
+	const { $isTablet, $isMobile } = useResponsive();
+
 	return (
 		<>
-			<MateLists>
+			<MateLists $isMobile={$isMobile} $isTablet={$isTablet}>
 				{currentMatePublishLists.map((list) => (
 					<MateList key={list.id} list={list} />
 				))}

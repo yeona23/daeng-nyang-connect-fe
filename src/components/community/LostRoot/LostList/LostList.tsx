@@ -7,6 +7,7 @@ import {
 	LostLi,
 	TextWrap,
 } from './LostList.style';
+import { useResponsive } from '../../../../hooks/useResponsive';
 
 interface LostPetProps {
 	list: LostPet;
@@ -19,12 +20,14 @@ const LostList = ({ list }: LostPetProps) => {
 		navigate(`/community/losts/lost/${id}`);
 	};
 
+	const { $isTablet, $isMobile } = useResponsive();
+
 	return (
 		<LostLi onClick={() => moveToTheDetailPage(list.id)}>
 			<ImgWrap>
 				<img src="/assets/cat.jpeg" alt="" />
 			</ImgWrap>
-			<TextWrap>
+			<TextWrap $isMobile={$isMobile} $isTablet={$isTablet}>
 				<div>잃어버린 곳 : {list.place}</div>
 				<div>
 					잃어버린 일시 : {list.lost_date}

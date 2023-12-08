@@ -1,24 +1,31 @@
 import styled from 'styled-components';
 
+interface NavOptionProps {
+	$isTablet?: boolean;
+	$isMobile?: boolean;
+}
+
 export const LostLi = styled.li`
 	width: 100%;
-	height: 480px;
+	height: auto;
 	border: 1px solid var(--color-peach);
 	border-radius: 8px;
 	cursor: pointer;
 `;
 
-export const ImgWrap = styled.div`
+export const ImgWrap = styled.div<NavOptionProps>`
 	& img {
 		width: 100%;
-		height: 250px;
+		height: auto;
 		border-radius: 8px 8px 0px 0px;
 	}
 `;
 
-export const TextWrap = styled.div`
-	height: 40%;
+export const TextWrap = styled.div<NavOptionProps>`
+	height: 250px;
 	padding: 16px;
+	font-size: ${(props) =>
+		props.$isTablet ? '15px' : props.$isMobile ? '14px' : '16px'};
 
 	& div {
 		margin-bottom: 16px;
@@ -32,7 +39,7 @@ export const TextWrap = styled.div`
 
 export const ButtonWrap = styled.div`
 	text-align: right;
-	margin-right: 10px;
+	margin: 0px 10px 10px 0px;
 
 	& button:hover {
 		background-color: var(--color-light-salmon);

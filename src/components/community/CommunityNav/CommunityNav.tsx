@@ -4,6 +4,8 @@ import {
 	Article,
 	Button,
 	ButtonWrap,
+	IoMenuWrap,
+	StyledIoMenu,
 	Nav,
 	NavOption,
 	NavOptionButton,
@@ -13,10 +15,13 @@ import {
 	StyledIoIosSearch,
 	TitleAndSearchWrap,
 	TitleWrap,
+	MenuAndSearchWrap,
+	StyledFaPlus,
 } from './CommunityNav.style';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { SET_DISPLAY_LABEL } from '../../../slice/communitySlice';
+import { useResponsive } from '../../../hooks/useResponsive';
 
 interface CommunityNavProps {
 	setIsPopUp: React.Dispatch<React.SetStateAction<boolean>>;
@@ -29,6 +34,10 @@ const CommunityNav = ({ setIsPopUp }: CommunityNavProps) => {
 	const category = queryParams.get('category');
 
 	const dispatch = useDispatch();
+
+	const { $isTablet, $isMobile } = useResponsive();
+
+	const [isToggleMenu, setIsToggleMenu] = useState(false);
 
 	const routeLabels: Record<string, string> = {
 		'/community/myPets': '나의 댕냥이',
@@ -55,107 +64,161 @@ const CommunityNav = ({ setIsPopUp }: CommunityNavProps) => {
 		navigate(`/community/${community}?category=${category}`);
 	};
 
+	const toggleMenuHandler = () => {
+		setIsToggleMenu((prev) => !prev);
+	};
+
 	return (
 		<>
-			<TitleAndSearchWrap>
-				<TitleWrap>
+			<TitleAndSearchWrap $isMobile={$isMobile}>
+				<TitleWrap $isTablet={$isTablet} $isMobile={$isMobile}>
 					<span>댕냥 톡톡</span>
 					<span>&gt;</span>
 					<span>{displayLabel}</span>
 				</TitleWrap>
-				<SearchWrap>
-					<input type="text" placeholder="검색어를 입력해주세요" />
-					<StyledIoIosSearch />
-				</SearchWrap>
+				<MenuAndSearchWrap>
+					{$isMobile && (
+						<IoMenuWrap onClick={toggleMenuHandler}>
+							<StyledIoMenu />
+						</IoMenuWrap>
+					)}
+					<SearchWrap $isMobile={$isMobile} $isTablet={$isTablet}>
+						<input type="text" placeholder="검색어를 입력해주세요" />
+						<StyledIoIosSearch />
+					</SearchWrap>
+				</MenuAndSearchWrap>
 			</TitleAndSearchWrap>
-			<Article>
-				<Nav>
-					<ButtonWrap>
-						<NavOptionWrap>
-							<NavOption onClick={() => moveToTheCommunity('myPets')}>
-								<NavOptionText $isActive={displayLabel === '나의 댕냥이'}>
-									나의 댕냥이
-								</NavOptionText>
-							</NavOption>
-						</NavOptionWrap>
-						<NavOptionWrap>
-							<NavOption onClick={() => moveToTheCommunity('tips')}>
-								<NavOptionText $isActive={displayLabel === '댕냥 꿀팁'}>
-									댕냥 꿀팁
-								</NavOptionText>
-							</NavOption>
-							{displayLabel === '댕냥 꿀팁' && (
-								<>
-									<NavOptionButton
-										onClick={() => moveToTheCategory('tips', 'item')}>
-										<NavOptionText $isActive={category === 'item'}>
-											용품 리뷰
-										</NavOptionText>
-									</NavOptionButton>
-									<NavOptionButton
-										onClick={() => moveToTheCategory('tips', 'center')}>
-										<NavOptionText $isActive={category === 'center'}>
-											병원 리뷰
-										</NavOptionText>
-									</NavOptionButton>
-									<NavOptionButton
-										onClick={() => moveToTheCategory('tips', 'etc')}>
-										<NavOptionText $isActive={category === 'etc'}>
-											그 외
-										</NavOptionText>
-									</NavOptionButton>
-								</>
-							)}
-						</NavOptionWrap>
-						<NavOptionWrap>
-							<NavOption onClick={() => moveToTheCommunity('mates')}>
-								<NavOptionText $isActive={displayLabel === '댕냥 메이트'}>
-									댕냥 메이트
-								</NavOptionText>
-							</NavOption>
-							{displayLabel === '댕냥 메이트' && (
-								<>
-									<NavOptionButton
-										onClick={() => moveToTheCategory('mates', 'mate')}>
-										<NavOptionText $isActive={category === 'mate'}>
-											산책 메이트
-										</NavOptionText>
-									</NavOptionButton>
-									<NavOptionButton
-										onClick={() => moveToTheCategory('mates', 'care')}>
-										<NavOptionText $isActive={category === 'care'}>
-											맡아주실 분
-										</NavOptionText>
-									</NavOptionButton>
-								</>
-							)}
-						</NavOptionWrap>
-						<NavOptionWrap>
-							<NavOption onClick={() => moveToTheCommunity('losts')}>
-								<NavOptionText $isActive={displayLabel === '댕냥 미아센터'}>
-									댕냥 미아센터
-								</NavOptionText>
-							</NavOption>
-							{displayLabel === '댕냥 미아센터' && (
-								<>
-									<NavOptionButton
-										onClick={() => moveToTheCategory('losts', 'find')}>
-										<NavOptionText $isActive={category === 'find'}>
-											찾아주세요
-										</NavOptionText>
-									</NavOptionButton>
-									<NavOptionButton
-										onClick={() => moveToTheCategory('losts', 'found')}>
-										<NavOptionText $isActive={category === 'found'}>
-											발견했어요
-										</NavOptionText>
-									</NavOptionButton>
-								</>
-							)}
-						</NavOptionWrap>
-					</ButtonWrap>
-					<Button onClick={() => setIsPopUp(true)}>글쓰기</Button>
-				</Nav>
+			<Article $isMobile={$isMobile}>
+				{isToggleMenu && (
+					<Nav $isTablet={$isTablet} $isMobile={$isMobile}>
+						<ButtonWrap $isMobile={$isMobile}>
+							<NavOptionWrap $isMobile={$isMobile}>
+								<NavOption
+									onClick={() => moveToTheCommunity('myPets')}
+									$isTablet={$isTablet}
+									$isMobile={$isMobile}>
+									<NavOptionText $isActive={displayLabel === '나의 댕냥이'}>
+										나의 댕냥이
+									</NavOptionText>
+								</NavOption>
+							</NavOptionWrap>
+							<NavOptionWrap $isMobile={$isMobile}>
+								<NavOption
+									onClick={() => moveToTheCommunity('tips')}
+									$isTablet={$isTablet}
+									$isMobile={$isMobile}>
+									<NavOptionText $isActive={displayLabel === '댕냥 꿀팁'}>
+										댕냥 꿀팁
+									</NavOptionText>
+								</NavOption>
+								{displayLabel === '댕냥 꿀팁' && (
+									<>
+										<NavOptionButton
+											onClick={() => moveToTheCategory('tips', 'item')}
+											$isTablet={$isTablet}
+											$isMobile={$isMobile}>
+											<NavOptionText $isActive={category === 'item'}>
+												용품 리뷰
+											</NavOptionText>
+										</NavOptionButton>
+										<NavOptionButton
+											onClick={() => moveToTheCategory('tips', 'center')}
+											$isTablet={$isTablet}
+											$isMobile={$isMobile}>
+											<NavOptionText $isActive={category === 'center'}>
+												병원 리뷰
+											</NavOptionText>
+										</NavOptionButton>
+										<NavOptionButton
+											onClick={() => moveToTheCategory('tips', 'etc')}
+											$isTablet={$isTablet}
+											$isMobile={$isMobile}>
+											<NavOptionText $isActive={category === 'etc'}>
+												그 외
+											</NavOptionText>
+										</NavOptionButton>
+									</>
+								)}
+							</NavOptionWrap>
+							<NavOptionWrap $isMobile={$isMobile}>
+								<NavOption
+									onClick={() => moveToTheCommunity('mates')}
+									$isTablet={$isTablet}
+									$isMobile={$isMobile}>
+									<NavOptionText $isActive={displayLabel === '댕냥 메이트'}>
+										댕냥 메이트
+									</NavOptionText>
+								</NavOption>
+								{displayLabel === '댕냥 메이트' && (
+									<>
+										<NavOptionButton
+											onClick={() => moveToTheCategory('mates', 'mate')}
+											$isTablet={$isTablet}
+											$isMobile={$isMobile}>
+											<NavOptionText $isActive={category === 'mate'}>
+												산책 메이트
+											</NavOptionText>
+										</NavOptionButton>
+										<NavOptionButton
+											onClick={() => moveToTheCategory('mates', 'care')}
+											$isTablet={$isTablet}
+											$isMobile={$isMobile}>
+											<NavOptionText $isActive={category === 'care'}>
+												맡아주실 분
+											</NavOptionText>
+										</NavOptionButton>
+									</>
+								)}
+							</NavOptionWrap>
+							<NavOptionWrap $isMobile={$isMobile}>
+								<NavOption
+									onClick={() => moveToTheCommunity('losts')}
+									$isTablet={$isTablet}
+									$isMobile={$isMobile}>
+									<NavOptionText $isActive={displayLabel === '댕냥 미아센터'}>
+										댕냥 미아센터
+									</NavOptionText>
+								</NavOption>
+								{displayLabel === '댕냥 미아센터' && (
+									<>
+										<NavOptionButton
+											onClick={() => moveToTheCategory('losts', 'find')}
+											$isTablet={$isTablet}
+											$isMobile={$isMobile}>
+											<NavOptionText $isActive={category === 'find'}>
+												찾아주세요
+											</NavOptionText>
+										</NavOptionButton>
+										<NavOptionButton
+											onClick={() => moveToTheCategory('losts', 'found')}
+											$isTablet={$isTablet}
+											$isMobile={$isMobile}>
+											<NavOptionText $isActive={category === 'found'}>
+												발견했어요
+											</NavOptionText>
+										</NavOptionButton>
+									</>
+								)}
+							</NavOptionWrap>
+						</ButtonWrap>
+						{!$isMobile && (
+							<Button
+								onClick={() => setIsPopUp(true)}
+								$isTablet={$isTablet}
+								$isMobile={$isMobile}>
+								글쓰기
+							</Button>
+						)}
+					</Nav>
+				)}
+				{$isMobile && (
+					<Button
+						onClick={() => setIsPopUp(true)}
+						$isTablet={$isTablet}
+						$isMobile={$isMobile}>
+						<StyledFaPlus />
+					</Button>
+				)}
 				<Outlet />
 			</Article>
 		</>

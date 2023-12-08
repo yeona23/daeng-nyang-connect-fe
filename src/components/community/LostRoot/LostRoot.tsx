@@ -1,3 +1,4 @@
+import { useResponsive } from '../../../hooks/useResponsive';
 import LostList from './LostList/LostList';
 import { LostLists } from './LostRoot.style';
 
@@ -56,8 +57,10 @@ const createRandomLostPetList = (): LostPet[] => {
 const LostRoot = () => {
 	const lostPets = createRandomLostPetList();
 
+	const { $isTablet, $isMobile } = useResponsive();
+
 	return (
-		<LostLists>
+		<LostLists $isMobile={$isMobile} $isTablet={$isTablet}>
 			{lostPets.map((pet) => (
 				<LostList key={pet.id} list={pet} />
 			))}

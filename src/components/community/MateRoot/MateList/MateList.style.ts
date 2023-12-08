@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+interface NavOptionProps {
+	$isTablet?: boolean;
+	$isMobile?: boolean;
+}
+
 export const MateLi = styled.li`
 	display: flex;
 	flex-direction: column;
@@ -17,7 +22,7 @@ export const SubNav = styled.div`
 	margin-bottom: 16px;
 `;
 
-export const UserWrap = styled.div`
+export const UserWrap = styled.div<NavOptionProps>`
 	display: flex;
 	align-items: center;
 
@@ -25,8 +30,10 @@ export const UserWrap = styled.div`
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		width: 30px;
-		height: 30px;
+		width: ${(props) =>
+			props.$isTablet ? '28px' : props.$isMobile ? '24px' : '30px'};
+		height: ${(props) =>
+			props.$isTablet ? '28px' : props.$isMobile ? '24px' : '30px'};
 		margin-right: 8px;
 		border: 1px solid black;
 		border-radius: 50%;
@@ -35,6 +42,8 @@ export const UserWrap = styled.div`
 
 	& span {
 		margin-left: 8px;
+		font-size: ${(props) =>
+			props.$isTablet ? '14px' : props.$isMobile ? '14px' : '16px'};
 	}
 `;
 
@@ -64,7 +73,9 @@ export const Button = styled.button`
 	cursor: pointer;
 `;
 
-export const TextWrap = styled.div`
-	height: 60%;
+export const TextWrap = styled.div<NavOptionProps>`
+	height: ${(props) => (props.$isMobile ? '70%' : '80%')};
 	cursor: pointer;
+	font-size: ${(props) =>
+		props.$isTablet ? '14px' : props.$isMobile ? '14px' : '16px'};
 `;

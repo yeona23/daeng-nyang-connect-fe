@@ -1,19 +1,25 @@
 import styled from 'styled-components';
 
+interface NavOptionProps {
+	$isTablet?: boolean;
+	$isMobile?: boolean;
+}
+
 export const CommentWrap = styled.div`
 	width: 100%;
 	padding: 8px 16px;
 `;
 
-export const ImageAndTextWrap = styled.div`
+export const ImageAndTextWrap = styled.div<NavOptionProps>`
 	display: flex;
+	flex-direction: ${(props) => (props.$isMobile ? 'column' : 'row')};
 	padding: 12px 0px;
 	margin-bottom: 12px;
 	border-bottom: 1px solid var(--color-light-salmon);
 `;
 
-export const ImageWrap = styled.div`
-	width: 50%;
+export const ImageWrap = styled.div<NavOptionProps>`
+	width: ${(props) => (props.$isMobile ? 'auto' : '50%')};
 	margin: 10px 10px 10px 12px;
 
 	& img {
@@ -28,14 +34,17 @@ export const SubTitle = styled.h3`
 	font-weight: 600;
 `;
 
-export const TextBox = styled.div`
-	width: 50%;
+export const TextBox = styled.div<NavOptionProps>`
+	width: ${(props) => (props.$isMobile ? 'auto' : '50%')};
 	padding: 20px;
-	margin: 10px 10px 10px 12px;
+	margin: ${(props) =>
+		props.$isTablet ? '8px' : props.$isMobile ? '4px' : '10px'};
 
 	& h3 {
 		margin-bottom: 20px;
-		font-size: 20px;
+		font-size: ${(props) =>
+			props.$isTablet ? '18px' : props.$isMobile ? '22px' : '20px'};
+		font-weight: 400;
 	}
 
 	& p {

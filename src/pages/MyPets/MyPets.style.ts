@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-export const Article = styled.article`
-	width: 100%;
+interface NavOptionProps {
+	$isTablet?: boolean;
+	$isMobile?: boolean;
+}
+
+export const Article = styled.article<NavOptionProps>`
+	width: ${(props) => (props.$isMobile ? '100%' : '85%')};
 	padding: 20px 10px;
 `;

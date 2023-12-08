@@ -14,8 +14,10 @@ import {
 	LabelTitle,
 	LabelWrap,
 	ModalForm,
+	StyledIoClose,
 	TextInput,
 	Title,
+	TitleAndButtonWrap,
 } from './WritingModalForm.style';
 import { useEffect, useState } from 'react';
 
@@ -23,7 +25,11 @@ interface RootState {
 	community: CommunityState;
 }
 
-const WritingModalForm = () => {
+interface CommunityNavProps {
+	setIsPopUp: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const WritingModalForm = ({ setIsPopUp }: CommunityNavProps) => {
 	const [inputValue, setInputValue] = useState({
 		place: '',
 		lost_date: '',
@@ -86,9 +92,19 @@ const WritingModalForm = () => {
 		}
 	};
 
+	const closeThePopUp = () => {
+		setIsPopUp(false);
+		document.body.style.overflow = 'visible';
+	};
+
 	return (
 		<ModalForm>
-			<Title>{displayLabel} 글쓰기</Title>
+			<TitleAndButtonWrap>
+				<Title>{displayLabel} 글쓰기</Title>
+				<button onClick={closeThePopUp}>
+					<StyledIoClose />
+				</button>
+			</TitleAndButtonWrap>
 			<InfoWrap>
 				{(displayLabel === '댕냥 꿀팁' ||
 					displayLabel === '댕냥 메이트' ||

@@ -8,19 +8,22 @@ import {
 	TextWrap,
 	UserImageWrap,
 } from './Comment.style';
+import { useResponsive } from '../../hooks/useResponsive';
 
 interface CommentFormProps {
 	list: CommentForm;
 }
 
 const Comment = ({ list }: CommentFormProps) => {
+	const { $isTablet, $isMobile } = useResponsive();
+
 	return (
 		<CommentLi>
 			<InfoWrap>
-				<UserImageWrap>
+				<UserImageWrap $isMobile={$isMobile} $isTablet={$isTablet}>
 					<CiUser />
 				</UserImageWrap>
-				<TextWrap>
+				<TextWrap $isMobile={$isMobile} $isTablet={$isTablet}>
 					<div>{list.nickname}</div>
 					<div>{list.comment}</div>
 					<div>{list.created_at}</div>

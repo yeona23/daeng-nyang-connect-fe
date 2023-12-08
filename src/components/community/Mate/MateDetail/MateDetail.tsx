@@ -11,6 +11,7 @@ import {
 	TextBox,
 } from './MateDetail.style';
 import RegisterCommentForm from '../../../Comment/RegisterCommentForm';
+import { useResponsive } from '../../../../hooks/useResponsive';
 
 export interface CommentForm {
 	user_id: number;
@@ -44,14 +45,16 @@ const createRandomComments = (): CommentForm[] => {
 const MateDetail = () => {
 	const commentsList = createRandomComments();
 
+	const { $isTablet, $isMobile } = useResponsive();
+
 	return (
 		<div>
 			<DetailUserNav />
-			<ImageAndTextWrap>
-				<ImageWrap>
+			<ImageAndTextWrap $isMobile={$isMobile} $isTablet={$isTablet}>
+				<ImageWrap $isMobile={$isMobile} $isTablet={$isTablet}>
 					<img src="/assets/cat.jpeg" alt="" />
 				</ImageWrap>
-				<TextBox>
+				<TextBox $isMobile={$isMobile} $isTablet={$isTablet}>
 					<SubTitle>메이트 구하기</SubTitle>
 					<PlaceWrap>
 						<Description>지역</Description>

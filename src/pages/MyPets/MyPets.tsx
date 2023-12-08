@@ -1,9 +1,12 @@
 import { Outlet } from 'react-router-dom';
 import { Article } from './MyPets.style';
+import { useResponsive } from '../../hooks/useResponsive';
 
 const MyPets = () => {
+	const { $isMobile } = useResponsive();
+
 	return (
-		<Article>
+		<Article $isMobile={$isMobile}>
 			<Outlet />
 		</Article>
 	);

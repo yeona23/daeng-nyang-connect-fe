@@ -9,7 +9,7 @@ const Community = () => {
 	return (
 		<>
 			{isPopUp && <BackDrop setIsPopUp={setIsPopUp} />}
-			{isPopUp && <WritingModal />}
+			{isPopUp && <WritingModal setIsPopUp={setIsPopUp} />}
 			<CommunitySection>
 				<CommunityNav setIsPopUp={setIsPopUp} />
 			</CommunitySection>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import MyPetList from './MyPetList/MyPetList';
 import { MyPetLists } from './MyPetRoot.style';
+import { useResponsive } from '../../../hooks/useResponsive';
 
 export interface MyPet {
 	id: number;
@@ -26,9 +27,10 @@ const MyPetRoot = () => {
 	};
 
 	const [myPetList, setMyPetList] = useState<MyPet[]>(createMockMyPets());
+	const { $isTablet, $isMobile } = useResponsive();
 
 	return (
-		<MyPetLists>
+		<MyPetLists $isTablet={$isTablet} $isMobile={$isMobile}>
 			{myPetList.map((list) => (
 				<MyPetList key={list.id} list={list} />
 			))}

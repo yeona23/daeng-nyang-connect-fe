@@ -2,6 +2,7 @@ import { Article, TipLists, TipsNav } from './TipRoot.style';
 import TipList from './TipList/TipList';
 import Pagination from '../../Pagination/Pagination';
 import usePagination from '../../../hooks/usePagination';
+import { useResponsive } from '../../../hooks/useResponsive';
 
 export interface MyTip {
 	id: number;
@@ -54,15 +55,17 @@ const TipRoot = () => {
 	const endIndex = startIndex + itemsPerPage;
 	const currentTips = tipList.slice(startIndex, endIndex);
 
+	const { $isMobile } = useResponsive();
+
 	return (
-		<Article>
-			<TipsNav>
+		<Article $isMobile={$isMobile}>
+			<TipsNav $isMobile={$isMobile}>
 				<div>제목</div>
 				<div>글쓴이</div>
 				<div>작성날짜</div>
 				<div>좋아요</div>
 			</TipsNav>
-			<TipLists>
+			<TipLists $isMobile={$isMobile}>
 				{currentTips.map((list) => (
 					<TipList key={list.id} list={list} />
 				))}

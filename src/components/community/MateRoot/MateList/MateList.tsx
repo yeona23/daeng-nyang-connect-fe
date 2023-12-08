@@ -12,6 +12,7 @@ import {
 	UserWrap,
 } from './MateList.style';
 import { useNavigate } from 'react-router-dom';
+import { useResponsive } from '../../../../hooks/useResponsive';
 
 interface MateListProps {
 	list: MatePublish;
@@ -24,10 +25,12 @@ const MateList = ({ list }: MateListProps) => {
 		navigate(`/community/mates/mate/${id}`);
 	};
 
+	const { $isTablet, $isMobile } = useResponsive();
+
 	return (
 		<MateLi>
 			<SubNav>
-				<UserWrap>
+				<UserWrap $isMobile={$isMobile} $isTablet={$isTablet}>
 					<div>
 						<CiUser />
 					</div>
@@ -37,7 +40,10 @@ const MateList = ({ list }: MateListProps) => {
 					<CiMenuKebab />
 				</KebabWrap>
 			</SubNav>
-			<TextWrap onClick={() => moveToTheDetailPage(list.id)}>
+			<TextWrap
+				onClick={() => moveToTheDetailPage(list.id)}
+				$isMobile={$isMobile}
+				$isTablet={$isTablet}>
 				<PlaceWrap>지역 : {list.place}</PlaceWrap>
 				<p>{list.text}</p>
 			</TextWrap>

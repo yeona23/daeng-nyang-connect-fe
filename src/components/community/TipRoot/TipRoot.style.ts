@@ -1,15 +1,21 @@
 import styled from 'styled-components';
 
-export const Article = styled.article`
+interface NavOptionProps {
+	$isTablet?: boolean;
+	$isMobile?: boolean;
+}
+
+export const Article = styled.article<NavOptionProps>`
 	padding: 10px;
-	margin-top: 10px;
+	margin-top: ${(props) => (props.$isMobile ? '0px' : '10px')};
 `;
 
-export const TipsNav = styled.nav`
+export const TipsNav = styled.nav<NavOptionProps>`
 	display: flex;
 	width: 100%;
 	padding-bottom: 10px;
 	border-bottom: 1px solid var(--color-light-salmon);
+	font-size: ${(props) => (props.$isMobile ? '14px' : '16px')};
 
 	& > div {
 		&:first-child {
@@ -34,6 +40,6 @@ export const TipsNav = styled.nav`
 	}
 `;
 
-export const TipLists = styled.ul`
-	margin-top: 20px;
+export const TipLists = styled.ul<NavOptionProps>`
+	margin-top: ${(props) => (props.$isMobile ? '8px' : '20px')};
 `;

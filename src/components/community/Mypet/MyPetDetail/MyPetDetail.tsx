@@ -1,3 +1,4 @@
+import { useResponsive } from '../../../../hooks/useResponsive';
 import Comment from '../../../Comment/Comment';
 import RegisterCommentForm from '../../../Comment/RegisterCommentForm';
 import DetailUserNav from '../../DetailUserNav/DetailUserNav';
@@ -42,14 +43,16 @@ const createRandomComments = (): CommentForm[] => {
 const MyPetDetail = () => {
 	const commentsList = createRandomComments();
 
+	const { $isTablet, $isMobile } = useResponsive();
+
 	return (
 		<div>
 			<DetailUserNav />
-			<ImageAndTextWrap>
-				<ImageWrap>
+			<ImageAndTextWrap $isMobile={$isMobile} $isTablet={$isTablet}>
+				<ImageWrap $isMobile={$isMobile} $isTablet={$isTablet}>
 					<img src="/assets/cat.jpeg" alt="" />
 				</ImageWrap>
-				<TextBox>
+				<TextBox $isMobile={$isMobile} $isTablet={$isTablet}>
 					<h3>자랑하기</h3>
 					<Description>상세 설명</Description>
 					<p>내 고양이는 요...</p>

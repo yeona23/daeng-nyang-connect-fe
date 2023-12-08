@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { IoClose } from 'react-icons/io5';
 
 export const ModalForm = styled.form`
 	height: 100%;
@@ -25,10 +26,16 @@ export const InfoWrap = styled.div`
 	height: 85%;
 `;
 
-export const Title = styled.h1`
+export const TitleAndButtonWrap = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	padding-bottom: 12px;
 	margin: 12px 0px;
 	border-bottom: 0.5px solid var(--color-light-salmon);
+`;
+
+export const Title = styled.h1`
 	font-size: 20px;
 	font-weight: bold;
 `;
@@ -86,4 +93,9 @@ export const TextInput = styled.input`
 	width: 70%;
 	padding: 4px;
 	font-size: 16px;
+`;
+
+export const StyledIoClose = styled(IoClose)`
+	width: 20px;
+	height: 20px;
 `;
