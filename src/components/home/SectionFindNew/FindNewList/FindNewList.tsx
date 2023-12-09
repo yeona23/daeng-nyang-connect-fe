@@ -4,8 +4,8 @@ import 'swiper/css';
 import VerticalCard from '../../UI/VerticalCard';
 import { useResponsive } from '../../../../hooks/useResponsive';
 const FindNewList = () => {
-	const { $isMobile, $isTablet } = useResponsive();
-	const sildePerView = $isMobile ? 1 : $isTablet ? 3 : 5;
+	const { $isMaxWidth, $isMobile, $isTablet } = useResponsive();
+	const sildePerView = $isMobile ? 1 : $isTablet ? 2 : $isMaxWidth ? 3 : 5;
 	return (
 		<Swiper
 			slidesPerView={sildePerView}

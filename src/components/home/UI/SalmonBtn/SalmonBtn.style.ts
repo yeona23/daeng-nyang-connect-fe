@@ -10,6 +10,6 @@ export const SalmonBtn = styled.button<BtnProps>`
 	border-radius: 8px;
 	background-color: var(--color-light-salmon);
 	color: #fff;
-	font-size: ${(props) => (props.$isMobile ? '14px' : '18px')};
+	font-size: ${(props) => (props.$isMobile ? '12px' : '18px')};
 	cursor: pointer;
 `;

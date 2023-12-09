@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
-export const ChatCategoryUl = styled.ul`
+type ChatCategoryProps = {
+	$isMobile?: boolean;
+};
+
+export const ChatCategoryUl = styled.ul<ChatCategoryProps>`
 	display: flex;
 	width: 100%;
-	height: 76px;
+	height: ${(props) => (props.$isMobile ? '46px ' : '76px')};
 	margin-bottom: 10px;
 `;
-export const ChatCategoryLi = styled.li`
+export const ChatCategoryLi = styled.li<ChatCategoryProps>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -16,7 +20,7 @@ export const ChatCategoryLi = styled.li`
 		background-color: var(--color-teal);
 	}
 	.chat-icon {
-		width: 40px;
-		height: 40px;
+		width: ${(props) => (props.$isMobile ? '24px' : '40px')};
+		height: ${(props) => (props.$isMobile ? '24px' : '40px')};
 	}
 `;

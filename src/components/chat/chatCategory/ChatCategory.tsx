@@ -1,9 +1,11 @@
 import { IoChatbubbleOutline } from 'react-icons/io5';
 import { ChatCategoryLi, ChatCategoryUl } from './ChatCategory.style';
+import { useResponsive } from '../../../hooks/useResponsive';
 const ChatCategory = () => {
+	const { $isMobile } = useResponsive();
 	return (
-		<ChatCategoryUl>
-			<ChatCategoryLi className="isActive">
+		<ChatCategoryUl $isMobile={$isMobile}>
+			<ChatCategoryLi className="isActive" $isMobile={$isMobile}>
 				<div>
 					<img
 						className="chat-icon"
