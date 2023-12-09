@@ -5,9 +5,9 @@ export const AnimalInfoDiv = styled.div`
 	align-items: center;
 	width: calc(100% - 28px);
 	height: 100px;
-	margin: 10px 14px;
+	margin: 0 14px;
 	padding: 10px;
-	border: 2px solid #f7969890;
+	border: 1px solid #f7969890;
 	border-radius: 8px;
 	line-height: 1.6;
 `;
@@ -29,7 +29,7 @@ export const BtnDiv = styled.div`
 `;
 export const CompleteBtn = styled.button`
 	padding: 6px 20px;
+	border: 1px solid var(--color-peach);
 	border-radius: 8px;
-	background-color: var(--color-peach);
 	cursor: pointer;
 `;

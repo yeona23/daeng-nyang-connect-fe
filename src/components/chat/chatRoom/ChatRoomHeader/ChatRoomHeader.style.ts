@@ -11,7 +11,6 @@ export const ChatRoomHeaderDiv = styled.div`
 `;
 export const ChatRoomHeaderBdDiv = styled.div`
 	${FlexStyle}
-	border-bottom: 1px solid #f7969890;
 	justify-content: space-between;
 	padding: 18px 10px 10px;
 `;
