@@ -34,7 +34,7 @@ export const FooterFlexDiv = styled.div<FooterProps>`
 	flex-wrap: ${(props) => (props.$isMobile ? 'wrap' : 'no-wrap')};
 `;
 export const FooterMenuDiv = styled(FooterFlexDiv)`
-	/* width: 38%; */
+	margin: auto;
 `;
 export const FooterMenuDl = styled.dl<FooterProps>`
 	min-width: 112px;

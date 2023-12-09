@@ -13,7 +13,8 @@ export const MainSection = styled.section<SectionProps>`
 	text-align: center;
 `;
 export const MainSectionH2 = styled.h2<SectionProps>`
+	margin-bottom: ${(props) => (props.$isMobile ? '40px' : '80px')};
 	font-size: ${(props) => (props.$isMobile ? '20px' : '30px')};
 	font-weight: 400;
-	margin-bottom: ${(props) => (props.$isMobile ? '40px' : '80px')};
+	line-height: 30px;
 `;

@@ -15,8 +15,8 @@ export const FindNewTitleDiv = styled.div<FindNewProps>`
 	justify-content: space-between;
 	align-items: start;
 	max-width: 1320px;
-	width: ${(props) => (props.$isMaxWidth ? 'calc(100% - 60px)' : '100%')};
-	margin: ${(props) => (props.$isMaxWidth ? '0 30px' : 'auto')};
+	width: ${(props) => (props.$isMobile ? '100%' : 'calc(100% - 60px)')};
+	margin: ${(props) => (props.$isMobile ? '0' : 'auto')};
 `;
 export const CardListUl = styled.ul`
 	display: flex;
