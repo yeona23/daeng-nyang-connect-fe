@@ -13,6 +13,7 @@ import {
 	LoginInput,
 	LoginTitleDiv,
 	LoginWrapper,
+	Logo,
 	Paragraph,
 	SignUpButton,
 	SignUpDiv,
@@ -107,7 +108,14 @@ const Login = () => {
 		<LoginWrapper>
 			<LoginDiv>
 				<LoginTitleDiv>
-					<img src="assets/logos/LOGO(footer).svg" alt="" />
+					<Logo
+						src="assets/logos/LOGO(footer).svg"
+						alt=""
+						$isMobile={$isMobile}
+						$isTablet={$isTablet}
+						$isPc={$isPc}
+						$isMaxWidth={$isMaxWidth}
+					/>
 				</LoginTitleDiv>
 				<LoginForm onSubmit={loginUserHandler}>
 					<LoginInput

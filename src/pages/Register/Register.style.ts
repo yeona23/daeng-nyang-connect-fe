@@ -16,24 +16,22 @@ export const RegisterWrapper = styled.div`
 	flex-direction: column;
 `;
 
-export const RegisterDiv = styled.div`
+export const RegisterDiv = styled.div<ResponsiveProps>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+	padding-top: ${(props) => (props.$isMobile ? '150px' : '')};
+	padding-bottom: ${(props) => (props.$isMobile ? '150px' : '')};
 `;
 
-export const RegisterTitleDiv = styled.div<ResponsiveProps>`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 327px;
-	height: 160px;
-	margin-bottom: 16px;
+export const Logo = styled.img<ResponsiveProps>`
+	width: ${(props) => (props.$isMobile ? '150px' : '200px')};
+	height: ${(props) => (props.$isMobile ? '150px' : '200px')};
 `;
 
 export const RegisterInput = styled.input<ResponsiveProps>`
-	width: ${(props) => (props.$isMobile ? '50%' : '100%')};
+	width: ${(props) => (props.$isMobile ? '70%' : '100%')};
 	height: 35px;
 	margin-bottom: 16px;
 	border: none;
@@ -80,7 +78,7 @@ export const RegisterSelectBox = styled.select<ResponsiveProps>`
 export const Option = styled.option``;
 
 export const RegisterInputSmall = styled(RegisterInput)`
-	width: ${(props) => (props.$isMobile ? '25%' : '49%')};
+	width: ${(props) => (props.$isMobile ? '35%' : '49%')};
 `;
 
 export const RegisterDoubleDiv = styled.div<ResponsiveProps>`
@@ -99,11 +97,11 @@ export const RegisterForm = styled.form`
 	padding-bottom: 40px;
 `;
 
-export const RegisterButton = styled.button`
+export const RegisterButton = styled.button<ResponsiveProps>`
 	background-color: rgba(227, 155, 166, 0.9);
 	color: white;
 	padding: 8px, 52px, 8px, 52px;
-	width: 427px;
+	width: ${(props) => (props.$isMobile ? '70%' : '100%')};
 	height: 42px;
 	font-size: 20px;
 	font-weight: 400;
@@ -114,17 +112,6 @@ export const RegisterButton = styled.button`
 		cursor: pointer;
 		background-color: rgba(227, 155, 166, 1);
 	}
-`;
-
-export const AccountDiv = styled.div`
-	width: 80%;
-	height: 40px;
-	border-bottom: 2px solid #434343;
-	font-weight: 500;
-	font-size: 30px;
-	padding-bottom: 50px;
-	position: absolute;
-	top: 80px;
 `;
 
 export const SnsIconDiv = styled.div`

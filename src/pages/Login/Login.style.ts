@@ -105,6 +105,11 @@ export const SignUpButton = styled.button`
 	}
 `;
 
+export const Logo = styled.img<ResponsiveProps>`
+	width: ${(props) => (props.$isMobile ? '150px' : '200px')};
+	height: ${(props) => (props.$isMobile ? '150px' : '200px')};
+`;
+
 export const Paragraph = styled.p`
 	margin-top: -10px;
 	margin-bottom: 5px;

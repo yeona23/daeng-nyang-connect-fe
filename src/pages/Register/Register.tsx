@@ -1,8 +1,8 @@
 import { ChangeEvent, useRef, useState } from 'react';
 
 import {
-	AccountDiv,
 	ExParagraph,
+	Logo,
 	Option,
 	Paragraph,
 	RegisterButton,
@@ -12,9 +12,7 @@ import {
 	RegisterInput,
 	RegisterInputSmall,
 	RegisterSelectBox,
-	RegisterTitleDiv,
 	RegisterWrapper,
-	SnsIconDiv,
 } from './Register.style';
 import { useNavigate } from 'react-router-dom';
 import ConfirmModal from '../../components/Register/Modal/ConfirmModal/ConfirmModal';
@@ -221,14 +219,17 @@ const Register = () => {
 
 	return (
 		<RegisterWrapper>
-			<RegisterDiv>
-				<RegisterTitleDiv
+			<RegisterDiv
+				$isMobile={$isMobile}
+				$isTablet={$isTablet}
+				$isPc={$isPc}
+				$isMaxWidth={$isMaxWidth}>
+				<Logo
 					$isMobile={$isMobile}
 					$isTablet={$isTablet}
 					$isPc={$isPc}
-					$isMaxWidth={$isMaxWidth}>
-					<img src="assets/logos/LOGO(footer).svg"></img>
-				</RegisterTitleDiv>
+					$isMaxWidth={$isMaxWidth}
+					src="assets/logos/LOGO(footer).svg"></Logo>
 				<RegisterForm onSubmit={registerUserHandler}>
 					<RegisterInput
 						placeholder="이메일"
@@ -261,8 +262,8 @@ const Register = () => {
 						$isMaxWidth={$isMaxWidth}></RegisterInput>
 					{namePasswordInputIsInValid && (
 						<Paragraph>
-							비밀번호는 영문, 숫자, 특수문자 중 2개 이상을 조합하여 최소 6자리
-							이상이여야 합니다.
+							영문, 숫자, 특수문자 중 2개 이상을 조합하여 최소 6자리 이상이여야
+							합니다.
 						</Paragraph>
 					)}
 					{passwordOnFocus && (
@@ -397,7 +398,14 @@ const Register = () => {
 						</RegisterSelectBox>
 					</RegisterDoubleDiv>
 
-					<RegisterButton type="submit">회원가입</RegisterButton>
+					<RegisterButton
+						type="submit"
+						$isMobile={$isMobile}
+						$isTablet={$isTablet}
+						$isPc={$isPc}
+						$isMaxWidth={$isMaxWidth}>
+						회원가입
+					</RegisterButton>
 					{confirmModalIsOpen && (
 						<ConfirmModal
 							onClose={() => {
