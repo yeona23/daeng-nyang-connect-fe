@@ -8,7 +8,11 @@ import {
 const ReviewForm = () => {
 	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
 	return (
-		<PetRegistrationForm>
+		<PetRegistrationForm
+			$isMobile={$isMobile}
+			$isTablet={$isTablet}
+			$isPc={$isPc}
+			$isMaxWidth={$isMaxWidth}>
 			<CategoryTitle
 				$isMobile={$isMobile}
 				$isTablet={$isTablet}
@@ -17,7 +21,11 @@ const ReviewForm = () => {
 				<h1>입양 후기 등록하기</h1>
 			</CategoryTitle>
 			<div>
-				<FormText>
+				<FormText
+					$isMobile={$isMobile}
+					$isTablet={$isTablet}
+					$isPc={$isPc}
+					$isMaxWidth={$isMaxWidth}>
 					<div>
 						<h5>동물 이름</h5>
 						<input type="text" name="animal_name" id="animal_name" required />

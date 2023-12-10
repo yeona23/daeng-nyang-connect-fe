@@ -63,7 +63,7 @@ export const FilterItems = styled.div<ResponsiveProps>`
 	position: ${(props) => (props.$isPc ? 'unset' : 'fixed')};
 	top: 0;
 	left: 0;
-	width: ${(props) => (props.$isPc ? 'inherit' : '100vw')};
+	width: ${(props) => (props.$isPc ? 'inherit' : '100%')};
 	height: ${(props) => (props.$isPc ? 'fit-content' : '100vh')};
 	padding: 20px;
 	border: 1px solid var(--color-light-salmon);
@@ -345,9 +345,14 @@ export const DetailSwiper = styled.div`
 
 //PetRegistration
 
-export const PetRegistrationForm = styled.div`
-	width: 1320px;
+export const PetRegistrationForm = styled.div<ResponsiveProps>`
+	position: ${(props) => (props.$isPc ? 'unset' : 'absolute')};
+	top: 0;
+	left: 0;
+	width: ${(props) => (props.$isPc ? '1320px' : '100%')};
+	padding: ${(props) => (props.$isMaxWidth ? 'none' : '0 30px')};
 	margin: 0 auto;
+	background: #fff;
 
 	& > div:last-child {
 		display: flex;
@@ -364,7 +369,8 @@ export const PetRegistrationForm = styled.div`
 	& button {
 		width: 420px;
 		padding: 5px;
-		margin-top: 150px;
+		margin-top: ${(props) => (props.$isPc ? '150px' : '60px')};
+		margin-bottom: ${(props) => (props.$isPc ? '0' : '30px')};
 		border: 1px solid var(--color-light-salmon);
 		border-radius: 5px;
 		background: var(--color-light-salmon);
@@ -372,9 +378,18 @@ export const PetRegistrationForm = styled.div`
 		font-size: 16px;
 		cursor: pointer;
 	}
+
+	.register-title {
+		margin: ${(props) => (props.$isPc ? '70px 0 50px 0' : '50px 0 30px 0')};
+	}
+
+	.register-close-btn {
+		display: ${(props) => (props.$isPc ? 'none' : 'display')};
+		cursor: pointer;
+	}
 `;
 
-export const FormText = styled.div`
+export const FormText = styled.div<ResponsiveProps>`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -395,7 +410,7 @@ export const FormText = styled.div`
 	& > div {
 		display: flex;
 		align-items: center;
-		width: calc((100% - 100px) / 2);
+		width: ${(props) => (props.$isPc ? 'calc((100% - 100px) / 2)' : '100%')};
 		margin-bottom: 30px;
 	}
 

@@ -1,23 +1,46 @@
+import { useNavigate } from 'react-router-dom';
 import { useResponsive } from '../../../hooks/useResponsive';
 import {
 	CategoryTitle,
 	FormText,
 	PetRegistrationForm,
 } from '../NewFamily.style';
+import { IoCloseOutline } from 'react-icons/io5';
 
 const PetRegistration = () => {
+	const navigate = useNavigate();
 	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
+
+	const clickCloseBtnHandler = () => {
+		const url = '/newFamily';
+		navigate(url);
+	};
+
 	return (
-		<PetRegistrationForm>
+		<PetRegistrationForm
+			$isMobile={$isMobile}
+			$isTablet={$isTablet}
+			$isPc={$isPc}
+			$isMaxWidth={$isMaxWidth}>
 			<CategoryTitle
 				$isMobile={$isMobile}
 				$isTablet={$isTablet}
 				$isPc={$isPc}
-				$isMaxWidth={$isMaxWidth}>
+				$isMaxWidth={$isMaxWidth}
+				className="register-title">
 				<h1>파양 신청서</h1>
+				<IoCloseOutline
+					className="register-close-btn"
+					size={25}
+					onClick={clickCloseBtnHandler}
+				/>
 			</CategoryTitle>
 			<div>
-				<FormText>
+				<FormText
+					$isMobile={$isMobile}
+					$isTablet={$isTablet}
+					$isPc={$isPc}
+					$isMaxWidth={$isMaxWidth}>
 					<div>
 						<h5>동물 이름</h5>
 						<input type="text" name="animal_name" id="animal_name" required />
