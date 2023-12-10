@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoHeartFill, GoHeart } from 'react-icons/go';
 import { ButtonBox, ReviewBox, ReviewsList } from '../Reviews.style';
+import { useResponsive } from '../../../hooks/useResponsive';
 
 interface Item {
 	id: number;
@@ -18,6 +19,8 @@ const generateImgUrl = (index: number) => {
 
 const ReviewList = () => {
 	const navigate = useNavigate();
+
+	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
 
 	const items: Item[] = Array.from({ length: 12 }, (_, index) => ({
 		id: index + 1,
@@ -41,9 +44,18 @@ const ReviewList = () => {
 	};
 
 	return (
-		<ReviewsList>
+		<ReviewsList
+			$isMobile={$isMobile}
+			$isTablet={$isTablet}
+			$isPc={$isPc}
+			$isMaxWidth={$isMaxWidth}>
 			{items.map((item: Item) => (
-				<ReviewBox key={item.id}>
+				<ReviewBox
+					key={item.id}
+					$isMobile={$isMobile}
+					$isTablet={$isTablet}
+					$isPc={$isPc}
+					$isMaxWidth={$isMaxWidth}>
 					<div>
 						<img src={generateImgUrl(item.index)} alt={`adoption${item.id}`} />
 					</div>

@@ -13,7 +13,11 @@ const Reviews = () => {
 
 	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
 	return (
-		<ReviewsContainer>
+		<ReviewsContainer
+			$isMobile={$isMobile}
+			$isTablet={$isTablet}
+			$isPc={$isPc}
+			$isMaxWidth={$isMaxWidth}>
 			<CategoryTitle
 				$isMobile={$isMobile}
 				$isTablet={$isTablet}

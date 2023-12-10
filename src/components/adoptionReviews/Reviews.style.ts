@@ -1,23 +1,32 @@
 import { styled } from 'styled-components';
 
+interface ResponsiveProps {
+	$isMobile: boolean;
+	$isTablet: boolean;
+	$isPc: boolean;
+	$isMaxWidth: boolean;
+}
+
 //Reviews
 
-export const ReviewsContainer = styled.div`
-	width: 1320px;
+export const ReviewsContainer = styled.div<ResponsiveProps>`
+	width: ${(props) => (props.$isMaxWidth ? '1320px' : '100%')};
+	padding: ${(props) => (props.$isMaxWidth ? 'none' : '0 30px')};
 	margin: 0 auto;
 `;
 
-export const ReviewsList = styled.div`
+export const ReviewsList = styled.div<ResponsiveProps>`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	width: 100%;
 `;
 
-export const ReviewBox = styled.div`
+export const ReviewBox = styled.div<ResponsiveProps>`
 	display: flex;
 	flex-direction: column;
-	width: calc((100% - 100px) / 3);
+	width: ${(props) =>
+		props.$isPc ? ' calc((100% - 100px) / 3)' : ' calc((100% - 30px) / 2)'};
 	aspect-ratio: 3 / 4.2;
 	margin-bottom: 50px;
 	border: 1px solid var(--color-deep-blue);
