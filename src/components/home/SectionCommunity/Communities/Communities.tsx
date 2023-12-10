@@ -18,7 +18,7 @@ const Communities = ({ to, title, img, children }: CommunityProps) => {
 	const { $isTablet, $isMobile } = useResponsive();
 	return (
 		<CommunityLi $isMobile={$isMobile}>
-			<Link to={to}>
+			<Link to={to} className="li-link">
 				<CommunityImgDiv
 					$isMobile={$isMobile}
 					$isTablet={$isTablet}
