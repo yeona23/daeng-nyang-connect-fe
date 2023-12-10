@@ -1,12 +1,20 @@
+import { IoCloseOutline } from 'react-icons/io5';
 import { useResponsive } from '../../../hooks/useResponsive';
 import {
 	CategoryTitle,
 	FormText,
 	PetRegistrationForm,
 } from '../../newFamily/NewFamily.style';
+import { useNavigate } from 'react-router-dom';
 
 const ReviewForm = () => {
+	const navigate = useNavigate();
 	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
+
+	const clickCloseBtnHandler = () => {
+		const url = '/adoptionReviews';
+		navigate(url);
+	};
 	return (
 		<PetRegistrationForm
 			$isMobile={$isMobile}
@@ -19,6 +27,11 @@ const ReviewForm = () => {
 				$isPc={$isPc}
 				$isMaxWidth={$isMaxWidth}>
 				<h1>입양 후기 등록하기</h1>
+				<IoCloseOutline
+					className="register-close-btn"
+					size={25}
+					onClick={clickCloseBtnHandler}
+				/>
 			</CategoryTitle>
 			<div>
 				<FormText
