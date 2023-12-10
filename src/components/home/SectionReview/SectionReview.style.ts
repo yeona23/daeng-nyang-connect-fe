@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 
-export const CardListUl = styled.ul`
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
+type ReviewCardProps = {
+	$isMobile: boolean;
+};
+
+export const CardListUl = styled.ul<ReviewCardProps>`
+	display: grid;
+	grid-template-columns: ${(props) => (props.$isMobile ? '1fr' : '1fr 1fr')};
+	gap: 24px;
 	margin-bottom: 80px;
 `;

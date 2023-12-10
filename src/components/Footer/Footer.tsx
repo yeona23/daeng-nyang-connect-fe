@@ -28,7 +28,7 @@ const Footer = () => {
 					<FooterLogoH1 $isMobile={$isMobile}>
 						<img src="/assets/LOGO(footer).svg" alt="" />
 					</FooterLogoH1>
-					<FooterMenuDiv>
+					<FooterMenuDiv $isMobile={$isMobile}>
 						<FooterMenuDl $isMobile={$isMobile}>
 							<FooterDt $isTablet={$isTablet} $isMobile={$isMobile}>
 								ABOUT US

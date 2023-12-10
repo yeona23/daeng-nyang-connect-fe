@@ -9,6 +9,7 @@ export const CardDiv = styled.div<VerticalCardProps>`
 	height: 450px;
 	border-radius: 30px;
 	background-color: #fff;
+	margin: ${(props) => (!props.$isMobile ? 'auto' : null)};
 	overflow: hidden;
 	cursor: pointer;
 `;

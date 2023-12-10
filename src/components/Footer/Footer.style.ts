@@ -33,8 +33,8 @@ export const FooterFlexDiv = styled.div<FooterProps>`
 	justify-content: space-between;
 	flex-wrap: ${(props) => (props.$isMobile ? 'wrap' : 'no-wrap')};
 `;
-export const FooterMenuDiv = styled(FooterFlexDiv)`
-	margin: auto;
+export const FooterMenuDiv = styled(FooterFlexDiv)<FooterProps>`
+	width: ${(props) => (props.$isMobile ? '100%' : null)};
 `;
 export const FooterMenuDl = styled.dl<FooterProps>`
 	min-width: 112px;

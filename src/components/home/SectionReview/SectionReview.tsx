@@ -18,7 +18,7 @@ const SectionReview = () => {
 	return (
 		<MainSection $isMaxWidth={$isMaxWidth} $isMobile={$isMobile}>
 			<MainSectionH2 $isMobile={$isMobile}>입양 후기</MainSectionH2>
-			<CardListUl>
+			<CardListUl $isMobile={$isMobile}>
 				<HorizentalCard $isMobile={$isMobile} />
 				<HorizentalCard $isMobile={$isMobile} />
 				<HorizentalCard $isMobile={$isMobile} />
