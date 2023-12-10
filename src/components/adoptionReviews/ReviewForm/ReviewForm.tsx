@@ -1,3 +1,4 @@
+import { useResponsive } from '../../../hooks/useResponsive';
 import {
 	CategoryTitle,
 	FormText,
@@ -5,9 +6,14 @@ import {
 } from '../../newFamily/NewFamily.style';
 
 const ReviewForm = () => {
+	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
 	return (
 		<PetRegistrationForm>
-			<CategoryTitle>
+			<CategoryTitle
+				$isMobile={$isMobile}
+				$isTablet={$isTablet}
+				$isPc={$isPc}
+				$isMaxWidth={$isMaxWidth}>
 				<h1>입양 후기 등록하기</h1>
 			</CategoryTitle>
 			<div>

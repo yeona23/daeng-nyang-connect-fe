@@ -1,16 +1,39 @@
 import { styled } from 'styled-components';
 
-export const FindFamily = styled.div`
-	width: 1320px;
-	margin: 0 auto;
+interface ResponsiveProps {
+	$isMobile: boolean;
+	$isTablet: boolean;
+	$isPc: boolean;
+	$isMaxWidth: boolean;
+}
 
+export const FindFamily = styled.div<ResponsiveProps>`
+	width: ${(props) => (props.$isMaxWidth ? '1320px' : '100%')};
+	padding: ${(props) => (props.$isMaxWidth ? 'none' : '0 30px')};
+	margin: 0 auto;
 	& > div {
 		display: flex;
 		gap: 50px;
 	}
+
+	.register-fixed-btn {
+		display: ${(props) => (props.$isPc ? 'none' : 'block')};
+		position: fixed;
+		bottom: 50px;
+		right: 50px;
+		cursor: pointer;
+	}
+
+	.register-btn {
+		display: ${(props) => (props.$isPc ? 'block' : 'none')};
+	}
+
+	.filter-btn {
+		display: ${(props) => (props.$isPc ? 'none' : 'block')};
+	}
 `;
 
-export const CategoryTitle = styled.div`
+export const CategoryTitle = styled.div<ResponsiveProps>`
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
@@ -19,7 +42,8 @@ export const CategoryTitle = styled.div`
 	border-bottom: 1px solid var(--color-light-salmon);
 
 	& h1 {
-		font-size: 36px;
+		font-size: ${(props) =>
+			props.$isPc ? '36px' : props.$isTablet ? '24px' : '16px'};
 	}
 	& button {
 		width: 150px;
@@ -34,12 +58,18 @@ export const CategoryTitle = styled.div`
 	}
 `;
 
-export const FilterItems = styled.div`
+export const FilterItems = styled.div<ResponsiveProps>`
 	flex: 1;
-	height: fit-content;
+	position: ${(props) => (props.$isPc ? 'unset' : 'fixed')};
+	top: 0;
+	left: 0;
+	width: ${(props) => (props.$isPc ? 'inherit' : '100vw')};
+	height: ${(props) => (props.$isPc ? 'fit-content' : '100vh')};
 	padding: 20px;
 	border: 1px solid var(--color-light-salmon);
-	border-radius: 10px;
+	border-radius: ${(props) => (props.$isPc ? '10px' : 'none')};
+	background: #fff;
+	z-index: 10;
 
 	& > div:first-child {
 		padding-bottom: 10px;
@@ -47,7 +77,7 @@ export const FilterItems = styled.div`
 		border-bottom: 1px solid var(--color-light-salmon);
 		font-size: 20px;
 	}
-	& > div:nth-child(2) {
+	& > div:last-child {
 		display: flex;
 		flex-direction: column;
 		gap: 40px;
@@ -69,6 +99,14 @@ export const FilterItems = styled.div`
 	& label {
 		margin: 0 20px 0 5px;
 	}
+
+	.filter-close-btn {
+		display: ${(props) => (props.$isPc ? 'none' : 'block')};
+		position: absolute;
+		top: 15px;
+		right: 15px;
+		cursor: pointer;
+	}
 `;
 
 export const ItemList = styled.div`
@@ -78,7 +116,7 @@ export const ItemList = styled.div`
 	justify-content: space-between;
 `;
 
-export const ItemBox = styled.div`
+export const ItemBox = styled.div<ResponsiveProps>`
 	width: calc((100% - 50px) / 2);
 	margin-bottom: 50px;
 	border: 1px solid var(--color-deep-blue);
@@ -111,8 +149,10 @@ export const ItemBox = styled.div`
 
 	& svg {
 		position: absolute;
-		top: 30px;
-		right: 30px;
+		top: ${(props) =>
+			props.$isMobile ? '10px' : props.$isTablet ? '20px' : '30px'};
+		right: ${(props) =>
+			props.$isMobile ? '10px' : props.$isTablet ? '20px' : '30px'};
 		cursor: pointer;
 	}
 

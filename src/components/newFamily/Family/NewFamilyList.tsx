@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { BsBookmarkFill } from 'react-icons/bs';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -10,13 +11,25 @@ interface Item {
 	age: string;
 }
 
+interface ResponsiveProps {
+	$isMobile: boolean;
+	$isTablet: boolean;
+	$isPc: boolean;
+	$isMaxWidth: boolean;
+}
+
 const generateImgUrl = (index: number): string => {
 	const maxIndex = 4;
 	const actualIndex = index <= maxIndex ? index : (index % maxIndex) + 1;
 	return `/assets/animal${actualIndex}.jpg`;
 };
 
-const NewFamilyList: React.FC = () => {
+const NewFamilyList: React.FC<ResponsiveProps> = ({
+	$isMobile,
+	$isTablet,
+	$isPc,
+	$isMaxWidth,
+}) => {
 	const navigate = useNavigate();
 
 	const items: Item[] = Array.from({ length: 8 }, (_, index) => ({
@@ -38,10 +51,21 @@ const NewFamilyList: React.FC = () => {
 		navigate(`/newFamily/pet/${petId}`, { state: { imageUrl } });
 	};
 
+	const getBookmarkSize = () => {
+		if ($isMobile) return 20;
+		if ($isTablet) return 30;
+		if ($isPc) return 40;
+	};
+
 	return (
 		<ItemList>
 			{items.map((item: Item) => (
-				<ItemBox key={item.id}>
+				<ItemBox
+					$isMobile={$isMobile}
+					$isTablet={$isTablet}
+					$isPc={$isPc}
+					$isMaxWidth={$isMaxWidth}
+					key={item.id}>
 					<div>
 						<img src={generateImgUrl(item.index)} alt={`adoption${item.id}`} />
 						<BsBookmarkFill
@@ -50,7 +74,7 @@ const NewFamilyList: React.FC = () => {
 									? 'var(--color-light-salmon)'
 									: '#ffffff70'
 							}
-							size={40}
+							size={getBookmarkSize()}
 							onClick={() => clickBookmarkHandler(item.id)}
 						/>
 					</div>

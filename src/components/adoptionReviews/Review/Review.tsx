@@ -7,23 +7,17 @@ import {
 	UserThumbnail,
 } from '../../newFamily/NewFamily.style';
 import { RiMore2Line } from 'react-icons/ri';
-import { BsBookmarkFill } from 'react-icons/bs';
 import { useLocation } from 'react-router-dom';
-import { CommentBox, ReviewTextBox } from '../Reviews.style';
+import { ReviewTextBox } from '../Reviews.style';
 import ReviewCommentBox from './ReviewCommentBox';
 
 const Review = () => {
 	const location = useLocation();
 	const imageUrl = location.state?.imageUrl || '';
-	const [clickedBookmark, setClickedBookmark] = useState(false);
 	const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
 	const toggleDropdown = () => {
 		setIsDropdownVisible((prev) => !prev);
-	};
-
-	const clickBookmarkHandler = () => {
-		setClickedBookmark((prev) => !prev);
 	};
 
 	return (
