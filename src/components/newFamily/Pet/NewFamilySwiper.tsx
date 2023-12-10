@@ -7,7 +7,8 @@ import 'swiper/css/autoplay';
 import { Autoplay } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import { DetailSwiper } from '../NewFamily.style';
-
+import { useResponsive } from '../../../hooks/useResponsive';
+SwiperCore.use([Autoplay]);
 interface Item {
 	id: number;
 	index: number;
@@ -28,14 +29,16 @@ const items: Item[] = Array.from({ length: 10 }, (_, index) => ({
 	age: '3년 2개월',
 }));
 
+SwiperCore.use([Autoplay]);
+
 const NewFamilySwiper = () => {
 	const navigate = useNavigate();
 	const [swiper, setSwiper] = useState<SwiperCore | null>(null);
-	const location = useLocation();
-	const imageUrl = location.state?.imageUrl || '';
 	const [bookmarkState, setBookmarkState] = useState<{
 		[key: number]: boolean;
 	}>({});
+
+	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
 
 	const clickBookmarkHandler = (itemId: number) => {
 		setBookmarkState((prev) => ({ ...prev, [itemId]: !prev[itemId] }));
@@ -44,8 +47,6 @@ const NewFamilySwiper = () => {
 	const goToDetailPage = (petId: number, imageUrl: string) => {
 		navigate(`/newFamily/pet/${petId}`, { state: { imageUrl } });
 	};
-
-	SwiperCore.use([Autoplay]);
 
 	const initSwiper = (swiper: SwiperCore) => {
 		setSwiper(swiper);
@@ -71,7 +72,9 @@ const NewFamilySwiper = () => {
 				autoplay={{ delay: 2500, disableOnInteraction: false }}
 				speed={3500}
 				spaceBetween={30}
-				slidesPerView={5}
+				slidesPerView={$isMaxWidth ? 5 : 4}
+				slidesPerGroup={1}
+				slidesPerGroupSkip={1}
 				freeMode={true}
 				grabCursor={true}
 				allowTouchMove={true}

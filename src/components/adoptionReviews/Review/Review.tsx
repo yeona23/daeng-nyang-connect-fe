@@ -10,19 +10,29 @@ import { RiMore2Line } from 'react-icons/ri';
 import { useLocation } from 'react-router-dom';
 import { ReviewTextBox } from '../Reviews.style';
 import ReviewCommentBox from './ReviewCommentBox';
+import { useResponsive } from '../../../hooks/useResponsive';
 
 const Review = () => {
 	const location = useLocation();
 	const imageUrl = location.state?.imageUrl || '';
 	const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
 
 	const toggleDropdown = () => {
 		setIsDropdownVisible((prev) => !prev);
 	};
 
 	return (
-		<NewFamilyDetailContainer>
-			<DetailImageBox>
+		<NewFamilyDetailContainer
+			$isMobile={$isMobile}
+			$isTablet={$isTablet}
+			$isPc={$isPc}
+			$isMaxWidth={$isMaxWidth}>
+			<DetailImageBox
+				$isMobile={$isMobile}
+				$isTablet={$isTablet}
+				$isPc={$isPc}
+				$isMaxWidth={$isMaxWidth}>
 				<img src={imageUrl} alt="" />
 			</DetailImageBox>
 			<ReviewTextBox>
@@ -43,7 +53,11 @@ const Review = () => {
 						</MoreDropdown>
 					)}
 				</UserThumbnail>
-				<DetailTextBox>
+				<DetailTextBox
+					$isMobile={$isMobile}
+					$isTablet={$isTablet}
+					$isPc={$isPc}
+					$isMaxWidth={$isMaxWidth}>
 					<p>이름 : </p>
 					<p>나이 : </p>
 					<p>품종 : </p>

@@ -177,24 +177,21 @@ export const ItemBox = styled.div<ResponsiveProps>`
 
 //NewFamilyDetail
 
-export const NewFamilyDetailContainer = styled.div`
+export const NewFamilyDetailContainer = styled.div<ResponsiveProps>`
 	display: flex;
-	justify-content: space-between;
-	gap: 100px;
-	width: 1320px;
+	flex-direction: ${(props) => (props.$isPc ? 'row' : 'column')};
+	gap: 50px;
+	width: ${(props) => (props.$isMaxWidth ? '1320px' : '100%')};
+	padding: ${(props) => (props.$isMaxWidth ? '0' : '0 30px')};
 	margin: 70px auto 0 auto;
 	font-size: 21px;
-	& > div {
-		flex: 1;
-	}
 
 	& > div:last-child {
+		width: ${(props) => (props.$isPc ? 'calc(100% - 550px)' : '100%')};
 		position: relative;
 	}
 
 	& button {
-		position: absolute;
-		bottom: 0;
 		width: 100%;
 		padding: 5px;
 		margin-top: 20px;
@@ -209,14 +206,23 @@ export const NewFamilyDetailContainer = styled.div`
 		background: #fff;
 		color: var(--color-deep-blue);
 	}
+
+	.user-box-mobile {
+		display: ${(props) => (props.$isPc ? 'none' : 'display')};
+	}
+
+	.user-box-pc {
+		display: ${(props) => (props.$isPc ? 'display' : 'none')};
+	}
 `;
 
-export const DetailImageBox = styled.div`
+export const DetailImageBox = styled.div<ResponsiveProps>`
 	display: flex;
 	justify-content: center;
-	flex: 1;
 	position: relative;
-	aspect-ratio: 1 / 1;
+	width: ${(props) => (props.$isPc ? '500px' : '100%')};
+	height: ${(props) => (props.$isPc ? '500px' : 'auto')};
+	aspect-ratio: ${(props) => (props.$isPc ? 'unset' : '1/1')};
 	border-radius: 10px;
 	overflow: hidden;
 	& img {
@@ -286,11 +292,21 @@ export const MoreDropdown = styled.ul`
 	}
 `;
 
-export const DetailTextBox = styled.div`
+export const DetailTextBox = styled.div<ResponsiveProps>`
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
+	flex: 1;
 	margin: 30px 0;
+
+	& p {
+		overflow-wrap: break-word;
+		-webkit-line-clamp: 4;
+		-webkit-box-orient: vertical;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: normal;
+	}
 `;
 
 //NewFamilyDetailSwiper
