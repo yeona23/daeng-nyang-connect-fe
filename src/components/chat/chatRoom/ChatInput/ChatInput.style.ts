@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 
-export const ChatInputDiv = styled.div`
+type ChatInputProps = {
+	$isMobile: boolean;
+};
+
+export const ChatInputDiv = styled.div<ChatInputProps>`
 	position: absolute;
 	bottom: 14px;
 	left: 0;
 	display: flex;
 	align-items: start;
 	width: calc(100% - 24px);
-	height: 100px;
+	height: ${(props) => (props.$isMobile ? '' : '100px')};
 	padding: 6px 8px;
 	margin: 0 14px;
 	border: 1px solid #f79698;
@@ -32,11 +36,11 @@ export const TextArea = styled.textarea`
 		line-height: 20px;
 	}
 `;
-export const SendBtn = styled.button`
+export const SendBtn = styled.button<ChatInputProps>`
 	width: 67px;
 	padding: 6px 0;
 	border-radius: 20px;
 	background-color: #f79698;
 	color: #fff;
-	font-size: 16px;
+	font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 `;

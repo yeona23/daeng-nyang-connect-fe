@@ -1,3 +1,4 @@
+import { useResponsive } from '../../../../hooks/useResponsive';
 import {
 	AnimalInfoDiv,
 	AnimalInfoImgDiv,
@@ -7,9 +8,11 @@ import {
 } from './AnimalInfo.style';
 
 const AnimalInfo = () => {
+	const { $isMobile } = useResponsive();
+
 	return (
-		<AnimalInfoDiv>
-			<AnimalInfoImgDiv>
+		<AnimalInfoDiv $isMobile={$isMobile}>
+			<AnimalInfoImgDiv $isMobile={$isMobile}>
 				<img src="/assets/community2.jpg" alt="" />
 			</AnimalInfoImgDiv>
 			<AnimalInfoTextDiv>
@@ -18,7 +21,7 @@ const AnimalInfo = () => {
 				<p>품종: 강아지 말티즈</p>
 			</AnimalInfoTextDiv>
 			<BtnDiv>
-				<CompleteBtn>입양 신청</CompleteBtn>
+				<CompleteBtn $isMobile={$isMobile}>입양 신청</CompleteBtn>
 			</BtnDiv>
 		</AnimalInfoDiv>
 	);
