@@ -278,6 +278,7 @@ export const MoreDropdown = styled.ul`
 	border: 1px solid var(--color-light-salmon);
 	background: #fff;
 	font-size: 16px;
+	z-index: 10;
 
 	& li {
 		display: flex;

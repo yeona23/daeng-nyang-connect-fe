@@ -28,6 +28,23 @@ const Review = () => {
 			$isTablet={$isTablet}
 			$isPc={$isPc}
 			$isMaxWidth={$isMaxWidth}>
+			<UserThumbnail className="user-box-mobile">
+				<div>
+					<img src="/assets/animal2.jpg" alt="" />
+				</div>
+				<h5>iamzipsa</h5>
+				<RiMore2Line
+					color="var(--color-light-salmon"
+					size={30}
+					onClick={toggleDropdown}
+				/>
+				{isDropdownVisible && (
+					<MoreDropdown>
+						<li>수정하기</li>
+						<li>삭제하기</li>
+					</MoreDropdown>
+				)}
+			</UserThumbnail>
 			<DetailImageBox
 				$isMobile={$isMobile}
 				$isTablet={$isTablet}
@@ -36,7 +53,7 @@ const Review = () => {
 				<img src={imageUrl} alt="" />
 			</DetailImageBox>
 			<ReviewTextBox>
-				<UserThumbnail>
+				<UserThumbnail className="user-box-pc">
 					<div>
 						<img src="/assets/animal2.jpg" alt="" />
 					</div>
