@@ -14,6 +14,7 @@ export const RegisterWrapper = styled.div`
 	width: 100%;
 	height: 100vh;
 	flex-direction: column;
+	overflow-x: hidden;
 `;
 
 export const RegisterDiv = styled.div<ResponsiveProps>`
@@ -31,7 +32,7 @@ export const Logo = styled.img<ResponsiveProps>`
 `;
 
 export const RegisterInput = styled.input<ResponsiveProps>`
-	width: ${(props) => (props.$isMobile ? '70%' : '100%')};
+	width: ${(props) => (props.$isMobile ? '50%' : '100%')};
 	height: 35px;
 	margin-bottom: 16px;
 	border: none;
@@ -49,7 +50,7 @@ export const RegisterInput = styled.input<ResponsiveProps>`
 `;
 
 export const RegisterSelectBox = styled.select<ResponsiveProps>`
-	width: ${(props) => (props.$isMobile ? '300px' : '208px')};
+	width: ${(props) => (props.$isMobile ? '300px' : '205px')};
 	height: 35px;
 	margin-bottom: 16px;
 	border: none;
@@ -78,15 +79,15 @@ export const RegisterSelectBox = styled.select<ResponsiveProps>`
 export const Option = styled.option``;
 
 export const RegisterInputSmall = styled(RegisterInput)`
-	width: ${(props) => (props.$isMobile ? '35%' : '49%')};
+	width: 48%;
 `;
 
 export const RegisterDoubleDiv = styled.div<ResponsiveProps>`
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	width: ${(props) => (props.$isMobile ? '200%' : '100%')};
-	flex-direction: ${(props) => (props.$isMobile ? 'column' : '')};
+	justify-content: ${(props) =>
+		props.$isMobile ? 'space-between' : 'space-between'};
+	width: ${(props) => (props.$isMobile ? '50%' : '100%')};
 `;
 
 export const RegisterForm = styled.form`
@@ -101,7 +102,7 @@ export const RegisterButton = styled.button<ResponsiveProps>`
 	background-color: rgba(227, 155, 166, 0.9);
 	color: white;
 	padding: 8px, 52px, 8px, 52px;
-	width: ${(props) => (props.$isMobile ? '70%' : '100%')};
+	width: ${(props) => (props.$isMobile ? '50%' : '100%')};
 	height: 42px;
 	font-size: 20px;
 	font-weight: 400;
@@ -124,45 +125,17 @@ export const SnsIconDiv = styled.div`
 	border-top: 1px solid #434343;
 `;
 
-export const Paragraph = styled.p`
-	width: 90%;
+export const Paragraph = styled.p<ResponsiveProps>`
+	margin-top: -10px;
+	width: ${(props) => (props.$isMobile ? '50%' : '90%')};
 	text-align: left;
 	font-size: 12px;
 	color: var(--color--deep-blue);
 `;
 
-export const ExParagraph = styled.p`
-	width: 90%;
+export const ExParagraph = styled.p<ResponsiveProps>`
+	margin-top: -10px;
+	width: ${(props) => (props.$isMobile ? '50%' : '90%')};
 	text-align: left;
 	font-size: 12px;
-`;
-
-export const ProfileImgLabel = styled.label`
-	margin: 5px 0 20px 0;
-	font-size: 16px;
-	color: var(--color-main-text);
-	display: inline-block;
-	cursor: pointer;
-`;
-
-export const ProfileImgInput = styled.input`
-	display: none;
-`;
-
-export const ProfileImgDiv = styled.div`
-	width: 100px;
-	height: 100px;
-	border-radius: 50px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: transparent;
-	overflow: hidden;
-	border: 2px solid var(--color-main-text);
-`;
-
-export const ProfileImg = styled.img`
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
 `;

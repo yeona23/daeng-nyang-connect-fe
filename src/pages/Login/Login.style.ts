@@ -14,6 +14,7 @@ export const LoginWrapper = styled.div`
 	width: 100%;
 	height: 100vh;
 	flex-direction: column;
+	overflow-x: hidden;
 `;
 
 export const LoginDiv = styled.div`
@@ -78,17 +79,6 @@ export const LoginButton = styled.button<ResponsiveProps>`
 	}
 `;
 
-export const AccountDiv = styled.div`
-	width: 80%;
-	height: 40px;
-	border-bottom: 2px solid #434343;
-	font-weight: 500;
-	font-size: 30px;
-	padding-bottom: 50px;
-	position: absolute;
-	top: 80px;
-`;
-
 export const SignUpDiv = styled.div`
 	display: flex;
 	align-items: center;
@@ -106,8 +96,8 @@ export const SignUpButton = styled.button`
 `;
 
 export const Logo = styled.img<ResponsiveProps>`
-	width: ${(props) => (props.$isMobile ? '150px' : '200px')};
-	height: ${(props) => (props.$isMobile ? '150px' : '200px')};
+	width: ${(props) => (props.$isMobile ? '150px' : '150px')};
+	height: ${(props) => (props.$isMobile ? '150px' : '150px')};
 `;
 
 export const Paragraph = styled.p`

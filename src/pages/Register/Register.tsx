@@ -243,10 +243,22 @@ const Register = () => {
 						$isPc={$isPc}
 						$isMaxWidth={$isMaxWidth}></RegisterInput>
 					{nameEmailInputIsInValid && (
-						<Paragraph>올바른 이메일 형식으로 입력해주세요.</Paragraph>
+						<Paragraph
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
+							올바른 이메일 형식으로 입력해주세요.
+						</Paragraph>
 					)}
 					{emailOnFocus && (
-						<ExParagraph>이메일 형식으로 입력해주세요.</ExParagraph>
+						<ExParagraph
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
+							이메일 형식으로 입력해주세요.
+						</ExParagraph>
 					)}
 
 					<RegisterInput
@@ -261,13 +273,21 @@ const Register = () => {
 						$isPc={$isPc}
 						$isMaxWidth={$isMaxWidth}></RegisterInput>
 					{namePasswordInputIsInValid && (
-						<Paragraph>
+						<Paragraph
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
 							영문, 숫자, 특수문자 중 2개 이상을 조합하여 최소 6자리 이상이여야
 							합니다.
 						</Paragraph>
 					)}
 					{passwordOnFocus && (
-						<ExParagraph>
+						<ExParagraph
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
 							영문, 숫자, 특수문자 중 2개 이상을 포함한 6자리 이상으로
 							입력해주세요.
 						</ExParagraph>
@@ -284,7 +304,13 @@ const Register = () => {
 						$isPc={$isPc}
 						$isMaxWidth={$isMaxWidth}></RegisterInput>
 					{nameConfirmedPasswordIsInvalid && (
-						<Paragraph>비밀번호가 일치하지 않습니다.</Paragraph>
+						<Paragraph
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
+							비밀번호가 일치하지 않습니다.
+						</Paragraph>
 					)}
 					<RegisterDoubleDiv
 						$isMobile={$isMobile}
@@ -315,9 +341,23 @@ const Register = () => {
 							$isPc={$isPc}
 							$isMaxWidth={$isMaxWidth}></RegisterInputSmall>
 					</RegisterDoubleDiv>
-					{nameOnFocus && <ExParagraph>ex&#41;홍길동</ExParagraph>}
+					{nameOnFocus && (
+						<ExParagraph
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
+							ex&#41;홍길동
+						</ExParagraph>
+					)}
 					{nameNameInputIsInValid && (
-						<Paragraph>이름을 올바르게 입력해주세요.</Paragraph>
+						<Paragraph
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
+							이름을 올바르게 입력해주세요.
+						</Paragraph>
 					)}
 					<RegisterInput
 						type="text"
@@ -330,9 +370,23 @@ const Register = () => {
 						$isTablet={$isTablet}
 						$isPc={$isPc}
 						$isMaxWidth={$isMaxWidth}></RegisterInput>
-					{mobileOnFocus && <ExParagraph>ex&#41;000-0000-0000</ExParagraph>}
+					{mobileOnFocus && (
+						<ExParagraph
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
+							ex&#41;000-0000-0000
+						</ExParagraph>
+					)}
 					{nameMobileInputIsInvalid && (
-						<Paragraph>전화번호를 바르게 입력해주세요.</Paragraph>
+						<Paragraph
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
+							전화번호를 바르게 입력해주세요.
+						</Paragraph>
 					)}
 
 					<RegisterDoubleDiv

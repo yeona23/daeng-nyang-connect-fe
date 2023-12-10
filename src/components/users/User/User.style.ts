@@ -7,6 +7,7 @@ export const UserWrapper = styled.div`
 	width: 100%;
 	height: 100vh;
 	flex-direction: column;
+	overflow-x: hidden;
 `;
 
 export const UserBox = styled.div`
