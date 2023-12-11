@@ -109,6 +109,7 @@ export const FilterItems = styled.div<ResponsiveProps>`
 		width: 100%;
 		padding: 4px;
 		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
+		outline: var(--color-light-salmon);
 	}
 
 	& button {
@@ -142,7 +143,7 @@ export const ItemBox = styled.div<ResponsiveProps>`
 	width: ${(props) =>
 		props.$isMobile ? 'calc((100% - 15px) / 2)' : 'calc((100% - 50px) / 3)'};
 	margin-bottom: ${(props) => (props.$isMobile ? '15px' : '50px')};
-	border: 1px solid var(--color-light-salmon);
+	border: 1px solid var(--color-peach);
 	border-radius: 10px;
 	overflow: hidden;
 	cursor: pointer;

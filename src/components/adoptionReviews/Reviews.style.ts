@@ -35,7 +35,7 @@ export const ReviewBox = styled.div<ResponsiveProps>`
 			  : ' calc((100% - 20px) / 2)'};
 	aspect-ratio: ${(props) => (props.$isMobile ? 'unset' : '3 / 4.2')};
 	margin-bottom: ${(props) => (props.$isMobile ? '20px' : '50px')};
-	border: 1px solid var(--color-light-salmon);
+	border: 1px solid var(--color-peach);
 	border-radius: 10px;
 	overflow: hidden;
 	cursor: pointer;
@@ -120,7 +120,7 @@ export const CommentList = styled.div<ResponsiveProps>`
 	flex-direction: column;
 	flex: 1;
 	padding: ${(props) => (props.$isMobile ? '15px 0' : '30px 0')};
-	border: 1px solid var(--color-deep-blue);
+	border: 1px solid var(--color-peach);
 	border-left: none;
 	border-right: none;
 	font-size: 20px;
