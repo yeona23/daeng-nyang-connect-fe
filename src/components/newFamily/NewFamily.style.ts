@@ -443,12 +443,12 @@ export const FormText = styled.div<ResponsiveProps>`
 	font-size: ${(props) => (props.$isMobile ? '12px' : 'inherit')};
 
 	.text-box {
-		align-items: flex-start;
+		align-items: ${(props) => (props.$isMobile ? 'flex-start' : 'center')};
 	}
 
 	& textarea {
-		width: 87%;
-		height: ${(props) => (props.$isMobile ? '80px' : '150px')};
+		width: 85%;
+		height: ${(props) => (props.$isMobile ? '60px' : '30px')};
 		resize: none;
 		padding: 10px;
 		border: 1px solid var(--color-light-salmon);
@@ -463,7 +463,7 @@ export const FormText = styled.div<ResponsiveProps>`
 	}
 
 	& input[type='text'] {
-		width: 80%;
+		width: 85%;
 		height: 30px;
 		padding-left: 10px;
 		border: 1px solid var(--color-light-salmon);
@@ -484,7 +484,36 @@ export const FormText = styled.div<ResponsiveProps>`
 		width: 30%;
 	}
 
+	& input[type='file'] {
+		display: none;
+	}
+
 	& label {
 		margin-right: 30px;
+	}
+
+	.custom-file-upload {
+		width: 100px;
+		padding: 4px;
+		border: 1px solid var(--color-light-salmon);
+		border-radius: 5px;
+		font-size: 12px;
+		text-align: center;
+		cursor: pointer;
+	}
+
+	.custom-file-upload:hover {
+		background: var(--color-light-salmon);
+		color: var(--color-peach);
+	}
+
+	& select {
+		width: 85%;
+		height: 30px;
+		padding: 4px;
+		border: 1px solid var(--color-light-salmon);
+		color: gray;
+		font-size: 12px;
+		outline: var(--color-light-salmon);
 	}
 `;

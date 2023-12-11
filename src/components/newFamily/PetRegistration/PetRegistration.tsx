@@ -55,6 +55,31 @@ const PetRegistration = () => {
 						<label htmlFor="cat">고양이</label>
 					</div>
 					<div>
+						<h5>지역</h5>
+						<select id="regionSelect">
+							<option value="" disabled selected hidden>
+								지역을 선택해주세요
+							</option>
+							<option value="seoul">서울</option>
+							<option value="busan">부산</option>
+							<option value="incheon">인천</option>
+							<option value="daegu">대구</option>
+							<option value="gwangju">광주</option>
+							<option value="daejeon">대전</option>
+							<option value="ulsan">울산</option>
+							<option value="sejong">세종</option>
+							<option value="gyeonggi">경기</option>
+							<option value="gangwon">강원</option>
+							<option value="chungbuk">충북</option>
+							<option value="chungnam">충남</option>
+							<option value="jeonbuk">전북</option>
+							<option value="jeonnam">전남</option>
+							<option value="gyeongbuk">경북</option>
+							<option value="gyeongnam">경남</option>
+							<option value="jeju">제주</option>
+						</select>
+					</div>
+					<div>
 						<h5>성별</h5>
 						<input type="radio" name="gender" id="male" />
 						<label htmlFor="male">남</label>
@@ -104,7 +129,10 @@ const PetRegistration = () => {
 					</div>
 					<div>
 						<h5>이미지 등록</h5>
-						<input type="file" name="img" id="img" required />
+						<input type="file" name="img" id="fileInput" required />
+						<label htmlFor="fileInput" className="custom-file-upload">
+							파일 선택
+						</label>
 					</div>
 					<div className="text-box">
 						<h5>이별 사유</h5>
