@@ -1,10 +1,14 @@
 import { Outlet } from 'react-router-dom';
+import { Article } from './Tips.style';
+import { useResponsive } from '../../hooks/useResponsive';
 
 const Tips = () => {
+	const { $isMobile } = useResponsive();
+
 	return (
-		<div>
+		<Article $isMobile={$isMobile}>
 			<Outlet />
-		</div>
+		</Article>
 	);
 };
 
