@@ -1,5 +1,12 @@
-const Mypet = () => {
-	return <div>Mypet</div>;
+import MyPetDetail from './MyPetDetail/MyPetDetail';
+import { Article } from './Mypet.style';
+
+const MyPet = () => {
+	return (
+		<Article>
+			<MyPetDetail />
+		</Article>
+	);
 };
 
-export default Mypet;
+export default MyPet;

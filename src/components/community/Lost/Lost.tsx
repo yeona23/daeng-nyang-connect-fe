@@ -1,5 +1,12 @@
+import { Article } from './Lost.style';
+import LostDetail from './LostDetail/LostDetail';
+
 const Lost = () => {
-	return <div>Lost</div>;
+	return (
+		<Article>
+			<LostDetail />
+		</Article>
+	);
 };
 
 export default Lost;
