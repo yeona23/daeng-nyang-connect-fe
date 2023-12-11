@@ -38,7 +38,7 @@ export const FindFamily = styled.div<ResponsiveProps>`
 export const CategoryTitle = styled.div<ResponsiveProps>`
 	display: flex;
 	justify-content: space-between;
-	align-items: flex-end;
+	align-items: center;
 	width: 100%;
 	padding-bottom: 20px;
 	margin: ${(props) => (props.$isMobile ? '70px 0 30px 0' : '70px 0 50px 0')};

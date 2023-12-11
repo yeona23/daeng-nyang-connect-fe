@@ -55,7 +55,8 @@ const ReviewList = () => {
 					$isMobile={$isMobile}
 					$isTablet={$isTablet}
 					$isPc={$isPc}
-					$isMaxWidth={$isMaxWidth}>
+					$isMaxWidth={$isMaxWidth}
+					onClick={() => goToReviewPage(item.id, generateImgUrl(item.index))}>
 					<div>
 						<img src={generateImgUrl(item.index)} alt={`adoption${item.id}`} />
 					</div>
@@ -72,7 +73,10 @@ const ReviewList = () => {
 										: 'var(--color-light-blue)'
 								}
 								size={30}
-								onClick={() => clickLikeHandler(item.id)}
+								onClick={(e) => {
+									e.stopPropagation();
+									clickLikeHandler(item.id);
+								}}
 							/>
 							<button
 								onClick={() =>
