@@ -8,9 +8,11 @@ interface ResponsiveProps {
 }
 
 export const FindFamily = styled.div<ResponsiveProps>`
-	width: ${(props) => (props.$isMaxWidth ? '1320px' : '100%')};
-	padding: ${(props) => (props.$isMaxWidth ? 'none' : '0 30px')};
-	margin: 0 auto;
+	width: ${(props) => (props.$isMaxWidth ? '100%' : '1320px')};
+	padding: ${(props) => (props.$isMaxWidth ? '0 30px' : 'none')};
+	margin: ${(props) =>
+		props.$isMobile ? '50px auto 100px auto' : '120px auto 150px auto'};
+
 	& > div {
 		display: flex;
 		gap: 50px;
@@ -36,21 +38,22 @@ export const FindFamily = styled.div<ResponsiveProps>`
 export const CategoryTitle = styled.div<ResponsiveProps>`
 	display: flex;
 	justify-content: space-between;
+	align-items: flex-end;
 	width: 100%;
 	padding-bottom: 20px;
-	margin: 70px 0 50px 0;
+	margin: ${(props) => (props.$isMobile ? '70px 0 30px 0' : '70px 0 50px 0')};
 	border-bottom: 1px solid var(--color-light-salmon);
 
 	& h1 {
 		font-size: ${(props) =>
-			props.$isPc ? '36px' : props.$isTablet ? '24px' : '16px'};
+			props.$isPc ? '28px' : props.$isTablet ? '24px' : '16px'};
 	}
 	& button {
-		width: 150px;
-		padding: 3px;
+		width: ${(props) => (props.$isMobile ? '80px' : '150px')};
+		padding: 4px;
 		border: 1px solid var(--color-light-salmon);
 		border-radius: 5px;
-		font-size: 16px;
+		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 	}
 	& button:hover {
 		background: var(--color-light-salmon);
@@ -69,7 +72,7 @@ export const FilterItems = styled.div<ResponsiveProps>`
 	border: 1px solid var(--color-light-salmon);
 	border-radius: ${(props) => (props.$isPc ? '10px' : 'none')};
 	background: #fff;
-	z-index: 10;
+	z-index: ${(props) => (props.$isPc ? 'unset' : '100000')};
 
 	& > div:first-child {
 		padding-bottom: 10px;
@@ -117,9 +120,10 @@ export const ItemList = styled.div`
 `;
 
 export const ItemBox = styled.div<ResponsiveProps>`
-	width: calc((100% - 50px) / 2);
-	margin-bottom: 50px;
-	border: 1px solid var(--color-deep-blue);
+	width: ${(props) =>
+		props.$isMobile ? 'calc((100% - 15px) / 2)' : 'calc((100% - 50px) / 3)'};
+	margin-bottom: ${(props) => (props.$isMobile ? '15px' : '50px')};
+	border: 1px solid var(--color-light-salmon);
 	border-radius: 10px;
 	overflow: hidden;
 
@@ -134,7 +138,7 @@ export const ItemBox = styled.div<ResponsiveProps>`
 
 	& > div:last-child {
 		position: relative;
-		height: 150px;
+		height: ${(props) => (props.$isMobile ? 'fit-content' : '150px')};
 		padding: 20px;
 	}
 
@@ -149,14 +153,13 @@ export const ItemBox = styled.div<ResponsiveProps>`
 
 	& svg {
 		position: absolute;
-		top: ${(props) =>
-			props.$isMobile ? '10px' : props.$isTablet ? '20px' : '30px'};
-		right: ${(props) =>
-			props.$isMobile ? '10px' : props.$isTablet ? '20px' : '30px'};
+		top: ${(props) => (props.$isMobile ? '10px' : '20px')};
+		right: ${(props) => (props.$isMobile ? '10px' : '20px')};
 		cursor: pointer;
 	}
 
 	& button {
+		display: ${(props) => (props.$isMobile ? 'none' : 'block')};
 		position: absolute;
 		bottom: 20px;
 		right: 20px;
@@ -171,7 +174,8 @@ export const ItemBox = styled.div<ResponsiveProps>`
 	}
 
 	& p {
-		margin-bottom: 15px;
+		margin-bottom: ${(props) => (props.$isMobile ? '10px' : '15px')};
+		font-size: ${(props) => (props.$isMobile ? '12px' : 'inherit')};
 	}
 `;
 
