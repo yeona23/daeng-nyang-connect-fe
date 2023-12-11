@@ -17,10 +17,15 @@ export const ChatCategoryLi = styled.li<ChatCategoryProps>`
 	width: 50%;
 	border-radius: 8px;
 	&.isActive {
-		background-color: var(--color-teal);
+		background-color: var(--color-light-salmon);
 	}
-	.chat-icon {
+	.icons {
 		width: ${(props) => (props.$isMobile ? '24px' : '40px')};
 		height: ${(props) => (props.$isMobile ? '24px' : '40px')};
+		color: var(--color-light-salmon);
+	}
+	.icon-chat {
+		width: 24px;
+		height: 24px;
 	}
 `;

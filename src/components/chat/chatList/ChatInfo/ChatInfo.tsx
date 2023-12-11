@@ -1,8 +1,10 @@
+import { useResponsive } from '../../../../hooks/useResponsive';
 import { UserImgDiv } from '../../ChatContentsBox.style';
 import {
 	ChatInfoDiv,
 	ChatInfoEachDiv,
 	ChatListLi,
+	ChatTime,
 	NoneReadCountEm,
 } from './ChatInfo.style';
 
@@ -11,19 +13,20 @@ type BgProps = {
 };
 
 const ChatInfo = ({ className }: BgProps) => {
+	const { $isMobile } = useResponsive();
 	return (
-		<ChatListLi className={className}>
+		<ChatListLi className={className} $isMobile={$isMobile}>
 			<UserImgDiv size="36px">
 				<img src="/assets/community1.jpg" alt="" />
 			</UserImgDiv>
 			<ChatInfoDiv>
 				<ChatInfoEachDiv className="first-box">
 					<p>유저닉네임</p>
-					<time style={{ fontSize: '14px' }}>30분 전</time>
+					<ChatTime $isMobile={$isMobile}>30분 전</ChatTime>
 				</ChatInfoEachDiv>
 				<ChatInfoEachDiv>
 					<p>메시지 미리보기</p>
-					<NoneReadCountEm>4</NoneReadCountEm>
+					<NoneReadCountEm $isMobile={$isMobile}>4</NoneReadCountEm>
 				</ChatInfoEachDiv>
 			</ChatInfoDiv>
 		</ChatListLi>

@@ -11,10 +11,10 @@ export const AnimalInfoDiv = styled.div<AnimalInfoProps>`
 	height: ${(props) => (props.$isMobile ? '80px' : '100px')};
 	margin: 0 14px;
 	padding: 10px;
-	border: 1px solid var(--color-light-salmon);
 	border-radius: 8px;
-	line-height: 1.6;
+	box-shadow: 0 0 3px 0 var(--color-light-salmon);
 	font-size: ${(props) => (props.$isMobile ? '12px' : null)};
+	line-height: 1.6;
 `;
 export const AnimalInfoImgDiv = styled.div<AnimalInfoProps>`
 	width: ${(props) => (props.$isMobile ? '30%' : '100px')};
