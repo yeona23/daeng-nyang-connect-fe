@@ -10,5 +10,5 @@ export const ChatRoomDiv = styled.div<ChatRoomProps>`
 	height: ${(props) => (props.$isMobile ? '100vh' : '900px')};
 	border-radius: 20px;
 	margin-top: ${(props) => (props.$isMobile ? '45px' : null)};
-	box-shadow: 0px 4px 10px 0 #f7969880;
+	box-shadow: 0 0 12px 0 #e39ba660;
 `;

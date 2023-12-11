@@ -14,13 +14,13 @@ export const ChatInputDiv = styled.div<ChatInputProps>`
 	height: ${(props) => (props.$isMobile ? '' : '100px')};
 	padding: 6px 8px;
 	margin: 0 14px;
-	border: 1px solid #f79698;
+	border: 1px solid var(--color-light-salmon);
 	border-radius: 8px;
 	.plus-btn {
 		width: 24px;
 		height: 24px;
 		margin-right: 4px;
-		color: #f79698;
+		color: var(--color-light-salmon);
 	}
 `;
 export const TextArea = styled.textarea`
@@ -40,7 +40,7 @@ export const SendBtn = styled.button<ChatInputProps>`
 	width: 67px;
 	padding: 6px 0;
 	border-radius: 20px;
-	background-color: #f79698;
+	background-color: var(--color-light-salmon);
 	color: #fff;
 	font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 `;
