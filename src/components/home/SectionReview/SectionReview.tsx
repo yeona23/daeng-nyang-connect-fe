@@ -14,7 +14,6 @@ const SectionReview = () => {
 		navigate('/adoptionReviews');
 	};
 
-	const reviewMorePadding = $isMobile ? '10px 80px' : '15px 100px';
 	return (
 		<MainSection $isMaxWidth={$isMaxWidth} $isMobile={$isMobile}>
 			<MainSectionH2 $isMobile={$isMobile}>입양 후기</MainSectionH2>
@@ -23,10 +22,7 @@ const SectionReview = () => {
 				<HorizentalCard $isMobile={$isMobile} />
 				<HorizentalCard $isMobile={$isMobile} />
 			</CardListUl>
-			<SalmonBtn
-				padding={reviewMorePadding}
-				onClick={moveToReview}
-				$isMobile={$isMobile}>
+			<SalmonBtn onClick={moveToReview} $isMobile={$isMobile}>
 				더보기
 			</SalmonBtn>
 		</MainSection>

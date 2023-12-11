@@ -8,18 +8,20 @@ import {
 	UtilDl,
 	UtilDd,
 } from './Nav.style';
-import { IoChatbubblesOutline } from 'react-icons/io5';
+import { IoChatbubblesOutline, IoChatbubblesSharp } from 'react-icons/io5';
 import { HiOutlineUser } from 'react-icons/hi';
 import { FiMenu } from 'react-icons/fi';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import scrollNav from '../../utils/scrollNav';
 import { useResponsive } from '../../hooks/useResponsive';
 
 const Nav = () => {
-	const { $isMaxWidth, $isTablet, $isMobile } = useResponsive();
+	const location = useLocation();
+	const { $isMaxWidth, $isMobile } = useResponsive();
 	const props = scrollNav() ? { isHome: 'home' } : {};
 	const id = 3;
 	const navText = !$isMobile ? 'nav' : 'm-nav';
+
 	return (
 		<HeaderDiv {...props} $isMobile={$isMobile}>
 			<HeaderContenstDiv $isMaxWidth={$isMaxWidth}>
@@ -51,20 +53,20 @@ const Nav = () => {
 					<dt></dt>
 					<UtilDd>
 						<NavLink to={`/users/${id}/chatBox`}>
-							<IoChatbubblesOutline />
+							{!location.pathname.includes('chat') ? (
+								<IoChatbubblesOutline />
+							) : (
+								<IoChatbubblesSharp />
+							)}
 						</NavLink>
 					</UtilDd>
 					{/* <UtilDd>
 						<IoNotificationsOutline />
 					</UtilDd> */}
 					<UtilDd>
-						{$isMobile ? (
-							<FiMenu />
-						) : (
-							<NavLink to={`/users/${id}`}>
-								<HiOutlineUser />
-							</NavLink>
-						)}
+						<NavLink to={`/users/${id}`}>
+							<HiOutlineUser />
+						</NavLink>
 					</UtilDd>
 				</UtilDl>
 			</HeaderContenstDiv>

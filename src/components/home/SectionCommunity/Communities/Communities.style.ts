@@ -1,17 +1,10 @@
-import { css, keyframes, styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 type Props = {
 	img?: string;
 	$isTablet?: boolean;
 	$isMobile?: boolean;
 };
-const CommuntiyTitleAni = keyframes`
-	0%{
-		top: 100%;
-	}100%{
-		top: 0;
-	}
-`;
 
 export const CommunityLi = styled.li<Props>`
 	position: relative;
@@ -23,10 +16,6 @@ export const CommunityLi = styled.li<Props>`
 		&:hover {
 			div {
 				background-size: auto 110%;
-			}
-			dl {
-				display: block;
-				top: 0;
 			}
 		}
 	}
@@ -50,7 +39,7 @@ export const CommunityImgDiv = styled.div<Props>`
 `;
 export const CommunityTitleDt = styled.dt<Props>`
 	margin-bottom: 8px;
-	font-size: 20px;
+	font-size: ${(props) => (props.$isMobile ? '14px' : '20px')};
 	font-weight: 400;
 	color: ${(props) => props.$isMobile && '#fff'};
 	background: ${(props) => (props.$isMobile ? 'rgba(0, 0, 0, 0.2)' : null)};
@@ -62,13 +51,11 @@ export const CommunityTitleDt = styled.dt<Props>`
 `;
 
 const MobileDl = css`
-	display: none;
 	position: absolute;
-	top: 100%;
+	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	animation: ${CommuntiyTitleAni} 0.5s ease;
 `;
 export const CommunityTextDl = styled.dl<Props>`
 	${(props) => (props.$isMobile ? MobileDl : null)}

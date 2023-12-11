@@ -72,7 +72,7 @@ const Footer = () => {
 						</FooterMenuDl>
 					</FooterMenuDiv>
 				</FooterFlexDiv>
-				<FooterCopyrightDiv>
+				<FooterCopyrightDiv $isMobile={$isMobile}>
 					<FooterCopyrightP $isMobile={$isMobile}>
 						Copyright© All right reserved by 댕냥커넥트.
 					</FooterCopyrightP>
