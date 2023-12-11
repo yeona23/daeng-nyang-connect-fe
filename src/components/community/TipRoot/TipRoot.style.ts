@@ -6,7 +6,6 @@ interface NavOptionProps {
 }
 
 export const Article = styled.article<NavOptionProps>`
-	padding: 10px;
 	margin-top: ${(props) => (props.$isMobile ? '0px' : '10px')};
 `;
 
@@ -19,7 +18,7 @@ export const TipsNav = styled.nav<NavOptionProps>`
 
 	& > div {
 		&:first-child {
-			flex: 6;
+			flex: 5;
 			text-align: center;
 		}
 
@@ -34,7 +33,7 @@ export const TipsNav = styled.nav<NavOptionProps>`
 		}
 
 		&:last-child {
-			flex: 1;
+			flex: 1.5;
 			text-align: center;
 		}
 	}

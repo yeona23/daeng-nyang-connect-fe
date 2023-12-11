@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { IoIosSearch } from 'react-icons/io';
-import { IoMenu } from 'react-icons/io5';
 import { FaPlus } from 'react-icons/fa';
 interface NavOptionProps {
 	$isActive?: boolean;
@@ -14,6 +13,7 @@ export const TitleAndSearchWrap = styled.div<NavOptionProps>`
 	align-items: center;
 	justify-content: space-between;
 	padding-left: ${(props) => (props.$isMobile ? '4px' : '20px')};
+	margin-top: ${(props) => (props.$isMobile ? '20px' : '100px')};
 	border-bottom: 1px solid var(--color-light-salmon);
 `;
 
@@ -38,7 +38,7 @@ export const SearchWrap = styled.form<NavOptionProps>`
 	width: ${(props) =>
 		props.$isTablet ? '450px' : props.$isMobile ? '340px' : '500px'};
 	padding: 10px;
-	margin-bottom: 10px;
+	margin-bottom: ${(props) => (props.$isMobile ? '16px' : '4px')};
 	border: 0.5px solid var(--color-light-salmon);
 	border-radius: 20px;
 
@@ -109,19 +109,22 @@ export const Button = styled.button<NavOptionProps>`
 	right: ${(props) => (props.$isMobile ? '10px' : 'none')};
 	width: ${(props) => (props.$isMobile ? '50px' : '70%')};
 	height: ${(props) => (props.$isMobile ? '50px' : '')};
-	padding: ${(props) => (props.$isMobile ? '4px' : '10px')};
+	padding: ${(props) => (props.$isMobile ? '4px' : '4px')};
 	border: 0.5px solid var(--color-light-salmon);
 	border-radius: ${(props) => (props.$isMobile ? '50%' : '3px')};
 	background-color: ${(props) =>
-		props.$isMobile ? 'var(--color-peach)' : 'transparent'};
+		props.$isMobile ? 'var(--color-light-salmon)' : 'transparent'};
 	font-size: ${(props) =>
 		props.$isTablet ? '16px' : props.$isMobile ? '16px' : '18px'};
+	color: ${(props) => (props.$isMobile ? 'white' : '')};
 	cursor: pointer;
-	z-index: 10;
+	z-index: ${(props) => (props.$isMobile ? '10' : '0')};
 
 	&:hover {
-		background-color: var(--color-light-salmon);
-		color: white;
+		${(props) =>
+			props.$isMobile
+				? 'background-color: var(--color-peach); color: var(--color-deep-blue);'
+				: 'background-color: var(--color-light-salmon); color: white;'}
 	}
 `;
 
@@ -147,12 +150,6 @@ export const NavOptionText = styled.span<NavOptionProps>`
 export const IoMenuWrap = styled.div`
 	padding: 10px;
 	margin-right: 8px;
-`;
-
-export const StyledIoMenu = styled(IoMenu)`
-	color: var(--color-light-salmon);
-	width: 20px;
-	height: 20px;
 `;
 
 export const MenuAndSearchWrap = styled.div`

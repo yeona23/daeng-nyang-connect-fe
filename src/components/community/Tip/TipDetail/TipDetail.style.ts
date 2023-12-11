@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 
-export const CommentWrap = styled.div`
+interface NavOptionProps {
+	$isTablet?: boolean;
+	$isMobile?: boolean;
+}
+
+export const CommentWrap = styled.div<NavOptionProps>`
 	width: 100%;
-	padding: 8px 16px;
+	padding: ${(props) => (props.$isMobile ? '0px' : '8px 16px')};
 `;
 
 export const SubTitle = styled.h3`
@@ -17,12 +22,15 @@ export const TextBox = styled.div`
 	border-bottom: 1px solid var(--color-light-salmon);
 `;
 
-export const Paragraph = styled.div`
+export const Paragraph = styled.div<NavOptionProps>`
 	line-height: 1.5;
+	font-size: ${(props) =>
+		props.$isTablet ? '14px' : props.$isMobile ? '12px' : '16px'};
 `;
 
-export const Title = styled.h1`
+export const Title = styled.h1<NavOptionProps>`
 	margin-bottom: 12px;
-	font-size: 32px;
+	font-size: ${(props) =>
+		props.$isTablet ? '24px' : props.$isMobile ? '18px' : '28px'};
 	font-weight: bold;
 `;

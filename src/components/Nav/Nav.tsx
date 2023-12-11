@@ -17,7 +17,7 @@ import { useResponsive } from '../../hooks/useResponsive';
 
 const Nav = () => {
 	const { $isMaxWidth, $isTablet, $isMobile } = useResponsive();
-	const props = scrollNav() ? { isHome: 'home' } : {};
+	const props = scrollNav() ? { $isHome: 'home' } : {};
 	const id = 3;
 	const navText = !$isMobile ? 'nav' : 'm-nav';
 	return (
