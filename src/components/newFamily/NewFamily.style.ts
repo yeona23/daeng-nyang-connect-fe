@@ -97,11 +97,29 @@ export const FilterItems = styled.div<ResponsiveProps>`
 	}
 	& p {
 		margin-bottom: 15px;
-		font-size: 18px;
+		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 	}
 
 	& label {
 		margin: 0 20px 0 5px;
+		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
+	}
+
+	& select {
+		width: 100%;
+		padding: 4px;
+		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
+	}
+
+	& button {
+		width: 40%;
+		padding: 4px;
+		margin: 0 auto;
+		border-radius: 5px;
+		background: var(--color-light-salmon);
+		color: var(--color-peach);
+		font-size: ${(props) => (props.$isMobile ? '12px' : '14px')};
+		cursor: pointer;
 	}
 
 	.filter-close-btn {
