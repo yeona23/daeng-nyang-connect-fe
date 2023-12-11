@@ -127,6 +127,7 @@ export const ItemBox = styled.div<ResponsiveProps>`
 	border: 1px solid var(--color-light-salmon);
 	border-radius: 10px;
 	overflow: hidden;
+	cursor: pointer;
 
 	& > div:first-child {
 		display: flex;
