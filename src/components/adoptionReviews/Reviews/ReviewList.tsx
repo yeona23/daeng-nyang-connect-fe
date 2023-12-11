@@ -39,8 +39,7 @@ const ReviewList = () => {
 	};
 
 	const goToReviewPage = (reviewId: number, imageUrl: string) => {
-		const url = `review/${reviewId}`;
-		navigate(url, { state: { imageUrl } });
+		navigate(`/adoptionReviews/review/${reviewId}`, { state: { imageUrl } });
 	};
 
 	return (
@@ -79,9 +78,10 @@ const ReviewList = () => {
 								}}
 							/>
 							<button
-								onClick={() =>
-									goToReviewPage(item.id, generateImgUrl(item.index))
-								}>
+								onClick={(e) => {
+									e.stopPropagation;
+									goToReviewPage(item.id, generateImgUrl(item.index));
+								}}>
 								자세히 보기
 							</button>
 						</ButtonBox>
