@@ -32,6 +32,7 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import ChatRoom from './components/chat/chatRoom/ChatRoom';
 import PetRegistration from './components/newFamily/PetRegistration/PetRegistration';
 import NewFamilyList from './components/newFamily/Family/NewFamilyList';
 import NewFamilyDetail from './components/newFamily/Pet/NewFamilyDetail';
@@ -57,6 +58,7 @@ const router = createBrowserRouter([
 				children: [
 					{ index: true, element: <User /> },
 					{ path: 'chatBox', element: <ChatBox /> },
+					{ path: 'chatRoom', element: <ChatRoom /> },
 				],
 			},
 			{
