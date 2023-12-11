@@ -79,6 +79,9 @@ const Family = () => {
 							<div>
 								<p>지역</p>
 								<select id="regionSelect">
+									<option value="" disabled selected hidden>
+										지역을 선택해주세요
+									</option>
 									<option value="seoul">서울</option>
 									<option value="busan">부산</option>
 									<option value="incheon">인천</option>
