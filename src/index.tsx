@@ -32,6 +32,10 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import PetRegistration from './components/newFamily/PetRegistration/PetRegistration';
+import NewFamilyList from './components/newFamily/Family/NewFamilyList';
+import NewFamilyDetail from './components/newFamily/Pet/NewFamilyDetail';
+import ReviewForm from './components/adoptionReviews/ReviewForm/ReviewForm';
 
 const router = createBrowserRouter([
 	{
@@ -60,7 +64,8 @@ const router = createBrowserRouter([
 				element: <NewFamily />,
 				children: [
 					{ index: true, element: <Family /> },
-					{ path: 'pet/:petId', element: <Pet /> },
+					{ path: 'pet/:petId', element: <NewFamilyDetail /> },
+					{ path: 'petRegistration', element: <PetRegistration /> },
 				],
 			},
 			{
@@ -69,6 +74,7 @@ const router = createBrowserRouter([
 				children: [
 					{ index: true, element: <Reviews /> },
 					{ path: 'review/:reviewId', element: <Review /> },
+					{ path: 'reviewForm', element: <ReviewForm /> },
 				],
 			},
 			{
