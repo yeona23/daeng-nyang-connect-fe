@@ -184,11 +184,12 @@ export const ItemBox = styled.div<ResponsiveProps>`
 export const NewFamilyDetailContainer = styled.div<ResponsiveProps>`
 	display: flex;
 	flex-direction: ${(props) => (props.$isPc ? 'row' : 'column')};
-	gap: 50px;
-	width: ${(props) => (props.$isMaxWidth ? '1320px' : '100%')};
-	padding: ${(props) => (props.$isMaxWidth ? '0' : '0 30px')};
-	margin: 70px auto 0 auto;
-	font-size: 21px;
+	gap: ${(props) => (props.$isMobile ? '15px' : '50px')};
+	width: ${(props) => (props.$isMaxWidth ? '100%' : '1320px')};
+	padding: ${(props) => (props.$isMaxWidth ? '0 30px' : '0')};
+	margin: ${(props) =>
+		props.$isMobile ? '70px auto 150px auto' : '120px auto 150px auto'};
+	font-size: ${(props) => (props.$isMobile ? '12px' : '20px')};
 
 	& > div:last-child {
 		width: ${(props) => (props.$isPc ? 'calc(100% - 550px)' : '100%')};
@@ -203,7 +204,7 @@ export const NewFamilyDetailContainer = styled.div<ResponsiveProps>`
 		border-radius: 5px;
 		background: var(--color-light-salmon);
 		color: var(--color-peach);
-		font-size: 20px;
+		font-size: ${(props) => (props.$isMobile ? '12px' : '20px')};
 		cursor: pointer;
 	}
 	& button:hover {
@@ -240,13 +241,13 @@ export const DetailImageBox = styled.div<ResponsiveProps>`
 	}
 `;
 
-export const UserThumbnail = styled.div`
+export const UserThumbnail = styled.div<ResponsiveProps>`
 	display: flex;
 	align-items: center;
 	gap: 10px;
 	position: relative;
 	padding-bottom: 10px;
-	border-bottom: 1px solid var(--color-deep-blue);
+	border-bottom: 1px solid var(--color-light-salmon);
 
 	& div:first-child {
 		width: 45px;
@@ -258,6 +259,7 @@ export const UserThumbnail = styled.div`
 
 	& h5 {
 		font-weight: 400;
+		font-size: ${(props) => (props.$isMobile ? '16px' : 'inherit')};
 	}
 
 	& img {
@@ -332,7 +334,7 @@ export const DetailSwiper = styled.div`
 	}
 
 	.swiper-slide {
-		height: 330px;
+		aspect-ratio: 1 / 1.05;
 		border-radius: 10px;
 		background: #fff;
 		overflow: hidden;

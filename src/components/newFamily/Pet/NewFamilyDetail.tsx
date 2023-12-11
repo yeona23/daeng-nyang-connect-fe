@@ -34,7 +34,12 @@ const NewFamilyDetail = () => {
 				$isTablet={$isTablet}
 				$isPc={$isPc}
 				$isMaxWidth={$isMaxWidth}>
-				<UserThumbnail className="user-box-mobile">
+				<UserThumbnail
+					$isMobile={$isMobile}
+					$isTablet={$isTablet}
+					$isPc={$isPc}
+					$isMaxWidth={$isMaxWidth}
+					className="user-box-mobile">
 					<div>
 						<img src="/assets/animal2.jpg" alt="" />
 					</div>
@@ -64,7 +69,12 @@ const NewFamilyDetail = () => {
 					/>
 				</DetailImageBox>
 				<div>
-					<UserThumbnail className="user-box-pc">
+					<UserThumbnail
+						$isMobile={$isMobile}
+						$isTablet={$isTablet}
+						$isPc={$isPc}
+						$isMaxWidth={$isMaxWidth}
+						className="user-box-pc">
 						<div>
 							<img src="/assets/animal2.jpg" alt="" />
 						</div>
