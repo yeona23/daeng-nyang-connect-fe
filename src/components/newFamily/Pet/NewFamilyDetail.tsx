@@ -27,6 +27,12 @@ const NewFamilyDetail = () => {
 		setClickedBookmark((prev) => !prev);
 	};
 
+	const getMoreBtnSize = () => {
+		if ($isMobile) return 20;
+		if ($isTablet) return 30;
+		if ($isPc) return 30;
+	};
+
 	return (
 		<div>
 			<NewFamilyDetailContainer
@@ -46,7 +52,7 @@ const NewFamilyDetail = () => {
 					<h5>iamzipsa</h5>
 					<RiMore2Line
 						color="var(--color-light-salmon"
-						size={30}
+						size={getMoreBtnSize()}
 						onClick={toggleDropdown}
 					/>
 					{isDropdownVisible && (
