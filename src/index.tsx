@@ -14,7 +14,7 @@ import Pet from './components/newFamily/Pet/Pet';
 import Review from './components/adoptionReviews/Review/Review';
 import Community from './pages/Community/Community';
 import MyPets from './pages/MyPets/MyPets';
-import MyPet from './components/community/MyPet/MyPet';
+import MyPet from './components/community/Mypet/Mypet';
 import Mates from './pages/Mates/Mates';
 import Mate from './components/community/Mate/Mate';
 import Losts from './pages/Losts/Losts';

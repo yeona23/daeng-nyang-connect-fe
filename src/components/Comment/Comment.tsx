@@ -1,4 +1,4 @@
-import { CommentForm } from '../community/MyPet/MyPetDetail/MyPetDetail';
+import { CommentForm } from './../community/Tip/TipDetail/TipDetail';
 import { CiUser } from 'react-icons/ci';
 import { CiMenuKebab } from 'react-icons/ci';
 import {
