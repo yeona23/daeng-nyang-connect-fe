@@ -47,6 +47,7 @@ export const CategoryTitle = styled.div<ResponsiveProps>`
 	& h1 {
 		font-size: ${(props) =>
 			props.$isPc ? '28px' : props.$isTablet ? '24px' : '16px'};
+		font-weight: 400;
 	}
 	& button {
 		width: ${(props) => (props.$isMobile ? '80px' : '150px')};
@@ -372,10 +373,11 @@ export const PetRegistrationForm = styled.div<ResponsiveProps>`
 	position: ${(props) => (props.$isPc ? 'unset' : 'absolute')};
 	top: 0;
 	left: 0;
-	width: ${(props) => (props.$isPc ? '1320px' : '100%')};
-	padding: ${(props) => (props.$isMaxWidth ? 'none' : '0 30px')};
-	margin: 0 auto;
+	width: ${(props) => (props.$isMaxWidth ? '100%' : '1320px')};
+	padding: ${(props) => (props.$isMaxWidth ? '0 30px' : 'none')};
+	margin: ${(props) => (props.$isPc ? '120px auto 150px auto' : '0 auto')};
 	background: #fff;
+	z-index: 1000;
 
 	& > div:last-child {
 		display: flex;
@@ -384,21 +386,22 @@ export const PetRegistrationForm = styled.div<ResponsiveProps>`
 	}
 
 	& h5 {
-		width: 80px;
-		margin-right: 30px;
+		width: ${(props) => (props.$isMobile ? '60px' : '80px')};
+		margin-right: ${(props) => (props.$isMobile ? '15px' : '30px')};
 		font-weight: 400;
+		font-size: ${(props) => (props.$isMobile ? '12px' : 'inherit')};
 	}
 
 	& button {
-		width: 420px;
-		padding: 5px;
-		margin-top: ${(props) => (props.$isPc ? '150px' : '60px')};
+		width: ${(props) => (props.$isMobile ? '80%' : '420px')};
+		padding: 4px;
+		margin-top: ${(props) => (props.$isPc ? '100px' : '30px')};
 		margin-bottom: ${(props) => (props.$isPc ? '0' : '30px')};
 		border: 1px solid var(--color-light-salmon);
 		border-radius: 5px;
 		background: var(--color-light-salmon);
 		color: var(--color-peach);
-		font-size: 16px;
+		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 		cursor: pointer;
 	}
 
@@ -417,16 +420,18 @@ export const FormText = styled.div<ResponsiveProps>`
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
+	font-size: ${(props) => (props.$isMobile ? '12px' : 'inherit')};
 
 	.text-box {
 		align-items: flex-start;
 	}
 
 	& textarea {
-		width: 90%;
-		height: 150px;
+		width: 87%;
+		height: ${(props) => (props.$isMobile ? '80px' : '150px')};
 		resize: none;
 		padding: 10px;
+		border: 1px solid var(--color-light-salmon);
 		outline: none;
 	}
 
@@ -441,6 +446,7 @@ export const FormText = styled.div<ResponsiveProps>`
 		width: 80%;
 		height: 30px;
 		padding-left: 10px;
+		border: 1px solid var(--color-light-salmon);
 		outline: none;
 	}
 

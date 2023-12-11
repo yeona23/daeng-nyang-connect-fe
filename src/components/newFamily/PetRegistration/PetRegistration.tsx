@@ -64,7 +64,7 @@ const PetRegistration = () => {
 					<div>
 						<h5>품종</h5>
 						<input type="text" name="breed" id="breed" required />
-						<h5>/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 나이</h5>
+						<h5>/&nbsp;&nbsp;&nbsp;&nbsp;나이</h5>
 						<input type="text" name="age" id="age" required />
 					</div>
 					<div>
