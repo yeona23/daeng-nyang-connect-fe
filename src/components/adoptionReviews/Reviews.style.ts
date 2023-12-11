@@ -115,24 +115,25 @@ export const CommentContainer = styled.div`
 	justify-content: space-between;
 `;
 
-export const CommentList = styled.div`
+export const CommentList = styled.div<ResponsiveProps>`
 	display: flex;
 	flex-direction: column;
 	flex: 1;
-	padding: 30px 0;
+	padding: ${(props) => (props.$isMobile ? '15px 0' : '30px 0')};
 	border: 1px solid var(--color-deep-blue);
 	border-left: none;
 	border-right: none;
 	font-size: 20px;
 `;
 
-export const CommentBox = styled.div`
+export const CommentBox = styled.div<ResponsiveProps>`
 	display: flex;
 	align-items: center;
+	font-size: ${(props) => (props.$isMobile ? '12px' : 'inherit')};
 
 	& div:first-child {
-		width: 45px;
-		height: 45px;
+		width: ${(props) => (props.$isMobile ? '30px' : '45px')};
+		height: ${(props) => (props.$isMobile ? '30px' : '45px')};
 		border-radius: 50%;
 		overflow: hidden;
 		cursor: pointer;
@@ -143,7 +144,7 @@ export const CommentBox = styled.div`
 	}
 
 	& h5 {
-		margin: 0 15px;
+		margin: ${(props) => (props.$isMobile ? '0 5px' : '0 15px')};
 		font-weight: 400;
 	}
 
@@ -152,36 +153,36 @@ export const CommentBox = styled.div`
 	}
 
 	& span {
-		font-size: 15px;
+		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 	}
 `;
 
-export const LikeContainer = styled.div`
+export const LikeContainer = styled.div<ResponsiveProps>`
 	display: flex;
 	align-items: center;
 	margin-top: 20px;
 	& p {
 		margin-left: 10px;
-		font-size: 16px;
+		font-size: ${(props) => (props.$isMobile ? '12px' : 'inherit')};
 	}
 `;
 
-export const CommentInputContainer = styled.div`
+export const CommentInputContainer = styled.div<ResponsiveProps>`
 	display: flex;
 	justify-content: space-between;
 	padding: 20px 0;
 
 	& input {
 		flex: 1;
-		padding: 5px 0;
+		padding: 4px 0;
 		border: none;
 		outline-color: var(--color-light-salmon);
 	}
 
 	& input::placeholder {
 		color: var(--color-light-blue);
-		font-size: 16px;
 		font-weight: 400;
+		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 	}
 
 	& button {
@@ -192,6 +193,6 @@ export const CommentInputContainer = styled.div`
 		border: none;
 		background: none;
 		color: var(--color-light-salmon);
-		font-size: 16px;
+		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 	}
 `;
