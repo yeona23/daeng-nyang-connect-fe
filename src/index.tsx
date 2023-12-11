@@ -10,7 +10,6 @@ import Users from './pages/Users/Users';
 import ChatBox from './pages/ChatBox/ChatBox';
 import NewFamily from './pages/NewFamily/NewFamily';
 import AdoptionReviews from './pages/AdoptionReviews/AdoptionReviews';
-import Pet from './components/newFamily/Pet/Pet';
 import Review from './components/adoptionReviews/Review/Review';
 import Community from './pages/Community/Community';
 import MyPets from './pages/MyPets/MyPets';
@@ -33,7 +32,6 @@ import store from './store/store';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import PetRegistration from './components/newFamily/PetRegistration/PetRegistration';
-import NewFamilyList from './components/newFamily/Family/NewFamilyList';
 import NewFamilyDetail from './components/newFamily/Pet/NewFamilyDetail';
 import ReviewForm from './components/adoptionReviews/ReviewForm/ReviewForm';
 
