@@ -76,7 +76,10 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 									: '#ffffff70'
 							}
 							size={getBookmarkSize()}
-							onClick={() => clickBookmarkHandler(item.id)}
+							onClick={(e) => {
+								e.stopPropagation();
+								clickBookmarkHandler(item.id);
+							}}
 						/>
 					</div>
 					<div>
