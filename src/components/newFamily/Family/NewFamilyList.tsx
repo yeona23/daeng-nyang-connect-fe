@@ -52,9 +52,9 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 	};
 
 	const getBookmarkSize = () => {
-		if ($isMobile) return 20;
+		if ($isMobile) return 25;
 		if ($isTablet) return 30;
-		if ($isPc) return 40;
+		if ($isPc) return 30;
 	};
 
 	return (
@@ -65,7 +65,8 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 					$isTablet={$isTablet}
 					$isPc={$isPc}
 					$isMaxWidth={$isMaxWidth}
-					key={item.id}>
+					key={item.id}
+					onClick={() => goToDetailPage(item.id, generateImgUrl(item.index))}>
 					<div>
 						<img src={generateImgUrl(item.index)} alt={`adoption${item.id}`} />
 						<BsBookmarkFill
