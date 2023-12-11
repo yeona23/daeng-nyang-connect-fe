@@ -14,7 +14,7 @@ import Pet from './components/newFamily/Pet/Pet';
 import Review from './components/adoptionReviews/Review/Review';
 import Community from './pages/Community/Community';
 import MyPets from './pages/MyPets/MyPets';
-import Mypet from './components/community/Mypet/Mypet';
+import MyPet from './components/community/Mypet/Mypet';
 import Mates from './pages/Mates/Mates';
 import Mate from './components/community/Mate/Mate';
 import Losts from './pages/Losts/Losts';
@@ -33,6 +33,10 @@ import store from './store/store';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import ChatRoom from './components/chat/chatRoom/ChatRoom';
+import PetRegistration from './components/newFamily/PetRegistration/PetRegistration';
+import NewFamilyList from './components/newFamily/Family/NewFamilyList';
+import NewFamilyDetail from './components/newFamily/Pet/NewFamilyDetail';
+import ReviewForm from './components/adoptionReviews/ReviewForm/ReviewForm';
 
 const router = createBrowserRouter([
 	{
@@ -62,7 +66,8 @@ const router = createBrowserRouter([
 				element: <NewFamily />,
 				children: [
 					{ index: true, element: <Family /> },
-					{ path: 'pet/:petId', element: <Pet /> },
+					{ path: 'pet/:petId', element: <NewFamilyDetail /> },
+					{ path: 'petRegistration', element: <PetRegistration /> },
 				],
 			},
 			{
@@ -71,6 +76,7 @@ const router = createBrowserRouter([
 				children: [
 					{ index: true, element: <Reviews /> },
 					{ path: 'review/:reviewId', element: <Review /> },
+					{ path: 'reviewForm', element: <ReviewForm /> },
 				],
 			},
 			{
@@ -82,7 +88,7 @@ const router = createBrowserRouter([
 						element: <MyPets />,
 						children: [
 							{ index: true, element: <MyPetRoot /> },
-							{ path: 'myPet:/myPetId', element: <Mypet /> },
+							{ path: 'myPet/:myPetId', element: <MyPet /> },
 						],
 					},
 					{
