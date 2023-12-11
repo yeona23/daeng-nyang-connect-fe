@@ -50,7 +50,11 @@ const NewFamilyDetail = () => {
 						onClick={toggleDropdown}
 					/>
 					{isDropdownVisible && (
-						<MoreDropdown>
+						<MoreDropdown
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
 							<li>수정하기</li>
 							<li>삭제하기</li>
 						</MoreDropdown>
@@ -85,7 +89,11 @@ const NewFamilyDetail = () => {
 							onClick={toggleDropdown}
 						/>
 						{isDropdownVisible && (
-							<MoreDropdown>
+							<MoreDropdown
+								$isMobile={$isMobile}
+								$isTablet={$isTablet}
+								$isPc={$isPc}
+								$isMaxWidth={$isMaxWidth}>
 								<li>수정하기</li>
 								<li>삭제하기</li>
 							</MoreDropdown>

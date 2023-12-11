@@ -200,7 +200,7 @@ export const NewFamilyDetailContainer = styled.div<ResponsiveProps>`
 
 	& button {
 		width: 100%;
-		padding: 5px;
+		padding: 4px;
 		margin-top: 20px;
 		border: 1px solid var(--color-light-salmon);
 		border-radius: 5px;
@@ -252,8 +252,8 @@ export const UserThumbnail = styled.div<ResponsiveProps>`
 	border-bottom: 1px solid var(--color-light-salmon);
 
 	& div:first-child {
-		width: 45px;
-		height: 45px;
+		width: ${(props) => (props.$isMobile ? '30px' : '45px')};
+		height: ${(props) => (props.$isMobile ? '30px' : '45px')};
 		border-radius: 50%;
 		overflow: hidden;
 		cursor: pointer;
@@ -275,17 +275,17 @@ export const UserThumbnail = styled.div<ResponsiveProps>`
 	}
 `;
 
-export const MoreDropdown = styled.ul`
+export const MoreDropdown = styled.ul<ResponsiveProps>`
 	display: flex;
 	flex-direction: column;
 	position: absolute;
 	right: 0px;
-	top: 40px;
-	width: 120px;
-	height: 85px;
+	top: ${(props) => (props.$isMobile ? '30px' : '40px')};
+	width: ${(props) => (props.$isMobile ? '96px' : '120px')};
+	height: ${(props) => (props.$isMobile ? '64px' : '85px')};
 	border: 1px solid var(--color-light-salmon);
 	background: #fff;
-	font-size: 16px;
+	font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 	z-index: 10;
 
 	& li {
