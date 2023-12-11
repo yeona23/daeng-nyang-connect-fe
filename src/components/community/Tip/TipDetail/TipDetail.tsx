@@ -1,3 +1,4 @@
+import { useResponsive } from '../../../../hooks/useResponsive';
 import Comment from '../../../Comment/Comment';
 import RegisterCommentForm from '../../../Comment/RegisterCommentForm';
 import DetailUserNav from '../../DetailUserNav/DetailUserNav';
@@ -40,22 +41,16 @@ const createRandomComments = (): CommentForm[] => {
 
 const TipDetail = () => {
 	const commentsList = createRandomComments();
+	const { $isMobile, $isTablet } = useResponsive();
 
 	return (
 		<div>
-			<Title>동물 병원 도그마루 메디컬 센터</Title>
+			<Title $isMobile={$isMobile} $isTablet={$isTablet}>
+				동물 병원 도그마루 메디컬 센터
+			</Title>
 			<DetailUserNav />
 			<TextBox>
-				<Paragraph>
-					동물병원 도그마루 메디컬센터 <br />- 강아지중성화수술
-					고양이중성화수술비용 강아지피부병 강아지예방접종 강아지슬개골탈구증상
-					강아지중성
-					<br />
-					동물병원 도그마루 메디컬센터 <br /> - 강아지중성화수술
-					고양이중성화수술비용 강아지피부병 강아지예방접종 강아지슬개골탈구증상
-					강아지중성 <br />
-				</Paragraph>
-				<Paragraph>
+				<Paragraph $isMobile={$isMobile} $isTablet={$isTablet}>
 					동물병원 도그마루 메디컬센터 <br />- 강아지중성화수술
 					고양이중성화수술비용 강아지피부병 강아지예방접종 강아지슬개골탈구증상
 					강아지중성
@@ -65,7 +60,7 @@ const TipDetail = () => {
 					강아지중성 <br />
 				</Paragraph>
 			</TextBox>
-			<CommentWrap>
+			<CommentWrap $isMobile={$isMobile}>
 				<SubTitle>댓글</SubTitle>
 				<ul>
 					{commentsList.map((list) => (

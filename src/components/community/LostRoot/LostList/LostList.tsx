@@ -37,7 +37,9 @@ const LostList = ({ list }: LostPetProps) => {
 				<p>{list.text}</p>
 			</TextWrap>
 			<ButtonWrap>
-				<Button>채팅하기</Button>
+				<Button $isMobile={$isMobile} $isTablet={$isTablet}>
+					채팅하기
+				</Button>
 			</ButtonWrap>
 		</LostLi>
 	);

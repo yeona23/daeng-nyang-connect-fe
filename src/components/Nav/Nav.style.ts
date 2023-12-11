@@ -31,7 +31,8 @@ export const HeaderContenstDiv = styled.div<NavProps>`
 	width: 100%;
 	height: 100%;
 	margin: auto;
-	padding: ${(props) => (props.$isMaxWidth ? '0 30px' : null)};
+	padding: ${(props) =>
+		props.$isMobile ? '0 10px' : props.$isMaxWidth ? '0 30px' : '0'};
 `;
 export const HeaderNav = styled.nav`
 	display: flex;

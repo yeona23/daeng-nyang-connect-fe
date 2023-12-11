@@ -13,31 +13,39 @@ export const MyPetLi = styled.li<NavOptionProps>`
 	align-items: center;
 
 	& img {
-		width: ${(props) => (props.$isMobile ? '80%' : '100%')};
+		width: 100%;
+		border-radius: 8px;
+		transition: transform 0.7s ease;
 		cursor: pointer;
+	}
+
+	& img:hover {
+		transform: scale(1.05);
 	}
 `;
 
 export const ImageWrap = styled.div`
 	display: flex;
 	justify-content: center;
+	border-radius: 8px;
+	overflow: hidden;
 `;
 
 export const UserWrap = styled.div<NavOptionProps>`
 	display: flex;
 	justify-content: start;
 	align-items: center;
-	width: ${(props) => (props.$isMobile ? '80%' : '100%')};
-	margin-top: 10px;
+	width: 100%;
+	margin: 8px 0px 0px 8px;
 
 	& div {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		width: ${(props) =>
-			props.$isTablet ? '28px' : props.$isMobile ? '32px' : '30px'};
+			props.$isTablet ? '28px' : props.$isMobile ? '28px' : '30px'};
 		height: ${(props) =>
-			props.$isTablet ? '28px' : props.$isMobile ? '32px' : '30px'};
+			props.$isTablet ? '28px' : props.$isMobile ? '28px' : '30px'};
 		margin-right: 8px;
 		border: 1px solid black;
 		border-radius: 50%;
@@ -46,6 +54,6 @@ export const UserWrap = styled.div<NavOptionProps>`
 
 	& span {
 		font-size: ${(props) =>
-			props.$isTablet ? '14px' : props.$isMobile ? '18px' : '16px'};
+			props.$isTablet ? '14px' : props.$isMobile ? '14px' : '16px'};
 	}
 `;

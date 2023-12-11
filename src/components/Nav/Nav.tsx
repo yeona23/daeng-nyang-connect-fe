@@ -25,7 +25,9 @@ const Nav = () => {
 	const location = useLocation();
 	const { $isMaxWidth, $isMobile } = useResponsive();
 	const [mMenuIsOpen, setmMenuIsOpen] = useState(false);
+
 	const scrollProps = scrollNav() ? { isHome: 'home' } : {};
+
 	const id = 3;
 
 	const mMenuClickHandler = () => {
@@ -36,9 +38,11 @@ const Nav = () => {
 
 	return (
 		<>
-			{mMenuIsOpen && <MobileMenuDrawer setmMenuIsOpen={setmMenuIsOpen} />}
+			{$isMobile && mMenuIsOpen && (
+				<MobileMenuDrawer setmMenuIsOpen={setmMenuIsOpen} />
+			)}
 			<HeaderDiv {...scrollProps} $isMobile={$isMobile}>
-				<HeaderContenstDiv $isMaxWidth={$isMaxWidth}>
+				<HeaderContenstDiv $isMaxWidth={$isMaxWidth} $isMobile={$isMobile}>
 					<HeaderNav>
 						<LogoH1 $isMobile={$isMobile}>
 							<NavLink to="/">
