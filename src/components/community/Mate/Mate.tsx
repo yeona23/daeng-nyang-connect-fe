@@ -1,5 +1,12 @@
+import { Article } from './Mate.style';
+import MateDetail from './MateDetail/MateDetail';
+
 const Mate = () => {
-	return <div>Mate</div>;
+	return (
+		<Article>
+			<MateDetail />
+		</Article>
+	);
 };
 
 export default Mate;
