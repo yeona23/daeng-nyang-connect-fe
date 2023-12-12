@@ -57,7 +57,7 @@ export const LikeWrap = styled.div`
 export const LikeCount = styled.div`
 	min-width: 45px;
 	min-height: 45px;
-	padding: 8px 8px;
+	padding: 4px 8px;
 	margin-left: 8px;
 	border-radius: 50%;
 	color: white;

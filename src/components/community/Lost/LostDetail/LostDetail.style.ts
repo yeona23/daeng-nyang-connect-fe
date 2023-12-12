@@ -5,9 +5,9 @@ interface NavOptionProps {
 	$isMobile?: boolean;
 }
 
-export const CommentWrap = styled.div`
+export const CommentWrap = styled.div<NavOptionProps>`
 	width: 100%;
-	padding: 8px 16px;
+	padding: ${(props) => (props.$isMobile ? '0px' : '8px 16px')};
 `;
 
 export const ImageAndTextWrap = styled.div<NavOptionProps>`
@@ -44,7 +44,7 @@ export const TextBox = styled.div<NavOptionProps>`
 	& h3 {
 		margin-bottom: 20px;
 		font-size: ${(props) =>
-			props.$isTablet ? '18px' : props.$isMobile ? '22px' : '20px'};
+			props.$isTablet ? '18px' : props.$isMobile ? '16px' : '20px'};
 		font-weight: 400;
 	}
 
@@ -56,11 +56,15 @@ export const TextBox = styled.div<NavOptionProps>`
 
 	& p {
 		padding-top: 8px;
+		font-size: ${(props) =>
+			props.$isTablet ? '14px' : props.$isMobile ? '12px' : '16px'};
 	}
 `;
 
-export const Text = styled.div`
+export const Text = styled.div<NavOptionProps>`
 	margin-left: 8px;
+	font-size: ${(props) =>
+		props.$isTablet ? '14px' : props.$isMobile ? '12px' : '16px'};
 	font-weight: 400;
 
 	& div {
@@ -77,23 +81,29 @@ export const PlaceWrap = styled.div`
 	margin-bottom: 12px;
 `;
 
-export const Place = styled.div`
+export const Place = styled.div<NavOptionProps>`
 	margin-left: 4px;
+	font-size: ${(props) =>
+		props.$isTablet ? '14px' : props.$isMobile ? '12px' : '16px'};
 	font-weight: 400;
 `;
 
-export const Description = styled.div`
+export const Description = styled.div<NavOptionProps>`
 	display: inline-block;
 	padding: 8px 12px;
 	border-radius: 6px;
 	background-color: var(--color-light-blue);
+	font-size: ${(props) =>
+		props.$isTablet ? '14px' : props.$isMobile ? '12px' : '16px'};
 	font-weight: 300;
 `;
 
-export const DescriptionSpan = styled.span`
+export const DescriptionSpan = styled.span<NavOptionProps>`
 	display: inline-block;
 	padding: 8px 12px;
 	border-radius: 6px;
 	background-color: var(--color-light-blue);
+	font-size: ${(props) =>
+		props.$isTablet ? '14px' : props.$isMobile ? '12px' : '16px'};
 	font-weight: 300;
 `;

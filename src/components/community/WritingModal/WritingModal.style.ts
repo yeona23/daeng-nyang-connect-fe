@@ -14,5 +14,5 @@ export const WritingModalSection = styled.section<NavOptionProps>`
 	height: ${(props) => (props.$isMobile ? '100%' : '690px')};
 	background-color: white;
 	border-radius: ${(props) => (props.$isMobile ? '0px' : '8px')};
-	z-index: 2;
+	z-index: 1000;
 `;

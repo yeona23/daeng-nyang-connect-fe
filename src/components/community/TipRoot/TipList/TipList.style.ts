@@ -9,7 +9,7 @@ export const TipLi = styled.li<NavOptionProps>`
 	display: flex;
 	list-style: none;
 	width: 100%;
-	padding: 16px 0px;
+	padding: 20px 0px;
 	border-bottom: 1px solid var(--color-peach);
 	font-size: ${(props) =>
 		props.$isMobile ? '12px' : props.$isTablet ? '14px' : '16px'};
@@ -22,7 +22,7 @@ export const TipLi = styled.li<NavOptionProps>`
 
 	& > div {
 		&:first-child {
-			flex: 6;
+			flex: 5;
 			padding-left: 10px;
 		}
 
@@ -37,7 +37,7 @@ export const TipLi = styled.li<NavOptionProps>`
 		}
 
 		&:last-child {
-			flex: 1;
+			flex: 1.5;
 			text-align: center;
 		}
 	}

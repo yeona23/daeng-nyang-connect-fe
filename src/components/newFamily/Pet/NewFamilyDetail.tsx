@@ -27,6 +27,12 @@ const NewFamilyDetail = () => {
 		setClickedBookmark((prev) => !prev);
 	};
 
+	const getMoreBtnSize = () => {
+		if ($isMobile) return 20;
+		if ($isTablet) return 30;
+		if ($isPc) return 30;
+	};
+
 	return (
 		<div>
 			<NewFamilyDetailContainer
@@ -34,18 +40,27 @@ const NewFamilyDetail = () => {
 				$isTablet={$isTablet}
 				$isPc={$isPc}
 				$isMaxWidth={$isMaxWidth}>
-				<UserThumbnail className="user-box-mobile">
+				<UserThumbnail
+					$isMobile={$isMobile}
+					$isTablet={$isTablet}
+					$isPc={$isPc}
+					$isMaxWidth={$isMaxWidth}
+					className="user-box-mobile">
 					<div>
 						<img src="/assets/animal2.jpg" alt="" />
 					</div>
 					<h5>iamzipsa</h5>
 					<RiMore2Line
 						color="var(--color-light-salmon"
-						size={30}
+						size={getMoreBtnSize()}
 						onClick={toggleDropdown}
 					/>
 					{isDropdownVisible && (
-						<MoreDropdown>
+						<MoreDropdown
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
 							<li>수정하기</li>
 							<li>삭제하기</li>
 						</MoreDropdown>
@@ -64,7 +79,12 @@ const NewFamilyDetail = () => {
 					/>
 				</DetailImageBox>
 				<div>
-					<UserThumbnail className="user-box-pc">
+					<UserThumbnail
+						$isMobile={$isMobile}
+						$isTablet={$isTablet}
+						$isPc={$isPc}
+						$isMaxWidth={$isMaxWidth}
+						className="user-box-pc">
 						<div>
 							<img src="/assets/animal2.jpg" alt="" />
 						</div>
@@ -75,7 +95,11 @@ const NewFamilyDetail = () => {
 							onClick={toggleDropdown}
 						/>
 						{isDropdownVisible && (
-							<MoreDropdown>
+							<MoreDropdown
+								$isMobile={$isMobile}
+								$isTablet={$isTablet}
+								$isPc={$isPc}
+								$isMaxWidth={$isMaxWidth}>
 								<li>수정하기</li>
 								<li>삭제하기</li>
 							</MoreDropdown>

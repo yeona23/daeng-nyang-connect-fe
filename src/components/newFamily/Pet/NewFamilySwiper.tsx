@@ -72,7 +72,7 @@ const NewFamilySwiper = () => {
 				autoplay={{ delay: 2500, disableOnInteraction: false }}
 				speed={3500}
 				spaceBetween={30}
-				slidesPerView={$isMaxWidth ? 5 : 4}
+				slidesPerView={$isMaxWidth ? 4 : 5}
 				slidesPerGroup={1}
 				slidesPerGroupSkip={1}
 				freeMode={true}

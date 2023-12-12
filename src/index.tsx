@@ -2,7 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+	Navigate,
+	RouterProvider,
+	createBrowserRouter,
+} from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
@@ -81,6 +85,10 @@ const router = createBrowserRouter([
 				path: 'community',
 				element: <Community />,
 				children: [
+					{
+						index: true,
+						element: <Navigate to="/community/myPets" />,
+					},
 					{
 						path: 'myPets',
 						element: <MyPets />,
