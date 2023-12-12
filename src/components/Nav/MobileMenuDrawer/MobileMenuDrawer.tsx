@@ -27,10 +27,10 @@ const MobileMenuDrawer = ({ setmMenuIsOpen }: MobileDrawerProps) => {
 							<img src="/assets/LOGO(footer).svg" alt="" />
 						</MobileDrawerH3>
 						<MobileDrawerFirstLi>
-							<Link to="/newFamily">로그인</Link>
+							<Link to="/login">로그인</Link>
 						</MobileDrawerFirstLi>
 						<MobileDrawerFirstLi>
-							<Link to="/newFamily">회원가입</Link>
+							<Link to="/register">회원가입</Link>
 						</MobileDrawerFirstLi>
 					</ul>
 				) : (

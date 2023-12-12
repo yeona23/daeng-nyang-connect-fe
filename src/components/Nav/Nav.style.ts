@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 
-
 interface NavProps {
 	isHome?: string;
 	$isMaxWidth?: boolean;
@@ -18,7 +17,7 @@ export const HeaderDiv = styled.div<NavProps>`
 	box-shadow: 0 0 10px 0 #9e848d50;
 	transition: all 0.3s ease-in-out;
 	${(props) =>
-		props.$isHome &&
+		props.isHome &&
 		!props.$isMobile &&
 		css`
 			background-color: rgba(255, 255, 255, 0.8);
@@ -32,7 +31,8 @@ export const HeaderContenstDiv = styled.div<NavProps>`
 	width: 100%;
 	height: 100%;
 	margin: auto;
-	padding: ${(props) => (props.$isMaxWidth ? '0 30px' : null)};
+	padding: ${(props) =>
+		props.$isMobile ? '0 10px' : props.$isMaxWidth ? '0 30px' : '0'};
 `;
 export const HeaderNav = styled.nav`
 	display: flex;
