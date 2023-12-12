@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { IoClose } from 'react-icons/io5';
 
+interface NavOptionProps {
+	$isTablet?: boolean;
+	$isMobile?: boolean;
+}
+
 export const ModalForm = styled.form`
 	height: 100%;
 	padding: 12px;
@@ -46,14 +51,16 @@ export const LabelWrap = styled.div`
 	margin-bottom: 10px;
 `;
 
-export const LabelTitle = styled.label`
+export const LabelTitle = styled.label<NavOptionProps>`
 	width: 20%;
+	font-size: ${(props) => (props.$isMobile ? '14px' : '16px')};
 	font-weight: 400;
 `;
 
-export const InputWrap = styled.div`
+export const InputWrap = styled.div<NavOptionProps>`
 	display: flex;
 	align-items: center;
+	font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 
 	& div {
 		margin-left: 8px;
@@ -89,10 +96,10 @@ export const ButtonWrap = styled.div`
 	}
 `;
 
-export const TextInput = styled.input`
+export const TextInput = styled.input<NavOptionProps>`
 	width: 70%;
 	padding: 4px;
-	font-size: 16px;
+	font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 `;
 
 export const StyledIoClose = styled(IoClose)`

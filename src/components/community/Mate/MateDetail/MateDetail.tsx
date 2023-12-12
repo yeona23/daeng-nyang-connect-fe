@@ -59,14 +59,20 @@ const MateDetail = () => {
 				<TextBox $isMobile={$isMobile} $isTablet={$isTablet}>
 					<SubTitle>메이트 구하기</SubTitle>
 					<PlaceWrap>
-						<Description>지역</Description>
-						<Place>서울</Place>
+						<Description $isMobile={$isMobile} $isTablet={$isTablet}>
+							지역
+						</Description>
+						<Place $isMobile={$isMobile} $isTablet={$isTablet}>
+							서울
+						</Place>
 					</PlaceWrap>
-					<Description>상세 설명</Description>
+					<Description $isMobile={$isMobile} $isTablet={$isTablet}>
+						상세 설명
+					</Description>
 					<p>서울 강서구에서 같이 산책 하실 메이트 구해요</p>
 				</TextBox>
 			</ImageAndTextWrap>
-			<CommentWrap>
+			<CommentWrap $isMobile={$isMobile}>
 				<SubTitle>댓글</SubTitle>
 				<ul>
 					{commentsList.map((list) => (

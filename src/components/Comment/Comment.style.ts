@@ -38,13 +38,13 @@ export const TextWrap = styled.div<NavOptionProps>`
 	& div:nth-child(1) {
 		font-weight: bold;
 		font-size: ${(props) =>
-			props.$isTablet ? '16px' : props.$isMobile ? '15px' : '16px'};
+			props.$isTablet ? '16px' : props.$isMobile ? '14px' : '16px'};
 	}
 
 	& div:nth-child(2) {
 		margin-bottom: 12px;
 		font-size: ${(props) =>
-			props.$isTablet ? '15px' : props.$isMobile ? '14px' : '16px'};
+			props.$isTablet ? '15px' : props.$isMobile ? '12px' : '16px'};
 	}
 
 	& div:nth-child(3) {

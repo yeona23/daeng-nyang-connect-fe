@@ -44,11 +44,15 @@ const MateList = ({ list }: MateListProps) => {
 				onClick={() => moveToTheDetailPage(list.id)}
 				$isMobile={$isMobile}
 				$isTablet={$isTablet}>
-				<PlaceWrap>지역 : {list.place}</PlaceWrap>
+				<PlaceWrap $isMobile={$isMobile} $isTablet={$isTablet}>
+					지역 : {list.place}
+				</PlaceWrap>
 				<p>{list.text}</p>
 			</TextWrap>
 			<ButtonWrap>
-				<Button>채팅하기</Button>
+				<Button $isMobile={$isMobile} $isTablet={$isTablet}>
+					채팅하기
+				</Button>
 			</ButtonWrap>
 		</MateLi>
 	);

@@ -11,9 +11,9 @@ export const MyPetLists = styled.ul<NavOptionProps>`
 		props.$isTablet
 			? 'repeat(2, 1fr)'
 			: props.$isMobile
-			  ? 'repeat(1, 1fr)'
+			  ? 'repeat(2, 1fr)'
 			  : 'repeat(3, 1fr)'};
-	grid-gap: 20px;
+	grid-gap: 10px;
 	list-style: none;
 	width: 100%;
 	padding: 0;

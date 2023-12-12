@@ -20,6 +20,7 @@ import {
 	TitleAndButtonWrap,
 } from './WritingModalForm.style';
 import { useEffect, useState } from 'react';
+import { useResponsive } from '../../../../hooks/useResponsive';
 
 interface RootState {
 	community: CommunityState;
@@ -72,6 +73,8 @@ const WritingModalForm = ({ setIsPopUp }: CommunityNavProps) => {
 		dispatch(SET_INPUT_VALUE(updatedInputValue));
 	};
 
+	const { $isMobile } = useResponsive();
+
 	const radioChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 
@@ -110,8 +113,10 @@ const WritingModalForm = ({ setIsPopUp }: CommunityNavProps) => {
 					displayLabel === '댕냥 메이트' ||
 					displayLabel === '댕냥 미아센터') && (
 					<LabelWrap>
-						<LabelTitle htmlFor="category">카테고리</LabelTitle>
-						<InputWrap>
+						<LabelTitle htmlFor="category" $isMobile={$isMobile}>
+							카테고리
+						</LabelTitle>
+						<InputWrap $isMobile={$isMobile}>
 							<div>
 								<label
 									htmlFor={
@@ -212,53 +217,67 @@ const WritingModalForm = ({ setIsPopUp }: CommunityNavProps) => {
 				{(displayLabel === '댕냥 메이트' ||
 					displayLabel === '댕냥 미아센터') && (
 					<LabelWrap>
-						<LabelTitle htmlFor="place">장소</LabelTitle>
+						<LabelTitle htmlFor="place" $isMobile={$isMobile}>
+							장소
+						</LabelTitle>
 						<TextInput
 							type="text"
 							name="place"
 							value={inputValue.place}
 							onChange={inputChangeHandler}
+							$isMobile={$isMobile}
 						/>
 					</LabelWrap>
 				)}
 				{displayLabel === '댕냥 미아센터' && (
 					<LabelWrap>
-						<LabelTitle htmlFor="lost_date">날짜</LabelTitle>
+						<LabelTitle htmlFor="lost_date" $isMobile={$isMobile}>
+							날짜
+						</LabelTitle>
 						<TextInput
 							type="date"
 							name="lost_date"
 							value={inputValue.lost_date}
 							onChange={inputChangeHandler}
+							$isMobile={$isMobile}
 						/>
 					</LabelWrap>
 				)}
 				{displayLabel === '댕냥 미아센터' && (
 					<LabelWrap>
-						<LabelTitle htmlFor="lost_time">시간</LabelTitle>
+						<LabelTitle htmlFor="lost_time" $isMobile={$isMobile}>
+							시간
+						</LabelTitle>
 						<TextInput
 							type="time"
 							name="lost_time"
 							value={inputValue.lost_time}
 							onChange={inputChangeHandler}
+							$isMobile={$isMobile}
 						/>
 					</LabelWrap>
 				)}
 				{displayLabel === '댕냥 꿀팁' && (
 					<LabelWrap>
-						<LabelTitle htmlFor="title">제목</LabelTitle>
+						<LabelTitle htmlFor="title" $isMobile={$isMobile}>
+							제목
+						</LabelTitle>
 						<TextInput
 							type="text"
 							name="title"
 							value={inputValue.title}
 							onChange={inputChangeHandler}
+							$isMobile={$isMobile}
 						/>
 					</LabelWrap>
 				)}
 				{(displayLabel === '나의 댕냥이' ||
 					displayLabel === '댕냥 미아센터') && (
 					<LabelWrap>
-						<LabelTitle htmlFor="kind">반려동물 종류</LabelTitle>
-						<InputWrap>
+						<LabelTitle htmlFor="kind" $isMobile={$isMobile}>
+							반려동물 종류
+						</LabelTitle>
+						<InputWrap $isMobile={$isMobile}>
 							<div>
 								<label htmlFor="dog">강아지</label>
 								<CheckInput
@@ -294,19 +313,24 @@ const WritingModalForm = ({ setIsPopUp }: CommunityNavProps) => {
 				)}
 				{displayLabel === '댕냥 미아센터' && (
 					<LabelWrap>
-						<LabelTitle htmlFor="breed">품종</LabelTitle>
+						<LabelTitle htmlFor="breed" $isMobile={$isMobile}>
+							품종
+						</LabelTitle>
 						<TextInput
 							type="text"
 							name="breed"
 							value={inputValue.breed}
 							onChange={inputChangeHandler}
+							$isMobile={$isMobile}
 						/>
 					</LabelWrap>
 				)}
 				{displayLabel === '댕냥 미아센터' && (
 					<LabelWrap>
-						<LabelTitle htmlFor="kind">성별</LabelTitle>
-						<InputWrap>
+						<LabelTitle htmlFor="kind" $isMobile={$isMobile}>
+							성별
+						</LabelTitle>
+						<InputWrap $isMobile={$isMobile}>
 							<div>
 								<label htmlFor="male">남자</label>
 								<CheckInput
@@ -342,41 +366,52 @@ const WritingModalForm = ({ setIsPopUp }: CommunityNavProps) => {
 				)}
 				{displayLabel === '댕냥 미아센터' && (
 					<LabelWrap>
-						<LabelTitle htmlFor="color">색깔</LabelTitle>
+						<LabelTitle htmlFor="color" $isMobile={$isMobile}>
+							색깔
+						</LabelTitle>
 						<TextInput
 							type="text"
 							name="color"
 							value={inputValue.color}
 							onChange={inputChangeHandler}
+							$isMobile={$isMobile}
 						/>
 					</LabelWrap>
 				)}
 				{displayLabel === '댕냥 미아센터' && (
 					<LabelWrap>
-						<LabelTitle htmlFor="mobile">전화번호</LabelTitle>
+						<LabelTitle htmlFor="mobile" $isMobile={$isMobile}>
+							전화번호
+						</LabelTitle>
 						<TextInput
 							type="tel"
 							placeholder="000-0000-0000 형식으로 입력해주세요."
 							name="mobile"
 							value={inputValue.mobile}
 							onChange={inputChangeHandler}
+							$isMobile={$isMobile}
 						/>
 					</LabelWrap>
 				)}
 				{displayLabel === '댕냥 미아센터' && (
 					<LabelWrap>
-						<LabelTitle htmlFor="reward">사례금</LabelTitle>
+						<LabelTitle htmlFor="reward" $isMobile={$isMobile}>
+							사례금
+						</LabelTitle>
 						<TextInput
 							type="number"
 							step="10000"
 							name="reward"
 							value={inputValue.reward}
 							onChange={inputChangeHandler}
+							$isMobile={$isMobile}
 						/>
 					</LabelWrap>
 				)}
 				<LabelWrap>
-					<LabelTitle htmlFor="text">상세 설명</LabelTitle>
+					<LabelTitle htmlFor="text" $isMobile={$isMobile}>
+						상세 설명
+					</LabelTitle>
 					<textarea
 						name="text"
 						id="text"
@@ -384,7 +419,9 @@ const WritingModalForm = ({ setIsPopUp }: CommunityNavProps) => {
 						onChange={textareaChangeHandler}></textarea>
 				</LabelWrap>
 				<LabelWrap>
-					<LabelTitle htmlFor="images">이미지 등록</LabelTitle>
+					<LabelTitle htmlFor="images" $isMobile={$isMobile}>
+						이미지 등록
+					</LabelTitle>
 					<input type="file" multiple />
 				</LabelWrap>
 			</InfoWrap>

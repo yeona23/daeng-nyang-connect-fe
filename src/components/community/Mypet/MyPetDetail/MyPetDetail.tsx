@@ -56,11 +56,13 @@ const MyPetDetail = () => {
 				</ImageWrap>
 				<TextBox $isMobile={$isMobile} $isTablet={$isTablet}>
 					<h3>자랑하기</h3>
-					<Description>상세 설명</Description>
+					<Description $isMobile={$isMobile} $isTablet={$isTablet}>
+						상세 설명
+					</Description>
 					<p>내 고양이는 요...</p>
 				</TextBox>
 			</ImageAndTextWrap>
-			<CommentWrap>
+			<CommentWrap $isMobile={$isMobile}>
 				<SubTitle>댓글</SubTitle>
 				<ul>
 					{commentsList.map((list) => (
