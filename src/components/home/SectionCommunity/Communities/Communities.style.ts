@@ -28,13 +28,17 @@ export const CommunityImgDiv = styled.div<Props>`
 		props.$isTablet ? '180px' : props.$isMobile ? '100%' : '240px'};
 	margin: 0 auto 24px;
 	border-radius: ${(props) => (props.$isMobile ? null : '50%')};
-	background: url('${(props) => props.img}') no-repeat
-		${(props) => (props.img && props.img.includes('2') ? '30%' : null)} center /
-		auto 100%;
-	transition: all 0.2s ease-in;
 	overflow: hidden;
 	&:hover {
-		background-size: auto 110%;
+		img {
+			scale: 1.1;
+		}
+	}
+	img {
+		position: relative;
+		left: -55px;
+		height: 100%;
+		transition: all 0.2s ease-in;
 	}
 `;
 export const CommunityTitleDt = styled.dt<Props>`
