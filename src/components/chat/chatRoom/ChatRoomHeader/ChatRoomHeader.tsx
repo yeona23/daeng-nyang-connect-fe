@@ -7,13 +7,26 @@ import {
 } from './ChatRoomHeader.style';
 import { LuMoreVertical } from 'react-icons/lu';
 import { IoIosArrowBack } from 'react-icons/io';
+import { useNavigate } from 'react-router';
 
 const ChatRoomHeader = () => {
+	const navigate = useNavigate();
 	const { $isMobile } = useResponsive();
+	const id = 3;
+
+	const backToChatListHandler = () => {
+		navigate(`/users/${id}/chatBox`);
+	};
+
 	return (
 		<ChatRoomHeaderDiv $isMobile={$isMobile}>
 			<ChatRoomHeaderBdDiv>
-				{$isMobile && <IoIosArrowBack className="back-icon" />}
+				{$isMobile && (
+					<IoIosArrowBack
+						className="back-icon"
+						onClick={backToChatListHandler}
+					/>
+				)}
 				<UserDiv $isMobile={$isMobile}>
 					{!$isMobile && (
 						<UserImgDiv size="44px">

@@ -1,6 +1,7 @@
 import { MainSectionH2 } from './../Section.style';
 import {
 	CardListUl,
+	FindNewMoreBtnDiv,
 	FindNewSection,
 	FindNewTitleDiv,
 } from './SectionFindNew.style';
@@ -17,21 +18,19 @@ const SectionFindNew = () => {
 		navigate('/newFamily');
 	};
 
-	const FindNewMorePadding = $isMobile ? '8px 20px' : '10px 30px';
 	return (
 		<FindNewSection $isMobile={$isMobile}>
 			<FindNewTitleDiv $isMaxWidth={$isMaxWidth}>
 				<MainSectionH2 $isMobile={$isMobile}>새로운 가족 찾기</MainSectionH2>
-				<SalmonBtn
-					padding={FindNewMorePadding}
-					onClick={moveToNew}
-					$isMobile={$isMobile}>
-					더보기
-				</SalmonBtn>
 			</FindNewTitleDiv>
 			<CardListUl>
 				<FindNewList />
 			</CardListUl>
+			<FindNewMoreBtnDiv $isMobile={$isMobile}>
+				<SalmonBtn onClick={moveToNew} $isMobile={$isMobile}>
+					더보기
+				</SalmonBtn>
+			</FindNewMoreBtnDiv>
 		</FindNewSection>
 	);
 };

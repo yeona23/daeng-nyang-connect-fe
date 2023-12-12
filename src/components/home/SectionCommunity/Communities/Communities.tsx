@@ -19,10 +19,9 @@ const Communities = ({ to, title, img, children }: CommunityProps) => {
 	return (
 		<CommunityLi $isMobile={$isMobile}>
 			<Link to={to} className="li-link">
-				<CommunityImgDiv
-					$isMobile={$isMobile}
-					$isTablet={$isTablet}
-					img={img}></CommunityImgDiv>
+				<CommunityImgDiv $isMobile={$isMobile} $isTablet={$isTablet}>
+					<img src={img} alt="" />
+				</CommunityImgDiv>
 				<CommunityTextDl $isMobile={$isMobile}>
 					<CommunityTitleDt $isMobile={$isMobile}>{title}</CommunityTitleDt>
 					{!$isMobile && <dd>{children}</dd>}

@@ -11,7 +11,9 @@ type FindNewProps = {
 const VerticalCard = ({ $isMobile }: FindNewProps) => {
 	return (
 		<CardDiv $isMobile={$isMobile}>
-			<CardImgDiv />
+			<CardImgDiv>
+				<img src="/assets/community2.jpg" alt="" />
+			</CardImgDiv>
 			<CardTextDiv>
 				<div>
 					<p>이름 : 나비</p>
