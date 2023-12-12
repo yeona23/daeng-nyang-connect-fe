@@ -30,7 +30,7 @@ export const ImgWrap = styled.div<NavOptionProps>`
 `;
 
 export const TextWrap = styled.div<NavOptionProps>`
-	height: 180px;
+	height: ${(props) => (props.$isMobile ? '130px' : '180px')};
 	padding: 16px;
 	font-size: ${(props) =>
 		props.$isTablet ? '15px' : props.$isMobile ? '12px' : '16px'};

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { IoIosSearch } from 'react-icons/io';
 import { FaPlus } from 'react-icons/fa';
 interface NavOptionProps {
+	$isMaxWidth?: boolean;
 	$isActive?: boolean;
 	$isTablet?: boolean;
 	$isMobile?: boolean;
@@ -12,23 +13,28 @@ export const TitleAndSearchWrap = styled.div<NavOptionProps>`
 	flex-direction: ${(props) => (props.$isMobile ? 'column' : 'row')};
 	align-items: center;
 	justify-content: space-between;
-	padding-left: ${(props) => (props.$isMobile ? '4px' : '20px')};
-	margin-top: ${(props) => (props.$isMobile ? '20px' : '100px')};
+	max-width: 1320px;
+	padding: ${(props) => (props.$isMobile ? '0 0 0 4px' : '0 0 20px 0')};
+	margin: ${(props) =>
+		props.$isMobile
+			? '70px 10px 0'
+			: props.$isMaxWidth
+			  ? '105px 30px 0'
+			  : '105px 0 0 0'};
 	border-bottom: 1px solid var(--color-light-salmon);
 `;
 
 export const TitleWrap = styled.div<NavOptionProps>`
-	margin-top: 10px;
 	margin-bottom: ${(props) => (props.$isMobile ? '10px' : '0px')};
 
 	& span {
 		margin-right: 10px;
-		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
+		font-size: ${(props) => (props.$isMobile ? '12px' : '20px')};
 	}
 
 	& span:nth-child(3) {
-		font-size: ${(props) =>
-			props.$isTablet ? '20px' : props.$isMobile ? '16px' : '24px'};
+		font-size: ${(props) => (props.$isMobile ? '16px' : '24px')};
+		font-weight: 400;
 	}
 `;
 
@@ -38,7 +44,7 @@ export const SearchWrap = styled.form<NavOptionProps>`
 	width: ${(props) =>
 		props.$isTablet ? '450px' : props.$isMobile ? '340px' : '500px'};
 	padding: 10px;
-	margin-bottom: ${(props) => (props.$isMobile ? '16px' : '4px')};
+	margin-bottom: ${(props) => (props.$isMobile ? '16px' : '0')};
 	border: 0.5px solid var(--color-light-salmon);
 	border-radius: 20px;
 
@@ -46,27 +52,33 @@ export const SearchWrap = styled.form<NavOptionProps>`
 		width: 70%;
 		border: transparent;
 		outline: none;
+		font-family: 'Noto Sans KR', sans-serif;
 		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 	}
 `;
 
 export const StyledIoIosSearch = styled(IoIosSearch)`
 	cursor: pointer;
-	width: 20px;
-	height: 20px;
+	width: 24px;
+	height: 24px;
+	vertical-align: -3px;
 `;
 
 export const Article = styled.article<NavOptionProps>`
 	display: flex;
 	flex-direction: ${(props) => (props.$isMobile ? 'column' : 'row')};
+	max-width: 1320px;
+	margin: ${(props) =>
+		props.$isMobile ? '0' : props.$isMaxWidth ? '0 30px' : null};
 `;
 
 export const Nav = styled.nav<NavOptionProps>`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: ${(props) => (props.$isMobile ? '100%' : '15%')};
+	width: ${(props) => (props.$isMobile ? 'calc(100% - 20px)' : '15%')};
 	min-height: ${(props) => (props.$isMobile ? '100%' : '100vh')};
+	margin: ${(props) => (props.$isMobile ? '0 10px' : '0')};
 	padding: ${(props) =>
 		props.$isTablet ? '10px' : props.$isMobile ? '0px' : '20px'};
 	border-right: ${(props) =>
@@ -75,7 +87,7 @@ export const Nav = styled.nav<NavOptionProps>`
 		props.$isMobile ? '1px solid var(--color-light-salmon)' : 'none'};
 
 	& div {
-		margin: 10px 0;
+		margin: 4px 0;
 		text-align: center;
 
 		& button:hover {
@@ -100,7 +112,7 @@ export const ButtonWrap = styled.div<NavOptionProps>`
 	display: flex;
 	width: 100%;
 	flex-direction: ${(props) => (props.$isMobile ? 'row' : 'column')};
-	justify-content: ${(props) => (props.$isMobile ? 'space-around' : '')};
+	justify-content: ${(props) => (props.$isMobile ? '' : '')};
 `;
 
 export const Button = styled.button<NavOptionProps>`
@@ -145,6 +157,7 @@ export const NavOptionButton = styled.button<NavOptionProps>`
 
 export const NavOptionText = styled.span<NavOptionProps>`
 	border-bottom: ${(props) => (props.$isActive ? '0.5px solid black' : 'none')};
+	font-weight: ${(props) => (props.$isActive ? '400' : null)};
 `;
 
 export const IoMenuWrap = styled.div`
