@@ -28,7 +28,7 @@ const MateList = ({ list }: MateListProps) => {
 	const { $isTablet, $isMobile } = useResponsive();
 
 	return (
-		<MateLi>
+		<MateLi $isMobile={$isMobile}>
 			<SubNav>
 				<UserWrap $isMobile={$isMobile} $isTablet={$isTablet}>
 					<div>

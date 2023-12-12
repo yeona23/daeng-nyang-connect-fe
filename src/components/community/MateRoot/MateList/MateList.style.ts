@@ -5,10 +5,10 @@ interface NavOptionProps {
 	$isMobile?: boolean;
 }
 
-export const MateLi = styled.li`
+export const MateLi = styled.li<NavOptionProps>`
 	display: flex;
 	flex-direction: column;
-	height: 250px;
+	height: ${(props) => (props.$isMobile ? '200px' : '250px')};
 	padding: 16px;
 	border: 1px solid var(--color-peach);
 	border-radius: 8px;

@@ -34,7 +34,7 @@ const CommunityNav = ({ setIsPopUp, isPopUp }: CommunityNavProps) => {
 
 	const dispatch = useDispatch();
 
-	const { $isTablet, $isMobile } = useResponsive();
+	const { $isMaxWidth, $isTablet, $isMobile } = useResponsive();
 
 	const routeLabels: Record<string, string> = {
 		'/community/myPets': '나의 댕냥이',
@@ -63,7 +63,7 @@ const CommunityNav = ({ setIsPopUp, isPopUp }: CommunityNavProps) => {
 
 	return (
 		<>
-			<TitleAndSearchWrap $isMobile={$isMobile}>
+			<TitleAndSearchWrap $isMaxWidth={$isMaxWidth} $isMobile={$isMobile}>
 				{!$isMobile && (
 					<TitleWrap $isTablet={$isTablet} $isMobile={$isMobile}>
 						<span>댕냥 톡톡</span>
@@ -80,8 +80,11 @@ const CommunityNav = ({ setIsPopUp, isPopUp }: CommunityNavProps) => {
 					</SearchWrap>
 				</MenuAndSearchWrap>
 			</TitleAndSearchWrap>
-			<Article $isMobile={$isMobile}>
-				<Nav $isTablet={$isTablet} $isMobile={$isMobile}>
+			<Article $isMaxWidth={$isMaxWidth} $isMobile={$isMobile}>
+				<Nav
+					$isMaxWidth={$isMaxWidth}
+					$isTablet={$isTablet}
+					$isMobile={$isMobile}>
 					<ButtonWrap $isMobile={$isMobile}>
 						<NavOptionWrap $isMobile={$isMobile}>
 							<NavOption
