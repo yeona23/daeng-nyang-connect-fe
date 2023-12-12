@@ -9,7 +9,8 @@ interface ResponsiveProps {
 
 export const FindFamily = styled.div<ResponsiveProps>`
 	width: ${(props) => (props.$isMaxWidth ? '100%' : '1320px')};
-	padding: ${(props) => (props.$isMaxWidth ? '0 30px' : 'none')};
+	padding: ${(props) =>
+		props.$isMobile ? '0 10px' : props.$isMaxWidth ? '0 30px' : '0'};
 	margin: ${(props) =>
 		props.$isMobile ? '50px auto 100px auto' : '120px auto 150px auto'};
 
@@ -108,7 +109,9 @@ export const FilterItems = styled.div<ResponsiveProps>`
 	& select {
 		width: 100%;
 		padding: 4px;
-		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
+		border: 1px solid var(--color-light-salmon);
+		color: gray;
+		font-size: 12px;
 		outline: var(--color-light-salmon);
 	}
 
@@ -207,7 +210,8 @@ export const NewFamilyDetailContainer = styled.div<ResponsiveProps>`
 	flex-direction: ${(props) => (props.$isPc ? 'row' : 'column')};
 	gap: ${(props) => (props.$isMobile ? '15px' : '50px')};
 	width: ${(props) => (props.$isMaxWidth ? '100%' : '1320px')};
-	padding: ${(props) => (props.$isMaxWidth ? '0 30px' : '0')};
+	padding: ${(props) =>
+		props.$isMobile ? '0 10px' : props.$isMaxWidth ? '0 30px' : '0'};
 	margin: ${(props) =>
 		props.$isMobile ? '70px auto 150px auto' : '120px auto 150px auto'};
 	font-size: ${(props) => (props.$isMobile ? '12px' : '20px')};
@@ -394,7 +398,8 @@ export const PetRegistrationForm = styled.div<ResponsiveProps>`
 	top: 0;
 	left: 0;
 	width: ${(props) => (props.$isMaxWidth ? '100%' : '1320px')};
-	padding: ${(props) => (props.$isMaxWidth ? '0 30px' : 'none')};
+	padding: ${(props) =>
+		props.$isMobile ? '0 10px' : props.$isMaxWidth ? '0 30px' : '0'};
 	margin: ${(props) => (props.$isPc ? '120px auto 150px auto' : '0 auto')};
 	background: #fff;
 	z-index: 1000;
@@ -484,27 +489,19 @@ export const FormText = styled.div<ResponsiveProps>`
 		width: 30%;
 	}
 
-	& input[type='file'] {
-		display: none;
-	}
-
-	& label {
-		margin-right: 30px;
-	}
-
-	.custom-file-upload {
+	& input[type='file']::file-selector-button {
 		width: 100px;
 		padding: 4px;
 		border: 1px solid var(--color-light-salmon);
 		border-radius: 5px;
+		background: #fff;
 		font-size: 12px;
 		text-align: center;
 		cursor: pointer;
 	}
 
-	.custom-file-upload:hover {
-		background: var(--color-light-salmon);
-		color: var(--color-peach);
+	& label {
+		margin-right: 30px;
 	}
 
 	& select {
