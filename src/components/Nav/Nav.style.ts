@@ -1,13 +1,13 @@
 import styled, { css } from 'styled-components';
 
-type NavProps = {
+interface NavProps {
 	isHome?: string;
 	$isMaxWidth?: boolean;
 	$isMobile?: boolean;
-};
+}
 
 export const HeaderDiv = styled.div<NavProps>`
-	position: ${(props) => (props.$isMobile ? 'static' : 'fixed')};
+	position: fixed;
 	z-index: 999;
 	top: 0;
 	left: 0;
@@ -38,26 +38,14 @@ export const HeaderNav = styled.nav`
 	align-items: center;
 `;
 export const LogoH1 = styled.h1<NavProps>`
-	width: ${(props) => (props.$isMobile ? '70%' : null)};
+	width: ${(props) => (props.$isMobile ? '55%' : null)};
 	margin-right: 26px;
 	cursor: pointer;
 	img {
 		width: 100%;
 	}
 `;
-const MobileUl = css`
-	position: absolute;
-	z-index: 999;
-	top: 50px;
-	left: 0;
-	justify-content: center;
-	width: 100%;
-	height: 45px;
-	background-color: var(--color-light-salmon);
-	padding: 0 30px;
-`;
-export const NavUl = styled.ul<NavProps>`
-	${(props) => (props.$isMobile ? MobileUl : null)}
+export const NavUl = styled.ul`
 	display: flex;
 	align-items: center;
 `;
@@ -87,14 +75,14 @@ export const UtilDl = styled.dl`
 	justify-content: space-between;
 	align-items: center;
 `;
-export const UtilDd = styled.dd`
+export const UtilDd = styled.dd<NavProps>`
 	margin-left: 4px;
-	width: 28px;
-	height: 28px;
+	width: ${(props) => (props.$isMobile ? '22px' : '28px')};
+	height: ${(props) => (props.$isMobile ? '22px' : '28px')};
 	cursor: pointer;
 	svg {
 		width: 100%;
 		height: 100%;
-		stroke-width: 1.6;
+		stroke-width: ${(props) => (props.$isMobile ? '1.4' : '1.6')};
 	}
 `;
