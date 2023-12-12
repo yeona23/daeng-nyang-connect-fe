@@ -39,8 +39,7 @@ const ReviewList = () => {
 	};
 
 	const goToReviewPage = (reviewId: number, imageUrl: string) => {
-		const url = `review/${reviewId}`;
-		navigate(url, { state: { imageUrl } });
+		navigate(`/adoptionReviews/review/${reviewId}`, { state: { imageUrl } });
 	};
 
 	return (
@@ -55,7 +54,8 @@ const ReviewList = () => {
 					$isMobile={$isMobile}
 					$isTablet={$isTablet}
 					$isPc={$isPc}
-					$isMaxWidth={$isMaxWidth}>
+					$isMaxWidth={$isMaxWidth}
+					onClick={() => goToReviewPage(item.id, generateImgUrl(item.index))}>
 					<div>
 						<img src={generateImgUrl(item.index)} alt={`adoption${item.id}`} />
 					</div>
@@ -72,12 +72,16 @@ const ReviewList = () => {
 										: 'var(--color-light-blue)'
 								}
 								size={30}
-								onClick={() => clickLikeHandler(item.id)}
+								onClick={(e) => {
+									e.stopPropagation();
+									clickLikeHandler(item.id);
+								}}
 							/>
 							<button
-								onClick={() =>
-									goToReviewPage(item.id, generateImgUrl(item.index))
-								}>
+								onClick={(e) => {
+									e.stopPropagation;
+									goToReviewPage(item.id, generateImgUrl(item.index));
+								}}>
 								자세히 보기
 							</button>
 						</ButtonBox>

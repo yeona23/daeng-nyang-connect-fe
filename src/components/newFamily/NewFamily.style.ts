@@ -8,9 +8,12 @@ interface ResponsiveProps {
 }
 
 export const FindFamily = styled.div<ResponsiveProps>`
-	width: ${(props) => (props.$isMaxWidth ? '1320px' : '100%')};
-	padding: ${(props) => (props.$isMaxWidth ? 'none' : '0 30px')};
-	margin: 0 auto;
+	width: ${(props) => (props.$isMaxWidth ? '100%' : '1320px')};
+	padding: ${(props) =>
+		props.$isMobile ? '0 10px' : props.$isMaxWidth ? '0 30px' : '0'};
+	margin: ${(props) =>
+		props.$isMobile ? '50px auto 100px auto' : '120px auto 150px auto'};
+
 	& > div {
 		display: flex;
 		gap: 50px;
@@ -36,21 +39,23 @@ export const FindFamily = styled.div<ResponsiveProps>`
 export const CategoryTitle = styled.div<ResponsiveProps>`
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	width: 100%;
 	padding-bottom: 20px;
-	margin: 70px 0 50px 0;
+	margin: ${(props) => (props.$isMobile ? '70px 0 30px 0' : '70px 0 50px 0')};
 	border-bottom: 1px solid var(--color-light-salmon);
 
 	& h1 {
 		font-size: ${(props) =>
-			props.$isPc ? '36px' : props.$isTablet ? '24px' : '16px'};
+			props.$isPc ? '28px' : props.$isTablet ? '24px' : '16px'};
+		font-weight: 400;
 	}
 	& button {
-		width: 150px;
-		padding: 3px;
+		width: ${(props) => (props.$isMobile ? '80px' : '150px')};
+		padding: 4px;
 		border: 1px solid var(--color-light-salmon);
 		border-radius: 5px;
-		font-size: 16px;
+		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 	}
 	& button:hover {
 		background: var(--color-light-salmon);
@@ -69,7 +74,7 @@ export const FilterItems = styled.div<ResponsiveProps>`
 	border: 1px solid var(--color-light-salmon);
 	border-radius: ${(props) => (props.$isPc ? '10px' : 'none')};
 	background: #fff;
-	z-index: 10;
+	z-index: ${(props) => (props.$isPc ? 'unset' : '100000')};
 
 	& > div:first-child {
 		padding-bottom: 10px;
@@ -93,11 +98,32 @@ export const FilterItems = styled.div<ResponsiveProps>`
 	}
 	& p {
 		margin-bottom: 15px;
-		font-size: 18px;
+		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 	}
 
 	& label {
 		margin: 0 20px 0 5px;
+		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
+	}
+
+	& select {
+		width: 100%;
+		padding: 4px;
+		border: 1px solid var(--color-light-salmon);
+		color: gray;
+		font-size: 12px;
+		outline: var(--color-light-salmon);
+	}
+
+	& button {
+		width: 40%;
+		padding: 4px;
+		margin: 0 auto;
+		border-radius: 5px;
+		background: var(--color-light-salmon);
+		color: var(--color-peach);
+		font-size: ${(props) => (props.$isMobile ? '12px' : '14px')};
+		cursor: pointer;
 	}
 
 	.filter-close-btn {
@@ -117,11 +143,13 @@ export const ItemList = styled.div`
 `;
 
 export const ItemBox = styled.div<ResponsiveProps>`
-	width: calc((100% - 50px) / 2);
-	margin-bottom: 50px;
-	border: 1px solid var(--color-deep-blue);
+	width: ${(props) =>
+		props.$isMobile ? 'calc((100% - 15px) / 2)' : 'calc((100% - 50px) / 3)'};
+	margin-bottom: ${(props) => (props.$isMobile ? '15px' : '50px')};
+	border: 1px solid var(--color-peach);
 	border-radius: 10px;
 	overflow: hidden;
+	cursor: pointer;
 
 	& > div:first-child {
 		display: flex;
@@ -134,7 +162,7 @@ export const ItemBox = styled.div<ResponsiveProps>`
 
 	& > div:last-child {
 		position: relative;
-		height: 150px;
+		height: ${(props) => (props.$isMobile ? 'fit-content' : '150px')};
 		padding: 20px;
 	}
 
@@ -149,14 +177,13 @@ export const ItemBox = styled.div<ResponsiveProps>`
 
 	& svg {
 		position: absolute;
-		top: ${(props) =>
-			props.$isMobile ? '10px' : props.$isTablet ? '20px' : '30px'};
-		right: ${(props) =>
-			props.$isMobile ? '10px' : props.$isTablet ? '20px' : '30px'};
+		top: ${(props) => (props.$isMobile ? '10px' : '20px')};
+		right: ${(props) => (props.$isMobile ? '10px' : '20px')};
 		cursor: pointer;
 	}
 
 	& button {
+		display: ${(props) => (props.$isMobile ? 'none' : 'block')};
 		position: absolute;
 		bottom: 20px;
 		right: 20px;
@@ -171,7 +198,8 @@ export const ItemBox = styled.div<ResponsiveProps>`
 	}
 
 	& p {
-		margin-bottom: 15px;
+		margin-bottom: ${(props) => (props.$isMobile ? '10px' : '15px')};
+		font-size: ${(props) => (props.$isMobile ? '12px' : 'inherit')};
 	}
 `;
 
@@ -180,11 +208,13 @@ export const ItemBox = styled.div<ResponsiveProps>`
 export const NewFamilyDetailContainer = styled.div<ResponsiveProps>`
 	display: flex;
 	flex-direction: ${(props) => (props.$isPc ? 'row' : 'column')};
-	gap: 50px;
-	width: ${(props) => (props.$isMaxWidth ? '1320px' : '100%')};
-	padding: ${(props) => (props.$isMaxWidth ? '0' : '0 30px')};
-	margin: 70px auto 0 auto;
-	font-size: 21px;
+	gap: ${(props) => (props.$isMobile ? '15px' : '50px')};
+	width: ${(props) => (props.$isMaxWidth ? '100%' : '1320px')};
+	padding: ${(props) =>
+		props.$isMobile ? '0 10px' : props.$isMaxWidth ? '0 30px' : '0'};
+	margin: ${(props) =>
+		props.$isMobile ? '70px auto 150px auto' : '120px auto 150px auto'};
+	font-size: ${(props) => (props.$isMobile ? '12px' : '20px')};
 
 	& > div:last-child {
 		width: ${(props) => (props.$isPc ? 'calc(100% - 550px)' : '100%')};
@@ -193,13 +223,13 @@ export const NewFamilyDetailContainer = styled.div<ResponsiveProps>`
 
 	& button {
 		width: 100%;
-		padding: 5px;
+		padding: 4px;
 		margin-top: 20px;
 		border: 1px solid var(--color-light-salmon);
 		border-radius: 5px;
 		background: var(--color-light-salmon);
 		color: var(--color-peach);
-		font-size: 20px;
+		font-size: ${(props) => (props.$isMobile ? '12px' : '20px')};
 		cursor: pointer;
 	}
 	& button:hover {
@@ -236,17 +266,17 @@ export const DetailImageBox = styled.div<ResponsiveProps>`
 	}
 `;
 
-export const UserThumbnail = styled.div`
+export const UserThumbnail = styled.div<ResponsiveProps>`
 	display: flex;
 	align-items: center;
 	gap: 10px;
 	position: relative;
 	padding-bottom: 10px;
-	border-bottom: 1px solid var(--color-deep-blue);
+	border-bottom: 1px solid var(--color-light-salmon);
 
 	& div:first-child {
-		width: 45px;
-		height: 45px;
+		width: ${(props) => (props.$isMobile ? '30px' : '45px')};
+		height: ${(props) => (props.$isMobile ? '30px' : '45px')};
 		border-radius: 50%;
 		overflow: hidden;
 		cursor: pointer;
@@ -254,6 +284,7 @@ export const UserThumbnail = styled.div`
 
 	& h5 {
 		font-weight: 400;
+		font-size: ${(props) => (props.$isMobile ? '16px' : 'inherit')};
 	}
 
 	& img {
@@ -267,17 +298,17 @@ export const UserThumbnail = styled.div`
 	}
 `;
 
-export const MoreDropdown = styled.ul`
+export const MoreDropdown = styled.ul<ResponsiveProps>`
 	display: flex;
 	flex-direction: column;
 	position: absolute;
 	right: 0px;
-	top: 40px;
-	width: 120px;
-	height: 85px;
+	top: ${(props) => (props.$isMobile ? '30px' : '40px')};
+	width: ${(props) => (props.$isMobile ? '96px' : '120px')};
+	height: ${(props) => (props.$isMobile ? '64px' : '85px')};
 	border: 1px solid var(--color-light-salmon);
 	background: #fff;
-	font-size: 16px;
+	font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 	z-index: 10;
 
 	& li {
@@ -328,7 +359,7 @@ export const DetailSwiper = styled.div`
 	}
 
 	.swiper-slide {
-		height: 330px;
+		aspect-ratio: 1 / 1.05;
 		border-radius: 10px;
 		background: #fff;
 		overflow: hidden;
@@ -366,10 +397,12 @@ export const PetRegistrationForm = styled.div<ResponsiveProps>`
 	position: ${(props) => (props.$isPc ? 'unset' : 'absolute')};
 	top: 0;
 	left: 0;
-	width: ${(props) => (props.$isPc ? '1320px' : '100%')};
-	padding: ${(props) => (props.$isMaxWidth ? 'none' : '0 30px')};
-	margin: 0 auto;
+	width: ${(props) => (props.$isMaxWidth ? '100%' : '1320px')};
+	padding: ${(props) =>
+		props.$isMobile ? '0 10px' : props.$isMaxWidth ? '0 30px' : '0'};
+	margin: ${(props) => (props.$isPc ? '120px auto 150px auto' : '0 auto')};
 	background: #fff;
+	z-index: 1000;
 
 	& > div:last-child {
 		display: flex;
@@ -378,21 +411,22 @@ export const PetRegistrationForm = styled.div<ResponsiveProps>`
 	}
 
 	& h5 {
-		width: 80px;
-		margin-right: 30px;
+		width: ${(props) => (props.$isMobile ? '60px' : '80px')};
+		margin-right: ${(props) => (props.$isMobile ? '15px' : '30px')};
 		font-weight: 400;
+		font-size: ${(props) => (props.$isMobile ? '12px' : 'inherit')};
 	}
 
 	& button {
-		width: 420px;
-		padding: 5px;
-		margin-top: ${(props) => (props.$isPc ? '150px' : '60px')};
+		width: ${(props) => (props.$isMobile ? '80%' : '420px')};
+		padding: 4px;
+		margin-top: ${(props) => (props.$isPc ? '100px' : '30px')};
 		margin-bottom: ${(props) => (props.$isPc ? '0' : '30px')};
 		border: 1px solid var(--color-light-salmon);
 		border-radius: 5px;
 		background: var(--color-light-salmon);
 		color: var(--color-peach);
-		font-size: 16px;
+		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 		cursor: pointer;
 	}
 
@@ -411,16 +445,18 @@ export const FormText = styled.div<ResponsiveProps>`
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
+	font-size: ${(props) => (props.$isMobile ? '12px' : 'inherit')};
 
 	.text-box {
-		align-items: flex-start;
+		align-items: ${(props) => (props.$isMobile ? 'flex-start' : 'center')};
 	}
 
 	& textarea {
-		width: 90%;
-		height: 150px;
+		width: 85%;
+		height: ${(props) => (props.$isMobile ? '60px' : '30px')};
 		resize: none;
 		padding: 10px;
+		border: 1px solid var(--color-light-salmon);
 		outline: none;
 	}
 
@@ -432,9 +468,10 @@ export const FormText = styled.div<ResponsiveProps>`
 	}
 
 	& input[type='text'] {
-		width: 80%;
+		width: 85%;
 		height: 30px;
 		padding-left: 10px;
+		border: 1px solid var(--color-light-salmon);
 		outline: none;
 	}
 
@@ -452,7 +489,28 @@ export const FormText = styled.div<ResponsiveProps>`
 		width: 30%;
 	}
 
+	& input[type='file']::file-selector-button {
+		width: 100px;
+		padding: 4px;
+		border: 1px solid var(--color-light-salmon);
+		border-radius: 5px;
+		background: #fff;
+		font-size: 12px;
+		text-align: center;
+		cursor: pointer;
+	}
+
 	& label {
 		margin-right: 30px;
+	}
+
+	& select {
+		width: 85%;
+		height: 30px;
+		padding: 4px;
+		border: 1px solid var(--color-light-salmon);
+		color: gray;
+		font-size: 12px;
+		outline: var(--color-light-salmon);
 	}
 `;

@@ -10,9 +10,11 @@ interface ResponsiveProps {
 //Reviews
 
 export const ReviewsContainer = styled.div<ResponsiveProps>`
-	width: ${(props) => (props.$isMaxWidth ? '1320px' : '100%')};
-	padding: ${(props) => (props.$isMaxWidth ? 'none' : '0 30px')};
-	margin: 0 auto;
+	width: ${(props) => (props.$isMaxWidth ? '100%' : '1320px')};
+	padding: ${(props) =>
+		props.$isMobile ? '0 10px' : props.$isMaxWidth ? '0 30px' : '0'};
+	margin: ${(props) =>
+		props.$isMobile ? '0 auto 50px auto' : '120px  auto 150px auto'};
 `;
 
 export const ReviewsList = styled.div<ResponsiveProps>`
@@ -25,13 +27,19 @@ export const ReviewsList = styled.div<ResponsiveProps>`
 export const ReviewBox = styled.div<ResponsiveProps>`
 	display: flex;
 	flex-direction: column;
+	position: relative;
 	width: ${(props) =>
-		props.$isPc ? ' calc((100% - 100px) / 3)' : ' calc((100% - 30px) / 2)'};
-	aspect-ratio: 3 / 4.2;
-	margin-bottom: 50px;
-	border: 1px solid var(--color-deep-blue);
+		props.$isPc
+			? ' calc((100% - 100px) / 3)'
+			: props.$isTablet
+			  ? ' calc((100% - 30px) / 2)'
+			  : ' calc((100% - 20px) / 2)'};
+	aspect-ratio: ${(props) => (props.$isMobile ? 'unset' : '3 / 4.2')};
+	margin-bottom: ${(props) => (props.$isMobile ? '20px' : '50px')};
+	border: 1px solid var(--color-peach);
 	border-radius: 10px;
 	overflow: hidden;
+	cursor: pointer;
 
 	& > div:first-child {
 		display: flex;
@@ -47,7 +55,7 @@ export const ReviewBox = styled.div<ResponsiveProps>`
 		flex-direction: column;
 		justify-content: space-between;
 		flex: 1;
-		padding: 20px;
+		padding: ${(props) => (props.$isMobile ? '10px' : '20px')};
 	}
 
 	& img {
@@ -59,6 +67,7 @@ export const ReviewBox = styled.div<ResponsiveProps>`
 		scale: 1.1;
 	}
 	& button {
+		display: ${(props) => (props.$isMobile ? 'none' : 'block')};
 		padding: 4px 25px;
 		border: 1px solid var(--color-light-salmon);
 		border-radius: 5px;
@@ -71,9 +80,10 @@ export const ReviewBox = styled.div<ResponsiveProps>`
 
 	& p {
 		display: -webkit-box;
-		margin-bottom: 15px;
+		margin-bottom: ${(props) => (props.$isMobile ? '5px' : '15px')};
+		font-size: ${(props) => (props.$isMobile ? '12px' : 'inherit')};
 		overflow-wrap: break-word;
-		-webkit-line-clamp: 4;
+		-webkit-line-clamp: ${(props) => (props.$isMobile ? '2' : '4')};
 		-webkit-box-orient: vertical;
 		text-overflow: ellipsis;
 		overflow: hidden;
@@ -81,6 +91,9 @@ export const ReviewBox = styled.div<ResponsiveProps>`
 	}
 
 	& svg {
+		position: ${(props) => (props.$isMobile ? 'absolute' : 'unset')};
+		top: 10px;
+		right: 10px;
 		cursor: pointer;
 	}
 `;
@@ -103,24 +116,25 @@ export const CommentContainer = styled.div`
 	justify-content: space-between;
 `;
 
-export const CommentList = styled.div`
+export const CommentList = styled.div<ResponsiveProps>`
 	display: flex;
 	flex-direction: column;
 	flex: 1;
-	padding: 30px 0;
-	border: 1px solid var(--color-deep-blue);
+	padding: ${(props) => (props.$isMobile ? '15px 0' : '30px 0')};
+	border: 1px solid var(--color-peach);
 	border-left: none;
 	border-right: none;
 	font-size: 20px;
 `;
 
-export const CommentBox = styled.div`
+export const CommentBox = styled.div<ResponsiveProps>`
 	display: flex;
 	align-items: center;
+	font-size: ${(props) => (props.$isMobile ? '12px' : 'inherit')};
 
 	& div:first-child {
-		width: 45px;
-		height: 45px;
+		width: ${(props) => (props.$isMobile ? '30px' : '45px')};
+		height: ${(props) => (props.$isMobile ? '30px' : '45px')};
 		border-radius: 50%;
 		overflow: hidden;
 		cursor: pointer;
@@ -131,7 +145,7 @@ export const CommentBox = styled.div`
 	}
 
 	& h5 {
-		margin: 0 15px;
+		margin: ${(props) => (props.$isMobile ? '0 5px' : '0 15px')};
 		font-weight: 400;
 	}
 
@@ -140,36 +154,36 @@ export const CommentBox = styled.div`
 	}
 
 	& span {
-		font-size: 15px;
+		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 	}
 `;
 
-export const LikeContainer = styled.div`
+export const LikeContainer = styled.div<ResponsiveProps>`
 	display: flex;
 	align-items: center;
 	margin-top: 20px;
 	& p {
 		margin-left: 10px;
-		font-size: 16px;
+		font-size: ${(props) => (props.$isMobile ? '12px' : 'inherit')};
 	}
 `;
 
-export const CommentInputContainer = styled.div`
+export const CommentInputContainer = styled.div<ResponsiveProps>`
 	display: flex;
 	justify-content: space-between;
 	padding: 20px 0;
 
 	& input {
 		flex: 1;
-		padding: 5px 0;
+		padding: 4px 0;
 		border: none;
 		outline-color: var(--color-light-salmon);
 	}
 
 	& input::placeholder {
 		color: var(--color-light-blue);
-		font-size: 16px;
 		font-weight: 400;
+		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 	}
 
 	& button {
@@ -180,6 +194,6 @@ export const CommentInputContainer = styled.div`
 		border: none;
 		background: none;
 		color: var(--color-light-salmon);
-		font-size: 16px;
+		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 	}
 `;
