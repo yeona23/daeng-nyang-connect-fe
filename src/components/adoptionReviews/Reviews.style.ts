@@ -11,7 +11,8 @@ interface ResponsiveProps {
 
 export const ReviewsContainer = styled.div<ResponsiveProps>`
 	width: ${(props) => (props.$isMaxWidth ? '100%' : '1320px')};
-	padding: ${(props) => (props.$isMaxWidth ? '0 30px' : '0')};
+	padding: ${(props) =>
+		props.$isMobile ? '0 10px' : props.$isMaxWidth ? '0 30px' : '0'};
 	margin: ${(props) =>
 		props.$isMobile ? '0 auto 50px auto' : '120px  auto 150px auto'};
 `;

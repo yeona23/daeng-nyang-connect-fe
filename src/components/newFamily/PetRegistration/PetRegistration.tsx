@@ -129,10 +129,14 @@ const PetRegistration = () => {
 					</div>
 					<div>
 						<h5>이미지 등록</h5>
-						<input type="file" name="img" id="fileInput" required />
-						<label htmlFor="fileInput" className="custom-file-upload">
-							파일 선택
-						</label>
+						<input
+							type="file"
+							name="img"
+							id="fileInput"
+							accept=".jpg, .jpeg, .png"
+							required
+							multiple
+						/>
 					</div>
 					<div className="text-box">
 						<h5>이별 사유</h5>
