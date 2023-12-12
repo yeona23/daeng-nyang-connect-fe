@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
-import VerticalCard from '../../UI/VerticalCard';
+import VerticalCard from '../../UI/VerticalCard/VerticalCard';
 import { useResponsive } from '../../../../hooks/useResponsive';
 const FindNewList = () => {
 	const { $isMaxWidth, $isMobile, $isTablet } = useResponsive();

@@ -16,7 +16,11 @@ export const CardDiv = styled.div<VerticalCardProps>`
 export const CardImgDiv = styled.div`
 	width: 100%;
 	height: 70%;
-	background: url('assets/community3.jpg') no-repeat center center / cover;
+	img {
+		position: relative;
+		left: -20%;
+		height: 100%;
+	}
 `;
 export const CardTextDiv = styled.div`
 	display: flex;

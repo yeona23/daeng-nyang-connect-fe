@@ -7,6 +7,6 @@ type ReviewCardProps = {
 export const CardListUl = styled.ul<ReviewCardProps>`
 	display: grid;
 	grid-template-columns: ${(props) => (props.$isMobile ? '1fr' : '1fr 1fr')};
-	gap: 24px;
+	gap: 30px;
 	margin-bottom: 80px;
 `;

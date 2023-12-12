@@ -1,4 +1,4 @@
-import { CardBtn } from '../VerticalCard.style';
+import { CardBtn } from '../VerticalCard/VerticalCard.style';
 import {
 	HorizentalCardImgDiv,
 	HorizentalCardLi,
@@ -14,7 +14,9 @@ type HorizentalCardProps = {
 const HorizentalCard = ({ $isMobile }: HorizentalCardProps) => {
 	return (
 		<HorizentalCardLi $isMobile={$isMobile}>
-			<HorizentalCardImgDiv />
+			<HorizentalCardImgDiv>
+				<img src="/assets/community1.jpg" alt="" />
+			</HorizentalCardImgDiv>
 			<HorizentalCardTextDiv>
 				<HorizentalCardTextBox>
 					<p style={{ fontSize: '400' }}>이름 : 똘이</p>

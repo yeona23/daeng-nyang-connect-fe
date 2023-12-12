@@ -16,7 +16,12 @@ export const HorizentalCardLi = styled.li<HorizentalCardProps>`
 export const HorizentalCardImgDiv = styled.div`
 	width: 50%;
 	height: 100%;
-	background: url('assets/community1.jpg') no-repeat center center / cover;
+	overflow: hidden;
+	img {
+		position: relative;
+		left: -20%;
+		height: 100%;
+	}
 `;
 export const HorizentalCardTextBox = styled.div`
 	display: -webkit-box;
