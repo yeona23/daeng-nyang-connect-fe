@@ -1,40 +1,40 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface ReviewState {
+	reviews: ReviewItem[];
+}
+
+export interface ReviewItem {
 	adoptedAnimalName: string;
+	adoptedDate: string;
+	age: string;
 	textReview: string;
-	createsAt: string;
-	image: Array<string>;
+	createdAt: string;
+	images: string[];
 }
 
 const initialState: ReviewState = {
-	adoptedAnimalName: '',
-	textReview: '',
-	createsAt: '',
-	image: [],
+	reviews: [],
 };
 
 const reviewSlice = createSlice({
 	name: 'reviews',
 	initialState,
 	reducers: {
-		SET_TEXT_REVIEW(state, action) {
-			return {
-				...state,
-				textReview: action.payload,
-			};
+		SET_INPUT_VALUE(state, action: PayloadAction<ReviewItem>) {
+			state.reviews.push(action.payload);
 		},
-		SET_INPUT_VALUE(state, action) {
-			return {
-				...state,
-				place: action.payload.place,
-				breed: action.payload.breed,
-				text: action.payload.text,
-				title: action.payload.title,
-			};
+		DELETE_REVIEW_ITEM(state, action: PayloadAction<number>) {
+			state.reviews.splice(action.payload, 1);
 		},
 	},
 });
 
-export const { SET_TEXT_REVIEW } = reviewSlice.actions;
+export const { SET_INPUT_VALUE, DELETE_REVIEW_ITEM } = reviewSlice.actions;
 export default reviewSlice.reducer;
+
+export const addReviewItem = (reviewData: ReviewItem) => {
+	return (dispatch: any) => {
+		dispatch(SET_INPUT_VALUE(reviewData));
+	};
+};
