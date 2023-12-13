@@ -17,6 +17,21 @@ import {
 import { useNavigate } from 'react-router-dom';
 import ConfirmModal from '../../components/Register/Modal/ConfirmModal/ConfirmModal';
 import { useResponsive } from '../../hooks/useResponsive';
+import { signupUser } from '../../api/authApi';
+import { boolean } from 'yargs';
+
+interface SignupRequestBody {
+	name: string;
+	nickname: string;
+	email: string;
+	password: string;
+	pwdck: string;
+	mobile: string;
+	city: string;
+	town: string;
+	experience: boolean;
+	gender: string;
+}
 
 const Register = () => {
 	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
@@ -49,12 +64,17 @@ const Register = () => {
 	const [allIsValid, setAllisValid] = useState(false);
 	const [textIsTouched, setTextIsTouched] = useState(false);
 
-	const [inputValue, setInputValue] = useState({
-		name: null,
+	const [inputValue, setInputValue] = useState<SignupRequestBody>({
+		name: '',
+		nickname: '',
 		email: '',
 		password: '',
 		pwdck: '',
 		mobile: '',
+		city: '',
+		town: '',
+		experience: false,
+		gender: '',
 	});
 
 	interface ConfirmModalProps {
@@ -177,7 +197,11 @@ const Register = () => {
 
 	const inputValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
-		setInputValue({ ...inputValue, [name]: value });
+		const processedValue = name === 'experience' ? value === 'true' : value;
+		setInputValue((prevInputValue) => ({
+			...prevInputValue,
+			[name]: processedValue,
+		}));
 		setTextIsTouched(true);
 
 		if (
@@ -191,23 +215,27 @@ const Register = () => {
 		}
 	};
 
-	const registerUserHandler = () => {
-		// e.preventDefault();
-		// if (allIsValid) {
-		// 	try {
-		// 		const response = await registerUser(inputValue);
-		// 		if (!response) return;
-		// 		setConfirmModalIsOpen(true);
-		// 		// navigate('/login');
-		// 	} catch (error) {
-		// 		if (error.response.status === '406') {
-		// 			alert(error.message);
-		// 		}
-		// 		console.error(error.message);
-		// 	} finally {
-		// 		setIsSignUpClicked(true);
-		// 	}
-		// }
+	const signupUserHandler = async (e: React.FormEvent) => {
+		e.preventDefault();
+		if (allIsValid) {
+			try {
+				const { pwdck, ...dataToSend } = inputValue;
+				const response = await signupUser(dataToSend);
+				if (!response) return;
+				setConfirmModalIsOpen(true);
+				// navigate('/login');
+			} catch (error) {
+				if (e instanceof TypeError) {
+					// TypeError
+				} else if (e instanceof SyntaxError) {
+					// SyntaxError
+				} else if (typeof e === 'string') {
+					// string
+				} else {
+					// other
+				}
+			}
+		}
 	};
 
 	const nameNameInputIsInValid = !nameIsValid && nameIsTouched;
@@ -230,7 +258,7 @@ const Register = () => {
 					$isPc={$isPc}
 					$isMaxWidth={$isMaxWidth}
 					src="assets/logos/LOGO(footer).svg"></Logo>
-				<RegisterForm onSubmit={registerUserHandler}>
+				<RegisterForm onSubmit={signupUserHandler}>
 					<RegisterInput
 						placeholder="이메일"
 						type="text"
@@ -331,8 +359,8 @@ const Register = () => {
 
 						<RegisterInputSmall
 							placeholder="닉네임"
-							type="password"
-							name="pwdck"
+							type="text"
+							name="nickname"
 							onFocus={pwdckOnFocusHandler}
 							onBlur={pwdckOnBlurHandler}
 							onChange={inputValueHandler}
@@ -397,7 +425,7 @@ const Register = () => {
 						<RegisterInputSmall
 							type="text"
 							placeholder="시 도"
-							name="name"
+							name="city"
 							onFocus={nameFocusHandler}
 							onBlur={nameOnBlurHandler}
 							onChange={inputValueHandler}
@@ -408,8 +436,8 @@ const Register = () => {
 
 						<RegisterInputSmall
 							placeholder="상세주소"
-							type="password"
-							name="pwdck"
+							type="text"
+							name="town"
 							onFocus={pwdckOnFocusHandler}
 							onBlur={pwdckOnBlurHandler}
 							onChange={inputValueHandler}
@@ -447,8 +475,8 @@ const Register = () => {
 							<Option value="" disabled selected>
 								키워본 경험
 							</Option>
-							<Option value="man">있음</Option>
-							<Option value="woman">없음</Option>
+							<Option value="true">있음</Option>
+							<Option value="false">없음</Option>
 						</RegisterSelectBox>
 					</RegisterDoubleDiv>
 

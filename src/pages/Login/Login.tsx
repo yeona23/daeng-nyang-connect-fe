@@ -19,6 +19,7 @@ import {
 } from './Login.style';
 import localToken from '../../api/LocalToken';
 import { useResponsive } from '../../hooks/useResponsive';
+import { loginUser } from '../../api/authApi';
 
 const Login = () => {
 	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
@@ -71,31 +72,39 @@ const Login = () => {
 		}
 	};
 
-	const loginUserHandler = () => {
-		// e.preventDefault();
-		// if (emailIsValid && passwordIsValid) {
-		// 	try {
-		// 		const response = await loginUser(inputValue);
-		// 		if (!response) return;
-		// 		const { access_token } = response;
-		// 		const saveToken = (token) => {
-		// 			localToken.save(token);
-		// 		};
-		// 		if (access_token) {
-		// 			saveToken(access_token);
-		// 			navigate('/');
-		// 		}
-		// 	} catch (error) {
-		// 		if (error.response.code === 'ERR_NETWORK') {
-		// 			console.log('테스트');
-		// 		}
-		// 		if (error.response.status === '403') {
-		// 			console.error(error.message);
-		// 		}
-		// 		console.error(error.message);
-		// 	}
-		// }
-		// setIsSignInClicked(true);
+	const loginUserHandler = async (e: React.FormEvent) => {
+		e.preventDefault();
+
+		if (emailIsValid && passwordIsValid) {
+			try {
+				const response = await loginUser(inputValue);
+
+				if (!response) return;
+
+				const { access_token } = response;
+
+				const saveToken = (token: string) => {
+					localToken.save(token);
+				};
+
+				if (access_token) {
+					saveToken(access_token);
+					navigate('/');
+				}
+			} catch (error) {
+				if (error instanceof TypeError) {
+					// TypeError
+				} else if (error instanceof SyntaxError) {
+					// SyntaxError
+				} else if (typeof error === 'string') {
+					// string
+				} else {
+					// other
+				}
+			}
+		}
+
+		setIsSignInClicked(true);
 	};
 
 	const nameEmailInputIsInValid =
