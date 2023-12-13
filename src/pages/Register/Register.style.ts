@@ -15,6 +15,7 @@ export const RegisterWrapper = styled.div`
 	height: 100vh;
 	flex-direction: column;
 	overflow-x: hidden;
+	margin-top: 60px;
 `;
 
 export const RegisterDiv = styled.div<ResponsiveProps>`
