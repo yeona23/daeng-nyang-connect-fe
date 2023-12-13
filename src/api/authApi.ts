@@ -2,7 +2,7 @@ import APIClient from './ApiClient';
 
 const SIGNUP = '/signup';
 const LOGIN = '/login';
-const BASE_URL = 'http://3.34.122.57:8080';
+const BASE_URL = 'http://3.35.16.126:8080';
 
 interface SignupRequestBody {
 	email: string;
@@ -32,7 +32,7 @@ export const signupUser = async (body: SignupRequestBody): Promise<any> => {
 		mobile: body.mobile,
 		city: body.city,
 		town: body.town,
-		experience: body.experience.toString(),
+		experience: body.experience,
 		gender: body.gender,
 	});
 };
