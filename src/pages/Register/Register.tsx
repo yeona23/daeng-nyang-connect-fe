@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 import {
 	ExParagraph,
@@ -18,7 +18,6 @@ import { useNavigate } from 'react-router-dom';
 import ConfirmModal from '../../components/Register/Modal/ConfirmModal/ConfirmModal';
 import { useResponsive } from '../../hooks/useResponsive';
 import { signupUser } from '../../api/authApi';
-import { boolean } from 'yargs';
 
 interface SignupRequestBody {
 	name: string;
@@ -223,7 +222,6 @@ const Register = () => {
 				const response = await signupUser(dataToSend);
 				if (!response) return;
 				setConfirmModalIsOpen(true);
-				// navigate('/login');
 			} catch (error) {
 				if (e instanceof TypeError) {
 					// TypeError
