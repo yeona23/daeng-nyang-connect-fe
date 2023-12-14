@@ -2,9 +2,9 @@ import { useNavigate } from 'react-router-dom';
 import NewFamilyList from './NewFamilyList';
 import { CategoryTitle, FilterItems, FindFamily } from '../NewFamily.style';
 import { useResponsive } from '../../../hooks/useResponsive';
-import { HiMiniPlusCircle } from 'react-icons/hi2';
 import { IoCloseOutline } from 'react-icons/io5';
 import { useState } from 'react';
+import { FaPlus } from 'react-icons/fa';
 
 const Family = () => {
 	const navigate = useNavigate();
@@ -18,11 +18,6 @@ const Family = () => {
 
 	const toggleFilterVisibility = () => {
 		setIsFilterVisible((prev) => !prev);
-	};
-
-	const getRegisterBTNSize = () => {
-		if ($isMobile) return 50;
-		if ($isTablet) return 60;
 	};
 
 	return (
@@ -113,12 +108,11 @@ const Family = () => {
 					$isMaxWidth={$isMaxWidth}
 				/>
 			</div>
-			<HiMiniPlusCircle
-				className="register-fixed-btn"
-				color="var(--color-light-salmon)"
-				size={getRegisterBTNSize()}
-				onClick={clickRegistrationHandler}
-			/>
+			<div
+				className="register-fixed-btn-box"
+				onClick={clickRegistrationHandler}>
+				<FaPlus className="register-fixed-btn" color="#fff" size={20} />
+			</div>
 		</FindFamily>
 	);
 };

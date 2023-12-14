@@ -20,10 +20,20 @@ export const FindFamily = styled.div<ResponsiveProps>`
 	}
 
 	.register-fixed-btn {
-		display: ${(props) => (props.$isPc ? 'none' : 'block')};
+	}
+
+	.register-fixed-btn-box {
+		display: ${(props) => (props.$isPc ? 'none' : 'flex')};
+		align-items: center;
+		justify-content: center;
 		position: fixed;
-		bottom: 50px;
-		right: 50px;
+		bottom: ${(props) => (props.$isMobile ? '20px' : '50px')};
+		right: ${(props) => (props.$isMobile ? '10px' : '50px')};
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background: var(--color-light-salmon);
+		overflow: hidden;
 		cursor: pointer;
 	}
 
@@ -71,7 +81,8 @@ export const FilterItems = styled.div<ResponsiveProps>`
 	width: ${(props) => (props.$isPc ? 'inherit' : '100%')};
 	height: ${(props) => (props.$isPc ? 'fit-content' : '100vh')};
 	padding: 20px;
-	border: 1px solid var(--color-light-salmon);
+	border: ${(props) =>
+		props.$isPc ? '1px solid var(--color-light-salmon)' : 'none'};
 	border-radius: ${(props) => (props.$isPc ? '10px' : 'none')};
 	background: #fff;
 	z-index: ${(props) => (props.$isPc ? 'unset' : '100000')};
