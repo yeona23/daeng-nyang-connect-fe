@@ -28,7 +28,7 @@ export const signupUser = async (body: SignupRequestBody): Promise<any> => {
 		email: body.email,
 		password: body.password,
 		name: body.name,
-		nickname: body.nickname,
+		nickName: body.nickname,
 		mobile: body.mobile,
 		city: body.city,
 		town: body.town,
