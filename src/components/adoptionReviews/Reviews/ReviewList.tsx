@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoHeartFill, GoHeart } from 'react-icons/go';
 import { ButtonBox, ReviewBox, ReviewsList } from '../Reviews.style';
 import { useResponsive } from '../../../hooks/useResponsive';
+import { useDispatch } from 'react-redux';
 
 interface Item {
 	id: number;

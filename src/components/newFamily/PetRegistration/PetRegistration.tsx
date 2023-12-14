@@ -47,12 +47,12 @@ const PetRegistration = () => {
 					</div>
 					<div>
 						<h5>축종</h5>
-						<input type="radio" name="kind" id="all" />
-						<label htmlFor="all">전체</label>
 						<input type="radio" name="kind" id="dog" />
 						<label htmlFor="dog">강아지</label>
 						<input type="radio" name="kind" id="cat" />
 						<label htmlFor="cat">고양이</label>
+						<input type="radio" name="kind" id="all" />
+						<label htmlFor="all">기타</label>
 					</div>
 					<div>
 						<h5>지역</h5>
