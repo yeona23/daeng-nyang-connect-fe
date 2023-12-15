@@ -451,7 +451,7 @@ export const PetRegistrationForm = styled.div<ResponsiveProps>`
 	}
 `;
 
-export const FormText = styled.div<ResponsiveProps>`
+export const FormText = styled.form<ResponsiveProps>`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;

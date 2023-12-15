@@ -35,6 +35,10 @@ const newFamilySlice = createSlice({
 	name: 'animals',
 	initialState,
 	reducers: {
+		SET_ANIMALS(state, action) {
+			state = action.payload;
+			return state;
+		},
 		SET_INPUT_VALUE(state, action) {
 			state.animals.push(action.payload);
 		},
@@ -53,14 +57,14 @@ const newFamilySlice = createSlice({
 			const filters = action.payload;
 
 			const cityFilter = (animal: AnimalItem) =>
-				!filters.city || animal.city === filters.city;
+				!filters?.city || animal.city === filters.city;
 
 			const adoptionStatusFilter = (animal: AnimalItem) =>
-				!filters.adoptionStatus ||
+				!filters?.adoptionStatus ||
 				animal.adoptionStatus == filters.adoptionStatus;
 
 			const kindFilter = (animal: AnimalItem) =>
-				!filters.kind || animal.kind === filters.kind;
+				!filters?.kind || animal.kind === filters.kind;
 
 			state.filteredAnimals = state.animals.filter(
 				(animal) =>
@@ -79,6 +83,7 @@ const newFamilySlice = createSlice({
 });
 
 export const {
+	SET_ANIMALS,
 	SET_INPUT_VALUE,
 	DELETE_ANIMAL_ITEM,
 	MODIFY_ANIMAL_ITEM,
