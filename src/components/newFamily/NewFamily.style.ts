@@ -456,6 +456,7 @@ export const FormText = styled.form<ResponsiveProps>`
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
+	position: relative;
 	font-size: ${(props) => (props.$isMobile ? '12px' : 'inherit')};
 
 	.text-box {
@@ -523,5 +524,12 @@ export const FormText = styled.form<ResponsiveProps>`
 		color: gray;
 		font-size: 12px;
 		outline: var(--color-light-salmon);
+	}
+
+	& button {
+		position: absolute;
+		left: 50%;
+		bottom: ${(props) => (props.$isMobile ? '-70px' : '-100px')};
+		transform: translateX(-50%);
 	}
 `;

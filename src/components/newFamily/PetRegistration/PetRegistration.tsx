@@ -256,8 +256,8 @@ const PetRegistration = () => {
 						<h5>특이 사항</h5>
 						<textarea name="text_reason" id="text_etc"></textarea>
 					</div>
+					<button type="submit">등록하기</button>
 				</FormText>
-				<button type="submit">등록하기</button>
 			</div>
 		</PetRegistrationForm>
 	);
