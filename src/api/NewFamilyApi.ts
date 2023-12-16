@@ -7,7 +7,7 @@ const COMPLETE = '/complete';
 const KIND = '/kind';
 const CITY = 'city';
 const ADOPTION_STATUS = '/adoptionStatus';
-const GET_ALL = '/all';
+const GET_ALL = '/getAll';
 const DELETE = '/delete';
 const BASE_URL = 'http://3.35.16.126:8080';
 
