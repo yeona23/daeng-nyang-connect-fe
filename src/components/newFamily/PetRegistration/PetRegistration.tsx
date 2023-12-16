@@ -6,14 +6,58 @@ import {
 	PetRegistrationForm,
 } from '../NewFamily.style';
 import { IoCloseOutline } from 'react-icons/io5';
+import { useState } from 'react';
+import { registerAnimal } from '../../../api/NewFamilyApi';
 
 const PetRegistration = () => {
 	const navigate = useNavigate();
 	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
+	const [formData, setFormData] = useState({
+		animalId: '',
+		animalName: '',
+		kind: '',
+		region: '',
+		gender: '',
+		breed: '',
+		age: '',
+		disease: '',
+		training: '',
+		neutering: false,
+		healthCheck: '',
+		nurturePeriod: '',
+		image: '',
+		textReason: '',
+		textEtc: '',
+		adoptionStatus: '',
+		createAt: '',
+	});
+
+	const changeHandler = (e: {
+		target: { name: any; value: any; type: any; checked: any };
+	}) => {
+		const { name, value, type, checked } = e.target;
+		setFormData((prevData) => ({
+			...prevData,
+			[name]: type === 'checkbox' ? checked : value,
+		}));
+	};
 
 	const clickCloseBtnHandler = () => {
 		const url = '/newFamily';
 		navigate(url);
+	};
+
+	const submitHandler = async (e: React.FormEvent) => {
+		e.preventDefault();
+
+		try {
+			const createdAnimal = await registerAnimal(formData);
+
+			console.log('생성되었습니다', createdAnimal);
+			navigate('/newFamily');
+		} catch (error) {
+			console.error('생성 오류:', error);
+		}
 	};
 
 	return (
@@ -40,18 +84,25 @@ const PetRegistration = () => {
 					$isMobile={$isMobile}
 					$isTablet={$isTablet}
 					$isPc={$isPc}
-					$isMaxWidth={$isMaxWidth}>
+					$isMaxWidth={$isMaxWidth}
+					onSubmit={submitHandler}>
 					<div>
 						<h5>동물 이름</h5>
-						<input type="text" name="animal_name" id="animal_name" required />
+						<input
+							type="text"
+							name="animal_name"
+							id="animal_name"
+							onChange={changeHandler}
+							required
+						/>
 					</div>
 					<div>
 						<h5>축종</h5>
-						<input type="radio" name="kind" id="dog" />
+						<input type="radio" name="kind" id="dog" onChange={changeHandler} />
 						<label htmlFor="dog">강아지</label>
-						<input type="radio" name="kind" id="cat" />
+						<input type="radio" name="kind" id="cat" onChange={changeHandler} />
 						<label htmlFor="cat">고양이</label>
-						<input type="radio" name="kind" id="all" />
+						<input type="radio" name="kind" id="all" onChange={changeHandler} />
 						<label htmlFor="all">기타</label>
 					</div>
 					<div>
@@ -81,40 +132,98 @@ const PetRegistration = () => {
 					</div>
 					<div>
 						<h5>성별</h5>
-						<input type="radio" name="gender" id="male" />
+						<input
+							type="radio"
+							name="gender"
+							id="male"
+							onChange={changeHandler}
+						/>
 						<label htmlFor="male">남</label>
-						<input type="radio" name="gender" id="female" />
+						<input
+							type="radio"
+							name="gender"
+							id="female"
+							onChange={changeHandler}
+						/>
 						<label htmlFor="female">여</label>
 					</div>
 					<div>
 						<h5>품종</h5>
-						<input type="text" name="breed" id="breed" required />
+						<input
+							type="text"
+							name="breed"
+							id="breed"
+							onChange={changeHandler}
+							required
+						/>
 						<h5>/&nbsp;&nbsp;&nbsp;&nbsp;나이</h5>
-						<input type="text" name="age" id="age" required />
+						<input
+							type="text"
+							name="age"
+							id="age"
+							onChange={changeHandler}
+							required
+						/>
 					</div>
 					<div>
 						<h5>질병</h5>
-						<input type="text" name="disease" id="disease" required />
+						<input
+							type="text"
+							name="disease"
+							id="disease"
+							onChange={changeHandler}
+							required
+						/>
 					</div>
 					<div>
 						<h5>훈련 여부</h5>
-						<input type="radio" name="training" id="training_yes" />
+						<input
+							type="radio"
+							name="training"
+							id="training_yes"
+							onChange={changeHandler}
+						/>
 						<label htmlFor="training_yes">예</label>
-						<input type="radio" name="training" id="training_no" />
+						<input
+							type="radio"
+							name="training"
+							id="training_no"
+							onChange={changeHandler}
+						/>
 						<label htmlFor="training_no">아니오</label>
 					</div>
 					<div>
 						<h5>중성화 여부</h5>
-						<input type="radio" name="neutralization" id="neutralization_yes" />
+						<input
+							type="radio"
+							name="neutralization"
+							id="neutralization_yes"
+							onChange={changeHandler}
+						/>
 						<label htmlFor="neutralization_yes">예</label>
-						<input type="radio" name="neutralization" id="neutralization_no" />
+						<input
+							type="radio"
+							name="neutralization"
+							id="neutralization_no"
+							onChange={changeHandler}
+						/>
 						<label htmlFor="neutralization_no">아니오</label>
 					</div>
 					<div>
 						<h5>검강검진</h5>
-						<input type="radio" name="health" id="health_yes" />
+						<input
+							type="radio"
+							name="health"
+							id="health_yes"
+							onChange={changeHandler}
+						/>
 						<label htmlFor="health_yes">예</label>
-						<input type="radio" name="health" id="health_no" />
+						<input
+							type="radio"
+							name="health"
+							id="health_no"
+							onChange={changeHandler}
+						/>
 						<label htmlFor="health_no">아니오</label>
 					</div>
 					<div>
@@ -134,17 +243,18 @@ const PetRegistration = () => {
 							name="img"
 							id="fileInput"
 							accept=".jpg, .jpeg, .png"
+							onChange={changeHandler}
 							required
 							multiple
 						/>
 					</div>
 					<div className="text-box">
 						<h5>이별 사유</h5>
-						<textarea name="" id=""></textarea>
+						<textarea name="text_reason" id="text_reason"></textarea>
 					</div>
 					<div className="text-box">
 						<h5>특이 사항</h5>
-						<textarea name="" id=""></textarea>
+						<textarea name="text_reason" id="text_etc"></textarea>
 					</div>
 				</FormText>
 				<button type="submit">등록하기</button>

@@ -6,6 +6,7 @@ export interface NewFamilyState {
 }
 
 export interface AnimalItem {
+	animalId: number;
 	animalName: string;
 	kind: string;
 	region: string;

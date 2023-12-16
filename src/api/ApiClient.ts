@@ -27,9 +27,9 @@ class APIClient {
 		return this.request('get', endpoint);
 	}
 
-	post<T>(
+	post<T extends Record<string, string | boolean>>(
 		endpoint: string,
-		body: Record<string, string | boolean>,
+		body: T,
 	): Promise<T> {
 		return this.request('post', endpoint, body);
 	}
