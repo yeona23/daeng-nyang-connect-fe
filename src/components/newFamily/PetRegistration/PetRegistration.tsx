@@ -13,10 +13,9 @@ const PetRegistration = () => {
 	const navigate = useNavigate();
 	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
 	const [formData, setFormData] = useState({
-		animalId: '',
 		animalName: '',
 		kind: '',
-		region: '',
+		city: '',
 		gender: '',
 		breed: '',
 		age: '',
@@ -25,7 +24,7 @@ const PetRegistration = () => {
 		neutering: false,
 		healthCheck: '',
 		nurturePeriod: '',
-		image: '',
+		images: [],
 		textReason: '',
 		textEtc: '',
 		adoptionStatus: '',
@@ -33,12 +32,36 @@ const PetRegistration = () => {
 	});
 
 	const changeHandler = (e: {
-		target: { name: any; value: any; type: any; checked: any };
+		target: { name: any; value: any; type: any; checked: any; files?: any };
 	}) => {
-		const { name, value, type, checked } = e.target;
+		const { name, value, type, checked, files } = e.target;
+
+		if (type === 'radio' && checked) {
+			setFormData((prevData) => ({
+				...prevData,
+				[name]: value,
+			}));
+		} else {
+			setFormData((prevData) => ({
+				...prevData,
+				[name]: type === 'checkbox' ? checked : files ? [files] : value,
+			}));
+		}
+	};
+
+	const selectChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		const { name, value } = e.target;
 		setFormData((prevData) => ({
 			...prevData,
-			[name]: type === 'checkbox' ? checked : value,
+			[name]: value,
+		}));
+	};
+
+	const textareaChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+		const { name, value } = e.target;
+		setFormData((prevData) => ({
+			...prevData,
+			[name]: value,
 		}));
 	};
 
@@ -47,9 +70,10 @@ const PetRegistration = () => {
 		navigate(url);
 	};
 
+	console.log(formData);
+
 	const submitHandler = async (e: React.FormEvent) => {
 		e.preventDefault();
-
 		try {
 			const createdAnimal = await registerAnimal(formData);
 
@@ -90,44 +114,66 @@ const PetRegistration = () => {
 						<h5>동물 이름</h5>
 						<input
 							type="text"
-							name="animal_name"
-							id="animal_name"
+							name="animalName"
+							id="animalName"
 							onChange={changeHandler}
 							required
 						/>
 					</div>
 					<div>
 						<h5>축종</h5>
-						<input type="radio" name="kind" id="dog" onChange={changeHandler} />
+						<input
+							type="radio"
+							name="kind"
+							id="dog"
+							onChange={changeHandler}
+							value="강아지"
+						/>
 						<label htmlFor="dog">강아지</label>
-						<input type="radio" name="kind" id="cat" onChange={changeHandler} />
+						<input
+							type="radio"
+							name="kind"
+							id="cat"
+							onChange={changeHandler}
+							value="고양이"
+						/>
 						<label htmlFor="cat">고양이</label>
-						<input type="radio" name="kind" id="all" onChange={changeHandler} />
+						<input
+							type="radio"
+							name="kind"
+							id="all"
+							onChange={changeHandler}
+							value="기타"
+						/>
 						<label htmlFor="all">기타</label>
 					</div>
 					<div>
 						<h5>지역</h5>
-						<select id="regionSelect">
+						<select
+							id="regionSelect"
+							name="city"
+							onChange={selectChangeHandler}
+							value={formData.city}>
 							<option value="" disabled selected hidden>
 								지역을 선택해주세요
 							</option>
-							<option value="seoul">서울</option>
-							<option value="busan">부산</option>
-							<option value="incheon">인천</option>
-							<option value="daegu">대구</option>
-							<option value="gwangju">광주</option>
-							<option value="daejeon">대전</option>
-							<option value="ulsan">울산</option>
-							<option value="sejong">세종</option>
-							<option value="gyeonggi">경기</option>
-							<option value="gangwon">강원</option>
-							<option value="chungbuk">충북</option>
-							<option value="chungnam">충남</option>
-							<option value="jeonbuk">전북</option>
-							<option value="jeonnam">전남</option>
-							<option value="gyeongbuk">경북</option>
-							<option value="gyeongnam">경남</option>
-							<option value="jeju">제주</option>
+							<option value="서울">서울</option>
+							<option value="부산">부산</option>
+							<option value="인천">인천</option>
+							<option value="대구">대구</option>
+							<option value="광주">광주</option>
+							<option value="대전">대전</option>
+							<option value="울산">울산</option>
+							<option value="세종">세종</option>
+							<option value="경기">경기</option>
+							<option value="강원">강원</option>
+							<option value="충북">충북</option>
+							<option value="충남">충남</option>
+							<option value="전북">전북</option>
+							<option value="전남">전남</option>
+							<option value="경북">경북</option>
+							<option value="경남">경남</option>
+							<option value="제주">제주</option>
 						</select>
 					</div>
 					<div>
@@ -137,6 +183,7 @@ const PetRegistration = () => {
 							name="gender"
 							id="male"
 							onChange={changeHandler}
+							value="남"
 						/>
 						<label htmlFor="male">남</label>
 						<input
@@ -144,6 +191,7 @@ const PetRegistration = () => {
 							name="gender"
 							id="female"
 							onChange={changeHandler}
+							value="여"
 						/>
 						<label htmlFor="female">여</label>
 					</div>
@@ -182,6 +230,7 @@ const PetRegistration = () => {
 							name="training"
 							id="training_yes"
 							onChange={changeHandler}
+							value="훈련완료"
 						/>
 						<label htmlFor="training_yes">예</label>
 						<input
@@ -189,6 +238,7 @@ const PetRegistration = () => {
 							name="training"
 							id="training_no"
 							onChange={changeHandler}
+							value="훈련 중"
 						/>
 						<label htmlFor="training_no">아니오</label>
 					</div>
@@ -196,33 +246,37 @@ const PetRegistration = () => {
 						<h5>중성화 여부</h5>
 						<input
 							type="radio"
-							name="neutralization"
-							id="neutralization_yes"
+							name="neutering"
+							id="neutering_yes"
 							onChange={changeHandler}
+							value="예"
 						/>
-						<label htmlFor="neutralization_yes">예</label>
+						<label htmlFor="neutering_yes">예</label>
 						<input
 							type="radio"
-							name="neutralization"
-							id="neutralization_no"
+							name="neutering"
+							id="neutering_no"
 							onChange={changeHandler}
+							value="아니오"
 						/>
-						<label htmlFor="neutralization_no">아니오</label>
+						<label htmlFor="neutering_no">아니오</label>
 					</div>
 					<div>
 						<h5>검강검진</h5>
 						<input
 							type="radio"
-							name="health"
+							name="healthCheck"
 							id="health_yes"
 							onChange={changeHandler}
+							value="예"
 						/>
 						<label htmlFor="health_yes">예</label>
 						<input
 							type="radio"
-							name="health"
+							name="healthCheck"
 							id="health_no"
 							onChange={changeHandler}
+							value="아니오"
 						/>
 						<label htmlFor="health_no">아니오</label>
 					</div>
@@ -230,9 +284,10 @@ const PetRegistration = () => {
 						<h5>양육 기간</h5>
 						<input
 							type="text"
-							name="period"
-							id="period"
+							name="nurturePeriod"
+							id="nurturePeriod"
 							placeholder="2년 3개월"
+							onChange={changeHandler}
 							required
 						/>
 					</div>
@@ -240,21 +295,28 @@ const PetRegistration = () => {
 						<h5>이미지 등록</h5>
 						<input
 							type="file"
-							name="img"
+							name="image"
 							id="fileInput"
 							accept=".jpg, .jpeg, .png"
 							onChange={changeHandler}
 							required
-							multiple
 						/>
 					</div>
 					<div className="text-box">
 						<h5>이별 사유</h5>
-						<textarea name="text_reason" id="text_reason"></textarea>
+						<textarea
+							name="textReason"
+							id="textReason"
+							onChange={textareaChangeHandler}
+							value={formData.textReason}></textarea>
 					</div>
 					<div className="text-box">
 						<h5>특이 사항</h5>
-						<textarea name="text_reason" id="text_etc"></textarea>
+						<textarea
+							name="textEtc"
+							id="textEtc"
+							onChange={textareaChangeHandler}
+							value={formData.textEtc}></textarea>
 					</div>
 					<button type="submit">등록하기</button>
 				</FormText>

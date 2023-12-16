@@ -146,16 +146,17 @@ export const FilterItems = styled.div<ResponsiveProps>`
 	}
 `;
 
-export const ItemList = styled.div`
+export const ItemList = styled.div<ResponsiveProps>`
 	display: flex;
 	flex: 3;
+	gap: ${(props) => (props.$isMobile ? '8px' : '25px')};
 	flex-wrap: wrap;
-	justify-content: space-between;
+	/* justify-content: space-between; */
 `;
 
 export const ItemBox = styled.div<ResponsiveProps>`
 	width: ${(props) =>
-		props.$isMobile ? 'calc((100% - 15px) / 2)' : 'calc((100% - 50px) / 3)'};
+		props.$isMobile ? 'calc((100% - 16px) / 2)' : 'calc((100% - 50px) / 3)'};
 	margin-bottom: ${(props) => (props.$isMobile ? '15px' : '50px')};
 	border: 1px solid var(--color-peach);
 	border-radius: 10px;
@@ -470,6 +471,7 @@ export const FormText = styled.form<ResponsiveProps>`
 		padding: 10px;
 		border: 1px solid var(--color-light-salmon);
 		outline: none;
+		overflow: hidden;
 	}
 
 	& > div {

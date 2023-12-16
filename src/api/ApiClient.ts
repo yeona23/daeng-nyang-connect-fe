@@ -27,7 +27,7 @@ class APIClient {
 		return this.request('get', endpoint);
 	}
 
-	post<T extends Record<string, string | boolean>>(
+	post<T extends FormData | Record<string, string | boolean>>(
 		endpoint: string,
 		body: T,
 	): Promise<T> {
@@ -45,7 +45,7 @@ class APIClient {
 	private request<T>(
 		method: Method,
 		url: string,
-		data: Record<string, string | boolean> = {},
+		data: FormData | Record<string, string | boolean> = {},
 		config?: AxiosRequestConfig,
 	): Promise<T> {
 		const headers = {

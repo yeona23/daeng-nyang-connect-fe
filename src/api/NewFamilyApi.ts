@@ -23,11 +23,10 @@ export const getAnimal = async (): Promise<any> => {
 	return await animalApi.get(GET_ALL);
 };
 
-interface RegisterAnimal extends Record<string, string | boolean> {
-	animalId: string;
+interface RegisterAnimal extends Record<string, string[] | string | boolean> {
 	animalName: string;
 	kind: string;
-	region: string;
+	city: string;
 	gender: string;
 	breed: string;
 	age: string;
@@ -36,7 +35,7 @@ interface RegisterAnimal extends Record<string, string | boolean> {
 	neutering: boolean;
 	healthCheck: string;
 	nurturePeriod: string;
-	image: string;
+	images: string[];
 	textReason: string;
 	textEtc: string;
 	adoptionStatus: string;
@@ -44,7 +43,23 @@ interface RegisterAnimal extends Record<string, string | boolean> {
 }
 
 export const registerAnimal = async (data: RegisterAnimal) => {
-	return await animalApi.post(REGISTER, data);
+	const { images } = data;
+	const formData = new FormData();
+
+	Object.keys(data).forEach((key) => {
+		if (key !== 'images') {
+			const value = data[key as keyof RegisterAnimal];
+			if (value !== undefined) {
+				formData.append(key, value.toString());
+			}
+		}
+	});
+
+	if (images && images.length > 0) {
+		const singleImage = images[0];
+		formData.append('image', singleImage);
+	}
+	return await animalApi.post(REGISTER, formData);
 };
 
 export const modifyAnimal = async (animalId: number) => {

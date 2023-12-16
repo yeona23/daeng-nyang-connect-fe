@@ -26,6 +26,7 @@ interface AnimalInfo {
 	healthCheck: string;
 	textReason: string;
 	textEtc: string;
+	userNickname: string;
 }
 
 const NewFamilyDetail = () => {
@@ -83,7 +84,7 @@ const NewFamilyDetail = () => {
 						<div>
 							<img src="/assets/animal2.jpg" alt="" />
 						</div>
-						<h5>iamzipsa</h5>
+						<h5>{animalInfo.userNickname}</h5>
 						<RiMore2Line
 							color="var(--color-light-salmon"
 							size={getMoreBtnSize()}
@@ -124,7 +125,7 @@ const NewFamilyDetail = () => {
 							<div>
 								<img src={animalInfo.image} alt="" />
 							</div>
-							<h5>iamzipsa</h5>
+							<h5>{animalInfo.userNickname}</h5>
 							<RiMore2Line
 								color="var(--color-light-salmon"
 								size={30}
@@ -162,7 +163,7 @@ const NewFamilyDetail = () => {
 				</NewFamilyDetailContainer>
 			)}
 
-			{$isPc && <NewFamilySwiper />}
+			{/* {$isPc && <NewFamilySwiper />} */}
 		</div>
 	);
 };

@@ -63,7 +63,11 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 	};
 
 	return (
-		<ItemList>
+		<ItemList
+			$isMobile={$isMobile}
+			$isTablet={$isTablet}
+			$isPc={$isPc}
+			$isMaxWidth={$isMaxWidth}>
 			{items?.map((animal: Item) => (
 				<ItemBox
 					$isMobile={$isMobile}
