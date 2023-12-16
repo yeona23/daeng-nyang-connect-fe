@@ -24,6 +24,7 @@ export const getAnimal = async (): Promise<any> => {
 };
 
 interface RegisterAnimal extends Record<string, string | boolean> {
+	animalId: string;
 	animalName: string;
 	kind: string;
 	region: string;

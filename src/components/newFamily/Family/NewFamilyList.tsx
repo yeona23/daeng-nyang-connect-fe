@@ -38,8 +38,11 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 		return response;
 	};
 
-	const { data } = useQuery<Item[], unknown, Item[]>(['animals'], fetchAnimals);
-	console.log(data);
+	const { data: items } = useQuery<Item[], unknown, Item[]>(
+		['animals'],
+		fetchAnimals,
+	);
+	console.log(items);
 
 	const [bookmarkState, setBookmarkState] = useState<{
 		[key: number]: boolean;
@@ -61,7 +64,7 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 
 	return (
 		<ItemList>
-			{data?.map((animal: Item) => (
+			{items?.map((animal: Item) => (
 				<ItemBox
 					$isMobile={$isMobile}
 					$isTablet={$isTablet}
