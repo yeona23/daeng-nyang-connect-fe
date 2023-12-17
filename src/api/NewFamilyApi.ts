@@ -1,6 +1,7 @@
+import NewFamily from '../pages/NewFamily/NewFamily';
 import APIClient from './ApiClient';
 
-const REGISTER = '/post';
+const POST = '/post';
 const MODIFY = '/modify';
 const SCRAP = '/scrap';
 const COMPLETE = '/complete';
@@ -35,19 +36,17 @@ interface RegisterAnimal extends Record<string, string[] | string | boolean> {
 	neutering: boolean;
 	healthCheck: string;
 	nurturePeriod: string;
-	images: string[];
+	files: string[];
 	textReason: string;
 	textEtc: string;
-	adoptionStatus: string;
-	createAt: string;
 }
 
 export const registerAnimal = async (data: RegisterAnimal) => {
-	const { images } = data;
+	const { files } = data;
 	const formData = new FormData();
 
 	Object.keys(data).forEach((key) => {
-		if (key !== 'images') {
+		if (key !== 'files') {
 			const value = data[key as keyof RegisterAnimal];
 			if (value !== undefined) {
 				formData.append(key, value.toString());
@@ -55,27 +54,30 @@ export const registerAnimal = async (data: RegisterAnimal) => {
 		}
 	});
 
-	if (images && images.length > 0) {
-		const singleImage = images[0];
-		formData.append('image', singleImage);
+	if (files && files.length > 0) {
+		for (const file of files) {
+			console.log(file);
+			formData.append('files', file);
+		}
 	}
-	return await animalApi.post(REGISTER, formData);
+
+	return await animalApi.post(POST, formData);
 };
 
-export const modifyAnimal = async (animalId: number) => {
-	return await animalApi.put(MODIFY + `/${animalId}`, {});
+export const modifyAnimal = async (boardId: number) => {
+	return await animalApi.put(MODIFY + `/${boardId}`, {});
 };
 
-export const deleteAnimal = async (animalId: number) => {
-	return await animalApi.delete(DELETE + `/${animalId}`);
+export const deleteAnimal = async (boardId: number) => {
+	return await animalApi.delete(DELETE + `/${boardId}`);
 };
 
-export const scrapAnimal = async (animalId: number) => {
-	return await animalApi.post(SCRAP + `/${animalId}`, {});
+export const scrapAnimal = async (boardId: number) => {
+	return await animalApi.post(SCRAP + `/${boardId}`, {});
 };
 
-export const completeAnimal = async (animalId: number) => {
-	return await animalApi.put(COMPLETE + `/${animalId}`, {});
+export const completeAnimal = async (boardId: number) => {
+	return await animalApi.put(COMPLETE + `/${boardId}`, {});
 };
 
 export const kindAnimal = async (kind: string) => {

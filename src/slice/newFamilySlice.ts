@@ -6,19 +6,18 @@ export interface NewFamilyState {
 }
 
 export interface AnimalItem {
-	animalId: number;
+	boardId: number;
 	animalName: string;
 	kind: string;
-	region: string;
-	gender: boolean;
+	gender: string;
 	breed: string;
 	age: string;
 	disease: string;
-	training: boolean;
-	neutering: boolean;
+	training: string;
+	neutering: string;
 	healthCheck: boolean;
 	nurturePeriod: string;
-	image: string;
+	files: string[];
 	textReason: string;
 	textEtc: string;
 	adoptionStatus: string;

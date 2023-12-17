@@ -8,13 +8,14 @@ import {
 	UserThumbnail,
 } from '../NewFamily.style';
 import NewFamilySwiper from './NewFamilySwiper';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useResponsive } from '../../../hooks/useResponsive';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { getAnimal } from '../../../api/NewFamilyApi';
 
 interface AnimalData {
-	animalId: number;
+	boardId: number;
 	images: string[];
 	city: string;
 	gender: string;
@@ -30,11 +31,8 @@ interface AnimalData {
 	textEtc: string;
 	adoptionStatus: string;
 	createdAt: string;
-	userNickname: string;
-}
-
-interface RootState {
-	animal: AnimalData[];
+	nickname: string;
+	userThumbnail: string;
 }
 
 const NewFamilyDetail: React.FC = () => {
@@ -42,11 +40,25 @@ const NewFamilyDetail: React.FC = () => {
 	const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
 
-	const { animalId } = useParams<{ animalId: string }>();
-	const animalsData = useSelector((state: RootState) => state.animal);
-	const animalIdData = animalsData.find(
-		(animal) => String(animal.animalId) === String(animalId),
-	);
+	const { petId } = useParams();
+
+	const [boardIdData, setBoardIdData] = useState<AnimalData | null>(null);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await getAnimal();
+				const parsedBoardId = petId ? parseInt(petId) : undefined;
+				const boardData = response.find(
+					(animal: AnimalData) => animal.boardId === parsedBoardId,
+				);
+				setBoardIdData(boardData);
+			} catch (error) {
+				console.error('불러오기 오류', error);
+			}
+		};
+		fetchData();
+	}, [petId]);
 
 	const toggleDropdown = () => {
 		setIsDropdownVisible((prev) => !prev);
@@ -60,28 +72,68 @@ const NewFamilyDetail: React.FC = () => {
 		if ($isMobile) return 20;
 		return 30;
 	};
-
 	return (
 		<div>
-			{animalIdData && (
-				<NewFamilyDetailContainer
+			<NewFamilyDetailContainer
+				$isMobile={$isMobile}
+				$isTablet={$isTablet}
+				$isPc={$isPc}
+				$isMaxWidth={$isMaxWidth}>
+				<UserThumbnail
+					$isMobile={$isMobile}
+					$isTablet={$isTablet}
+					$isPc={$isPc}
+					$isMaxWidth={$isMaxWidth}
+					className="user-box-mobile">
+					<div>
+						<img src={boardIdData?.userThumbnail} alt={boardIdData?.nickname} />
+					</div>
+					<h5>{boardIdData?.nickname}</h5>
+					<RiMore2Line
+						color="var(--color-light-salmon"
+						size={getMoreBtnSize()}
+						onClick={toggleDropdown}
+					/>
+					{isDropdownVisible && (
+						<MoreDropdown
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
+							<li>수정하기</li>
+							<li>삭제하기</li>
+						</MoreDropdown>
+					)}
+				</UserThumbnail>
+				<DetailImageBox
 					$isMobile={$isMobile}
 					$isTablet={$isTablet}
 					$isPc={$isPc}
 					$isMaxWidth={$isMaxWidth}>
+					<img src={boardIdData?.images[0]} alt={boardIdData?.animalName} />
+					<BsBookmarkFill
+						color={clickedBookmark ? 'var(--color-light-salmon)' : '#ffffff70'}
+						size={40}
+						onClick={clickBookmarkHandler}
+					/>
+				</DetailImageBox>
+				<div>
 					<UserThumbnail
 						$isMobile={$isMobile}
 						$isTablet={$isTablet}
 						$isPc={$isPc}
 						$isMaxWidth={$isMaxWidth}
-						className="user-box-mobile">
+						className="user-box-pc">
 						<div>
-							<img src="" alt="" />
+							<img
+								src={boardIdData?.userThumbnail}
+								alt={boardIdData?.nickname}
+							/>
 						</div>
-						<h5></h5>
+						<h5>{boardIdData?.nickname}</h5>
 						<RiMore2Line
 							color="var(--color-light-salmon"
-							size={getMoreBtnSize()}
+							size={30}
 							onClick={toggleDropdown}
 						/>
 						{isDropdownVisible && (
@@ -95,68 +147,26 @@ const NewFamilyDetail: React.FC = () => {
 							</MoreDropdown>
 						)}
 					</UserThumbnail>
-					<DetailImageBox
+					<DetailTextBox
 						$isMobile={$isMobile}
 						$isTablet={$isTablet}
 						$isPc={$isPc}
 						$isMaxWidth={$isMaxWidth}>
-						<img src="" alt="" />
-						<BsBookmarkFill
-							color={
-								clickedBookmark ? 'var(--color-light-salmon)' : '#ffffff70'
-							}
-							size={40}
-							onClick={clickBookmarkHandler}
-						/>
-					</DetailImageBox>
-					<div>
-						<UserThumbnail
-							$isMobile={$isMobile}
-							$isTablet={$isTablet}
-							$isPc={$isPc}
-							$isMaxWidth={$isMaxWidth}
-							className="user-box-pc">
-							<div>
-								<img src="" alt="" />
-							</div>
-							<h5></h5>
-							<RiMore2Line
-								color="var(--color-light-salmon"
-								size={30}
-								onClick={toggleDropdown}
-							/>
-							{isDropdownVisible && (
-								<MoreDropdown
-									$isMobile={$isMobile}
-									$isTablet={$isTablet}
-									$isPc={$isPc}
-									$isMaxWidth={$isMaxWidth}>
-									<li>수정하기</li>
-									<li>삭제하기</li>
-								</MoreDropdown>
-							)}
-						</UserThumbnail>
-						<DetailTextBox
-							$isMobile={$isMobile}
-							$isTablet={$isTablet}
-							$isPc={$isPc}
-							$isMaxWidth={$isMaxWidth}>
-							<p>이름 : {animalIdData.animalName}</p>
-							<p>나이 : {animalIdData.age} </p>
-							<p>지역 : {animalIdData.city}</p>
-							<p>품종 : {animalIdData.breed} </p>
-							<p>질병 : {animalIdData.disease} </p>
-							<p>훈련 여부: {animalIdData.training} </p>
-							<p>중성화 여부 : {animalIdData.neutering} </p>
-							<p>양육 기간 : {animalIdData.nurturePeriod} </p>
-							<p>검강검진 여부 : {animalIdData.healthCheck} </p>
-							<p>이별 사유 : {animalIdData.textReason} </p>
-							<p>그 외 특이사항: {animalIdData.textEtc} </p>
-						</DetailTextBox>
-						<button>문의하기</button>
-					</div>
-				</NewFamilyDetailContainer>
-			)}
+						<p>이름 : {boardIdData?.animalName}</p>
+						<p>나이 : {boardIdData?.age} </p>
+						<p>지역 : {boardIdData?.city}</p>
+						<p>품종 : {boardIdData?.breed}</p>
+						<p>질병 : {boardIdData?.disease}</p>
+						<p>훈련 여부: {boardIdData?.training}</p>
+						<p>중성화 여부 : {boardIdData?.neutering}</p>
+						<p>양육 기간 : {boardIdData?.nurturePeriod}</p>
+						<p>검강검진 여부 : {boardIdData?.healthCheck}</p>
+						<p>이별 사유 : {boardIdData?.textReason}</p>
+						<p>그 외 특이사항: {boardIdData?.textEtc}</p>
+					</DetailTextBox>
+					<button>문의하기</button>
+				</div>
+			</NewFamilyDetailContainer>
 
 			{/* {$isPc && <NewFamilySwiper />} */}
 		</div>
