@@ -85,7 +85,9 @@ export const nicknameCheck = async (
 };
 
 export const findId = async (body: FindIdRequestBody): Promise<any> => {
-	return await authApi.get(FIND_ID, {});
+	return await authApi.get(
+		FIND_ID + `?name=${body.name}&mobile=${body.mobile}`,
+	);
 };
 
 export const findPassword = async (

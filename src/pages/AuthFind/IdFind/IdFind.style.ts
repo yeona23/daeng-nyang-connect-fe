@@ -55,6 +55,21 @@ export const FindInput = styled.input<ResponsiveProps>`
 	}
 `;
 
+export const FoundDiv = styled.div<ResponsiveProps>`
+	width: ${(props) => (props.$isMobile ? '70%' : '100%')};
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 40px;
+	margin-bottom: 18px;
+	border: none;
+	padding-left: 16px;
+	font-size: ${(props) => (props.$isMobile ? '12px' : '14px')};
+	font-weight: 500;
+	box-shadow: 1px 2px 6px 1px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+`;
+
 export const FindForm = styled.form`
 	display: flex;
 	flex-direction: column;
@@ -101,7 +116,8 @@ export const Logo = styled.img<ResponsiveProps>`
 `;
 
 export const Paragraph = styled.p<ResponsiveProps>`
-	margin-top: -15px;
+	margin-top: -13px;
+	font-weight: 500;
 	padding-bottom: 3px;
 	width: ${(props) => (props.$isMobile ? '65%' : '95%')};
 	text-align: left;

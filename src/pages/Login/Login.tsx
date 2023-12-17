@@ -14,6 +14,7 @@ import {
 	LoginWrapper,
 	Logo,
 	Paragraph,
+	ParagraphLogin,
 	SignUpButton,
 	SignUpDiv,
 } from './Login.style';
@@ -27,7 +28,7 @@ const Login = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const [formIsValid, setFormIsValid] = useSelector(false);
+	const [formIsValid, setFormIsValid] = useState(true);
 	const [isSignInClicked, setIsSignInClicked] = useState(false);
 	const [emailIsValid, setEmailIsValid] = useState(false);
 	const [passwordIsValid, setPasswordIsValid] = useState(false);
@@ -100,6 +101,7 @@ const Login = () => {
 				const response = await loginUser(inputValue);
 
 				if (!response) {
+					setFormIsValid(false);
 					return;
 				}
 
@@ -166,7 +168,13 @@ const Login = () => {
 						name="email"
 						onChange={inputValueHandler}></LoginInput>
 					{nameEmailInputIsInValid && (
-						<Paragraph>올바른 이메일 형식으로 입력해주세요.</Paragraph>
+						<Paragraph
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
+							올바른 이메일 형식으로 입력해주세요.
+						</Paragraph>
 					)}
 					<LoginInput
 						$isMobile={$isMobile}
@@ -178,7 +186,13 @@ const Login = () => {
 						name="password"
 						onChange={inputValueHandler}></LoginInput>
 					{namePasswordInputIsInValid && (
-						<Paragraph>비밀번호는 최소 6자리 이상이어야 합니다.</Paragraph>
+						<Paragraph
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
+							비밀번호는 최소 6자리 이상이어야 합니다.
+						</Paragraph>
 					)}
 					<LoginButton
 						$isMobile={$isMobile}
@@ -188,6 +202,15 @@ const Login = () => {
 						type="submit">
 						로그인
 					</LoginButton>
+					{!formIsValid && (
+						<ParagraphLogin
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
+							이메일 또는 비밀번호가 일치하지 않습니다.
+						</ParagraphLogin>
+					)}
 				</LoginForm>
 				<SignUpDiv>
 					<SignUpButton onClick={onIdFindClick}>아이디 찾기</SignUpButton>
@@ -196,6 +219,7 @@ const Login = () => {
 					</SignUpButton>
 					<SignUpButton onClick={onRegisterClick}>회원가입</SignUpButton>
 				</SignUpDiv>
+
 				<ButtonWrapper>
 					<Button>
 						<Image

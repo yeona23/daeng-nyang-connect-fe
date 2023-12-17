@@ -100,11 +100,20 @@ export const Logo = styled.img<ResponsiveProps>`
 	height: ${(props) => (props.$isMobile ? '150px' : '150px')};
 `;
 
-export const Paragraph = styled.p`
+export const Paragraph = styled.p<ResponsiveProps>`
 	margin-top: -10px;
 	margin-bottom: 5px;
-	width: 90%;
-	text-align: left;
+	width: ${(props) => (props.$isMobile ? '70%' : '90%')};
+	text-align: center;
+	font-size: 12px;
+	color: tomato;
+`;
+
+export const ParagraphLogin = styled.p<ResponsiveProps>`
+	margin-top: 5px;
+	margin-bottom: 5px;
+	width: ${(props) => (props.$isMobile ? '70%' : '90%')};
+	text-align: center;
 	font-size: 12px;
 	color: tomato;
 `;

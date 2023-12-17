@@ -6,6 +6,7 @@ import {
 	FindInput,
 	FindTitleDiv,
 	FindWrapper,
+	FoundDiv,
 	Logo,
 	Paragraph,
 	SignUpButton,
@@ -18,6 +19,7 @@ import { findId } from '../../../api/authApi';
 const IdFind = () => {
 	const navigate = useNavigate();
 	const [isHandlerClicked, setIsHandlerClicked] = useState(false);
+	const [foundId, setFoundId] = useState<string | null>(null);
 	const [nameIsValid, setNameIsValid] = useState(false);
 	const [mobileIsValid, setMobileIsValid] = useState(false);
 	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
@@ -82,9 +84,10 @@ const IdFind = () => {
 		if (nameIsValid && mobileIsValid) {
 			try {
 				const response = await findId(inputValue);
-				console.log(response);
-
 				if (!response) return;
+				if (response && response.ID) {
+					setFoundId(response.ID);
+				}
 			} catch (error) {
 				if (error instanceof TypeError) {
 					// TypeError
@@ -188,6 +191,15 @@ const IdFind = () => {
 							$isMaxWidth={$isMaxWidth}>
 							ex)010-0000-0000
 						</Paragraph>
+					)}
+					{foundId && (
+						<FoundDiv
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
+							{inputValue.name} 님의 이메일은 {foundId} 입니다.
+						</FoundDiv>
 					)}
 					<FindButton
 						$isMobile={$isMobile}
