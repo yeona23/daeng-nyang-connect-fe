@@ -23,7 +23,7 @@ class APIClient {
 		this.api = axios.create({ baseURL, headers });
 	}
 
-	get<T>(endpoint: string): Promise<T> {
+	get<T>(endpoint: string, body: Record<string, string | boolean>): Promise<T> {
 		return this.request('get', endpoint);
 	}
 

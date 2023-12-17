@@ -12,16 +12,17 @@ import {
 	RegisterInput,
 	RegisterInputSmall,
 	RegisterSelectBox,
+	RegisterSelectBoxLeft,
 	RegisterWrapper,
 } from './Register.style';
 import { useNavigate } from 'react-router-dom';
 import ConfirmModal from '../../components/Register/Modal/ConfirmModal/ConfirmModal';
 import { useResponsive } from '../../hooks/useResponsive';
-import { signupUser } from '../../api/authApi';
+import { idCheck, nicknameCheck, signupUser } from '../../api/authApi';
 
 interface SignupRequestBody {
 	name: string;
-	nickname: string;
+	nickName: string;
 	email: string;
 	password: string;
 	pwdck: string;
@@ -49,6 +50,7 @@ const Register = () => {
 	const [emailIsValid, setEmailIsValid] = useState(false);
 	const [emailOnFocus, setEmailOnFocus] = useState(false);
 	const [emailIsTouched, setEmailIsTouched] = useState(false);
+	const [emailIsDuplicated, setEmailIsDuplicated] = useState(false);
 
 	const [enteredPassword, setEnteredPassword] = useState('');
 	const [passwordIsValid, setPasswordIsValid] = useState(false);
@@ -63,9 +65,11 @@ const Register = () => {
 	const [allIsValid, setAllisValid] = useState(false);
 	const [textIsTouched, setTextIsTouched] = useState(false);
 
+	const [nicknameIsDuplicated, setNicknameIsDuplicated] = useState(false);
+
 	const [inputValue, setInputValue] = useState<SignupRequestBody>({
 		name: '',
-		nickname: '',
+		nickName: '',
 		email: '',
 		password: '',
 		pwdck: '',
@@ -121,19 +125,41 @@ const Register = () => {
 		setEmailOnFocus(true);
 		setEmailIsValid(true);
 	};
-	const emailOnBlurHandler = (e: ChangeEvent<HTMLInputElement>) => {
-		setEmailIsTouched(true);
-		setEmailOnFocus(false);
-		const { name, value } = e.target;
-		setInputValue({ ...inputValue, [name]: value });
-		if (name === 'email') {
-			if (e.target.value.trim() === '') {
-				setEmailIsValid(false);
+
+	const emailOnBlurHandler = async (e: ChangeEvent<HTMLInputElement>) => {
+		e.preventDefault();
+		console.log(inputValue.email);
+		try {
+			const response = await idCheck({
+				email: inputValue.email,
+			});
+			if (!response) {
+				return;
 			}
-			if (/^.+@.+\..+$/.test(e.target.value)) {
-				setEmailIsValid(true);
+			setEmailIsDuplicated(true);
+			setEmailIsTouched(true);
+			setEmailOnFocus(false);
+			const { name, value } = e.target;
+			setInputValue({ ...inputValue, [name]: value });
+			if (name === 'email') {
+				if (e.target.value.trim() === '') {
+					setEmailIsValid(false);
+				}
+				if (/^.+@.+\..+$/.test(e.target.value)) {
+					setEmailIsValid(true);
+				} else {
+					setEmailIsValid(false);
+				}
+			}
+		} catch (error) {
+			if (e instanceof TypeError) {
+				// TypeError
+			} else if (e instanceof SyntaxError) {
+				// SyntaxError
+			} else if (typeof e === 'string') {
+				// string
 			} else {
-				setEmailIsValid(false);
+				// other
 			}
 		}
 	};
@@ -207,6 +233,8 @@ const Register = () => {
 			nameIsValid &&
 			mobileIsValid &&
 			emailIsValid &&
+			!emailIsDuplicated &&
+			!nicknameIsDuplicated &&
 			passwordIsValid &&
 			pwdckIsValid
 		) {
@@ -236,6 +264,28 @@ const Register = () => {
 		}
 	};
 
+	const nickNameCheckHandler = async (e: React.FormEvent) => {
+		e.preventDefault();
+		try {
+			const response = await nicknameCheck({ nickname: inputValue.nickName });
+			if (!response) {
+				setNicknameIsDuplicated(true);
+			}
+			return;
+			// 아이디 중복체크 완료 확인
+		} catch (error) {
+			if (e instanceof TypeError) {
+				// TypeError
+			} else if (e instanceof SyntaxError) {
+				// SyntaxError
+			} else if (typeof e === 'string') {
+				// string
+			} else {
+				// other
+			}
+		}
+	};
+
 	const nameNameInputIsInValid = !nameIsValid && nameIsTouched;
 	const nameMobileInputIsInvalid = !mobileIsValid && mobileIsTouched;
 	const nameEmailInputIsInValid = !emailIsValid && emailIsTouched;
@@ -244,7 +294,11 @@ const Register = () => {
 		pwdckIsTouched && inputValue.pwdck !== inputValue.password;
 
 	return (
-		<RegisterWrapper>
+		<RegisterWrapper
+			$isMobile={$isMobile}
+			$isTablet={$isTablet}
+			$isPc={$isPc}
+			$isMaxWidth={$isMaxWidth}>
 			<RegisterDiv
 				$isMobile={$isMobile}
 				$isTablet={$isTablet}
@@ -275,6 +329,15 @@ const Register = () => {
 							$isPc={$isPc}
 							$isMaxWidth={$isMaxWidth}>
 							올바른 이메일 형식으로 입력해주세요.
+						</Paragraph>
+					)}
+					{emailIsDuplicated && ( // 이메일 중복 시 메시지 표시
+						<Paragraph
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
+							중복된 이메일입니다. 다른 이메일을 사용해주세요.
 						</Paragraph>
 					)}
 					{emailOnFocus && (
@@ -358,9 +421,9 @@ const Register = () => {
 						<RegisterInputSmall
 							placeholder="닉네임"
 							type="text"
-							name="nickname"
-							onFocus={pwdckOnFocusHandler}
-							onBlur={pwdckOnBlurHandler}
+							name="nickName"
+							// onFocus={pwdckOnFocusHandler}
+							onBlur={nickNameCheckHandler}
 							onChange={inputValueHandler}
 							$isMobile={$isMobile}
 							$isTablet={$isTablet}
@@ -383,6 +446,15 @@ const Register = () => {
 							$isPc={$isPc}
 							$isMaxWidth={$isMaxWidth}>
 							이름을 올바르게 입력해주세요.
+						</Paragraph>
+					)}
+					{nicknameIsDuplicated && ( // 이메일 중복 시 메시지 표시
+						<Paragraph
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
+							중복된 닉네임입니다. 다른 닉네임을 사용해주세요.
 						</Paragraph>
 					)}
 					<RegisterInput
@@ -424,8 +496,6 @@ const Register = () => {
 							type="text"
 							placeholder="시 도"
 							name="city"
-							onFocus={nameFocusHandler}
-							onBlur={nameOnBlurHandler}
 							onChange={inputValueHandler}
 							$isMobile={$isMobile}
 							$isTablet={$isTablet}
@@ -436,8 +506,6 @@ const Register = () => {
 							placeholder="상세주소"
 							type="text"
 							name="town"
-							onFocus={pwdckOnFocusHandler}
-							onBlur={pwdckOnBlurHandler}
 							onChange={inputValueHandler}
 							$isMobile={$isMobile}
 							$isTablet={$isTablet}
@@ -463,7 +531,7 @@ const Register = () => {
 							<Option value="woman">여성</Option>
 						</RegisterSelectBox>
 
-						<RegisterSelectBox
+						<RegisterSelectBoxLeft
 							$isMobile={$isMobile}
 							$isTablet={$isTablet}
 							$isPc={$isPc}
@@ -475,7 +543,7 @@ const Register = () => {
 							</Option>
 							<Option value="true">있음</Option>
 							<Option value="false">없음</Option>
-						</RegisterSelectBox>
+						</RegisterSelectBoxLeft>
 					</RegisterDoubleDiv>
 
 					<RegisterButton

@@ -7,7 +7,7 @@ interface ResponsiveProps {
 	$isMaxWidth: boolean;
 }
 
-export const LoginWrapper = styled.div`
+export const FindWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -17,14 +17,14 @@ export const LoginWrapper = styled.div`
 	overflow-x: hidden;
 `;
 
-export const LoginDiv = styled.div`
+export const FindDiv = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
 `;
 
-export const LoginTitleDiv = styled.div`
+export const FindTitleDiv = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -37,10 +37,10 @@ export const LoginTitleDiv = styled.div`
 	line-height: 39.69px;
 `;
 
-export const LoginInput = styled.input<ResponsiveProps>`
+export const FindInput = styled.input<ResponsiveProps>`
 	width: ${(props) => (props.$isMobile ? '70%' : '100%')};
 	height: 40px;
-	margin-bottom: 16px;
+	margin-bottom: 18px;
 	border: none;
 	padding-left: 16px;
 	font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
@@ -55,14 +55,14 @@ export const LoginInput = styled.input<ResponsiveProps>`
 	}
 `;
 
-export const LoginForm = styled.form`
+export const FindForm = styled.form`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
 `;
 
-export const LoginButton = styled.button<ResponsiveProps>`
+export const FindButton = styled.button<ResponsiveProps>`
 	background-color: rgba(227, 155, 166, 0.9);
 	color: white;
 	padding: 8px, 52px, 8px, 52px;
@@ -100,33 +100,13 @@ export const Logo = styled.img<ResponsiveProps>`
 	height: ${(props) => (props.$isMobile ? '150px' : '150px')};
 `;
 
-export const Paragraph = styled.p`
-	margin-top: -10px;
-	margin-bottom: 5px;
-	width: 90%;
+export const Paragraph = styled.p<ResponsiveProps>`
+	margin-top: -15px;
+	padding-bottom: 3px;
+	width: ${(props) => (props.$isMobile ? '65%' : '95%')};
 	text-align: left;
-	font-size: 12px;
-	color: tomato;
-`;
-
-export const ButtonWrapper = styled.div`
-	display: flex;
-	justify-content: space-around;
-	width: 250px;
-	padding-top: 10px;
-`;
-
-export const Button = styled.button`
-	width: 45px;
-	height: 45px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border: none;
-	border-radius: 50%;
-	background-color: transparent;
-	cursor: pointer;
-	box-shadow: 1px 2px 6px 1px rgba(0, 0, 0, 0.3);
+	font-size: ${(props) => (props.$isMobile ? '10px' : '12px')};
+	color: var(--color--deep-blue);
 `;
 
 export const Image = styled.img`

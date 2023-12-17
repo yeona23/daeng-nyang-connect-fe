@@ -20,13 +20,13 @@ import {
 import localToken from '../../api/LocalToken';
 import { useResponsive } from '../../hooks/useResponsive';
 import { loginUser } from '../../api/authApi';
+import { LOGIN_USER } from '../../slice/userSlice';
 
 const Login = () => {
 	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const onRegisterClick = () => {
-		navigate('/register');
-	};
+
 	const [isSignInClicked, setIsSignInClicked] = useState(false);
 	const [emailIsValid, setEmailIsValid] = useState(false);
 	const [passwordIsValid, setPasswordIsValid] = useState(false);
@@ -42,6 +42,18 @@ const Login = () => {
 
 	const kakaoLoginHandler = () => {
 		window.location.href = kakaoLink;
+	};
+
+	const onRegisterClick = () => {
+		navigate('/register');
+	};
+
+	const onIdFindClick = () => {
+		navigate('/idFind');
+	};
+
+	const onPasswordFindClick = () => {
+		navigate('/passwordFind');
 	};
 
 	const inputValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -81,11 +93,19 @@ const Login = () => {
 
 				if (!response) return;
 
-				const { access_token } = response;
+				const { access_token, nickname, email } = response;
 
 				const saveToken = (token: string) => {
 					localToken.save(token);
 				};
+
+				dispatch(
+					LOGIN_USER({
+						isLoggedIn: true,
+						nickname: nickname,
+						id: email,
+					}),
+				);
 
 				if (access_token) {
 					saveToken(access_token);
@@ -160,8 +180,10 @@ const Login = () => {
 					</LoginButton>
 				</LoginForm>
 				<SignUpDiv>
-					<SignUpButton>아이디 찾기</SignUpButton>
-					<SignUpButton>비밀번호 찾기</SignUpButton>
+					<SignUpButton onClick={onIdFindClick}>아이디 찾기</SignUpButton>
+					<SignUpButton onClick={onPasswordFindClick}>
+						비밀번호 찾기
+					</SignUpButton>
 					<SignUpButton onClick={onRegisterClick}>회원가입</SignUpButton>
 				</SignUpDiv>
 				<ButtonWrapper>
@@ -174,9 +196,6 @@ const Login = () => {
 					</Button>
 					<Button>
 						<Image src="/assets/icons/icon-naver.png" alt="twitter-icon" />
-					</Button>
-					<Button>
-						<Image src="/assets/icons/icon-apple.svg" alt="apple-icon" />
 					</Button>
 					<Button>
 						<Image src="/assets/icons/icon-google.svg" alt="google-icon" />

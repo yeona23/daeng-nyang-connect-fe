@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 import { useRef, useState } from 'react';
-// import AddressChangeModal from '../AddressChangeModal/AddressChangeModal';
-// import DeleteModal from '../DeleteModal/DeleteModal';
-// import TelChangeModal from '../TelChangeModal/TelChangeModal';
-// import PasswordChangeModal from '../PasswordModal/PasswordChangeModal';
 import {
 	AccountDiv,
 	DeleteYourAccountDiv,
@@ -32,13 +28,16 @@ import { useNavigate } from 'react-router';
 import TelChangeModal from '../TelChangeModal/TelChangeModal';
 import DeleteModal from '../DeleteModal/DeleteModal';
 import AddressChangeModal from '../AddressChangeModal/AddressChangeModal';
-// import { logoutUser } from '../../../api/authApi';
-// import localToken from '../../../api/LocalToken';
+import localToken from '../../../api/LocalToken';
+import { logoutUser } from '../../../api/authApi';
+import { useDispatch } from 'react-redux';
+import { LOGOUT_USER } from '../../../slice/userSlice';
 
 const User = () => {
 	const [imgFile, setImgFile] = useState('');
 	const imgRef = useRef<HTMLInputElement>(null);
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const [deleteIsOpen, deleteSetIsOpen] = useState(false);
 	const [addressIsOpen, addressSetIsOpen] = useState(false);
@@ -62,13 +61,22 @@ const User = () => {
 	};
 
 	const logoutHandler = async () => {
-		// try {
-		// 	await logoutUser();
-		// 	localToken.remove();
-		// 	navigate('/');
-		// } catch (error) {
-		// 	console.error('Logout failed:', error.message);
-		// }
+		try {
+			await logoutUser();
+			dispatch(LOGOUT_USER());
+			localToken.remove();
+			navigate('/');
+		} catch (error) {
+			if (error instanceof TypeError) {
+				// TypeError
+			} else if (error instanceof SyntaxError) {
+				// SyntaxError
+			} else if (typeof error === 'string') {
+				// string
+			} else {
+				// other
+			}
+		}
 	};
 
 	const defaultUserImage = '/assets/icons/icon-user.png';
