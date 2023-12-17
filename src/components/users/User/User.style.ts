@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+interface ResponsiveProps {
+	$isMobile: boolean;
+	$isTablet: boolean;
+	$isPc: boolean;
+	$isMaxWidth: boolean;
+}
+
 export const UserWrapper = styled.div`
 	display: flex;
 	align-items: center;
@@ -19,17 +26,6 @@ export const UserBox = styled.div`
 	flex-direction: column;
 `;
 
-export const AccountDiv = styled.div`
-	width: 90%;
-	height: 40px;
-	border-bottom: 2px solid #434343;
-	font-weight: 500;
-	font-size: 30px;
-	padding-bottom: 50px;
-	position: absolute;
-	top: 80px;
-`;
-
 export const UserContent = styled.div`
 	padding-top: 30px;
 	width: 90%;
@@ -46,9 +42,9 @@ export const UserNamePhotoDiv = styled.div`
 	flex-direction: column;
 `;
 
-export const UserPhotoDiv = styled.div`
-	width: 100px;
-	height: 100px;
+export const UserPhotoDiv = styled.div<ResponsiveProps>`
+	width: ${(props) => (props.$isMobile ? '80px' : '100px')};
+	height: ${(props) => (props.$isMobile ? '80px' : '100px')};
 `;
 
 export const UserNameDiv = styled.div`
@@ -64,26 +60,28 @@ export const UserNameDiv = styled.div`
 
 export const UserItemDiv = styled.div`
 	flex-direction: column;
-	padding-top: 200px;
 `;
 
-export const UserLeftItemDiv = styled.div`
-	width: 472px;
-	height: 48px;
-	font-size: 15px;
+export const UserLeftItemDiv = styled.div<ResponsiveProps>`
+	/* ${(props) => (props.$isMobile ? '200px' : '427px')}; */
+	width: ${(props) => (props.$isMobile ? '272px' : '472px')};
+	height: ${(props) => (props.$isMobile ? '36px' : '48px')};
+	font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 	justify-content: space-between;
 	display: flex;
 	align-items: center;
 	margin-top: 16px;
+	margin-left: ${(props) => (props.$isMobile ? '0px' : '16px')};
 	padding-left: 20px;
 	padding-right: 8px;
 	box-shadow: 1px 2px 6px 1px rgba(0, 0, 0, 0.3);
 	border-radius: 10px;
 `;
 
-export const UserLeftItemDivWrapper = styled.div`
+export const UserLeftItemDivWrapper = styled.div<ResponsiveProps>`
 	width: 652px;
-	justify-content: space-between;
+	height: ${(props) => (props.$isMobile ? '48px' : '64px')};
+	justify-content: ${(props) => (props.$isMobile ? 'center' : 'space-between')};
 	display: flex;
 	align-items: center;
 `;
@@ -100,12 +98,12 @@ export const UserRightItemDiv = styled.div`
 	padding-right: 8px;
 `;
 
-export const UserItemTitleDiv = styled.div`
+export const UserItemTitleDiv = styled.div<ResponsiveProps>`
 	width: 100px;
 	height: 48px;
 	font-size: 16px;
 	justify-content: center;
-	display: flex;
+	display: ${(props) => (props.$isMobile ? 'none' : 'flex')};
 	align-items: center;
 	margin-top: 16px;
 
@@ -133,12 +131,12 @@ export const ProductRegisterButton = styled.button`
 	}
 `;
 
-export const SignOutDiv = styled.div`
+export const SignOutDiv = styled.div<ResponsiveProps>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	width: 100px;
-	font-size: 16px;
+	font-size: ${(props) => (props.$isMobile ? '14px' : '16px')};
 	&:hover {
 		cursor: pointer;
 	}
@@ -181,14 +179,15 @@ export const ProfileImgInput = styled.input`
 	display: none;
 `;
 
-export const ModalDiv = styled.div`
+export const ModalDiv = styled.div<ResponsiveProps>`
 	width: 60px;
-	height: 48px;
-	font-size: 16px;
+	height: ${(props) => (props.$isMobile ? '36px' : '48px')};
+	font-size: ${(props) => (props.$isMobile ? '14px' : '16px')};
 	justify-content: center;
 	display: flex;
 	align-items: center;
 	margin-top: 16px;
+	margin-left: 16px;
 	box-shadow: 1px 2px 6px 1px rgba(0, 0, 0, 0.3);
 	border-radius: 10px;
 	background-color: rgba(227, 155, 166, 0.4);

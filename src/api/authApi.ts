@@ -7,7 +7,7 @@ const ID_CHECK = '/IdCheck';
 const NICKNAME_CHECK = '/NicknameCheck';
 const FIND_ID = '/findId';
 const FIND_PASSWORD = '/findPassword';
-const MY_PAGE = '/myPage';
+const MY_PAGE = '/myPage/get';
 const BASE_URL = 'http://3.35.16.126:8080';
 
 interface SignupRequestBody {
@@ -75,9 +75,16 @@ export const logoutUser = async () => {
 };
 
 export const idCheck = async (body: IdCheckRequestBody): Promise<any> => {
-	return await authApi.get(ID_CHECK, {
-		email: body.email,
-	});
+	// return await authApi.get(ID_CHECK, {
+	// 	email: body.email,
+	// });
+	try {
+		return await authApi.get(ID_CHECK, {
+			email: body.email,
+		});
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 export const nicknameCheck = async (
@@ -106,6 +113,17 @@ export const findPassword = async (
 	});
 };
 
-export const mypageCheck = async () => {
-	return await authApi.get(MY_PAGE, {});
+export const myPageGet = async (): Promise<any> => {
+	return await authApi.get(MY_PAGE, {
+		email: '',
+		name: '',
+		nickName: '',
+		mobile: '',
+		city: '',
+		info: '',
+		img: '',
+		gender: '',
+		town: '',
+		experience: '',
+	});
 };
