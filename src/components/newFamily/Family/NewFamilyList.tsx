@@ -9,11 +9,11 @@ import { SET_ANIMALS } from '../../../slice/newFamilySlice';
 import { useQuery } from 'react-query';
 
 interface Item {
-	animalId: number;
+	boardId: number;
 	index: number;
 	animalName: string;
 	age: string;
-	image: string;
+	images: string[];
 }
 
 interface ResponsiveProps {
@@ -42,7 +42,6 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 		['animals'],
 		fetchAnimals,
 	);
-	console.log(items);
 
 	const [bookmarkState, setBookmarkState] = useState<{
 		[key: number]: boolean;
@@ -74,27 +73,27 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 					$isTablet={$isTablet}
 					$isPc={$isPc}
 					$isMaxWidth={$isMaxWidth}
-					key={animal.animalId}
-					onClick={() => goToDetailPage(animal.animalId)}>
+					key={animal.boardId}
+					onClick={() => goToDetailPage(animal.boardId)}>
 					<div>
-						<img src={animal.image} alt={`adoption${animal.animalId}`} />
+						<img src={animal.images[0]} alt={`adoption${animal.boardId}`} />
 						<BsBookmarkFill
 							color={
-								bookmarkState[animal.animalId]
+								bookmarkState[animal.boardId]
 									? 'var(--color-light-salmon)'
 									: '#ffffff70'
 							}
 							size={getBookmarkSize()}
 							onClick={(e) => {
 								e.stopPropagation();
-								clickBookmarkHandler(animal.animalId);
+								clickBookmarkHandler(animal.boardId);
 							}}
 						/>
 					</div>
 					<div>
 						<p>이름 : {animal.animalName}</p>
 						<p>나이 : {animal.age}</p>
-						<button onClick={() => goToDetailPage(animal.animalId)}>
+						<button onClick={() => goToDetailPage(animal.boardId)}>
 							자세히 보기
 						</button>
 					</div>
