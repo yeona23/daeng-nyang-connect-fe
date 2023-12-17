@@ -3,6 +3,7 @@ import {
 	CommunityState,
 	SET_CATEGORY,
 	SET_GENDER,
+	SET_GET_ALL_BOARD,
 	SET_INPUT_VALUE,
 	SET_KIND_PET,
 } from '../../../../slice/communitySlice';
@@ -19,8 +20,13 @@ import {
 	Title,
 	TitleAndButtonWrap,
 } from './WritingModalForm.style';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useResponsive } from '../../../../hooks/useResponsive';
+import { getAllBoard, postBoard } from '../../../../api/communityApi';
+import { useNavigate } from 'react-router-dom';
+import { Board } from '../../../../types/BoardTypes';
+import usePagination from '../../../../hooks/usePagination';
+import { useQuery } from 'react-query';
 
 interface RootState {
 	community: CommunityState;
@@ -29,19 +35,33 @@ interface RootState {
 interface CommunityNavProps {
 	setIsPopUp: React.Dispatch<React.SetStateAction<boolean>>;
 }
+interface FileMetadata {
+	name: string;
+	size: number;
+	type: string;
+	lastModified: number;
+}
+
+interface ComponentState {
+	filesMetadata: FileMetadata[];
+	selectedFiles: File[];
+}
 
 const WritingModalForm = ({ setIsPopUp }: CommunityNavProps) => {
 	const [inputValue, setInputValue] = useState({
 		place: '',
-		lost_date: '',
-		lost_time: '',
-		lost_minute: '',
+		date: '',
+		time: '',
 		breed: '',
 		color: '',
 		mobile: '',
 		reward: 0,
 		text: '',
 		title: '',
+	});
+	const [state, setState] = useState<ComponentState>({
+		filesMetadata: [],
+		selectedFiles: [],
 	});
 	const dispatch = useDispatch();
 	const displayLabel = useSelector(
@@ -53,8 +73,10 @@ const WritingModalForm = ({ setIsPopUp }: CommunityNavProps) => {
 
 	const communityState = useSelector((state: RootState) => state.community);
 
+	const navigate = useNavigate();
+
 	useEffect(() => {
-		console.log(communityState);
+		console.log('communityState', communityState);
 	}, [communityState]);
 
 	const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -95,13 +117,93 @@ const WritingModalForm = ({ setIsPopUp }: CommunityNavProps) => {
 		}
 	};
 
+	const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+		if (e.target.files) {
+			const filesMetadata: FileMetadata[] = Array.from(e.target.files).map(
+				(file) => ({
+					name: file.name,
+					size: file.size,
+					type: file.type,
+					lastModified: file.lastModified,
+				}),
+			);
+
+			setState({
+				filesMetadata,
+				selectedFiles: Array.from(e.target.files),
+			});
+		}
+	};
+
 	const closeThePopUp = () => {
 		setIsPopUp(false);
 		document.body.style.overflow = 'visible';
 	};
 
+	const fetchPostBoardHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		const postData = {
+			...communityState,
+			images: state.selectedFiles,
+		};
+		const response = await postBoard(
+			displayLabel === '나의 댕냥이'
+				? 'my_pet'
+				: displayLabel === '댕냥 꿀팁'
+				  ? 'tips'
+				  : displayLabel === '댕냥 메이트'
+				    ? 'mate'
+				    : 'lost',
+			postData,
+		);
+		console.log(response);
+		navigate(
+			`/community/${
+				displayLabel === '나의 댕냥이'
+					? 'myPets'
+					: displayLabel === '댕냥 꿀팁'
+					  ? 'tips'
+					  : displayLabel === '댕냥 메이트'
+					    ? 'mates'
+					    : 'losts'
+			}`,
+		);
+
+		dispatch(SET_GET_ALL_BOARD(data));
+		refetch();
+		setIsPopUp(false);
+		document.body.style.overflow = 'visible';
+	};
+
+	console.log(state);
+
+	const fetchGetAllBoard = async (): Promise<Board[]> => {
+		const response = await getAllBoard(
+			displayLabel === '나의 댕냥이'
+				? 'myPets'
+				: displayLabel === '댕냥 꿀팁'
+				  ? 'tips'
+				  : displayLabel === '댕냥 메이트'
+				    ? 'mates'
+				    : 'losts',
+			displayLabel === '나의 댕냥이' || displayLabel === '댕냥 미아센터'
+				? ''
+				: String(currentPage),
+		);
+		console.log('response', response);
+
+		return response;
+	};
+
+	const { data, refetch } = useQuery<Board[]>('tipAllBoard', fetchGetAllBoard);
+	const itemsPerPage = 20;
+
+	const { currentPage } = usePagination(data && data.length, itemsPerPage);
+
+	console.log('data', data);
+
 	return (
-		<ModalForm>
+		<ModalForm onSubmit={fetchPostBoardHandler}>
 			<TitleAndButtonWrap>
 				<Title>{displayLabel} 글쓰기</Title>
 				<button onClick={closeThePopUp}>
@@ -236,8 +338,8 @@ const WritingModalForm = ({ setIsPopUp }: CommunityNavProps) => {
 						</LabelTitle>
 						<TextInput
 							type="date"
-							name="lost_date"
-							value={inputValue.lost_date}
+							name="date"
+							value={inputValue.date}
 							onChange={inputChangeHandler}
 							$isMobile={$isMobile}
 						/>
@@ -250,8 +352,8 @@ const WritingModalForm = ({ setIsPopUp }: CommunityNavProps) => {
 						</LabelTitle>
 						<TextInput
 							type="time"
-							name="lost_time"
-							value={inputValue.lost_time}
+							name="time"
+							value={inputValue.time}
 							onChange={inputChangeHandler}
 							$isMobile={$isMobile}
 						/>
@@ -422,11 +524,11 @@ const WritingModalForm = ({ setIsPopUp }: CommunityNavProps) => {
 					<LabelTitle htmlFor="images" $isMobile={$isMobile}>
 						이미지 등록
 					</LabelTitle>
-					<input type="file" multiple />
+					<input type="file" multiple onChange={handleImageChange} />
 				</LabelWrap>
 			</InfoWrap>
 			<ButtonWrap>
-				<button>등록하기</button>
+				<button type="submit">등록하기</button>
 			</ButtonWrap>
 		</ModalForm>
 	);

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { Board, BoardComment } from '../types/BoardTypes';
 
 export interface CommunityState {
 	category: string;
@@ -9,13 +10,15 @@ export interface CommunityState {
 	breed: string;
 	gender: string;
 	color: string;
-	lost_date: string;
-	lost_time: string;
-	lost_minute: string;
+	date: string;
+	time: string;
 	title: string;
 	text: string;
-	images: Array<string>;
-	displayLabel: string;
+	images: File[];
+	displayLabel?: string;
+	subCategory: string;
+	comments: BoardComment[];
+	boardAll: Board[];
 }
 
 const initialState: CommunityState = {
@@ -27,13 +30,15 @@ const initialState: CommunityState = {
 	breed: '',
 	gender: '',
 	color: '',
-	lost_date: '',
-	lost_time: '',
-	lost_minute: '',
+	date: '',
+	time: '',
 	title: '',
 	text: '',
 	images: [],
 	displayLabel: '',
+	subCategory: '',
+	comments: [],
+	boardAll: [],
 };
 
 const communitySlice = createSlice({
@@ -62,15 +67,11 @@ const communitySlice = createSlice({
 			};
 		},
 		SET_INPUT_VALUE(state, action) {
-			const { lost_time } = action.payload;
-			const [time, minute] = lost_time.split(':');
-
 			return {
 				...state,
 				place: action.payload.place,
-				lost_date: action.payload.lost_date,
-				lost_time: time,
-				lost_minute: minute,
+				date: action.payload.date,
+				time: action.payload.time,
 				breed: action.payload.breed,
 				color: action.payload.color,
 				mobile: action.payload.mobile,
@@ -78,6 +79,18 @@ const communitySlice = createSlice({
 				text: action.payload.text,
 				title: action.payload.title,
 			};
+		},
+		SET_IMAGES(state, action) {
+			state.images = action.payload;
+		},
+		SET_SUB_CATEGORY(state, action) {
+			state.subCategory = action.payload;
+		},
+		SET_COMMENT_LIST(state, action) {
+			state.comments = action.payload;
+		},
+		SET_GET_ALL_BOARD(state, action) {
+			state.boardAll = action.payload;
 		},
 	},
 });
@@ -88,6 +101,10 @@ export const {
 	SET_CATEGORY,
 	SET_GENDER,
 	SET_INPUT_VALUE,
+	SET_IMAGES,
+	SET_SUB_CATEGORY,
+	SET_COMMENT_LIST,
+	SET_GET_ALL_BOARD,
 } = communitySlice.actions;
 
 export default communitySlice.reducer;

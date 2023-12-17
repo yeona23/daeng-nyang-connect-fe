@@ -1,40 +1,36 @@
-import { useState } from 'react';
 import MyPetList from './MyPetList/MyPetList';
 import { MyPetLists } from './MyPetRoot.style';
 import { useResponsive } from '../../../hooks/useResponsive';
-
-export interface MyPet {
-	id: number;
-	userThumbnail: string;
-	userName: string;
-	petImage: string;
-}
+import { getAllBoard } from '../../../api/communityApi';
+import { useQuery } from 'react-query';
+import { Board } from '../../../types/BoardTypes';
 
 const MyPetRoot = () => {
-	const createMockMyPets = (): MyPet[] => {
-		const mockData: MyPet[] = [];
-
-		for (let i = 0; i < 20; i++) {
-			mockData.push({
-				id: i,
-				userThumbnail: `userThumbnail-${i}`,
-				userName: `userName-${i}`,
-				petImage: `petImage-${i}`,
-			});
-		}
-
-		return mockData;
-	};
-
-	const [myPetList, setMyPetList] = useState<MyPet[]>(createMockMyPets());
 	const { $isTablet, $isMobile } = useResponsive();
 
+	const fetchGetAllMyPetBoard = async (): Promise<Board[]> => {
+		const response = await getAllBoard('my_pet');
+
+		return response;
+	};
+
+	const { data, isLoading } = useQuery<Board[]>(
+		'myPetAllBoard',
+		fetchGetAllMyPetBoard,
+	);
+
 	return (
-		<MyPetLists $isTablet={$isTablet} $isMobile={$isMobile}>
-			{myPetList.map((list) => (
-				<MyPetList key={list.id} list={list} />
-			))}
-		</MyPetLists>
+		<>
+			{isLoading && <section>로딩 중...</section>}
+			<MyPetLists $isTablet={$isTablet} $isMobile={$isMobile}>
+				{data &&
+					data.map((list) => {
+						if ('boardId' in list) {
+							return <MyPetList key={list.boardId} list={list} />;
+						}
+					})}
+			</MyPetLists>
+		</>
 	);
 };
 

@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { LostPet } from '../LostRoot';
 import {
 	Button,
 	ButtonWrap,
@@ -8,9 +7,10 @@ import {
 	TextWrap,
 } from './LostList.style';
 import { useResponsive } from '../../../../hooks/useResponsive';
+import { Board } from '../../../../types/BoardTypes';
 
 interface LostPetProps {
-	list: LostPet;
+	list: Board;
 }
 
 const LostList = ({ list }: LostPetProps) => {
@@ -23,16 +23,18 @@ const LostList = ({ list }: LostPetProps) => {
 	const { $isTablet, $isMobile } = useResponsive();
 
 	return (
-		<LostLi onClick={() => moveToTheDetailPage(list.id)}>
+		<LostLi onClick={() => moveToTheDetailPage(list.boardId)}>
 			<ImgWrap>
-				<img src="/assets/cat.jpeg" alt="" />
+				{list.images && list.images.length > 0 && (
+					<img src={list.images[0].url} alt="" />
+				)}
 			</ImgWrap>
 			<TextWrap $isMobile={$isMobile} $isTablet={$isTablet}>
 				<div>잃어버린 곳 : {list.place}</div>
 				<div>
-					잃어버린 일시 : {list.lost_date}
+					잃어버린 일시 : {list.lostDate}
 					{'  '}
-					{list.lost_time}시 {list.lost_minute}분{'  '}경
+					{/* {list.lost_time}시 {list.lost_minute}분{'  '}경 */}
 				</div>
 				<p>{list.text}</p>
 			</TextWrap>

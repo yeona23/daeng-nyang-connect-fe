@@ -1,11 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import { MyPet } from '../MyPetRoot';
 import { ImageWrap, MyPetLi, UserWrap } from './MyPetList.style';
-import { CiUser } from 'react-icons/ci';
 import { useResponsive } from '../../../../hooks/useResponsive';
+import { Board } from '../../../../types/BoardTypes';
 
 interface MyPetListProps {
-	list: MyPet;
+	list: Board;
 }
 
 const MyPetList = ({ list }: MyPetListProps) => {
@@ -18,14 +17,14 @@ const MyPetList = ({ list }: MyPetListProps) => {
 
 	return (
 		<MyPetLi $isMobile={$isMobile}>
-			<ImageWrap onClick={() => moveToTheDetailPage(list.id)}>
-				<img src="/assets/cat.jpeg" alt="" />
+			<ImageWrap onClick={() => moveToTheDetailPage(list.boardId)}>
+				{list.img && list.img.length > 0 && <img src={list.img[0]} alt="" />}
 			</ImageWrap>
 			<UserWrap $isMobile={$isMobile} $isTablet={$isTablet}>
 				<div>
-					<CiUser />
+					<img src={list.userThumbnail} alt="" />
 				</div>
-				<span>{list.userName}</span>
+				<span>{list.nickname}</span>
 			</UserWrap>
 		</MyPetLi>
 	);

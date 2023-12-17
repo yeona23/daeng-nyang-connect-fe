@@ -28,6 +28,12 @@ export const UserImageWrap = styled.div<NavOptionProps>`
 	border-radius: 50%;
 	border: 1px solid black;
 	cursor: pointer;
+
+	& img {
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+	}
 `;
 
 export const TextWrap = styled.div<NavOptionProps>`

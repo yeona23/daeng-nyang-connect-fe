@@ -6,6 +6,7 @@ interface NavOptionProps {
 }
 
 export const LostLi = styled.li`
+	position: relative;
 	width: 100%;
 	height: auto;
 	border: 1px solid var(--color-peach);
@@ -14,12 +15,13 @@ export const LostLi = styled.li`
 `;
 
 export const ImgWrap = styled.div<NavOptionProps>`
+	height: 50%;
 	border-radius: 8px 8px 0px 0px;
 	overflow: hidden;
 
 	& img {
 		width: 100%;
-		height: auto;
+		height: 100%;
 		border-radius: 8px 8px 0px 0px;
 		transition: transform 0.7s ease;
 	}
@@ -49,6 +51,9 @@ export const TextWrap = styled.div<NavOptionProps>`
 `;
 
 export const ButtonWrap = styled.div`
+	position: absolute;
+	bottom: 8px;
+	right: 4px;
 	text-align: right;
 	margin: 0px 10px 10px 0px;
 

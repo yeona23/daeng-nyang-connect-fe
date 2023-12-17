@@ -18,7 +18,10 @@ import {
 } from './CommunityNav.style';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { SET_DISPLAY_LABEL } from '../../../slice/communitySlice';
+import {
+	SET_DISPLAY_LABEL,
+	SET_SUB_CATEGORY,
+} from '../../../slice/communitySlice';
 import { useResponsive } from '../../../hooks/useResponsive';
 
 interface CommunityNavProps {
@@ -55,10 +58,12 @@ const CommunityNav = ({ setIsPopUp, isPopUp }: CommunityNavProps) => {
 
 	const moveToTheCommunity = (community: string) => {
 		navigate(`/community/${community}`);
+		dispatch(SET_SUB_CATEGORY(null));
 	};
 
 	const moveToTheCategory = (community: string, category: string) => {
 		navigate(`/community/${community}?category=${category}`);
+		dispatch(SET_SUB_CATEGORY(category));
 	};
 
 	return (

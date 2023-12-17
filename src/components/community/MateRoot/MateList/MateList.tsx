@@ -1,6 +1,5 @@
 import { CiUser } from 'react-icons/ci';
 import { CiMenuKebab } from 'react-icons/ci';
-import { MatePublish } from '../MateRoot';
 import {
 	Button,
 	ButtonWrap,
@@ -13,9 +12,10 @@ import {
 } from './MateList.style';
 import { useNavigate } from 'react-router-dom';
 import { useResponsive } from '../../../../hooks/useResponsive';
+import { Board } from '../../../../types/BoardTypes';
 
 interface MateListProps {
-	list: MatePublish;
+	list: Board;
 }
 
 const MateList = ({ list }: MateListProps) => {
@@ -34,14 +34,14 @@ const MateList = ({ list }: MateListProps) => {
 					<div>
 						<CiUser />
 					</div>
-					<span>{list.userName}</span>
+					<span>{list.nickname}</span>
 				</UserWrap>
 				<KebabWrap>
 					<CiMenuKebab />
 				</KebabWrap>
 			</SubNav>
 			<TextWrap
-				onClick={() => moveToTheDetailPage(list.id)}
+				onClick={() => moveToTheDetailPage(list.boardId)}
 				$isMobile={$isMobile}
 				$isTablet={$isTablet}>
 				<PlaceWrap $isMobile={$isMobile} $isTablet={$isTablet}>

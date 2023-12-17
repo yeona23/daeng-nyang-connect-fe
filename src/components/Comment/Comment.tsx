@@ -1,5 +1,3 @@
-import { CommentForm } from './../community/Tip/TipDetail/TipDetail';
-import { CiUser } from 'react-icons/ci';
 import { CiMenuKebab } from 'react-icons/ci';
 import {
 	CommentLi,
@@ -9,9 +7,10 @@ import {
 	UserImageWrap,
 } from './Comment.style';
 import { useResponsive } from '../../hooks/useResponsive';
+import { BoardComment } from '../../types/BoardTypes';
 
 interface CommentFormProps {
-	list: CommentForm;
+	list: BoardComment;
 }
 
 const Comment = ({ list }: CommentFormProps) => {
@@ -21,12 +20,12 @@ const Comment = ({ list }: CommentFormProps) => {
 		<CommentLi>
 			<InfoWrap>
 				<UserImageWrap $isMobile={$isMobile} $isTablet={$isTablet}>
-					<CiUser />
+					<img src={list.userThumbnail} alt="" />
 				</UserImageWrap>
 				<TextWrap $isMobile={$isMobile} $isTablet={$isTablet}>
 					<div>{list.nickname}</div>
 					<div>{list.comment}</div>
-					<div>{list.created_at}</div>
+					<div>{list.createdAt}</div>
 				</TextWrap>
 			</InfoWrap>
 			<KebabWrap>
