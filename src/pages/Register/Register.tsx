@@ -122,34 +122,40 @@ const Register = () => {
 	};
 
 	const emailOnFocusHandler = () => {
+		setEmailIsDuplicated(false);
 		setEmailOnFocus(true);
 		setEmailIsValid(true);
 	};
 
 	const emailOnBlurHandler = async (e: ChangeEvent<HTMLInputElement>) => {
 		e.preventDefault();
-		console.log(inputValue.email);
+		setEmailIsTouched(true);
+		setEmailOnFocus(false);
+		const { name, value } = e.target;
+		setInputValue({ ...inputValue, [name]: value });
+		if (name === 'email') {
+			if (e.target.value.trim() === '') {
+				setEmailIsValid(false);
+			}
+			if (/^.+@.+\..+$/.test(e.target.value)) {
+				setEmailIsValid(true);
+			} else {
+				setEmailIsValid(false);
+			}
+		}
 		try {
 			const response = await idCheck({
 				email: inputValue.email,
 			});
+			console.log(response);
 			if (!response) {
+				setEmailIsDuplicated(true);
 				return;
 			}
-			setEmailIsDuplicated(true);
-			setEmailIsTouched(true);
-			setEmailOnFocus(false);
-			const { name, value } = e.target;
-			setInputValue({ ...inputValue, [name]: value });
-			if (name === 'email') {
-				if (e.target.value.trim() === '') {
-					setEmailIsValid(false);
-				}
-				if (/^.+@.+\..+$/.test(e.target.value)) {
-					setEmailIsValid(true);
-				} else {
-					setEmailIsValid(false);
-				}
+			if (response.msg === '사용가능한 아이디 입니다.') {
+				setEmailIsDuplicated(false);
+			} else {
+				setEmailIsDuplicated(true);
 			}
 		} catch (error) {
 			if (e instanceof TypeError) {
@@ -270,9 +276,13 @@ const Register = () => {
 			const response = await nicknameCheck({ nickname: inputValue.nickName });
 			if (!response) {
 				setNicknameIsDuplicated(true);
+				return;
 			}
-			return;
-			// 아이디 중복체크 완료 확인
+			if (response.msg === '사용가능한 아이디 입니다.') {
+				setEmailIsDuplicated(false);
+			} else {
+				setEmailIsDuplicated(true);
+			}
 		} catch (error) {
 			if (e instanceof TypeError) {
 				// TypeError
@@ -284,6 +294,10 @@ const Register = () => {
 				// other
 			}
 		}
+	};
+
+	const nickNameOnFocusHandler = () => {
+		setNicknameIsDuplicated(false);
 	};
 
 	const nameNameInputIsInValid = !nameIsValid && nameIsTouched;
@@ -422,7 +436,7 @@ const Register = () => {
 							placeholder="닉네임"
 							type="text"
 							name="nickName"
-							// onFocus={pwdckOnFocusHandler}
+							onFocus={nickNameOnFocusHandler}
 							onBlur={nickNameCheckHandler}
 							onChange={inputValueHandler}
 							$isMobile={$isMobile}
@@ -430,7 +444,7 @@ const Register = () => {
 							$isPc={$isPc}
 							$isMaxWidth={$isMaxWidth}></RegisterInputSmall>
 					</RegisterDoubleDiv>
-					{nameOnFocus && (
+					{nameOnFocus && !nicknameIsDuplicated && (
 						<ExParagraph
 							$isMobile={$isMobile}
 							$isTablet={$isTablet}
@@ -439,7 +453,7 @@ const Register = () => {
 							ex&#41;홍길동
 						</ExParagraph>
 					)}
-					{nameNameInputIsInValid && (
+					{nameNameInputIsInValid && !nicknameIsDuplicated && (
 						<Paragraph
 							$isMobile={$isMobile}
 							$isTablet={$isTablet}

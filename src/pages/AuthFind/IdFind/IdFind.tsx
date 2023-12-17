@@ -13,7 +13,7 @@ import {
 } from './IdFind.style';
 import { useResponsive } from '../../../hooks/useResponsive';
 import { useNavigate } from 'react-router-dom';
-import { findId, findPassword } from '../../../api/authApi';
+import { findId } from '../../../api/authApi';
 
 const IdFind = () => {
 	const navigate = useNavigate();
@@ -81,7 +81,7 @@ const IdFind = () => {
 
 		if (nameIsValid && mobileIsValid) {
 			try {
-				const response = await findPassword(inputValue);
+				const response = await findId(inputValue);
 				console.log(response);
 
 				if (!response) return;

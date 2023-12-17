@@ -27,6 +27,7 @@ const Login = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+	const [formIsValid, setFormIsValid] = useSelector(false);
 	const [isSignInClicked, setIsSignInClicked] = useState(false);
 	const [emailIsValid, setEmailIsValid] = useState(false);
 	const [passwordIsValid, setPasswordIsValid] = useState(false);
@@ -42,6 +43,13 @@ const Login = () => {
 
 	const kakaoLoginHandler = () => {
 		window.location.href = kakaoLink;
+	};
+
+	const NaverLink =
+		'https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=cbVjavYbFKaTxTrJFGaC&scope=name%20email%20profile_image%20nickname%20gender%20mobile&state=r7vh_N5AcCSAjzmUaaIdOxrW_ac_jQSum0FdVRgNTvI%3D&redirect_uri=http://3.35.16.126:8080/login/oauth2/code/naver';
+
+	const NaverLoginHandler = () => {
+		window.location.href = NaverLink;
 	};
 
 	const onRegisterClick = () => {
@@ -91,7 +99,9 @@ const Login = () => {
 			try {
 				const response = await loginUser(inputValue);
 
-				if (!response) return;
+				if (!response) {
+					return;
+				}
 
 				const { access_token, nickname, email } = response;
 
@@ -195,7 +205,11 @@ const Login = () => {
 						/>
 					</Button>
 					<Button>
-						<Image src="/assets/icons/icon-naver.png" alt="twitter-icon" />
+						<Image
+							src="/assets/icons/icon-naver.png"
+							alt="twitter-icon"
+							onClick={NaverLoginHandler}
+						/>
 					</Button>
 					<Button>
 						<Image src="/assets/icons/icon-google.svg" alt="google-icon" />

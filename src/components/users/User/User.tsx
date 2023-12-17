@@ -61,7 +61,7 @@ const User = () => {
 	const getMyInfo = async () => {
 		try {
 			const response = await myPageGet();
-			console.log(response.nickname);
+			console.log(response);
 			if (response) {
 				// API 응답에서 필요한 정보를 추출하여 state 업데이트
 				setUserInfo({

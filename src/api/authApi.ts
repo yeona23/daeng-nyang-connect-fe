@@ -75,31 +75,17 @@ export const logoutUser = async () => {
 };
 
 export const idCheck = async (body: IdCheckRequestBody): Promise<any> => {
-	// return await authApi.get(ID_CHECK, {
-	// 	email: body.email,
-	// });
-	try {
-		return await authApi.get(ID_CHECK, {
-			email: body.email,
-		});
-	} catch (error) {
-		console.log(error);
-	}
+	return await authApi.get(ID_CHECK + `?Id=${body.email}`);
 };
 
 export const nicknameCheck = async (
 	body: NicknameCheckRequestBody,
 ): Promise<any> => {
-	return await authApi.get(NICKNAME_CHECK, {
-		nickName: body.nickname,
-	});
+	return await authApi.get(NICKNAME_CHECK + `?nickname=${body.nickname}`);
 };
 
 export const findId = async (body: FindIdRequestBody): Promise<any> => {
-	return await authApi.get(FIND_ID, {
-		name: body.name,
-		mobile: body.mobile,
-	});
+	return await authApi.get(FIND_ID, {});
 };
 
 export const findPassword = async (
