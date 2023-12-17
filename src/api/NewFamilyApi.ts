@@ -24,7 +24,7 @@ export const getAnimal = async (): Promise<any> => {
 	return await animalApi.get(GET_ALL);
 };
 
-interface RegisterAnimal extends Record<string, string[] | string | boolean> {
+interface RegisterAnimal {
 	animalName: string;
 	kind: string;
 	city: string;
@@ -33,10 +33,10 @@ interface RegisterAnimal extends Record<string, string[] | string | boolean> {
 	age: string;
 	disease: string;
 	training: string;
-	neutering: boolean;
+	neutering: string;
 	healthCheck: string;
 	nurturePeriod: string;
-	files: string[];
+	files: File[];
 	textReason: string;
 	textEtc: string;
 }
@@ -61,7 +61,14 @@ export const registerAnimal = async (data: RegisterAnimal) => {
 		}
 	}
 
-	return await animalApi.post(POST, formData);
+	try {
+		const response = await animalApi.post(POST, formData);
+		console.log('Server Response:', response);
+		return response;
+	} catch (error) {
+		console.error('Error during registration:', error);
+		throw error; // Optional: Rethrow the error for the caller to handle
+	}
 };
 
 export const modifyAnimal = async (boardId: number) => {

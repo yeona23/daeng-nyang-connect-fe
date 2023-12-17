@@ -7,10 +7,12 @@ import {
 } from '../NewFamily.style';
 import { IoCloseOutline } from 'react-icons/io5';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { registerAnimal } from '../../../api/NewFamilyApi';
 
 const PetRegistration = () => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
 	const [formData, setFormData] = useState({
 		animalName: '',
@@ -21,31 +23,28 @@ const PetRegistration = () => {
 		age: '',
 		disease: '',
 		training: '',
-		neutering: false,
+		neutering: '',
 		healthCheck: '',
 		nurturePeriod: '',
-		images: [],
+		files: [],
 		textReason: '',
 		textEtc: '',
-		adoptionStatus: '',
-		createAt: '',
 	});
 
-	const changeHandler = (e: {
-		target: { name: any; value: any; type: any; checked: any; files?: any };
-	}) => {
-		const { name, value, type, checked, files } = e.target;
+	const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = e.target;
+		setFormData((prevData) => ({
+			...prevData,
+			[name]: value,
+		}));
+	};
 
-		if (type === 'radio' && checked) {
-			setFormData((prevData) => ({
-				...prevData,
-				[name]: value,
-			}));
-		} else {
-			setFormData((prevData) => ({
-				...prevData,
-				[name]: type === 'checkbox' ? checked : files ? [files] : value,
-			}));
+	const imgHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (e.target.files) {
+			const uploadFiles = Array.from(e.target.files);
+			setFormData((prev: any) => {
+				return { ...prev, files: uploadFiles };
+			});
 		}
 	};
 
@@ -74,13 +73,13 @@ const PetRegistration = () => {
 
 	const submitHandler = async (e: React.FormEvent) => {
 		e.preventDefault();
-		try {
-			const createdAnimal = await registerAnimal(formData);
 
-			console.log('생성되었습니다', createdAnimal);
+		try {
+			const response = await registerAnimal(formData);
+			console.log('등록완료', response);
 			navigate('/newFamily');
 		} catch (error) {
-			console.error('생성 오류:', error);
+			console.error('실패', error);
 		}
 	};
 
@@ -108,8 +107,7 @@ const PetRegistration = () => {
 					$isMobile={$isMobile}
 					$isTablet={$isTablet}
 					$isPc={$isPc}
-					$isMaxWidth={$isMaxWidth}
-					onSubmit={submitHandler}>
+					$isMaxWidth={$isMaxWidth}>
 					<div>
 						<h5>동물 이름</h5>
 						<input
@@ -127,7 +125,7 @@ const PetRegistration = () => {
 							name="kind"
 							id="dog"
 							onChange={changeHandler}
-							value="강아지"
+							value="DOG"
 						/>
 						<label htmlFor="dog">강아지</label>
 						<input
@@ -135,7 +133,7 @@ const PetRegistration = () => {
 							name="kind"
 							id="cat"
 							onChange={changeHandler}
-							value="고양이"
+							value="CAT"
 						/>
 						<label htmlFor="cat">고양이</label>
 						<input
@@ -143,7 +141,7 @@ const PetRegistration = () => {
 							name="kind"
 							id="all"
 							onChange={changeHandler}
-							value="기타"
+							value="ETC"
 						/>
 						<label htmlFor="all">기타</label>
 					</div>
@@ -183,7 +181,7 @@ const PetRegistration = () => {
 							name="gender"
 							id="male"
 							onChange={changeHandler}
-							value="남"
+							value="MALE"
 						/>
 						<label htmlFor="male">남</label>
 						<input
@@ -191,7 +189,7 @@ const PetRegistration = () => {
 							name="gender"
 							id="female"
 							onChange={changeHandler}
-							value="여"
+							value="FEMALE"
 						/>
 						<label htmlFor="female">여</label>
 					</div>
@@ -249,7 +247,7 @@ const PetRegistration = () => {
 							name="neutering"
 							id="neutering_yes"
 							onChange={changeHandler}
-							value="예"
+							value="true"
 						/>
 						<label htmlFor="neutering_yes">예</label>
 						<input
@@ -257,7 +255,7 @@ const PetRegistration = () => {
 							name="neutering"
 							id="neutering_no"
 							onChange={changeHandler}
-							value="아니오"
+							value="false"
 						/>
 						<label htmlFor="neutering_no">아니오</label>
 					</div>
@@ -283,7 +281,7 @@ const PetRegistration = () => {
 					<div>
 						<h5>양육 기간</h5>
 						<input
-							type="text"
+							type="number"
 							name="nurturePeriod"
 							id="nurturePeriod"
 							placeholder="2년 3개월"
@@ -295,10 +293,10 @@ const PetRegistration = () => {
 						<h5>이미지 등록</h5>
 						<input
 							type="file"
-							name="image"
+							name="files"
 							id="fileInput"
 							accept=".jpg, .jpeg, .png"
-							onChange={changeHandler}
+							onChange={imgHandler}
 							required
 						/>
 					</div>
@@ -318,7 +316,9 @@ const PetRegistration = () => {
 							onChange={textareaChangeHandler}
 							value={formData.textEtc}></textarea>
 					</div>
-					<button type="submit">등록하기</button>
+					<button type="submit" onClick={submitHandler}>
+						등록하기
+					</button>
 				</FormText>
 			</div>
 		</PetRegistrationForm>
