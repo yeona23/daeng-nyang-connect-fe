@@ -30,7 +30,7 @@ class APIClient {
 		return this.request('get', endpoint, body);
 	}
 
-	post<T>(
+	post<T extends FormData | Record<string, string | boolean>>(
 		endpoint: string,
 		body?: FormData | Record<string, string | boolean | number>,
 	): Promise<T> {

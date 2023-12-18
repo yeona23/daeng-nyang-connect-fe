@@ -20,10 +20,20 @@ export const FindFamily = styled.div<ResponsiveProps>`
 	}
 
 	.register-fixed-btn {
-		display: ${(props) => (props.$isPc ? 'none' : 'block')};
+	}
+
+	.register-fixed-btn-box {
+		display: ${(props) => (props.$isPc ? 'none' : 'flex')};
+		align-items: center;
+		justify-content: center;
 		position: fixed;
-		bottom: 50px;
-		right: 50px;
+		bottom: ${(props) => (props.$isMobile ? '20px' : '50px')};
+		right: ${(props) => (props.$isMobile ? '10px' : '50px')};
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background: var(--color-light-salmon);
+		overflow: hidden;
 		cursor: pointer;
 	}
 
@@ -71,7 +81,8 @@ export const FilterItems = styled.div<ResponsiveProps>`
 	width: ${(props) => (props.$isPc ? 'inherit' : '100%')};
 	height: ${(props) => (props.$isPc ? 'fit-content' : '100vh')};
 	padding: 20px;
-	border: 1px solid var(--color-light-salmon);
+	border: ${(props) =>
+		props.$isPc ? '1px solid var(--color-light-salmon)' : 'none'};
 	border-radius: ${(props) => (props.$isPc ? '10px' : 'none')};
 	background: #fff;
 	z-index: ${(props) => (props.$isPc ? 'unset' : '100000')};
@@ -135,16 +146,17 @@ export const FilterItems = styled.div<ResponsiveProps>`
 	}
 `;
 
-export const ItemList = styled.div`
+export const ItemList = styled.div<ResponsiveProps>`
 	display: flex;
 	flex: 3;
+	gap: ${(props) => (props.$isMobile ? '8px' : '25px')};
 	flex-wrap: wrap;
-	justify-content: space-between;
+	/* justify-content: space-between; */
 `;
 
 export const ItemBox = styled.div<ResponsiveProps>`
 	width: ${(props) =>
-		props.$isMobile ? 'calc((100% - 15px) / 2)' : 'calc((100% - 50px) / 3)'};
+		props.$isMobile ? 'calc((100% - 16px) / 2)' : 'calc((100% - 50px) / 3)'};
 	margin-bottom: ${(props) => (props.$isMobile ? '15px' : '50px')};
 	border: 1px solid var(--color-peach);
 	border-radius: 10px;
@@ -440,11 +452,12 @@ export const PetRegistrationForm = styled.div<ResponsiveProps>`
 	}
 `;
 
-export const FormText = styled.div<ResponsiveProps>`
+export const FormText = styled.form<ResponsiveProps>`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
+	position: relative;
 	font-size: ${(props) => (props.$isMobile ? '12px' : 'inherit')};
 
 	.text-box {
@@ -458,6 +471,7 @@ export const FormText = styled.div<ResponsiveProps>`
 		padding: 10px;
 		border: 1px solid var(--color-light-salmon);
 		outline: none;
+		overflow: hidden;
 	}
 
 	& > div {
@@ -512,5 +526,12 @@ export const FormText = styled.div<ResponsiveProps>`
 		color: gray;
 		font-size: 12px;
 		outline: var(--color-light-salmon);
+	}
+
+	& button {
+		position: absolute;
+		left: 50%;
+		bottom: ${(props) => (props.$isMobile ? '-70px' : '-100px')};
+		transform: translateX(-50%);
 	}
 `;

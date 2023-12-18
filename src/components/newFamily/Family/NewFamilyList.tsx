@@ -3,12 +3,17 @@ import { BsBookmarkFill } from 'react-icons/bs';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ItemBox, ItemList } from '../NewFamily.style';
+import { useDispatch } from 'react-redux';
+import { getAnimal, getAnimalsMock } from '../../../api/NewFamilyApi';
+import { SET_ANIMALS } from '../../../slice/newFamilySlice';
+import { useQuery } from 'react-query';
 
 interface Item {
-	id: number;
+	boardId: number;
 	index: number;
-	name: string;
+	animalName: string;
 	age: string;
+	images: string[];
 }
 
 interface ResponsiveProps {
@@ -18,12 +23,6 @@ interface ResponsiveProps {
 	$isMaxWidth: boolean;
 }
 
-const generateImgUrl = (index: number): string => {
-	const maxIndex = 4;
-	const actualIndex = index <= maxIndex ? index : (index % maxIndex) + 1;
-	return `/assets/animal${actualIndex}.jpg`;
-};
-
 const NewFamilyList: React.FC<ResponsiveProps> = ({
 	$isMobile,
 	$isTablet,
@@ -32,12 +31,16 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 }) => {
 	const navigate = useNavigate();
 
-	const items: Item[] = Array.from({ length: 8 }, (_, index) => ({
-		id: index + 1,
-		index: index + 1,
-		name: '냥냥',
-		age: '3년 2개월',
-	}));
+	const fetchAnimals = async (): Promise<Item[]> => {
+		const response = await getAnimal();
+		// console.log(response);
+		return response;
+	};
+
+	const { data: items } = useQuery<Item[], unknown, Item[]>(
+		['animals'],
+		fetchAnimals,
+	);
 
 	const [bookmarkState, setBookmarkState] = useState<{
 		[key: number]: boolean;
@@ -47,8 +50,8 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 		setBookmarkState((prev) => ({ ...prev, [itemId]: !prev[itemId] }));
 	};
 
-	const goToDetailPage = (petId: number, imageUrl: string) => {
-		navigate(`/newFamily/pet/${petId}`, { state: { imageUrl } });
+	const goToDetailPage = (petId: number) => {
+		navigate(`/newFamily/pet/${petId}`);
 	};
 
 	const getBookmarkSize = () => {
@@ -58,37 +61,38 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 	};
 
 	return (
-		<ItemList>
-			{items.map((item: Item) => (
+		<ItemList
+			$isMobile={$isMobile}
+			$isTablet={$isTablet}
+			$isPc={$isPc}
+			$isMaxWidth={$isMaxWidth}>
+			{items?.map((animal: Item) => (
 				<ItemBox
 					$isMobile={$isMobile}
 					$isTablet={$isTablet}
 					$isPc={$isPc}
 					$isMaxWidth={$isMaxWidth}
-					key={item.id}
-					onClick={() => goToDetailPage(item.id, generateImgUrl(item.index))}>
+					key={animal.boardId}
+					onClick={() => goToDetailPage(animal.boardId)}>
 					<div>
-						<img src={generateImgUrl(item.index)} alt={`adoption${item.id}`} />
+						<img src={animal.images[0]} alt={`adoption${animal.boardId}`} />
 						<BsBookmarkFill
 							color={
-								bookmarkState[item.id]
+								bookmarkState[animal.boardId]
 									? 'var(--color-light-salmon)'
 									: '#ffffff70'
 							}
 							size={getBookmarkSize()}
 							onClick={(e) => {
 								e.stopPropagation();
-								clickBookmarkHandler(item.id);
+								clickBookmarkHandler(animal.boardId);
 							}}
 						/>
 					</div>
 					<div>
-						<p>이름 : {item.name}</p>
-						<p>나이 : {item.age}</p>
-						<button
-							onClick={() =>
-								goToDetailPage(item.id, generateImgUrl(item.index))
-							}>
+						<p>이름 : {animal.animalName}</p>
+						<p>나이 : {animal.age}개월</p>
+						<button onClick={() => goToDetailPage(animal.boardId)}>
 							자세히 보기
 						</button>
 					</div>
