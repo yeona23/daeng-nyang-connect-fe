@@ -7,7 +7,7 @@ const BASE_URL = 'http://3.35.16.126:8080';
 
 export const NewFamilyApi = new APIClient(BASE_URL + '/api/animal');
 
-export const getNewFamily = async () => {
+export const getNewFamily = async (): Promise<any> => {
 	return await NewFamilyApi.get(GET_ALL);
 };
 

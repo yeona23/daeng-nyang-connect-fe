@@ -56,7 +56,7 @@ const NewFamilyDetail = () => {
 				const response = await getNewFamily();
 				const parsedBoardId = petId ? parseInt(petId) : undefined;
 				const boardData = response.find(
-					(animal) => animal.boardId === parsedBoardId,
+					(animal: AnimalData) => animal.boardId === parsedBoardId,
 				);
 				setBoardIdData(boardData || null);
 			} catch (error) {

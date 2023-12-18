@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ItemBox, ItemList } from '../NewFamily.style';
 import { useDispatch } from 'react-redux';
-import { getAnimal, getAnimalsMock } from '../../../api/NewFamilyApi';
 import { SET_ANIMALS } from '../../../slice/newFamilySlice';
 import { useQuery } from 'react-query';
+import { getNewFamily } from '../../../api/newFamilyApi';
 
 interface Item {
 	boardId: number;
@@ -31,15 +31,9 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 }) => {
 	const navigate = useNavigate();
 
-	const fetchAnimals = async (): Promise<Item[]> => {
-		const response = await getAnimal();
-		// console.log(response);
-		return response;
-	};
-
 	const { data: items } = useQuery<Item[], unknown, Item[]>(
 		['animals'],
-		fetchAnimals,
+		getNewFamily,
 	);
 
 	const [bookmarkState, setBookmarkState] = useState<{
