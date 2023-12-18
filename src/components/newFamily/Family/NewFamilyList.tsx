@@ -6,7 +6,7 @@ import { ItemBox, ItemList } from '../NewFamily.style';
 import { useDispatch } from 'react-redux';
 import { SET_ANIMALS } from '../../../slice/newFamilySlice';
 import { useQuery } from 'react-query';
-import { getNewFamily } from '../../../api/newFamilyApi';
+import { getNewFamily, scrapAnimal } from '../../../api/newFamilyApi';
 
 interface Item {
 	boardId: number;
@@ -30,6 +30,9 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 	$isMaxWidth,
 }) => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
+	const [intialLoading, setInitialLoading] = useState(true);
 
 	const { data: items } = useQuery<Item[], unknown, Item[]>(
 		['animals'],
@@ -40,8 +43,18 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 		[key: number]: boolean;
 	}>({});
 
-	const clickBookmarkHandler = (itemId: number) => {
-		setBookmarkState((prev) => ({ ...prev, [itemId]: !prev[itemId] }));
+	const clickBookmarkHandler = async (animalId: number) => {
+		try {
+			const updatedBookmarkState = {
+				...bookmarkState,
+				[animalId]: !bookmarkState[animalId],
+			};
+			setBookmarkState(updatedBookmarkState);
+			await scrapAnimal(animalId);
+		} catch (error) {
+			console.error('북마크오류', error);
+			setBookmarkState((prev) => ({ ...prev, [animalId]: !prev[animalId] }));
+		}
 	};
 
 	const goToDetailPage = (petId: number) => {
