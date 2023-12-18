@@ -194,6 +194,11 @@ export const ItemBox = styled.div<ResponsiveProps>`
 		cursor: pointer;
 	}
 
+	.adoption-status-icon {
+		top: ${(props) => (props.$isMobile ? '10px' : '16px')};
+		left: ${(props) => (props.$isMobile ? '10px' : '16px')};
+	}
+
 	& button {
 		display: ${(props) => (props.$isMobile ? 'none' : 'block')};
 		position: absolute;

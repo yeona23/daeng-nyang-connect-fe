@@ -1,18 +1,20 @@
 /* eslint-disable react/prop-types */
-import { BsBookmarkFill } from 'react-icons/bs';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ItemBox, ItemList } from '../NewFamily.style';
 import { useDispatch } from 'react-redux';
 import { SET_ANIMALS } from '../../../slice/newFamilySlice';
 import { useQuery } from 'react-query';
 import { getNewFamily, scrapAnimal } from '../../../api/newFamilyApi';
+import { BsBookmarkFill } from 'react-icons/bs';
+import { PiPawPrintFill, PiPawPrintBold } from 'react-icons/pi';
 
 interface Item {
 	boardId: number;
 	index: number;
 	animalName: string;
 	age: string;
+	adoptionStatus: string;
 	images: string[];
 }
 
@@ -30,10 +32,6 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 	$isMaxWidth,
 }) => {
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
-
-	const [intialLoading, setInitialLoading] = useState(true);
-
 	const { data: items } = useQuery<Item[], unknown, Item[]>(
 		['animals'],
 		getNewFamily,
@@ -63,8 +61,12 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 
 	const getBookmarkSize = () => {
 		if ($isMobile) return 25;
-		if ($isTablet) return 30;
-		if ($isPc) return 30;
+		return 30;
+	};
+
+	const getAdoptionStatusSize = () => {
+		if ($isMobile) return 28;
+		return 40;
 	};
 
 	return (
@@ -83,6 +85,14 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 					onClick={() => goToDetailPage(animal.boardId)}>
 					<div>
 						<img src={animal.images[0]} alt={`adoption${animal.boardId}`} />
+						{animal.adoptionStatus === 'COMPLETED' && (
+							<PiPawPrintFill
+								size={getAdoptionStatusSize()}
+								color="var(--color-light-salmon)"
+								className="adoption-status-icon"
+							/>
+						)}
+
 						<BsBookmarkFill
 							color={
 								bookmarkState[animal.boardId]

@@ -101,6 +101,10 @@ export const cityAnimal = async (city: string) => {
 	return await NewFamilyApi.get(CITY + `/${city}`);
 };
 
-export const adoptionStatusAnimal = async (adoptionStatus: string) => {
-	return await NewFamilyApi.get(ADOPTION_STATUS + `/${adoptionStatus}`);
+export const adoptionStatusAnimal = async (
+	adoptionStatus: string,
+): Promise<{ adoptionStatus: string }> => {
+	return await NewFamilyApi.get(
+		ADOPTION_STATUS + `/adoptionStatus/${adoptionStatus}`,
+	);
 };
