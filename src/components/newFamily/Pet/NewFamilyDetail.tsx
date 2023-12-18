@@ -14,7 +14,7 @@ import { useResponsive } from '../../../hooks/useResponsive';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { MOVE_TO_CHAT } from '../../../slice/chatSlice';
-import { getNewFamily } from '../../../api/newFamilyApi';
+import { deleteAnimal, getNewFamily } from '../../../api/newFamilyApi';
 
 interface AnimalData {
 	boardId: number;
@@ -38,9 +38,7 @@ interface AnimalData {
 }
 
 const NewFamilyDetail = () => {
-	const location = useLocation();
 	const navigate = useNavigate();
-	const imageUrl = location.state?.imageUrl || '';
 	const [clickedBookmark, setClickedBookmark] = useState(false);
 	const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
@@ -77,6 +75,17 @@ const NewFamilyDetail = () => {
 	const getMoreBtnSize = () => {
 		if ($isMobile) return 20;
 		return 30;
+	};
+
+	const deleteAnimalHandler = async () => {
+		if (boardIdData) {
+			try {
+				await deleteAnimal(boardIdData.boardId);
+				navigate('/newFamily');
+			} catch (error) {
+				console.error('삭제오류', error);
+			}
+		}
 	};
 
 	const moveToChatHandler = () => {
@@ -119,7 +128,7 @@ const NewFamilyDetail = () => {
 							$isPc={$isPc}
 							$isMaxWidth={$isMaxWidth}>
 							<li>수정하기</li>
-							<li>삭제하기</li>
+							<li onClick={deleteAnimalHandler}>삭제하기</li>
 						</MoreDropdown>
 					)}
 				</UserThumbnail>
@@ -161,7 +170,7 @@ const NewFamilyDetail = () => {
 								$isPc={$isPc}
 								$isMaxWidth={$isMaxWidth}>
 								<li>수정하기</li>
-								<li>삭제하기</li>
+								<li onClick={deleteAnimalHandler}>삭제하기</li>
 							</MoreDropdown>
 						)}
 					</UserThumbnail>

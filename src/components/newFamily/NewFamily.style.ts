@@ -466,9 +466,9 @@ export const FormText = styled.form<ResponsiveProps>`
 
 	& textarea {
 		width: 85%;
-		height: ${(props) => (props.$isMobile ? '60px' : '90px')};
+		height: ${(props) => (props.$isMobile ? '60px' : '30px')};
 		resize: none;
-		padding: 10px;
+		padding: 5px 10px;
 		border: 1px solid var(--color-light-salmon);
 		outline: none;
 		overflow: hidden;
