@@ -88,8 +88,7 @@ const PetRegistration = () => {
 			$isMobile={$isMobile}
 			$isTablet={$isTablet}
 			$isPc={$isPc}
-			$isMaxWidth={$isMaxWidth}
-			onSubmit={submitHandler}>
+			$isMaxWidth={$isMaxWidth}>
 			<CategoryTitle
 				$isMobile={$isMobile}
 				$isTablet={$isTablet}
@@ -317,7 +316,7 @@ const PetRegistration = () => {
 							onChange={textareaChangeHandler}
 							value={formData.textEtc}></textarea>
 					</div>
-					<button>등록하기</button>
+					<button onClick={submitHandler}>등록하기</button>
 				</FormText>
 			</div>
 		</PetRegistrationForm>
