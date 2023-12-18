@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 import { useResponsive } from '../../../hooks/useResponsive';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { getAnimal } from '../../../api/NewFamilyApi';
+import { deleteAnimal, getAnimal } from '../../../api/NewFamilyApi';
 
 interface AnimalData {
 	boardId: number;
@@ -36,6 +36,7 @@ interface AnimalData {
 }
 
 const NewFamilyDetail: React.FC = () => {
+	const navigate = useNavigate();
 	const [clickedBookmark, setClickedBookmark] = useState(false);
 	const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
@@ -72,6 +73,7 @@ const NewFamilyDetail: React.FC = () => {
 		if ($isMobile) return 20;
 		return 30;
 	};
+
 	return (
 		<div>
 			<NewFamilyDetailContainer
@@ -153,7 +155,7 @@ const NewFamilyDetail: React.FC = () => {
 						$isPc={$isPc}
 						$isMaxWidth={$isMaxWidth}>
 						<p>이름 : {boardIdData?.animalName}</p>
-						<p>나이 : {boardIdData?.age} </p>
+						<p>나이 : {boardIdData?.age}개월 </p>
 						<p>지역 : {boardIdData?.city}</p>
 						<p>품종 : {boardIdData?.breed}</p>
 						<p>질병 : {boardIdData?.disease}</p>

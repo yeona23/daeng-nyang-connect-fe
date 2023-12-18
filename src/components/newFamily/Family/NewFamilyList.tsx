@@ -30,11 +30,10 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 	$isMaxWidth,
 }) => {
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
 
 	const fetchAnimals = async (): Promise<Item[]> => {
 		const response = await getAnimal();
-		console.log(response);
+		// console.log(response);
 		return response;
 	};
 
@@ -92,7 +91,7 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 					</div>
 					<div>
 						<p>이름 : {animal.animalName}</p>
-						<p>나이 : {animal.age}</p>
+						<p>나이 : {animal.age}개월</p>
 						<button onClick={() => goToDetailPage(animal.boardId)}>
 							자세히 보기
 						</button>

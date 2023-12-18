@@ -75,12 +75,13 @@ export const modifyAnimal = async (boardId: number) => {
 	return await animalApi.put(MODIFY + `/${boardId}`, {});
 };
 
-export const deleteAnimal = async (boardId: number) => {
-	return await animalApi.delete(DELETE + `/${boardId}`);
+export const deleteAnimal = async (animalId: number): Promise<Response> => {
+	console.log(BASE_URL + DELETE + `?${animalId}`);
+	return await animalApi.delete(DELETE + `?${animalId}`);
 };
 
-export const scrapAnimal = async (boardId: number) => {
-	return await animalApi.post(SCRAP + `/${boardId}`, {});
+export const scrapAnimal = async (animalId: number) => {
+	return await animalApi.post(SCRAP + `/${animalId}`, {});
 };
 
 export const completeAnimal = async (boardId: number) => {

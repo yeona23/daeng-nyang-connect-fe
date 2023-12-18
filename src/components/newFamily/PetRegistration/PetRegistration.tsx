@@ -181,7 +181,7 @@ const PetRegistration = () => {
 							name="gender"
 							id="male"
 							onChange={changeHandler}
-							value="MALE"
+							value="남"
 						/>
 						<label htmlFor="male">남</label>
 						<input
@@ -189,7 +189,7 @@ const PetRegistration = () => {
 							name="gender"
 							id="female"
 							onChange={changeHandler}
-							value="FEMALE"
+							value="여"
 						/>
 						<label htmlFor="female">여</label>
 					</div>

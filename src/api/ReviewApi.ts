@@ -25,7 +25,7 @@ export const getReview = async () => {
 interface RegisterReview {
 	adoptedAnimalName: string;
 	age: string;
-	images: string; //여기 질문하기
+	images: string;
 	textReview: string;
 	createdAt: string;
 }
