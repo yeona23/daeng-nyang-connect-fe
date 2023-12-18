@@ -1,7 +1,13 @@
 import APIClient from './ApiClient';
 
+const REGISTER = '/post';
+const MODIFY = '/modify';
+const LIKE = '/like';
 const POST = '/post';
 const GET_ALL = '/getAll';
+const DELETE = '/delete';
+const COMMENT = '/comments/post';
+const COMMENT_DELETE = 'comments/delete';
 const BASE_URL = 'http://3.35.16.126:8080';
 
 interface ReviewRequest {
@@ -15,6 +21,13 @@ interface ReviewData {
 	textReview: string;
 	age: number;
 }
+
+// const reviewMockApi = new APIClient('/data');
+
+// export const getProductsMock = async () => {
+// 	return await reviewMockApi.get('review.json');
+// };
+
 export const reviewApi = new APIClient(BASE_URL + '/api/review');
 
 export const getReviews = async (): Promise<ReviewData[]> => {
@@ -32,4 +45,24 @@ export const reviewPost = async (body: ReviewRequest, animalId: number) => {
 		});
 	}
 	return await reviewApi.post(POST + `?animalId=${animalId}`, formData);
+};
+
+export const deleteReview = async (reviewId: number) => {
+	return await reviewApi.delete(DELETE + `/${reviewId}`);
+};
+
+export const modifyReview = async (reviewId: number) => {
+	return await reviewApi.put(MODIFY + `/${reviewId}`, {});
+};
+
+export const likeReview = async (reviewId: number) => {
+	return await reviewApi.post(LIKE + `/${reviewId}`, {});
+};
+
+export const postComment = async (reviewId: number) => {
+	return await reviewApi.post(COMMENT + `/${reviewId}`, {});
+};
+
+export const deleteComment = async (reviewCommentsId: number) => {
+	return await reviewApi.delete(COMMENT_DELETE + `${reviewCommentsId}`);
 };
