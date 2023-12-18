@@ -7,7 +7,7 @@ interface ResponsiveProps {
 	$isMaxWidth: boolean;
 }
 
-export const RegisterWrapper = styled.div`
+export const RegisterWrapper = styled.div<ResponsiveProps>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -16,6 +16,7 @@ export const RegisterWrapper = styled.div`
 	flex-direction: column;
 	overflow-x: hidden;
 	margin-top: 60px;
+	font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 `;
 
 export const RegisterDiv = styled.div<ResponsiveProps>`
@@ -28,8 +29,8 @@ export const RegisterDiv = styled.div<ResponsiveProps>`
 `;
 
 export const Logo = styled.img<ResponsiveProps>`
-	width: ${(props) => (props.$isMobile ? '150px' : '200px')};
-	height: ${(props) => (props.$isMobile ? '150px' : '200px')};
+	width: ${(props) => (props.$isMobile ? '150px' : '150px')};
+	height: ${(props) => (props.$isMobile ? '150px' : '150px')};
 `;
 
 export const RegisterInput = styled.input<ResponsiveProps>`
@@ -38,7 +39,7 @@ export const RegisterInput = styled.input<ResponsiveProps>`
 	margin-bottom: 16px;
 	border: none;
 	padding-left: 16px;
-	font-size: 16px;
+	font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 	box-shadow: 1px 2px 6px 1px rgba(0, 0, 0, 0.3);
 	border-radius: 10px;
 	&:hover {
@@ -56,7 +57,7 @@ export const RegisterSelectBox = styled.select<ResponsiveProps>`
 	margin-bottom: 16px;
 	border: none;
 	padding-left: 16px;
-	font-size: 16px;
+	font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 	box-shadow: 1px 2px 6px 1px rgba(0, 0, 0, 0.3);
 	border-radius: 10px;
 	&:required:invalid {
@@ -75,6 +76,10 @@ export const RegisterSelectBox = styled.select<ResponsiveProps>`
 	option {
 		color: #111;
 	}
+`;
+
+export const RegisterSelectBoxLeft = styled(RegisterSelectBox)`
+	margin-left: 12px;
 `;
 
 export const Option = styled.option``;
@@ -105,7 +110,7 @@ export const RegisterButton = styled.button<ResponsiveProps>`
 	padding: 8px, 52px, 8px, 52px;
 	width: ${(props) => (props.$isMobile ? '50%' : '100%')};
 	height: 42px;
-	font-size: 20px;
+	font-size: ${(props) => (props.$isMobile ? '16px' : '20px')};
 	font-weight: 400;
 	border-radius: 10px;
 	box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.25);
@@ -130,13 +135,15 @@ export const Paragraph = styled.p<ResponsiveProps>`
 	margin-top: -10px;
 	width: ${(props) => (props.$isMobile ? '50%' : '90%')};
 	text-align: left;
-	font-size: 12px;
+	font-size: ${(props) => (props.$isMobile ? '9px' : '12px')};
 	color: var(--color--deep-blue);
+	font-weight: 500;
 `;
 
 export const ExParagraph = styled.p<ResponsiveProps>`
+	font-weight: 500;
 	margin-top: -10px;
 	width: ${(props) => (props.$isMobile ? '50%' : '90%')};
 	text-align: left;
-	font-size: 12px;
+	font-size: ${(props) => (props.$isMobile ? '9px' : '12px')};
 `;

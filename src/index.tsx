@@ -39,6 +39,8 @@ import ChatRoom from './components/chat/chatRoom/ChatRoom';
 import PetRegistration from './components/newFamily/PetRegistration/PetRegistration';
 import NewFamilyDetail from './components/newFamily/Pet/NewFamilyDetail';
 import ReviewForm from './components/adoptionReviews/ReviewForm/ReviewForm';
+import IdFind from './pages/AuthFind/IdFind/IdFind';
+import PasswordFind from './pages/AuthFind/PasswordFind/PasswordFind';
 
 const router = createBrowserRouter([
 	{
@@ -49,6 +51,14 @@ const router = createBrowserRouter([
 			{
 				path: 'login',
 				element: <Login />,
+			},
+			{
+				path: 'idFind',
+				element: <IdFind />,
+			},
+			{
+				path: 'passwordFind',
+				element: <PasswordFind />,
 			},
 			{
 				path: 'register',
