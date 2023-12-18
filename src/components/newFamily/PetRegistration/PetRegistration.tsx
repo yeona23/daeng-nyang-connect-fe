@@ -8,7 +8,7 @@ import {
 import { IoCloseOutline } from 'react-icons/io5';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { registerAnimal } from '../../../api/NewFamilyApi';
+import { registerAnimal } from '../../../api/newFamilyApi';
 
 const PetRegistration = () => {
 	const navigate = useNavigate();
@@ -88,7 +88,8 @@ const PetRegistration = () => {
 			$isMobile={$isMobile}
 			$isTablet={$isTablet}
 			$isPc={$isPc}
-			$isMaxWidth={$isMaxWidth}>
+			$isMaxWidth={$isMaxWidth}
+			onSubmit={submitHandler}>
 			<CategoryTitle
 				$isMobile={$isMobile}
 				$isTablet={$isTablet}
@@ -284,7 +285,7 @@ const PetRegistration = () => {
 							type="number"
 							name="nurturePeriod"
 							id="nurturePeriod"
-							placeholder="2년 3개월"
+							placeholder="5개월"
 							onChange={changeHandler}
 							required
 						/>
@@ -316,9 +317,7 @@ const PetRegistration = () => {
 							onChange={textareaChangeHandler}
 							value={formData.textEtc}></textarea>
 					</div>
-					<button type="submit" onClick={submitHandler}>
-						등록하기
-					</button>
+					<button>등록하기</button>
 				</FormText>
 			</div>
 		</PetRegistrationForm>

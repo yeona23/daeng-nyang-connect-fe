@@ -405,7 +405,7 @@ export const DetailSwiper = styled.div`
 
 //PetRegistration
 
-export const PetRegistrationForm = styled.div<ResponsiveProps>`
+export const PetRegistrationForm = styled.form<ResponsiveProps>`
 	position: ${(props) => (props.$isPc ? 'unset' : 'absolute')};
 	top: 0;
 	left: 0;
@@ -437,7 +437,7 @@ export const PetRegistrationForm = styled.div<ResponsiveProps>`
 		border: 1px solid var(--color-light-salmon);
 		border-radius: 5px;
 		background: var(--color-light-salmon);
-		color: var(--color-peach);
+		color: #fff;
 		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
 		cursor: pointer;
 	}
@@ -466,7 +466,7 @@ export const FormText = styled.form<ResponsiveProps>`
 
 	& textarea {
 		width: 85%;
-		height: ${(props) => (props.$isMobile ? '60px' : '30px')};
+		height: ${(props) => (props.$isMobile ? '60px' : '90px')};
 		resize: none;
 		padding: 10px;
 		border: 1px solid var(--color-light-salmon);

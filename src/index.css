@@ -149,3 +149,7 @@ button {
 	font-family: 'Noto Sans KR', sans-serif;
 	color: var(--color-deep-blue);
 }
+input,
+textarea {
+	font-family: 'Noto Sans KR', sans-serif;
+}

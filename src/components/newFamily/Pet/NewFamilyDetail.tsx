@@ -7,12 +7,14 @@ import {
 	NewFamilyDetailContainer,
 	UserThumbnail,
 } from '../NewFamily.style';
+import { useLocation, useNavigate } from 'react-router-dom';
 import NewFamilySwiper from './NewFamilySwiper';
 import { useEffect, useState } from 'react';
 import { useResponsive } from '../../../hooks/useResponsive';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { deleteAnimal, getAnimal } from '../../../api/NewFamilyApi';
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { MOVE_TO_CHAT } from '../../../slice/chatSlice';
+import { getNewFamily } from '../../../api/newFamilyApi';
 
 interface AnimalData {
 	boardId: number;
@@ -35,11 +37,14 @@ interface AnimalData {
 	userThumbnail: string;
 }
 
-const NewFamilyDetail: React.FC = () => {
+const NewFamilyDetail = () => {
+	const location = useLocation();
 	const navigate = useNavigate();
+	const imageUrl = location.state?.imageUrl || '';
 	const [clickedBookmark, setClickedBookmark] = useState(false);
 	const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
+	const dispatch = useDispatch();
 
 	const { petId } = useParams();
 
@@ -48,12 +53,12 @@ const NewFamilyDetail: React.FC = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await getAnimal();
+				const response = await getNewFamily();
 				const parsedBoardId = petId ? parseInt(petId) : undefined;
 				const boardData = response.find(
-					(animal: AnimalData) => animal.boardId === parsedBoardId,
+					(animal) => animal.boardId === parsedBoardId,
 				);
-				setBoardIdData(boardData);
+				setBoardIdData(boardData || null);
 			} catch (error) {
 				console.error('불러오기 오류', error);
 			}
@@ -72,6 +77,17 @@ const NewFamilyDetail: React.FC = () => {
 	const getMoreBtnSize = () => {
 		if ($isMobile) return 20;
 		return 30;
+	};
+
+	const moveToChatHandler = () => {
+		const data = {
+			animalId: 6,
+			animalName: '나나',
+			age: '1년',
+			breed: '말티즈',
+		};
+		dispatch(MOVE_TO_CHAT(data));
+		navigate('');
 	};
 
 	return (
@@ -166,7 +182,7 @@ const NewFamilyDetail: React.FC = () => {
 						<p>이별 사유 : {boardIdData?.textReason}</p>
 						<p>그 외 특이사항: {boardIdData?.textEtc}</p>
 					</DetailTextBox>
-					<button>문의하기</button>
+					<button onClick={moveToChatHandler}>문의하기</button>
 				</div>
 			</NewFamilyDetailContainer>
 

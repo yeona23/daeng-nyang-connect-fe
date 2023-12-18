@@ -32,7 +32,7 @@ class APIClient {
 
 	post<T extends FormData | Record<string, string | boolean>>(
 		endpoint: string,
-		body?: FormData | Record<string, string | boolean | number>,
+		body?: FormData | Record<string, string | boolean | string[] | number>,
 	): Promise<T> {
 		return this.request('post', endpoint, body);
 	}
@@ -51,7 +51,10 @@ class APIClient {
 	private request<T>(
 		method: Method,
 		url: string,
-		data: FormData | Record<string, string | boolean | number> = {},
+		data:
+			| FormData
+			| FormData
+			| Record<string, string | boolean | string[] | number> = {},
 		config?: AxiosRequestConfig,
 	): Promise<T> {
 		const headers = {

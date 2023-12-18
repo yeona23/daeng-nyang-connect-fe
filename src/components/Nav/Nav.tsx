@@ -8,30 +8,37 @@ import {
 	UtilDl,
 	UtilDd,
 } from './Nav.style';
-import {
-	IoChatbubblesOutline,
-	IoChatbubblesSharp,
-	IoCloseOutline,
-} from 'react-icons/io5';
-import { HiOutlineUser } from 'react-icons/hi';
+import { IoChatbubblesOutline, IoChatbubblesSharp } from 'react-icons/io5';
+import { HiOutlineUser, HiUser } from 'react-icons/hi';
 import { FiMenu } from 'react-icons/fi';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import scrollNav from '../../utils/scrollNav';
 import { useResponsive } from '../../hooks/useResponsive';
 import { useState } from 'react';
 import MobileMenuDrawer from './MobileMenuDrawer/MobileMenuDrawer';
+import localToken from '../../api/LocalToken';
 
 const Nav = () => {
 	const location = useLocation();
+	const pathname = location.pathname;
+	const navigate = useNavigate();
 	const { $isMaxWidth, $isMobile } = useResponsive();
 	const [mMenuIsOpen, setmMenuIsOpen] = useState(false);
 
 	const scrollProps = scrollNav() ? { $isHome: 'home' } : {};
 
-	const id = 3;
+	const id = 'supercoding@test.com';
 
 	const mMenuClickHandler = () => {
 		setmMenuIsOpen((prev) => !prev);
+	};
+
+	const userIconClickHandler = () => {
+		id ? navigate(`/users/${id}`) : navigate('/login');
+	};
+
+	const chatIconClickHandler = () => {
+		id ? navigate(`/users/${id}/chatBox`) : navigate('/login');
 	};
 
 	const navText = !$isMobile ? 'nav' : 'm-nav';
@@ -72,13 +79,11 @@ const Nav = () => {
 					<UtilDl>
 						<dt></dt>
 						<UtilDd $isMobile={$isMobile}>
-							<NavLink to={`/users/${id}/chatBox`}>
-								{!location.pathname.includes('chat') ? (
-									<IoChatbubblesOutline />
-								) : (
-									<IoChatbubblesSharp />
-								)}
-							</NavLink>
+							{!pathname.includes('chat') ? (
+								<IoChatbubblesOutline onClick={chatIconClickHandler} />
+							) : (
+								<IoChatbubblesSharp />
+							)}
 						</UtilDd>
 						{/* <UtilDd>
 						<IoNotificationsOutline />
@@ -86,10 +91,10 @@ const Nav = () => {
 						<UtilDd $isMobile={$isMobile}>
 							{$isMobile ? (
 								<FiMenu onClick={mMenuClickHandler} />
+							) : pathname.includes('users') && !pathname.includes('chat') ? (
+								<HiUser />
 							) : (
-								<NavLink to={`/users/${id}`}>
-									<HiOutlineUser />
-								</NavLink>
+								<HiOutlineUser onClick={userIconClickHandler} />
 							)}
 						</UtilDd>
 					</UtilDl>
