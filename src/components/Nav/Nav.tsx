@@ -8,12 +8,8 @@ import {
 	UtilDl,
 	UtilDd,
 } from './Nav.style';
-import {
-	IoChatbubblesOutline,
-	IoChatbubblesSharp,
-	IoCloseOutline,
-} from 'react-icons/io5';
-import { HiOutlineUser } from 'react-icons/hi';
+import { IoChatbubblesOutline, IoChatbubblesSharp } from 'react-icons/io5';
+import { HiOutlineUser, HiUser } from 'react-icons/hi';
 import { FiMenu } from 'react-icons/fi';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import scrollNav from '../../utils/scrollNav';
@@ -24,13 +20,14 @@ import localToken from '../../api/LocalToken';
 
 const Nav = () => {
 	const location = useLocation();
+	const pathname = location.pathname;
 	const navigate = useNavigate();
 	const { $isMaxWidth, $isMobile } = useResponsive();
 	const [mMenuIsOpen, setmMenuIsOpen] = useState(false);
 
 	const scrollProps = scrollNav() ? { isHome: 'home' } : {};
 
-	const id = localToken.get();
+	const id = 'supercoding@test.com';
 
 	const mMenuClickHandler = () => {
 		setmMenuIsOpen((prev) => !prev);
@@ -82,7 +79,7 @@ const Nav = () => {
 					<UtilDl>
 						<dt></dt>
 						<UtilDd $isMobile={$isMobile}>
-							{!location.pathname.includes('chat') ? (
+							{!pathname.includes('chat') ? (
 								<IoChatbubblesOutline onClick={chatIconClickHandler} />
 							) : (
 								<IoChatbubblesSharp />
@@ -94,6 +91,8 @@ const Nav = () => {
 						<UtilDd $isMobile={$isMobile}>
 							{$isMobile ? (
 								<FiMenu onClick={mMenuClickHandler} />
+							) : pathname.includes('users') && !pathname.includes('chat') ? (
+								<HiUser />
 							) : (
 								<HiOutlineUser onClick={userIconClickHandler} />
 							)}
