@@ -137,9 +137,11 @@ export const Paragraph = styled.p<ResponsiveProps>`
 	text-align: left;
 	font-size: ${(props) => (props.$isMobile ? '9px' : '12px')};
 	color: var(--color--deep-blue);
+	font-weight: 500;
 `;
 
 export const ExParagraph = styled.p<ResponsiveProps>`
+	font-weight: 500;
 	margin-top: -10px;
 	width: ${(props) => (props.$isMobile ? '50%' : '90%')};
 	text-align: left;

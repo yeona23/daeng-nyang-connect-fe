@@ -133,43 +133,51 @@ const Register = () => {
 		setEmailOnFocus(false);
 		const { name, value } = e.target;
 		setInputValue({ ...inputValue, [name]: value });
+
 		if (name === 'email') {
-			if (e.target.value.trim() === '') {
+			const trimmedValue = e.target.value.trim();
+
+			// 값이 비어있는 경우
+			if (trimmedValue === '') {
 				setEmailIsValid(false);
-			}
-			if (/^.+@.+\..+$/.test(e.target.value)) {
-				setEmailIsValid(true);
 			} else {
-				setEmailIsValid(false);
+				// 이메일 형식이 유효한 경우에만 setEmailIsValid를 true로 설정
+				setEmailIsValid(/^.+@.+\..+$/.test(trimmedValue));
 			}
 		}
-		try {
-			const response = await idCheck({
-				email: inputValue.email,
-			});
-			console.log(response);
-			if (!response) {
-				setEmailIsDuplicated(true);
-				return;
-			}
-			if (response.msg === '사용가능한 아이디 입니다.') {
-				setEmailIsDuplicated(false);
-			} else {
-				setEmailIsDuplicated(true);
-			}
-		} catch (error) {
-			if (e instanceof TypeError) {
-				// TypeError
-			} else if (e instanceof SyntaxError) {
-				// SyntaxError
-			} else if (typeof e === 'string') {
-				// string
-			} else {
-				// other
+
+		// emailIsValid가 true인 경우에만 서버 통신 수행
+		if (emailIsValid) {
+			try {
+				// idCheck 함수의 비동기 작업이 완료될 때까지 기다리기
+				const response = await idCheck({
+					email: inputValue.email,
+				});
+				console.log(response);
+
+				if (!response) {
+					setEmailIsDuplicated(true);
+					return;
+				}
+
+				if (response.msg === '사용가능한 아이디 입니다.') {
+					setEmailIsDuplicated(false);
+				} else {
+					setEmailIsDuplicated(true);
+				}
+			} catch (error) {
+				if (error instanceof TypeError) {
+					// TypeError 처리
+				} else if (error instanceof SyntaxError) {
+					// SyntaxError 처리
+				} else if (typeof error === 'string') {
+					// 문자열 처리
+				} else {
+					// 기타 오류 처리
+				}
 			}
 		}
 	};
-
 	const mobileOnFocusHandler = () => {
 		setMobileOnFocus(true);
 		setMobileISValid(true);

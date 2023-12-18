@@ -107,6 +107,7 @@ export const Paragraph = styled.p<ResponsiveProps>`
 	text-align: center;
 	font-size: 12px;
 	color: tomato;
+	font-weight: 500;
 `;
 
 export const ParagraphLogin = styled.p<ResponsiveProps>`
@@ -116,6 +117,7 @@ export const ParagraphLogin = styled.p<ResponsiveProps>`
 	text-align: center;
 	font-size: 12px;
 	color: tomato;
+	font-weight: 500;
 `;
 
 export const ButtonWrapper = styled.div`

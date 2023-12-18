@@ -150,71 +150,8 @@ const User = () => {
 									<ProfileImgInput />
 								</ProfileImgDiv>
 							</UserPhotoDiv>
-							<UserNameDiv>이름</UserNameDiv>
+							<UserNameDiv>{userInfo.name}</UserNameDiv>
 						</UserNamePhotoDiv>
-						<UserLeftItemDivWrapper
-							$isMobile={$isMobile}
-							$isTablet={$isTablet}
-							$isPc={$isPc}
-							$isMaxWidth={$isMaxWidth}>
-							<UserItemTitleDiv
-								$isMobile={$isMobile}
-								$isTablet={$isTablet}
-								$isPc={$isPc}
-								$isMaxWidth={$isMaxWidth}>
-								소개글
-							</UserItemTitleDiv>
-							<UserLeftItemDiv
-								$isMobile={$isMobile}
-								$isTablet={$isTablet}
-								$isPc={$isPc}
-								$isMaxWidth={$isMaxWidth}>
-								안녕하세요
-							</UserLeftItemDiv>
-							<ModalDiv
-								$isMobile={$isMobile}
-								$isTablet={$isTablet}
-								$isPc={$isPc}
-								$isMaxWidth={$isMaxWidth}>
-								변경
-							</ModalDiv>
-						</UserLeftItemDivWrapper>
-						<UserLeftItemDivWrapper
-							$isMobile={$isMobile}
-							$isTablet={$isTablet}
-							$isPc={$isPc}
-							$isMaxWidth={$isMaxWidth}>
-							<UserItemTitleDiv
-								$isMobile={$isMobile}
-								$isTablet={$isTablet}
-								$isPc={$isPc}
-								$isMaxWidth={$isMaxWidth}>
-								주소
-							</UserItemTitleDiv>
-							<UserLeftItemDiv
-								$isMobile={$isMobile}
-								$isTablet={$isTablet}
-								$isPc={$isPc}
-								$isMaxWidth={$isMaxWidth}>
-								대한민국 서울특별시 청와대 주소 123-456
-							</UserLeftItemDiv>
-							<ModalDiv
-								onClick={addressOnClickButton}
-								$isMobile={$isMobile}
-								$isTablet={$isTablet}
-								$isPc={$isPc}
-								$isMaxWidth={$isMaxWidth}>
-								변경
-							</ModalDiv>
-							{addressIsOpen && (
-								<AddressChangeModal
-									open={addressIsOpen}
-									onClose={() => {
-										addressSetIsOpen(false);
-									}}
-								/>
-							)}
-						</UserLeftItemDivWrapper>
 						<UserLeftItemDivWrapper
 							$isMobile={$isMobile}
 							$isTablet={$isTablet}
@@ -241,6 +178,70 @@ const User = () => {
 								$isMaxWidth={$isMaxWidth}>
 								변경
 							</ModalDiv>
+						</UserLeftItemDivWrapper>
+						<UserLeftItemDivWrapper
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
+							<UserItemTitleDiv
+								$isMobile={$isMobile}
+								$isTablet={$isTablet}
+								$isPc={$isPc}
+								$isMaxWidth={$isMaxWidth}>
+								소개글
+							</UserItemTitleDiv>
+							<UserLeftItemDiv
+								$isMobile={$isMobile}
+								$isTablet={$isTablet}
+								$isPc={$isPc}
+								$isMaxWidth={$isMaxWidth}>
+								{userInfo.info ? userInfo.info : <p>소개글을 입력해 주세요.</p>}
+							</UserLeftItemDiv>
+							<ModalDiv
+								$isMobile={$isMobile}
+								$isTablet={$isTablet}
+								$isPc={$isPc}
+								$isMaxWidth={$isMaxWidth}>
+								{userInfo.info ? <p>변경</p> : <p>입력</p>}
+							</ModalDiv>
+						</UserLeftItemDivWrapper>
+						<UserLeftItemDivWrapper
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}>
+							<UserItemTitleDiv
+								$isMobile={$isMobile}
+								$isTablet={$isTablet}
+								$isPc={$isPc}
+								$isMaxWidth={$isMaxWidth}>
+								주소
+							</UserItemTitleDiv>
+							<UserLeftItemDiv
+								$isMobile={$isMobile}
+								$isTablet={$isTablet}
+								$isPc={$isPc}
+								$isMaxWidth={$isMaxWidth}>
+								{userInfo.city}
+								{userInfo.town}
+							</UserLeftItemDiv>
+							<ModalDiv
+								onClick={addressOnClickButton}
+								$isMobile={$isMobile}
+								$isTablet={$isTablet}
+								$isPc={$isPc}
+								$isMaxWidth={$isMaxWidth}>
+								변경
+							</ModalDiv>
+							{addressIsOpen && (
+								<AddressChangeModal
+									open={addressIsOpen}
+									onClose={() => {
+										addressSetIsOpen(false);
+									}}
+								/>
+							)}
 						</UserLeftItemDivWrapper>
 						<UserLeftItemDivWrapper
 							$isMobile={$isMobile}
