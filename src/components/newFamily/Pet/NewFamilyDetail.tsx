@@ -7,17 +7,21 @@ import {
 	NewFamilyDetailContainer,
 	UserThumbnail,
 } from '../NewFamily.style';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import NewFamilySwiper from './NewFamilySwiper';
 import { useState } from 'react';
 import { useResponsive } from '../../../hooks/useResponsive';
+import { useDispatch } from 'react-redux';
+import { MOVE_TO_CHAT } from '../../../slice/chatSlice';
 
 const NewFamilyDetail = () => {
 	const location = useLocation();
+	const navigate = useNavigate();
 	const imageUrl = location.state?.imageUrl || '';
 	const [clickedBookmark, setClickedBookmark] = useState(false);
 	const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 	const { $isMobile, $isTablet, $isPc, $isMaxWidth } = useResponsive();
+	const dispatch = useDispatch();
 
 	const toggleDropdown = () => {
 		setIsDropdownVisible((prev) => !prev);
@@ -31,6 +35,17 @@ const NewFamilyDetail = () => {
 		if ($isMobile) return 20;
 		if ($isTablet) return 30;
 		if ($isPc) return 30;
+	};
+
+	const moveToChatHandler = () => {
+		const data = {
+			animalId: 6,
+			animalName: '나나',
+			age: '1년',
+			breed: '말티즈',
+		};
+		dispatch(MOVE_TO_CHAT(data));
+		navigate('');
 	};
 
 	return (
@@ -126,7 +141,7 @@ const NewFamilyDetail = () => {
 							sewjgjvbnarjbdjlsbrfejvbjskfbobnvbiowegjiodsfgsgfgrgrehfgasegFgahrtgdfgddghthgnbxdgnfhdthgnzdrhxtnsrxdhrthjthseythxdyhet
 						</p>
 					</DetailTextBox>
-					<button>문의하기</button>
+					<button onClick={moveToChatHandler}>문의하기</button>
 				</div>
 			</NewFamilyDetailContainer>
 			{$isPc && <NewFamilySwiper />}

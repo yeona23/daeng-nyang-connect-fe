@@ -34,8 +34,13 @@ export const BtnDiv = styled.div`
 `;
 export const CompleteBtn = styled.button<AnimalInfoProps>`
 	padding: ${(props) => (props.$isMobile ? '3px 12px' : '6px 20px')};
-	border: 1px solid var(--color-peach);
+	border: 1px solid var(--color-light-salmon);
 	border-radius: 8px;
 	font-size: ${(props) => (props.$isMobile ? '10px' : null)};
+	transition: all 0.3s ease;
 	cursor: pointer;
+	&:hover {
+		background-color: var(--color-light-salmon);
+		color: #fff;
+	}
 `;

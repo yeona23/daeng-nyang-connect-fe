@@ -29,13 +29,13 @@ class APIClient {
 
 	post<T>(
 		endpoint: string,
-		body: Record<string, string | boolean>,
+		body?: FormData | Record<string, string | boolean | string[]>,
 	): Promise<T> {
 		return this.request('post', endpoint, body);
 	}
 
-	put<T>(endpoint: string, body: Record<string, string | boolean>): Promise<T> {
-		return this.request('put', endpoint, body);
+	put<T>(endpoint: string): Promise<T> {
+		return this.request('put', endpoint);
 	}
 
 	delete<T>(endpoint: string): Promise<T> {
@@ -45,7 +45,7 @@ class APIClient {
 	private request<T>(
 		method: Method,
 		url: string,
-		data: Record<string, string | boolean> = {},
+		data: FormData | Record<string, string | boolean | string[]> = {},
 		config?: AxiosRequestConfig,
 	): Promise<T> {
 		const headers = {

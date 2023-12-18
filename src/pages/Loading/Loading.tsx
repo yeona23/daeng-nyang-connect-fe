@@ -1,4 +1,3 @@
-import React from 'react';
 import { LoadingContents, LoadingText, LoadingWrap } from './Loading.style';
 
 const Loading = () => {
@@ -6,7 +5,7 @@ const Loading = () => {
 		<LoadingWrap>
 			<LoadingContents>
 				<LoadingText>LOADING . . .</LoadingText>
-				<img src="/assets/moving_paw.gif" alt="" />
+				<img src="./moving_paw.gif" alt="" />
 			</LoadingContents>
 		</LoadingWrap>
 	);

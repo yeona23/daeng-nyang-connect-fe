@@ -18,9 +18,7 @@ export const HorizentalCardImgDiv = styled.div`
 	height: 100%;
 	overflow: hidden;
 	img {
-		position: relative;
-		left: -20%;
-		height: 100%;
+		width: 100%;
 	}
 `;
 export const HorizentalCardTextBox = styled.div`

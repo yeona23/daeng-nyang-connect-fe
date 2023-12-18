@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import {
 	CardBtn,
 	CardDiv,
@@ -7,17 +8,28 @@ import {
 
 type FindNewProps = {
 	$isMobile?: boolean;
+	data: {
+		boardId: number;
+		animalName: string;
+		age: string;
+		images: string[];
+	};
 };
-const VerticalCard = ({ $isMobile }: FindNewProps) => {
+
+const VerticalCard = ({ $isMobile, data }: FindNewProps) => {
+	const navigate = useNavigate();
+	const moveToDetailHandler = () => {
+		navigate(`/newFamily/pet/${data.boardId}`);
+	};
 	return (
-		<CardDiv $isMobile={$isMobile}>
+		<CardDiv $isMobile={$isMobile} onClick={moveToDetailHandler}>
 			<CardImgDiv>
-				<img src="/assets/community2.jpg" alt="" />
+				<img src={data.images?.[0]} alt="" />
 			</CardImgDiv>
 			<CardTextDiv>
 				<div>
-					<p>이름 : 나비</p>
-					<p>나이 : 1년 5개월</p>
+					<p>이름 : {data.animalName}</p>
+					<p>나이 : {data.age}</p>
 				</div>
 				<CardBtn>자세히 보기</CardBtn>
 			</CardTextDiv>
