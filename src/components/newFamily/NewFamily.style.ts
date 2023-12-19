@@ -358,6 +358,59 @@ export const DetailTextBox = styled.div<ResponsiveProps>`
 	}
 `;
 
+export const ModifyAnimalInfo = styled.div<ResponsiveProps>`
+	width: ${(props) => (props.$isMaxWidth ? '100%' : '1320px')};
+	padding: ${(props) =>
+		props.$isMobile ? '0 10px' : props.$isMaxWidth ? '0 30px' : '0'};
+	margin: ${(props) => (props.$isPc ? '100px auto 150px auto' : '0 auto')};
+	background: #fff;
+	z-index: 1000;
+
+	& > div:last-child {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	& h5 {
+		width: ${(props) => (props.$isMobile ? '60px' : '80px')};
+		margin-right: ${(props) => (props.$isMobile ? '15px' : '30px')};
+		font-weight: 400;
+		font-size: ${(props) => (props.$isMobile ? '12px' : 'inherit')};
+	}
+	.modify-btn-box {
+		transform: ${(props) =>
+			props.$isMobile
+				? 'unset'
+				: props.$isTablet
+				  ? 'unset'
+				  : 'translateX(55%)'};
+	}
+	.modify-btn {
+		position: unset;
+		transform: none;
+		width: ${(props) => (props.$isMobile ? '80%' : '420px')};
+		padding: 4px;
+		margin: 0 auto;
+		margin-top: ${(props) => (props.$isPc ? '100px' : '0')};
+		border: 1px solid var(--color-light-salmon);
+		border-radius: 5px;
+		background: var(--color-light-salmon);
+		color: #fff;
+		font-size: ${(props) => (props.$isMobile ? '12px' : '16px')};
+		cursor: pointer;
+	}
+
+	.register-title {
+		margin: ${(props) => (props.$isPc ? '70px 0 50px 0' : '70px 0 30px 0')};
+	}
+
+	.register-close-btn {
+		display: block;
+		cursor: pointer;
+	}
+`;
+
 //NewFamilyDetailSwiper
 export const DetailSwiper = styled.div`
 	display: flex;

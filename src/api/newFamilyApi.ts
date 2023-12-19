@@ -19,6 +19,8 @@ export const getAnimalsMock = async (): Promise<any> => {
 
 export const NewFamilyApi = new APIClient(BASE_URL + '/api/animal');
 
+export const BaseApi = new APIClient(BASE_URL + '/api');
+
 export const getNewFamily = async (): Promise<any> => {
 	return await NewFamilyApi.get(GET_ALL);
 };
@@ -38,7 +40,7 @@ interface RegisterAnimal {
 	age: string;
 	disease: string;
 	training: string;
-	neutering: string;
+	neutering: string | boolean;
 	healthCheck: string;
 	nurturePeriod: string;
 	files: File[];
@@ -81,12 +83,38 @@ export const deleteAnimal = async (animalId: number) => {
 	return await NewFamilyApi.delete(DELETE + `?animalId=${animalId}`);
 };
 
-export const modifyAnimal = async (animalId: number) => {
-	return await NewFamilyApi.put(MODIFY + `/${animalId}`, {});
+export const modifyAnimal = async (
+	animalId: number,
+	data: RegisterAnimal,
+): Promise<any> => {
+	const { files } = data;
+	const formData = new FormData();
+
+	Object.keys(data).forEach((key) => {
+		if (key !== 'files') {
+			const value = data[key as keyof RegisterAnimal];
+			if (value !== undefined) {
+				formData.append(key, value.toString());
+			}
+		}
+	});
+
+	if (files && files.length > 0) {
+		for (const file of files) {
+			console.log(file);
+			formData.append('files', file);
+		}
+	}
+
+	return await NewFamilyApi.put(MODIFY + `?animalId=${animalId}`, formData);
 };
 
 export const scrapAnimal = async (animalId: number) => {
 	return await NewFamilyApi.post(SCRAP + `?animalId=${animalId}`);
+};
+
+export const getScrappedAnimal = async (): Promise<any> => {
+	return await BaseApi.get('/myPage/myScrapAnimal');
 };
 
 export const completeAnimal = async (animalId: number) => {
