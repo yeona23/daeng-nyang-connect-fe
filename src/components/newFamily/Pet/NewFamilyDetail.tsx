@@ -73,6 +73,7 @@ const NewFamilyDetail = () => {
 
 	const [boardIdData, setBoardIdData] = useState<AnimalData | null>(null);
 
+	//디테일정보불러오기(해당하는 item만)
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -89,19 +90,23 @@ const NewFamilyDetail = () => {
 		fetchData();
 	}, [petId]);
 
+	//미니 드랍다운(수정,삭제하기)
 	const toggleDropdown = () => {
 		setIsDropdownVisible((prev) => !prev);
 	};
 
+	//북마크스크랩기능
 	const clickBookmarkHandler = () => {
 		setClickedBookmark((prev) => !prev);
 	};
 
+	//아이콘사이즈
 	const getMoreBtnSize = () => {
 		if ($isMobile) return 20;
 		return 30;
 	};
 
+	//삭제하기 기능
 	const deleteAnimalHandler = async () => {
 		if (boardIdData) {
 			try {
@@ -112,6 +117,8 @@ const NewFamilyDetail = () => {
 			}
 		}
 	};
+
+	//Form입력관련 handler
 	const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 		setFormData((prevData) => ({
@@ -136,14 +143,18 @@ const NewFamilyDetail = () => {
 		}));
 	};
 
+	//Form닫기
 	const clickCloseBtnHandler = () => {
 		setIsModifyMode(false);
 	};
+
+	//Form 토글
 	const toggleModifyMode = () => {
 		setIsModifyMode((prev) => !prev);
 		setIsDropdownVisible(false);
 	};
 
+	//수정하기 기능
 	const modifyAnimalHandler = async () => {
 		try {
 			if (boardIdData) {
@@ -180,6 +191,7 @@ const NewFamilyDetail = () => {
 		}
 	};
 
+	//채팅창으로 이동
 	const moveToChatHandler = () => {
 		const data = {
 			animalId: 6,
