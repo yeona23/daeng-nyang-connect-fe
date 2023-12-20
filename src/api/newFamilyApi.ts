@@ -1,5 +1,22 @@
 import APIClient from './ApiClient';
 
+interface RegisterAnimal {
+	animalName: string;
+	kind: string;
+	city: string;
+	gender: string;
+	breed: string;
+	age: string;
+	disease: string;
+	training: string;
+	neutering: string | boolean;
+	healthCheck: string;
+	nurturePeriod: string;
+	files: File[];
+	textReason: string;
+	textEtc: string;
+}
+
 const POST = '/post';
 const MODIFY = '/modify';
 const SCRAP = '/scrap';
@@ -30,23 +47,6 @@ export const adoptComplete = async (animalId: number, adoptUserId: number) => {
 		COMPLETE + `?animalId=${animalId}&&adoptedUserId=${adoptUserId}`,
 	);
 };
-
-interface RegisterAnimal {
-	animalName: string;
-	kind: string;
-	city: string;
-	gender: string;
-	breed: string;
-	age: string;
-	disease: string;
-	training: string;
-	neutering: string | boolean;
-	healthCheck: string;
-	nurturePeriod: string;
-	files: File[];
-	textReason: string;
-	textEtc: string;
-}
 
 export const registerAnimal = async (data: RegisterAnimal): Promise<any> => {
 	const { files } = data;
