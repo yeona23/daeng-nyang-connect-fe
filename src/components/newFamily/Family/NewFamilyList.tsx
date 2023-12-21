@@ -6,7 +6,6 @@ import { useQuery } from 'react-query';
 import {
 	getNewFamily,
 	getScrappedAnimal,
-	kindAnimal,
 	scrapAnimal,
 } from '../../../api/newFamilyApi';
 import { BsBookmarkFill } from 'react-icons/bs';
@@ -21,6 +20,8 @@ interface Item {
 	images: string[];
 	animalId: number;
 	createdAt: string;
+	kind: string;
+	city: string;
 }
 
 interface ResponsiveProps {
@@ -28,7 +29,9 @@ interface ResponsiveProps {
 	$isTablet: boolean;
 	$isPc: boolean;
 	$isMaxWidth: boolean;
-	selectedKind: string | null;
+	filterKind: string | null;
+	filterCity: string | null;
+	filterAdoptionStatus: string | null;
 }
 
 const NewFamilyList: React.FC<ResponsiveProps> = ({
@@ -36,32 +39,20 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 	$isTablet,
 	$isPc,
 	$isMaxWidth,
-	selectedKind,
+	filterKind,
+	filterCity,
+	filterAdoptionStatus,
 }) => {
 	const navigate = useNavigate();
-
-	//전체 데이터 조희
-	const { data: items } = useQuery<Item[], unknown, Item[]>(
-		['animals', selectedKind || '전체'],
-		async () => {
-			if (selectedKind) {
-				const result = await kindAnimal(selectedKind);
-				return result;
-			} else {
-				return getNewFamily();
-			}
-		},
-	);
-
-	//스크랩된 동물 조회
-	const { data: scrappedAnimals } = useQuery<Item[], unknown, Item[]>(
-		['scrappedAnimals'],
-		getScrappedAnimal,
-	);
-
 	const [bookmarkState, setBookmarkState] = useState<{
 		[key: number]: boolean;
 	}>({});
+
+	//전체 데이터 조희
+	const { data: items } = useQuery<Item[], unknown, Item[]>(
+		['animals'],
+		getNewFamily,
+	);
 
 	//북마크된 동물정보 불러오기(-> UI에 반영)
 	useEffect(() => {
@@ -83,6 +74,7 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 						{},
 					);
 					setBookmarkState(initialState);
+					console.log();
 				} else {
 					console.error('동물데이터가 정의 안 됨');
 				}
@@ -138,8 +130,8 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 	};
 
 	const getAdoptionStatusSize = () => {
-		if ($isMobile) return 28;
-		return 40;
+		if ($isMobile) return 20;
+		return 30;
 	};
 
 	return (
@@ -149,6 +141,16 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 			$isPc={$isPc}
 			$isMaxWidth={$isMaxWidth}>
 			{items
+				?.filter((animal) => {
+					if (filterKind && animal.kind !== filterKind) return false;
+					if (filterCity && animal.city !== filterCity) return false;
+					if (
+						filterAdoptionStatus &&
+						animal.adoptionStatus !== filterAdoptionStatus
+					)
+						return false;
+					return true;
+				})
 				?.sort((a, b) => b.boardId - a.boardId)
 				.map((animal: Item) => (
 					<ItemBox
@@ -161,11 +163,12 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 						<div>
 							<img src={animal.images[0]} alt={`adoption${animal.boardId}`} />
 							{animal.adoptionStatus === 'COMPLETED' && (
-								<PiPawPrintFill
-									size={getAdoptionStatusSize()}
-									color="var(--color-light-salmon)"
-									className="adoption-status-icon"
-								/>
+								<div className="adoption-status-icon">
+									<PiPawPrintFill
+										size={getAdoptionStatusSize()}
+										color="var(--color-light-salmon)"
+									/>
+								</div>
 							)}
 							<BsBookmarkFill
 								color={getBookmarkColor(animal.boardId)}
@@ -174,6 +177,7 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 									e.stopPropagation();
 									clickBookmarkHandler(animal.boardId);
 								}}
+								className="bookmark-icon"
 							/>
 						</div>
 						<div>

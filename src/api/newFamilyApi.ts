@@ -136,3 +136,7 @@ export const adoptionStatusAnimal = async (
 		ADOPTION_STATUS + `/adoptionStatus/${adoptionStatus}`,
 	);
 };
+
+// export const getNewFamilyWithFilters = async (filters: any): Promise<any> => {
+// 	return await NewFamilyApi.get(GET_ALL, { params: filters });
+// };

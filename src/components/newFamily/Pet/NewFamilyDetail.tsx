@@ -20,9 +20,12 @@ import { MOVE_TO_CHAT } from '../../../slice/chatSlice';
 import {
 	deleteAnimal,
 	getNewFamily,
+	getScrappedAnimal,
 	modifyAnimal,
+	scrapAnimal,
 } from '../../../api/newFamilyApi';
 import { IoCloseOutline } from 'react-icons/io5';
+import { PiPawPrintFill } from 'react-icons/pi';
 
 interface AnimalData {
 	boardId: number;
@@ -72,6 +75,9 @@ const NewFamilyDetail = () => {
 	});
 
 	const [boardIdData, setBoardIdData] = useState<AnimalData | null>(null);
+	const [bookmarkState, setBookmarkState] = useState<{
+		[key: number]: boolean;
+	}>({});
 
 	//디테일정보불러오기(해당하는 item만)
 	useEffect(() => {
@@ -93,11 +99,6 @@ const NewFamilyDetail = () => {
 	//미니 드랍다운(수정,삭제하기)
 	const toggleDropdown = () => {
 		setIsDropdownVisible((prev) => !prev);
-	};
-
-	//북마크스크랩기능
-	const clickBookmarkHandler = () => {
-		setClickedBookmark((prev) => !prev);
 	};
 
 	//아이콘사이즈
@@ -201,6 +202,79 @@ const NewFamilyDetail = () => {
 		};
 		dispatch(MOVE_TO_CHAT(data));
 		navigate('');
+	};
+
+	useEffect(() => {
+		const fetchScrappedAnimals = async () => {
+			try {
+				const scrappedAnimalsData = await getScrappedAnimal();
+
+				if (scrappedAnimalsData) {
+					const initialState = scrappedAnimalsData.reduce(
+						(
+							acc: { [key: number]: boolean },
+							animal: { animalId?: number },
+						) => {
+							if (animal.animalId !== undefined) {
+								acc[animal.animalId] = true;
+							}
+							return acc;
+						},
+						{},
+					);
+					setBookmarkState(initialState);
+				} else {
+					console.error('동물데이터가 정의 안 됨');
+				}
+			} catch (error) {
+				console.error('스크랩목록 가져오기 실패:', error);
+			}
+		};
+		fetchScrappedAnimals();
+	}, []);
+
+	//북마크 추가
+	const clickBookmarkHandler = async (animalId: number) => {
+		try {
+			if (Object.prototype.hasOwnProperty.call(bookmarkState, animalId)) {
+				const updatedBookmarkState = { ...bookmarkState };
+				delete updatedBookmarkState[animalId];
+				setBookmarkState(updatedBookmarkState);
+
+				console.log('After Deletion:', updatedBookmarkState);
+
+				await scrapAnimal(animalId);
+			} else {
+				const updatedBookmarkState = { ...bookmarkState, [animalId]: true };
+				setBookmarkState(updatedBookmarkState);
+				await scrapAnimal(animalId)
+					.then((result) => {
+						console.log('Scrap Success:', result);
+					})
+					.catch((error) => {
+						console.error('Scrap Error:', error);
+					});
+			}
+		} catch (error) {
+			console.error('북마크오류', error);
+			setBookmarkState((prev) => ({ ...prev, [animalId]: !prev[animalId] }));
+		}
+	};
+
+	//북마크컬러변경
+	const getBookmarkColor = (animalId: number) => {
+		return bookmarkState[animalId] ? 'var(--color-light-salmon)' : '#ffffff70';
+	};
+
+	//디바이스에 따른 아이콘 사이즈 조정
+	const getBookmarkSize = () => {
+		if ($isMobile) return 25;
+		return 40;
+	};
+
+	const getAdoptionStatusSize = () => {
+		if ($isMobile) return 20;
+		return 36;
 	};
 
 	return (
@@ -488,12 +562,22 @@ const NewFamilyDetail = () => {
 						$isPc={$isPc}
 						$isMaxWidth={$isMaxWidth}>
 						<img src={boardIdData?.images[0]} alt={boardIdData?.animalName} />
+						{boardIdData?.adoptionStatus === 'COMPLETED' && (
+							<div className="adoption-status-icon">
+								<PiPawPrintFill
+									size={getAdoptionStatusSize()}
+									color="var(--color-light-salmon)"
+								/>
+							</div>
+						)}
 						<BsBookmarkFill
-							color={
-								clickedBookmark ? 'var(--color-light-salmon)' : '#ffffff70'
-							}
-							size={40}
-							onClick={clickBookmarkHandler}
+							color={getBookmarkColor(boardIdData?.boardId ?? 0)}
+							size={getBookmarkSize()}
+							onClick={(e) => {
+								e.stopPropagation();
+								clickBookmarkHandler(boardIdData?.boardId ?? 0);
+							}}
+							className="bookmark-icon"
 						/>
 					</DetailImageBox>
 					<div>

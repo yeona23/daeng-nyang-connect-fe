@@ -180,6 +180,7 @@ export const ItemBox = styled.div<ResponsiveProps>`
 
 	& img {
 		width: 100%;
+		object-fit: cover;
 		transition: all 0.5s;
 	}
 
@@ -187,7 +188,7 @@ export const ItemBox = styled.div<ResponsiveProps>`
 		scale: 1.1;
 	}
 
-	& svg {
+	.bookmark-icon {
 		position: absolute;
 		top: ${(props) => (props.$isMobile ? '10px' : '20px')};
 		right: ${(props) => (props.$isMobile ? '10px' : '20px')};
@@ -195,8 +196,16 @@ export const ItemBox = styled.div<ResponsiveProps>`
 	}
 
 	.adoption-status-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
 		top: ${(props) => (props.$isMobile ? '10px' : '16px')};
 		left: ${(props) => (props.$isMobile ? '10px' : '16px')};
+		width: ${(props) => (props.$isMobile ? '32px' : '40px')};
+		height: ${(props) => (props.$isMobile ? '32px' : '40px')};
+		border: 2px solid var(--color-light-salmon);
+		border-radius: 50%;
 	}
 
 	& button {
@@ -273,13 +282,26 @@ export const DetailImageBox = styled.div<ResponsiveProps>`
 	border-radius: 10px;
 	overflow: hidden;
 	& img {
-		height: 100%;
+		width: 100%;
+		object-fit: cover;
 	}
-	& svg {
+	.bookmark-icon {
 		position: absolute;
-		top: 20px;
-		right: 20px;
+		top: ${(props) => (props.$isMobile ? '10px' : '20px')};
+		right: ${(props) => (props.$isMobile ? '10px' : '20px')};
 		cursor: pointer;
+	}
+	.adoption-status-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		top: ${(props) => (props.$isMobile ? '10px' : '16px')};
+		left: ${(props) => (props.$isMobile ? '10px' : '16px')};
+		width: ${(props) => (props.$isMobile ? '32px' : '50px')};
+		height: ${(props) => (props.$isMobile ? '32px' : '50px')};
+		border: 2px solid var(--color-light-salmon);
+		border-radius: 50%;
 	}
 `;
 
