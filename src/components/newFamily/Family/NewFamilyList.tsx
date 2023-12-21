@@ -1,7 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ItemBox, ItemList } from '../NewFamily.style';
+import {
+	ItemBox,
+	ItemList,
+	ItemListWrapper,
+	ListPagination,
+	PageNumber,
+} from '../NewFamily.style';
 import { useQuery } from 'react-query';
 import {
 	getNewFamily,
@@ -47,6 +53,12 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 	const [bookmarkState, setBookmarkState] = useState<{
 		[key: number]: boolean;
 	}>({});
+	const [currentPage, setCurrentPage] = useState(1);
+	const itemsPerPage = 12;
+
+	const startIndex = (currentPage - 1) * itemsPerPage;
+	const endIndex = startIndex + itemsPerPage;
+	const maxVisiblePages = 5;
 
 	//전체 데이터 조희
 	const { data: items } = useQuery<Item[], unknown, Item[]>(
@@ -135,61 +147,94 @@ const NewFamilyList: React.FC<ResponsiveProps> = ({
 	};
 
 	return (
-		<ItemList
-			$isMobile={$isMobile}
-			$isTablet={$isTablet}
-			$isPc={$isPc}
-			$isMaxWidth={$isMaxWidth}>
-			{items
-				?.filter((animal) => {
-					if (filterKind && animal.kind !== filterKind) return false;
-					if (filterCity && animal.city !== filterCity) return false;
-					if (
-						filterAdoptionStatus &&
-						animal.adoptionStatus !== filterAdoptionStatus
-					)
-						return false;
-					return true;
-				})
-				?.sort((a, b) => b.boardId - a.boardId)
-				.map((animal: Item) => (
-					<ItemBox
-						$isMobile={$isMobile}
-						$isTablet={$isTablet}
-						$isPc={$isPc}
-						$isMaxWidth={$isMaxWidth}
-						key={animal.boardId}
-						onClick={() => goToDetailPage(animal.boardId)}>
-						<div>
-							<img src={animal.images[0]} alt={`adoption${animal.boardId}`} />
-							{animal.adoptionStatus === 'COMPLETED' && (
-								<div className="adoption-status-icon">
-									<PiPawPrintFill
-										size={getAdoptionStatusSize()}
-										color="var(--color-light-salmon)"
-									/>
-								</div>
-							)}
-							<BsBookmarkFill
-								color={getBookmarkColor(animal.boardId)}
-								size={getBookmarkSize()}
-								onClick={(e) => {
-									e.stopPropagation();
-									clickBookmarkHandler(animal.boardId);
-								}}
-								className="bookmark-icon"
-							/>
-						</div>
-						<div>
-							<p>이름 : {animal.animalName}</p>
-							<p>나이 : {animal.age}개월</p>
-							<button onClick={() => goToDetailPage(animal.boardId)}>
-								자세히 보기
-							</button>
-						</div>
-					</ItemBox>
-				))}
-		</ItemList>
+		<ItemListWrapper>
+			<ItemList
+				$isMobile={$isMobile}
+				$isTablet={$isTablet}
+				$isPc={$isPc}
+				$isMaxWidth={$isMaxWidth}>
+				{items
+					?.filter((animal) => {
+						if (filterKind && animal.kind !== filterKind) return false;
+						if (filterCity && animal.city !== filterCity) return false;
+						if (
+							filterAdoptionStatus &&
+							animal.adoptionStatus !== filterAdoptionStatus
+						)
+							return false;
+						return true;
+					})
+					?.sort((a, b) => b.boardId - a.boardId)
+					?.slice(startIndex, endIndex)
+					.map((animal: Item) => (
+						<ItemBox
+							$isMobile={$isMobile}
+							$isTablet={$isTablet}
+							$isPc={$isPc}
+							$isMaxWidth={$isMaxWidth}
+							key={animal.boardId}
+							onClick={() => goToDetailPage(animal.boardId)}>
+							<div>
+								<img src={animal.images[0]} alt={`adoption${animal.boardId}`} />
+								{animal.adoptionStatus === 'COMPLETED' && (
+									<div className="adoption-status-icon">
+										<PiPawPrintFill
+											size={getAdoptionStatusSize()}
+											color="var(--color-light-salmon)"
+										/>
+									</div>
+								)}
+								<BsBookmarkFill
+									color={getBookmarkColor(animal.boardId)}
+									size={getBookmarkSize()}
+									onClick={(e) => {
+										e.stopPropagation();
+										clickBookmarkHandler(animal.boardId);
+									}}
+									className="bookmark-icon"
+								/>
+							</div>
+							<div>
+								<p>이름 : {animal.animalName}</p>
+								<p>나이 : {animal.age}개월</p>
+								<button onClick={() => goToDetailPage(animal.boardId)}>
+									자세히 보기
+								</button>
+							</div>
+						</ItemBox>
+					))}
+			</ItemList>
+			<ListPagination>
+				<button
+					disabled={currentPage === 1}
+					onClick={() => setCurrentPage(currentPage - 1)}>
+					&lt;
+				</button>
+				{[
+					...Array(
+						Math.min(
+							Math.ceil((items?.length ?? 0) / itemsPerPage),
+							maxVisiblePages,
+						),
+					),
+				].map((_, index) => {
+					const page = index + 1;
+					return (
+						<PageNumber
+							key={index + 1}
+							isActive={currentPage === page}
+							onClick={() => setCurrentPage(page)}>
+							{page}
+						</PageNumber>
+					);
+				})}
+				<button
+					disabled={endIndex >= (items?.length ?? 0)}
+					onClick={() => setCurrentPage(currentPage + 1)}>
+					&gt;
+				</button>
+			</ListPagination>
+		</ItemListWrapper>
 	);
 };
 

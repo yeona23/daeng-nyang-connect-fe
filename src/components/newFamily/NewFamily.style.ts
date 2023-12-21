@@ -7,6 +7,10 @@ interface ResponsiveProps {
 	$isMaxWidth: boolean;
 }
 
+interface PageNumberProps {
+	isActive: boolean;
+}
+
 export const FindFamily = styled.div<ResponsiveProps>`
 	width: ${(props) => (props.$isMaxWidth ? '100%' : '1320px')};
 	padding: ${(props) =>
@@ -146,9 +150,12 @@ export const FilterItems = styled.div<ResponsiveProps>`
 	}
 `;
 
+export const ItemListWrapper = styled.div`
+	flex: 3;
+`;
+
 export const ItemList = styled.div<ResponsiveProps>`
 	display: flex;
-	flex: 3;
 	gap: ${(props) => (props.$isMobile ? '8px' : '25px')};
 	flex-wrap: wrap;
 	/* justify-content: space-between; */
@@ -227,6 +234,19 @@ export const ItemBox = styled.div<ResponsiveProps>`
 		margin-bottom: ${(props) => (props.$isMobile ? '10px' : '15px')};
 		font-size: ${(props) => (props.$isMobile ? '12px' : 'inherit')};
 	}
+`;
+
+export const ListPagination = styled.div`
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+	text-align: center;
+`;
+
+export const PageNumber = styled.div<PageNumberProps>`
+	margin: 0 5px;
+	font-weight: ${({ isActive }) => (isActive ? '500' : '300')};
+	cursor: pointer;
 `;
 
 //NewFamilyDetail
